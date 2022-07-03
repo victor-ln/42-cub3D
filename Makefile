@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adrianofaus <adrianofaus@student.42.fr>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/01 17:56:54 by adrianofaus      ###   ########.fr        #
+#    Updated: 2022/07/03 00:52:26 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # #################################################################### VARIABLES
 # BINARY NAME
-NAME			=	cube3D
+NAME			=	cub3D
 
 # BASH COMMANDS
 MKDIR			=	mkdir -p
@@ -29,7 +29,7 @@ DEBUG			=	-g3
 
 # COMPILATION
 CFLAGS			=	-Wall -Wextra -Werror
-MLXFLAGS		=	-Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \
 					--leak-check=full \
@@ -50,10 +50,10 @@ makedir:
 					$(MKDIR) $(PATH_OBJ)
 
 $(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
-					$(CC) $(addprefix $(PATH_OBJ),$(OBJS)) -o $(NAME)
+					$(CC) $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 
 $(PATH_OBJ)%.o:		%.c $(HEADERS)
-					$(CC) -c $< -o $@ $(MLXFLAGS)
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all
 					./$(NAME)
