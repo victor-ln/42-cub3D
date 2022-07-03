@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/03 00:52:26 by afaustin         ###   ########.fr        #
+#    Updated: 2022/07/03 19:36:06 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ RM				=	rm -rf
 HEADERS			=	cub3D.h
 
 # INCLUDES
-INCLUDES		=	-I .
+INCLUDES		=	-I $(PATH_INC)
 
 # DEBUG
 DEBUG			=	-g3
@@ -38,9 +38,12 @@ VALGRIND		=	valgrind \
 
 #PATHS
 PATH_OBJ		=	obj/
+PATH_SRC		=	srcs/
+PATH_INC		=	includes/
 
 # FILES
 SOURCES			=	main.c
+
 OBJS			=	$(SOURCES:%.c=%.o)
 
 # ###################################################################### TARGETS
@@ -52,7 +55,7 @@ makedir:
 $(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
 					$(CC) $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 
-$(PATH_OBJ)%.o:		%.c $(HEADERS)
+$(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all
