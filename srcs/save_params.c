@@ -30,8 +30,7 @@ void	save_params(t_game *game)
 	elements = 0;
 	while (game->file_content[i])
 	{
-		while (ft_isspace(game->file_content[i]) && game->file_content[i] && \
-			 game->file_content[i] != '\n')
+		while (ft_isspace(game->file_content[i]) && game->file_content[i])
 			i++;
 		if (is_textures(game->file_content + i, &identifier))
 			i += get_textures(game->file_content + i, identifier, game);
