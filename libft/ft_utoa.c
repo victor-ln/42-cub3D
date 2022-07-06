@@ -1,22 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/05 21:48:10 by vlima-nu         ###   ########.fr       */
+/*   Created: 2021/10/07 00:40:08 by vlima-nu          #+#    #+#             */
+/*   Updated: 2021/10/25 20:24:48 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "cub3D_data.h"
+char	*ft_utoa(unsigned int nbr)
+{
+	unsigned int	temp;
+	int				size;
+	char			*string;
 
-void	save_params(t_game *game);
-
-char	*load_file(int argc, char *argv);
-
-#endif
+	temp = nbr;
+	size = 0;
+	while (temp || !size)
+	{
+		temp /= 10;
+		size++;
+	}
+	string = (char *)malloc(size + 1);
+	*(string + size--) = 0;
+	while (size >= 0)
+	{
+		*(string + size--) = nbr % 10 + 48;
+		nbr /= 10;
+	}
+	return (string);
+}

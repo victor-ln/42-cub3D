@@ -3,42 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/03 19:57:28 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/05 21:48:10 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	// void	*mlx;
-	// void	*win;
-	char	map[8][8] = 
-	{{'1', '1', '1', '1', '1', '1','1', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '0', '0', '0', '0', '0', '0', '1'},
-	{'1', '1', '1', '1', '1', '1','1', '1'}};
-	
-	// (void)win;
-	// mlx = mlx_init();
-	// win = mlx_new_window(mlx, 500, 500, "teste");
-	// mlx_pixel_put(mlx, win, 250, 250, 0x00FF0000);
-	// mlx_loop(mlx);
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 8; j++)
-		{
-			printf("%c", map[i][j]);
-		}
-		printf("\n");
-	}
+	t_game	*game;
 
+	game = ft_calloc(sizeof(t_game), 1);
+	if (!game)
+		// error();
+	game->file_content = load_file(argc, argv[argc - 1]);
+	save_params(game);
 	return (0);
 }

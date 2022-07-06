@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_free_null.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/05 21:48:10 by vlima-nu         ###   ########.fr       */
+/*   Created: 2022/07/05 18:28:22 by vlima-nu          #+#    #+#             */
+/*   Updated: 2022/07/05 18:29:35 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "cub3D_data.h"
-
-void	save_params(t_game *game);
-
-char	*load_file(int argc, char *argv);
-
-#endif
+void	ft_free_null(void *ptr)
+{
+	if (ptr != NULL)
+		free(ptr);
+	ptr = NULL;
+}

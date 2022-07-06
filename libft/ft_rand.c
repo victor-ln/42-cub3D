@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   ft_rand.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/05 21:48:10 by vlima-nu         ###   ########.fr       */
+/*   Created: 2021/10/18 15:11:35 by vlima-nu          #+#    #+#             */
+/*   Updated: 2022/06/22 12:26:08 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "libft.h"
 
-# include "cub3D_data.h"
+unsigned int	ft_rand(void)
+{
+	static unsigned int		lfsr;
+	unsigned int			bit;
 
-void	save_params(t_game *game);
-
-char	*load_file(int argc, char *argv);
-
-#endif
+	if (!lfsr)
+		lfsr = 0xf0fe;
+	bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5)) & 1;
+	lfsr = (lfsr >> 1) | (bit << 15);
+	return (lfsr);
+}
