@@ -48,7 +48,7 @@ void	save_params(t_game *game)
 	map_validate(game);
 }
 
-static int	is_textures(char *file_content, int *identifier);
+static int	is_textures(char *file_content, int *identifier)
 {
 	if (!ft_strncmp(file_content, "NO", 2))
 		*identifier = NO;
