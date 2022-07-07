@@ -92,4 +92,12 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 char			**ft_split(char const *s, char c);
 
+void			ft_free_matrix(void **matrix, size_t size);
+
+int				ft_count_vectors(void **matrix);
+
+int				ft_isdigit(int c);
+
+char			*ft_strchr(const char *s, int c);
+
 #endif

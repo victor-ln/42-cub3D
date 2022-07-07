@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/05 21:48:56 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/06 18:51:27 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 
 # FILES
-SOURCES			=	main.c load_file.c save_params.c
+SOURCES			=	main.c load_file.c save_params.c file_validate.c \
+					exit_routines.c
 
 OBJS			=	$(SOURCES:%.c=%.o)
 

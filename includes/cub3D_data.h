@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/05 21:11:23 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/06 19:38:33 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,15 @@ typedef struct s_game
 {
 	t_params	params;
 	char		*file_content;
+	char		*map_cub;
 }	t_game;
 
 typedef struct s_params
 {
 	char	**map;
 	char	*textures[4];
-	char	*colors[2];
+	char	**rgb[2];
+	int		environment[2];
 }	t_params;
 
 #endif
