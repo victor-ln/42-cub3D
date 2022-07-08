@@ -13,7 +13,7 @@
 #include "cub3D.h"
 
 static void	characteres_and_player_nums_validate(t_game *game);
-static void	colors_validate(t_game *game, e_environment env);
+static void	colors_validate(t_game *game, __int8_t env);
 static void	empty_lines_validate(t_game *game);
 static void	map_validate(t_game *game);
 
@@ -25,7 +25,7 @@ void	file_validate(t_game *game)
 	map_validate(game);
 }
 
-static void	colors_validate(t_game *game, e_environment env)
+static void	colors_validate(t_game *game, int env)
 {
 	int		i;
 	int		j;
@@ -44,8 +44,8 @@ static void	colors_validate(t_game *game, e_environment env)
 		color = ft_atoi(color[i++]);
 		if (color < 0 || color > 255)
 			error("Invalid RGB scale", game);
-		game->environment[env] |= color;
-		game->environment[env] <<= 8;
+		game->params.environment[env] |= color;
+		game->params.environment[env] <<= 8;
 	}
 }
 
@@ -74,48 +74,4 @@ static void	characteres_and_player_nums_validate(t_game *game)
 	}
 	if (player == 0)
 		error("There is no player to play", game);
-}
-
-static void	map_validate(t_game *game)
-{
-	int		i;
-	int		j;
-	int		wall[2];
-	// int		inside;
-
-	i = 0;
-	characteres_and_player_nums_validate(game);
-	empty_lines_validate(game);
-	if (ft_count_vectors(game->params.map) < 3)
-		error("Not enought number of lines", game);
-	while (game->params.map[i])
-	{
-		j = 0;
-		if (ft_strlen(game->params.map[i]) < 3)
-			error("Not enought number of columns", game);
-		while (ft_isspace(game->params.map[i][j]))
-			j++;
-		if (game->params.map[i][j] != '1')
-			error("Not surrounded by walls", game);
-	}
-}
-
-static void	empty_lines_validate(t_game *game)
-{
-	int	i;
-	int	bl;
-	int	lines_qtd;
-
-	i = -1;
-	bl = 0;
-	lines_qtd = ft_count_vectors(game->params.map);
-	while (game->map_cub[++i])
-	{
-		if (game->map_cub[i] == '\n')
-		{
-			bl++;
-			if (game->cub[i + 1] == '\n' && bl <= lines_qtd)
-				error("Invalid empty line on map", game);
-		}
-	}
 }

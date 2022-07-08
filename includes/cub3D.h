@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/06 18:50:43 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/07 21:45:45 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,13 @@
 # include "cub3D_data.h"
 
 void	save_params(t_game *game);
+
 char	*load_file(int argc, char *argv);
+
 void	error(char *msg, t_game *game);
+
 void	file_validate(t_game *game);
+
+void	map_validate(t_game *game);
 
 #endif
