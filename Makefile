@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/07 21:46:42 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/07 21:48:53 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,9 +66,11 @@ valgrind:			all
 					$(VALGRIND) ./$(NAME)
 
 clean:				
+					$(MAKE) -C ./libft clean
 					$(RM) $(addprefix $(PATH_OBJ), $(OBJS)) rmdir obj
 
 fclean:				clean
+					$(MAKE) -C ./libft fclean
 					$(RM) $(NAME)
 
 re:					fclean all
