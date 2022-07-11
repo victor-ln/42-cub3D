@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/07 21:48:53 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/11 18:56:02 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,12 @@ DEBUG			=	-g3
 
 # COMPILATION
 CFLAGS			=	-Wall -Wextra -Werror
-MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz
+MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
 CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \
 					--leak-check=full \
 					--show-leak-kinds=all \
-					--track-origins=yes \
+					--track-origins=yes
 
 #PATHS
 PATH_OBJ		=	obj/
@@ -42,8 +42,7 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 
 # FILES
-SOURCES			=	main.c load_file.c save_params.c file_validate.c map_validate.c exit_routines.c resize_map.c\
-					exit_routines.c
+SOURCES			=	main.c load_file.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c exit_routines.c
 
 OBJS			=	$(SOURCES:%.c=%.o)
 
@@ -53,8 +52,8 @@ all:				makedir $(NAME)
 makedir:
 					$(MKDIR) $(PATH_OBJ)
 
-$(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
-					$(CC) $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
+$(NAME):			libs $(addprefix $(PATH_OBJ),$(OBJS))
+					$(CC) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
 					$(CC) $(MLXFLAGS) -c $< -o $@
@@ -64,6 +63,9 @@ run:				all
 
 valgrind:			all
 					$(VALGRIND) ./$(NAME)
+
+libs:				
+					$(MAKE) -C ./libft
 
 clean:				
 					$(MAKE) -C ./libft clean

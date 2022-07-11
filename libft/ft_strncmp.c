@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/11 18:55:02 by afaustin         ###   ########.fr       */
+/*   Created: 2022/07/11 17:50:30 by afaustin          #+#    #+#             */
+/*   Updated: 2022/07/11 17:51:26 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_game	*game;
+	size_t  i;
 
-	game = ft_calloc(sizeof(t_game), 1);
-	if (!game)
-		print_and_exit("Malloc Failed", game);
-	game->file_content = load_file(argc, argv[argc - 1]);
-	save_params(game);
-	file_validate(game);
+	i = 0;
+	while ((s1[i] || s2[i]) && (i < n))
+	{
+			if (s1[i] != s2[i])
+					return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+			i++;
+	}
 	return (0);
 }

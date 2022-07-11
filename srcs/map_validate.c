@@ -3,103 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   map_validate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/07 21:44:32 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:55:02 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "cub3D.h"
 
-static int	validate_horizontal_max_min(char **map, size_t line, int dir);
-static int	**get_wall_positions(char **map, size_t nbr_of_lines);
-static void	validate_outside_map(t_game *game, int zeros[2], int line);
-static void	validate_inside_map(t_game *game, int zeros[2], int line);
+static int	validate_horizontal_max_min(char **map, char c, int dir, int index);
 static void	empty_lines_validate(t_game *game);
 
 void	map_validate(t_game *game)
 {
 	size_t	total_lines;
-	int		zeros[2];
-	int		**walls;
-	int		line;
-	int		col;
+	size_t		line;
 
-	total_lines = ft_count_vectors(game->params.map);
-	walls = get_wall_positions(game->params.map, total_lines);
-	line = -1;
-	validate_HorizontalMaxMin(game->params.map, 0, -1);
-	validate_HorizontalMaxMin(game->params.map, total_lines - 1, 1);
-	while (++line < total_lines)
+	empty_lines_validate(game);
+	total_lines = ft_count_vectors((void **)game->params.map);
+	line = 0;
+	if (validate_horizontal_max_min(game->params.map, '0', 0, 0))
+		print_and_exit("Not surrounded by walls", game);
+	if (validate_horizontal_max_min(game->params.map + 1, '0', -1, 0))
+		print_and_exit("Not surrounded by walls", game);
+	if (validate_horizontal_max_min(game->params.map + total_lines - 1, '0', 1, 0))
+		print_and_exit("Not surrounded by walls", game);
+	if (validate_horizontal_max_min(game->params.map + total_lines, '0',0, 0))
+		print_and_exit("Not surrounded by walls", game);
+	while (++line < total_lines - 1)
+		if (validate_horizontal_max_min(game->params.map + line, '0', 0, 0))
+			print_and_exit("Not surrounded by walls", game);
+}
+
+static int	validate_horizontal_max_min(char **map, char c, int dir, int index)
+{
+	int		behind;
+	int		limit;
+
+	behind = 0;
+	limit = ft_strlen(*(map + dir));
+	while (*map[index])
 	{
-		// validate_outside_map();
-		// validate_inside_map();
-	}
-}
-
-static void	validate_outside_map(t_game *game, int zeros[2], int line)
-{
-	zeros[0] = ft_strchr(game->params.map[line], '0');
-	zeros[1] = ft_strrchr(game->params.map[line], '0');
-	if (zeros[0])
-		// if (validate_firstlastcolomns())
-			error("Not surrounded by walls", game);
-}
-
-static void	validate_inside_map(t_game *game, int zeros[2], int line)
-{
-	// 
-}
-
-static int	validate_horizontal_max_min(char **map, size_t line, int dir)
-{
-	int		j;
-	int		tile;
-
-	while (map[line][++j])
-	{
-		if (map[line][j] != '0')
+		if (*map[index] != c)
 		{
-			tile = 0;
-			continue ;
+			if (*map[index] != '1' && behind)
+				return (EXIT_FAILURE);
+			behind = 0;
 		}
-		if ((map[line][j - 1] != '1' || tile) && \
-			map[line + dir][j - 1] != '1' && \
-			map[line + dir][j] != '1')
-			return (EXIT_FAILURE);
-		tile = 1;
+		else
+		{
+			if ((index + 1 > limit) || \
+				(*map[index - 1] != '1' && !behind) || \
+				(*(map + dir)[index - 1] != '1' && dir) || \
+				(*(map + dir)[index + 1] != '1' && dir) || \
+				(*(map + dir)[index] != '1' && dir))
+				return (EXIT_FAILURE);
+			behind = 1;
+		}
+		index++;
 	}
 	return (EXIT_SUCCESS);
-}
-
-static int	**get_wall_positions(char **map, size_t nbr_of_lines)
-{
-	int		**walls;
-	int		line;
-
-	line = 0;
-	walls = ft_calloc(sizeof(int *), nbr_of_lines);
-	if (!walls)
-		return (NULL);
-	while (line < nbr_of_lines)
-	{
-		walls[line] = ft_calloc(sizeof(int), 2);
-		if (!walls[line])
-		{
-			ft_free_matrix(walls, line);
-			return (NULL);
-		}
-		if (ft_strchr(map[line], '1') == NULL)
-		{
-			ft_free_matrix(walls, line);
-			return (NULL);
-		}
-		walls[line][0] = ft_strchr(map[line], '1') - map[line];
-		walls[line][1] = ft_strrchr(map[line], '1') - map[line];
-		line++;
-	}
-	return (walls);
 }
 
 static void	empty_lines_validate(t_game *game)
@@ -110,14 +74,14 @@ static void	empty_lines_validate(t_game *game)
 
 	i = -1;
 	bl = 0;
-	lines_qtd = ft_count_vectors(game->params.map);
+	lines_qtd = ft_count_vectors((void **)game->params.map);
 	while (game->map_cub[++i])
 	{
 		if (game->map_cub[i] == '\n')
 		{
 			bl++;
 			if (game->map_cub[i + 1] == '\n' && bl <= lines_qtd)
-				error("Invalid empty line on map", game);
+				print_and_exit("Invalid empty line on map", game);
 		}
 	}
 }

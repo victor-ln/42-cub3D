@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:21:25 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/05 18:31:19 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:44:05 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	check_input(int argc, char *argv);
 
 char	*load_file(int argc, char *argv)
 {
@@ -40,7 +42,7 @@ char	*load_file(int argc, char *argv)
 	return (file_content);
 }
 
-int	check_input(int argc, char *argv)
+static int	check_input(int argc, char *argv)
 {
 	int	fd;
 

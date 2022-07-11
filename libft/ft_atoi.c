@@ -1,26 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/11 18:55:02 by afaustin         ###   ########.fr       */
+/*   Created: 2022/07/11 18:04:56 by afaustin          #+#    #+#             */
+/*   Updated: 2022/07/11 18:05:00 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_atoi(const char *str)
 {
-	t_game	*game;
+	long long int	x;
+	int				i;
 
-	game = ft_calloc(sizeof(t_game), 1);
-	if (!game)
-		print_and_exit("Malloc Failed", game);
-	game->file_content = load_file(argc, argv[argc - 1]);
-	save_params(game);
-	file_validate(game);
-	return (0);
+	x = 0;
+	i = 1;
+	while (*str == ' ' || *str == '\f' || *str == '\n'
+			|| *str == '\r' || *str == '\t' || *str == '\v')
+			str++;
+	if (*str == '-' || *str == '+')
+	{
+			if (*str == '-')
+					i *= -1;
+			str++;
+	}
+	while (*str >= '0' && *str <= '9')
+	{
+			x = x * 10 + *str - '0';
+			str++;
+	}
+	return ((int)(x *= i));
 }
