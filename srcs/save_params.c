@@ -24,13 +24,11 @@ void	save_params(t_game *game)
 	int		identifier;
 	int		elements;
 
-	if (game->file_content == NULL)
-		print_and_exit("Empty file", game);
 	i = 0;
 	elements = 0;
 	while (game->file_content[i])
 	{
-		while (ft_isspace(game->file_content[i]) && game->file_content[i])
+		while (game->file_content[i] == '\n' && game->file_content[i])
 			i++;
 		if (is_textures(game->file_content + i, &identifier))
 			i += get_textures(game->file_content + i, identifier, game);
@@ -42,11 +40,10 @@ void	save_params(t_game *game)
 			i += get_map(game->file_content + i, game);
 		}
 		else if (game->file_content[i])
-			print_and_exit ("File configuration is invalid", game);
+			error ("File configuration is invalid", game);
 		if (!game->params.map)
 			elements++;
 	}
-	// ft_free_null(game->file_content);
 }
 
 static int	is_color(char *file_content, int *identifier)
@@ -86,15 +83,15 @@ static int	get_textures(char *file_content, int identifier, t_game *game)
 			file_content[i] != '\n')
 		i++;
 	if ((i - 2) == 0)
-		print_and_exit("Invalid Identifier", game);
+		error("Invalid Identifier", game);
 	n = 0;
 	if (game->params.textures[identifier])
-		print_and_exit("Double Identifier", game);
+		error("Double Identifier", game);
 	while (file_content[n] != '\n' && file_content[n])
 		n++;
 	game->params.textures[identifier] = ft_substr(file_content + 2, 0, n);
 	if (!game->params.textures[identifier])
-		print_and_exit("Malloc Failed", game);
+		error("Malloc Failed", game);
 	return (n);
 }
 
@@ -109,19 +106,19 @@ static int	get_env_colors(char *file_content, int identifier, t_game *game)
 			file_content[i] != '\n')
 		i++;
 	if ((i - 1) == 0)
-		print_and_exit("Invalid Identifier", game);
+		error("Invalid Identifier", game);
 	n = 0;
 	if (game->params.rgb[identifier])
-		print_and_exit("Double Identifier", game);
+		error("Double Identifier", game);
 	while (file_content[n] != '\n' && file_content[n])
 		n++;
 	colors = ft_substr(file_content + 1, 0, n);
 	if (!colors)
-		print_and_exit("Malloc Failed", game);
+		error("Malloc Failed", game);
 	game->params.rgb[identifier] = ft_split(colors, ',');
 	ft_free_null(colors);
 	if (!game->params.rgb[identifier])
-		print_and_exit("Malloc Failed", game);
+		error("Malloc Failed", game);
 	return (n);
 }
 
@@ -132,7 +129,7 @@ static int	get_map(char *file_content, t_game *game)
 
 	game->params.map = ft_split(file_content, '\n');
 	if (!game->params.map)
-		print_and_exit("Malloc Failed", game);
+		error("Malloc Failed", game);
 	lines = 0;
 	characters = 0;
 	while (game->params.map[lines])

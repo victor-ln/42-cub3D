@@ -14,7 +14,6 @@
 
 static void	characteres_and_player_nums_validate(t_game *game);
 static void	colors_validate(t_game *game, int env);
-// static void	empty_lines_validate(t_game *game);
 
 void	file_validate(t_game *game)
 {
@@ -25,16 +24,6 @@ void	file_validate(t_game *game)
 	map_validate(game);
 }
 
-/*
-	00000000
-	11011100 00000000
-	01100100
-	11011100 01100100
-	11011100 01100100 00000000
-	14443520
-	14753280
-*/
-
 static void	colors_validate(t_game *game, int env)
 {
 	int		i;
@@ -42,7 +31,7 @@ static void	colors_validate(t_game *game, int env)
 	int		color;
 
 	if (ft_count_vectors((void **)game->params.rgb[env]) != 3)
-		print_and_exit("Invalid number of arguments of color identifier", game);
+		error("Invalid number of arguments of color identifier", game);
 	i = -1;
 	while (game->params.rgb[env][++i])
 	{
@@ -50,10 +39,10 @@ static void	colors_validate(t_game *game, int env)
 		while (game->params.rgb[env][i][++j])
 			if (!ft_isspace(game->params.rgb[env][i][j]) && \
 				!ft_isdigit(game->params.rgb[env][i][j]))
-				print_and_exit("Invalid identifier element", game);
+				error("Invalid identifier element", game);
 		color = ft_atoi(game->params.rgb[env][i]);
 		if (color < 0 || color > 255)
-			print_and_exit("Invalid RGB scale", game);
+			error("Invalid RGB scale", game);
 		game->params.environment[env] |= color;
 		if (i < 2)
 			game->params.environment[env] <<= 8;
@@ -74,15 +63,15 @@ static void	characteres_and_player_nums_validate(t_game *game)
 		while (game->params.map[i][j])
 		{
 			if (!ft_strchr("10NSEW ", game->params.map[i][j]))
-				print_and_exit("Invalid character on map", game);
+				error("Invalid character on map", game);
 			if (ft_strchr("NSEW", game->params.map[i][j]))
 				player++;
 			if (player > 1)
-				print_and_exit("Invalid number of players", game);
+				error("Invalid number of players", game);
 			j++;
 		}
 		i++;
 	}
 	if (player == 0)
-		print_and_exit("There is no player to play", game);
+		error("There is no player to play", game);
 }

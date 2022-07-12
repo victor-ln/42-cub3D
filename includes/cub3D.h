@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/11 18:55:02 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:29:56 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@
 
 void	save_params(t_game *game);
 
-char	*load_file(int argc, char *argv);
+void	load_file(t_game *game, int argc, char *argv);
 
-void	print_and_exit(char *msg, t_game *game);
+void	error(char *msg, t_game *game);
 
 void	file_validate(t_game *game);
 
 void	map_validate(t_game *game);
+
+void	end_program(t_game *game);
 
 #endif
