@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/11 20:28:14 by afaustin         ###   ########.fr        #
+#    Updated: 2022/07/12 19:00:35 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,20 +42,25 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 
 # FILES
-SOURCES			=	main.c load_file.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c
+SOURCES			=	main.c \
+					load_file.c \
+					save_params.c \
+					validate_routines.c \
+					map_validate.c \
+					exit_routines.c \
+					resize_map.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 
 # ###################################################################### TARGETS
-all:				makedir $(NAME)
+all:				$(NAME)
 
-makedir:
-					$(MKDIR) $(PATH_OBJ)
-
-$(NAME):			libs $(addprefix $(PATH_OBJ),$(OBJS))
+$(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
+					$(MAKE) -C ./libft
 					$(CC) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
+					@mkdir -p obj
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all
@@ -63,9 +68,6 @@ run:				all
 
 valgrind:			all
 					$(VALGRIND) ./$(NAME)
-
-libs:				
-					$(MAKE) -C ./libft
 
 clean:				
 					$(MAKE) -C ./libft clean
