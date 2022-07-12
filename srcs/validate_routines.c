@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_routines.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:18:18 by afaustin          #+#    #+#             */
-/*   Updated: 2022/07/06 17:43:019 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:24:43 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static void	characteres_and_player_nums_validate(t_game *game);
 static void	colors_validate(t_game *game, int env);
 
+//texture_validate; 2nd moment of development
 void	file_validate(t_game *game)
 {
-	//texture_validate; 2nd moment of development
 	colors_validate(game, ground);
 	colors_validate(game, celling);
 	characteres_and_player_nums_validate(game);

@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/12 17:29:56 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:24:12 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,11 @@ void	file_validate(t_game *game);
 void	map_validate(t_game *game);
 
 void	end_program(t_game *game);
+
+int		get_textures(char *file_content, int identifier, t_game *game);
+
+int		get_env_colors(char *file_content, int identifier, t_game *game);
+
+int		get_map(char *file_content, t_game *game);
 
 #endif
