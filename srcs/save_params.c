@@ -26,7 +26,6 @@ void	save_params(t_game *game)
 
 	if (game->file_content == NULL)
 		print_and_exit("Empty file", game);
-	ft_bzero(&game->params, sizeof(t_params));
 	i = 0;
 	elements = 0;
 	while (game->file_content[i])
@@ -42,7 +41,7 @@ void	save_params(t_game *game)
 			game->map_cub = game->file_content + i;
 			i += get_map(game->file_content + i, game);
 		}
-		else
+		else if (game->file_content[i])
 			print_and_exit ("File configuration is invalid", game);
 		if (!game->params.map)
 			elements++;
@@ -91,9 +90,9 @@ static int	get_textures(char *file_content, int identifier, t_game *game)
 	n = 0;
 	if (game->params.textures[identifier])
 		print_and_exit("Double Identifier", game);
-	while (file_content[i] != '\n')
+	while (file_content[n] != '\n' && file_content[n])
 		n++;
-	game->params.textures[identifier] = ft_substr(file_content, 0, n);
+	game->params.textures[identifier] = ft_substr(file_content + 2, 0, n);
 	if (!game->params.textures[identifier])
 		print_and_exit("Malloc Failed", game);
 	return (n);
@@ -105,18 +104,18 @@ static int	get_env_colors(char *file_content, int identifier, t_game *game)
 	int		n;
 	char	*colors;
 
-	i = 2;
+	i = 1;
 	while (ft_isspace(file_content[i]) && file_content[i] && \
 			file_content[i] != '\n')
 		i++;
-	if ((i - 2) == 0)
+	if ((i - 1) == 0)
 		print_and_exit("Invalid Identifier", game);
 	n = 0;
 	if (game->params.rgb[identifier])
 		print_and_exit("Double Identifier", game);
-	while (file_content[i] != '\n')
+	while (file_content[n] != '\n' && file_content[n])
 		n++;
-	colors = ft_substr(file_content, 0, n);
+	colors = ft_substr(file_content + 1, 0, n);
 	if (!colors)
 		print_and_exit("Malloc Failed", game);
 	game->params.rgb[identifier] = ft_split(colors, ',');
@@ -138,5 +137,5 @@ static int	get_map(char *file_content, t_game *game)
 	characters = 0;
 	while (game->params.map[lines])
 		characters += ft_strlen(game->params.map[lines++]);
-	return (characters);
+	return (characters + lines);
 }

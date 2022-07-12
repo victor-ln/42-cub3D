@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/11 18:40:14 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:21:08 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ enum e_coords {
 typedef struct s_params
 {
 	char	**map;
-	char	*textures[4];
+	char	**textures;
 	char	**rgb[2];
 	int		environment[2];
 }	t_params;

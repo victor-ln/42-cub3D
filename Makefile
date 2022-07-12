@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/11 18:56:02 by afaustin         ###   ########.fr        #
+#    Updated: 2022/07/11 20:28:14 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ DEBUG			=	-g3
 # COMPILATION
 CFLAGS			=	-Wall -Wextra -Werror
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
-CC				=	gcc $(CFLAGS) $(INCLUDES)
+CC				=	gcc $(CFLAGS) $(INCLUDES) $(DEBUG)
 VALGRIND		=	valgrind \
 					--leak-check=full \
 					--show-leak-kinds=all \
@@ -42,7 +42,7 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 
 # FILES
-SOURCES			=	main.c load_file.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c exit_routines.c
+SOURCES			=	main.c load_file.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c
 
 OBJS			=	$(SOURCES:%.c=%.o)
 

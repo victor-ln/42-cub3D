@@ -25,6 +25,16 @@ void	file_validate(t_game *game)
 	map_validate(game);
 }
 
+/*
+	00000000
+	11011100 00000000
+	01100100
+	11011100 01100100
+	11011100 01100100 00000000
+	14443520
+	14753280
+*/
+
 static void	colors_validate(t_game *game, int env)
 {
 	int		i;
@@ -38,14 +48,15 @@ static void	colors_validate(t_game *game, int env)
 	{
 		j = -1;
 		while (game->params.rgb[env][i][++j])
-			if (!ft_isspace(game->params.rgb[env][i][j]) || \
+			if (!ft_isspace(game->params.rgb[env][i][j]) && \
 				!ft_isdigit(game->params.rgb[env][i][j]))
 				print_and_exit("Invalid identifier element", game);
 		color = ft_atoi(game->params.rgb[env][i]);
 		if (color < 0 || color > 255)
 			print_and_exit("Invalid RGB scale", game);
 		game->params.environment[env] |= color;
-		game->params.environment[env] <<= 8;
+		if (i < 2)
+			game->params.environment[env] <<= 8;
 	}
 }
 
@@ -64,7 +75,7 @@ static void	characteres_and_player_nums_validate(t_game *game)
 		{
 			if (!ft_strchr("10NSEW ", game->params.map[i][j]))
 				print_and_exit("Invalid character on map", game);
-			if (ft_strchr("NSEW ", game->params.map[i][j]))
+			if (ft_strchr("NSEW", game->params.map[i][j]))
 				player++;
 			if (player > 1)
 				print_and_exit("Invalid number of players", game);
