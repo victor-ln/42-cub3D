@@ -1,6 +1,17 @@
 {
 	"files.associations": {
 		"cub3d.h": "c",
-		"cub3d_data.h": "c"
+		"cub3d_data.h": "c",
+		"climits": "c",
+		"cmath": "c",
+		"cstdarg": "c",
+		"cstdio": "c",
+		"cstdlib": "c",
+		"exception": "c",
+		"limits": "c",
+		"new": "c",
+		"*.tcc": "c",
+		"type_traits": "c",
+		"typeinfo": "c"
 	}
 }
