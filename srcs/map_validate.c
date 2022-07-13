@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/12 19:20:10 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:26:25 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	map_validate(t_game *game)
 	size_t		total_lines;
 	size_t		line;
 
+	resize_line(game);
+	resize_column(game);
 	empty_lines_validate(game);
 	total_lines = ft_count_vectors((void **)game->params.map);
 	line = 0;
@@ -70,6 +72,9 @@ static int	validate_horizontal_max_min(char **map, int direction)
 	return (EXIT_SUCCESS);
 }
 
+/*
+	Dividir condições em vários "ifs" e tratar erros no map.cub
+*/
 static int	is_surrounded(char **map, int direction, t_validation v)
 {
 	return (!((v.index + 1 > v.limit) || \

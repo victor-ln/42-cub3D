@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/12 17:30:06 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:34:17 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	load_file(game, argc, argv[argc - 1]);
 	save_params(game);
 	file_validate(game);
+	end_
 	return (0);
 }
 
@@ -32,7 +33,7 @@ static void	init_game(t_game *game)
 		error("Malloc Failed", game);
 	ft_bzero(game, sizeof(t_game));
 	ft_bzero(&game->params, sizeof(t_params));
-	game->params.textures = malloc(sizeof(char *) * 4);
+	game->params.textures = ft_calloc(sizeof(char *), 4);
 	if (!game->params.textures)
 		error("Malloc Failed", game);
 }

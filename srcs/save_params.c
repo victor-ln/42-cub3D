@@ -12,9 +12,6 @@
 
 #include "cub3D.h"
 
-static int	get_env_colors(char *file_content, int identifier, t_game *game);
-static int	get_textures(char *file_content, int identifier, t_game *game);
-static int	get_map(char *file_content, t_game *game);
 static int	is_textures(char *file_content, int *identifier);
 static int	is_color(char *file_content, int *identifier);
 
