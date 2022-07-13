@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/12 22:34:17 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/12 22:34:22 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	load_file(game, argc, argv[argc - 1]);
 	save_params(game);
 	file_validate(game);
-	end_
+	end_program(game);
 	return (0);
 }
 
