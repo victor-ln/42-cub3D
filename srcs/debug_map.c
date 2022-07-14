@@ -2,7 +2,7 @@
 	Arquivo temporário.
 */
 
-#include <stdio.h>
+#include <cub3D.h>
 
 void	print_matrix(char **map)
 {
@@ -11,4 +11,5 @@ void	print_matrix(char **map)
 	i = 0;
 	while (map[i])
 		printf("%s\n", map[i++]);
+	printf("\n");
 }

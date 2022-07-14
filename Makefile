@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/12 22:30:01 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/13 23:04:11 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
