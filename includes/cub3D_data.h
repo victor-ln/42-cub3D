@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/05 21:11:23 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/13 18:56:03 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,20 @@
 # include <errno.h>
 # include <unistd.h>
 # include "mlx.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
+# include <string.h>
+
+# define INPUT_ERR	(void *)-1
+
+enum e_column_limits{
+	TOP_LINE,
+	BOT_LINE
+};
 
 enum e_environment{
 	celling,
-	floor
+	ground
 };
 
 enum e_coords {
@@ -34,17 +42,19 @@ enum e_coords {
 	EA
 };
 
+typedef struct s_params
+{
+	char	**map;
+	char	**textures;
+	char	**rgb[2];
+	int		environment[2];
+}	t_params;
+
 typedef struct s_game
 {
 	t_params	params;
 	char		*file_content;
+	char		*map_cub;
 }	t_game;
-
-typedef struct s_params
-{
-	char	**map;
-	char	*textures[4];
-	char	*colors[2];
-}	t_params;
 
 #endif

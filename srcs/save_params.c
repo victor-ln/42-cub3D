@@ -12,10 +12,8 @@
 
 #include "cub3D.h"
 
-static int	get_env_colors(char *file_content, int identifier, t_game *game);
-static int	get_textures(char *file_content, int identifier, t_game *game);
-static int	get_map(char *file_content, t_game *game);
 static int	is_textures(char *file_content, int *identifier);
+static int	is_color(char *file_content, int *identifier);
 
 void	save_params(t_game *game)
 {
@@ -23,32 +21,40 @@ void	save_params(t_game *game)
 	int		identifier;
 	int		elements;
 
-	if (game->file_content == NULL)
-		// error("empty file", game);
-	ft_bzero(&game->params, sizeof(t_params));
 	i = 0;
 	elements = 0;
 	while (game->file_content[i])
 	{
-		while (ft_isspace(game->file_content[i]) && game->file_content[i] && \
-			 game->file_content[i] != '\n')
+		while (game->file_content[i] == '\n' && game->file_content[i])
 			i++;
 		if (is_textures(game->file_content + i, &identifier))
 			i += get_textures(game->file_content + i, identifier, game);
-		else if (is_colors(game->file_content + i))
+		else if (is_color(game->file_content + i, &identifier))
 			i += get_env_colors(game->file_content + i, identifier, game);
 		else if (!game->params.map && elements == 6)
+		{
+			game->map_cub = game->file_content + i;
 			i += get_map(game->file_content + i, game);
-		else
-			// error ("file configuration is invalid, game")
+		}
+		else if (game->file_content[i])
+			error ("File configuration is invalid", game);
 		if (!game->params.map)
 			elements++;
 	}
-	ft_free_null(game->file_content);
-	map_validate(game);
 }
 
-static int	is_textures(char *file_content, int *identifier);
+static int	is_color(char *file_content, int *identifier)
+{
+	if (!ft_strncmp(file_content, "F", 1))
+		*identifier = ground;
+	else if (!ft_strncmp(file_content, "C", 1))
+		*identifier = celling;
+	else
+		return (0);
+	return (1);
+}
+
+static int	is_textures(char *file_content, int *identifier)
 {
 	if (!ft_strncmp(file_content, "NO", 2))
 		*identifier = NO;
@@ -61,64 +67,4 @@ static int	is_textures(char *file_content, int *identifier);
 	else
 		return (0);
 	return (1);
-}
-
-
-static int	get_textures(char *file_content, int identifier, t_game *game)
-{
-	int		i;
-	int		n;
-
-	i = 2;
-	while (ft_isspace(file_content[i]) && file_content[i] && \
-			file_content[i] != '\n')
-		i++;
-	if ((i - 2) == 0)
-		// error("Invalid Identifier");
-	n = 0;
-	if (game->params.textures[identifier])
-		// error()
-	while (file_content[i] != '\n')
-		n++;
-	game->params.textures[identifier] = ft_substr(file_content, 0, n);
-	if (!game->params.textures[identifier])
-		// error()
-	return (n);
-}
-
-static int	get_env_colors(char *file_content, int identifier, t_game *game)
-{
-	int		i;
-	int		n;
-
-	i = 2;
-	while (ft_isspace(file_content[i]) && file_content[i] && \
-			file_content[i] != '\n')
-		i++;
-	if ((i - 2) == 0)
-		// error("Invalid Identifier");
-	n = 0;
-	if (game->params.colors[identifier])
-		// error()
-	while (file_content[i] != '\n')
-		n++;
-	game->params.colors[identifier] = ft_substr(file_content, 0, n);
-	if (!game->params.colors[identifier])
-		// error()
-	return (n);
-}
-
-static int	get_map(char *file_content, t_game *game)
-{
-	int		lines;
-	int		characters;
-
-	game->params.map = ft_split(file_content, "\n");
-	if (!game->params.map)
-		// error();
-	lines = 0;
-	characters = 0;
-	while (game->params.map[lines])
-		characters += ft_strlen(game->params.map[lines++]);
-	return (characters);
 }
