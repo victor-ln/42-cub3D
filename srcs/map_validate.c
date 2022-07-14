@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/13 21:20:23 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:06:08 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ static void	empty_lines_validate(t_game *game);
 
 void	map_validate(t_game *game)
 {
-	t_validation v;
+	t_validation	v;
 
 	resize_line(game);
-	// resize_column(game);
+	resize_column(game);
 	empty_lines_validate(game);
 	ft_bzero(v.column_limit, sizeof(int) * 2);
 	v.total_lines = ft_count_vectors((void **)game->params.map);
@@ -77,12 +77,12 @@ static int	is_surrounded(char **map, t_validation v)
 	if (map[v.line_num][v.column - 1] != '1' && !v.behind)
 		return (0);
 	if (v.line_num)
-		if ((v.column >= v.column_limit[TOP_LINE] ||
+		if ((v.column >= v.column_limit[TOP_LINE] || \
 			(map[v.line_num - 1][v.column - 1] == ' ') || \
 			(map[v.line_num - 1][v.column] == ' ')))
 			return (0);
 	if (v.line_num < v.total_lines - 1)
-		if ((v.column >= v.column_limit[BOT_LINE] ||
+		if ((v.column >= v.column_limit[BOT_LINE] || \
 			(map[v.line_num + 1][v.column - 1] == ' ') || \
 			(map[v.line_num + 1][v.column] == ' ')))
 			return (0);
