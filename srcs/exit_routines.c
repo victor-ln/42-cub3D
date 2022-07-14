@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/07/12 18:03:02 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:16:07 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	free_game(t_game *game)
 			ft_free_null(game->file_content);
 		ft_free_matrix((void **)game->params.map, 0);
 		ft_free_matrix((void **)game->params.textures, 4);
-		ft_free_matrix((void **)game->params.rgb[0], 3);
-		ft_free_matrix((void **)game->params.rgb[1], 3);
+		ft_free_matrix((void **)game->params.rgb[0], 0);
+		ft_free_matrix((void **)game->params.rgb[1], 0);
 		ft_free_null(game);
 	}
 }
