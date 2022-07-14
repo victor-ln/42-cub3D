@@ -39,7 +39,7 @@ do
 	if [ $i -ge 1 ]; then
 		extension=".cub"
 	fi
-	result="`$program $dir$file$i$extension 2>&1 >/dev/null | grep -c Error`"
+	result="`$program $dir$file$i$extension | grep -c Error`"
 	# result="`valgrind --leak-check=full --show-leak-kinds=all $program $dir$file$i$extension`"
 	echo Testing ${logs[$i]}
 	if [ $result == 1 ]; then

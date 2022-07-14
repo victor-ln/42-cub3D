@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:21:25 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:29:28 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:11:09 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ static int	check_input(int argc, char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (argc != 2)
-		perror("Error\nInvalid number of arguments.");
+		printf("Error\nInvalid number of arguments. %s", strerror(errno));
 	else if (fd < 0)
-		perror("Error\nCould not open the file.");
+		printf("Error\nCould not open the file. %s", strerror(errno));
 	else if (ft_strcmp(".cub", argv + (ft_strlen(argv) - 4)))
-		ft_putendl_fd("Error\nInvalid file extension. It must be *.cub", 2);
+		printf("Error\nInvalid file extension. It must be *.cub");
 	else
 		return (fd);
 	if (fd != -1)

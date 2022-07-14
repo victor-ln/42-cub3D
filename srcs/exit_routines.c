@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/07/13 21:16:07 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:10:15 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	free_game(t_game *game);
 
 void	error(char *msg, t_game *game)
 {
-	dprintf(2, "Error\n%s.\n%s\n", msg, strerror(errno));
+	printf("Error\n%s.\n%s\n", msg, strerror(errno));
 	free_game(game);
 	exit(errno);
 }
