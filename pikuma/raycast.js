@@ -4,6 +4,9 @@ const MAP_NUM_COLS = 15;
 
 const WINDOW_WIDTH = MAP_NUM_COLS * TILE_SIZE;
 const WINDOW_HEIGHT = MAP_NUM_ROWS * TILE_SIZE;
+const FOV_ANGLE = 60 * (Math.PI/180);
+const RAY_STRIP_WIDTH = 1;
+const RAY_NUMS = WINDOW_WIDTH / RAY_STRIP_WIDTH;
 
 class Map {
     constructor() {
@@ -74,12 +77,41 @@ class Player {
             this.y,
             this.x + Math.cos(this.rotationAngle) * 30,
             this.y + Math.sin(this.rotationAngle) * 30,
-        )
+        );
+	}
+}
+
+class Ray {
+	constructor(rayAngle) {
+		this.rayAngle = rayAngle;//normalizeAngle
+	}
+	render() {
+		stroke("yellow");
+		line(
+			john.x,
+			john.y,
+			john.x + Math.cos(this.rayAngle) * 30,
+			john.y + Math.sin(this.rayAngle) * 30,
+		);
 	}
 }
 
 var grid = new Map();
-var jhon = new Player();
+var john = new Player();
+var rays = [];
+
+function castAllRays() {
+	var rayAngle = john.rotationAngle - FOV_ANGLE / 2;
+	var i = 0;
+	rays = [];
+	while (i < RAY_NUMS)
+	{
+		var ray = new Ray(rayAngle);
+		rays.push(ray);
+		rayAngle += FOV_ANGLE / RAY_NUMS;
+		i++;
+	}
+}
 
 function setup() {
     createCanvas(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -87,33 +119,37 @@ function setup() {
 
 function keyPressed() {
     if (keyCode == LEFT_ARROW)
-        jhon.moveDirection = -1;
+        john.moveDirection = -1;
     else if (keyCode == RIGHT_ARROW)
-        jhon.moveDirection = 1;
+        john.moveDirection = 1;
     else if (keyCode == UP_ARROW)
-        jhon.walkDirection = 1;
+        john.walkDirection = 1;
     else if (keyCode == DOWN_ARROW)
-        jhon.walkDirection = -1;
+        john.walkDirection = -1;
 }
 
 function keyReleased() {
     if (keyCode == LEFT_ARROW)
-        jhon.moveDirection = 0;
+        john.moveDirection = 0;
     else if (keyCode == RIGHT_ARROW)
-        jhon.moveDirection = 0;
+        john.moveDirection = 0;
     else if (keyCode == UP_ARROW)
-        jhon.walkDirection = 0;
+        john.walkDirection = 0;
     else if (keyCode == DOWN_ARROW)
-        jhon.walkDirection = 0;
+        john.walkDirection = 0;
 }
 
 function update() {
-    // TODO: update all game objects before we render the next frame
+    castAllRays();
 }
 
 function draw() {
     update();
 
     grid.render();
-    jhon.render();
+	for (ray of rays)
+	{
+		ray.render();
+	}
+    john.render();
 }
