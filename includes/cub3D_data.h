@@ -23,7 +23,11 @@
 # include <fcntl.h>
 # include <string.h>
 
-# define INPUT_ERR	(void *)-1
+# define INPUT_ERR			(void *)-1
+# define SPEED				2
+# define RAY_STRIP			2
+# define TILE_SIZE			32
+# define FOV_ANGLE			60
 
 enum e_environment{
 	celling,
@@ -37,6 +41,28 @@ enum e_coords {
 	EA
 };
 
+typedef struct s_coord
+{
+	int		x;
+	int		y;
+	int		hipo;
+	int		angle;
+}	t_coord;
+
+typedef struct s_player
+{
+	t_coord	coords;
+	int		rotation_angle;
+	int		rotation_speed;
+	int		walk_dir;
+	int		step_dir;
+}	t_player;
+
+typedef struct s_ray
+{
+	t_coord	coords;
+}	t_ray;
+
 typedef struct s_params
 {
 	char	**map;
@@ -47,9 +73,13 @@ typedef struct s_params
 
 typedef struct s_game
 {
+	int			window_width;
+	int			window_height;
+	int			fov_radian;
 	t_params	params;
 	char		*file_content;
 	char		*map_cub;
+	t_ray		*rays;
 }	t_game;
 
 #endif
