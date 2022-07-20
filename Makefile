@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/12 22:30:01 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/19 22:48:08 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,11 @@ SOURCES			=	main.c \
 					resize_map.c \
 					save_utils.c \
 					debug_map.c \
+					load_environment.c \
+					draw_game.c \
+					events.c \
+					rays.c \
+					window.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 

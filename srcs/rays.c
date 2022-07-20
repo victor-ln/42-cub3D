@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-void	rays_casting(t_ray *ray)
-{
+// void	rays_casting(t_ray *ray)
+// {
 	
-}
+// }

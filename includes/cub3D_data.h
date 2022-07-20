@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/12 17:21:34 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/19 22:47:03 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ typedef struct s_params
 
 typedef struct s_game
 {
+	void		*mlx;
+	void		*window;
+	void		*img;
 	int			window_width;
 	int			window_height;
 	int			fov_radian;

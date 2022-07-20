@@ -14,12 +14,13 @@
 
 int	reload_image(t_game *game)
 {
-	mlx_put_image_to_window(game->mlx, game->screen, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	return (0);
 }
 
 int	close_window(t_game *game)
 {
-	exit_game(game, "Window closed");
+	printf("Window closed\n");
+	end_program(game);
 	return (0);
 }
