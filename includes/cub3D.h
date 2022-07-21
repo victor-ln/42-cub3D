@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/19 22:55:22 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:38:38 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ int		get_env_colors(char *file_content, int identifier, t_game *game);
 
 int		get_map(char *file_content, t_game *game);
 
-void	load_environment(t_game *game);
+void	load_game(t_game *game);
 
 int		reload_image(t_game *game);
 
 int		close_window(t_game *game);
+
+void	print_matrix(char **map);
+
+void	draw_game(t_game *game);
+
+int		key_press(int keycode, t_game *game);
+
+int		key_release(int keycode, t_game *game);
 
 #endif

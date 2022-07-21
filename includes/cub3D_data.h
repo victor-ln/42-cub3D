@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/19 22:47:03 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:20:01 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,27 @@
 # include <errno.h>
 # include <unistd.h>
 # include "mlx.h"
+# include "mlx_int.h"
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <string.h>
 
 # define INPUT_ERR			(void *)-1
-# define SPEED				2
+# define MOVEMENT_SPEED		2
 # define RAY_STRIP			2
 # define TILE_SIZE			32
 # define FOV_ANGLE			60
+# define STD_ROTATION_SPEED 0.03490658503988659153847381536977
+# define RIGHT				1
+# define LEFT				-1
+# define DOWN				-1
+# define UP					1
+# define ESC				65307
+
+/* COLORS */
+# define RED				0xFF0000
+# define BLACK				0x0
+# define WHITE				0xFFFFFF
 
 enum e_environment{
 	celling,
@@ -43,19 +55,18 @@ enum e_coords {
 
 typedef struct s_coord
 {
-	int		x;
-	int		y;
-	int		hipo;
-	int		angle;
+	int			x;
+	int			y;
+	int			hipo;
+	double		angle;
 }	t_coord;
 
 typedef struct s_player
 {
 	t_coord	coords;
-	int		rotation_angle;
-	int		rotation_speed;
-	int		walk_dir;
-	int		step_dir;
+	double	rotation_speed;
+	int		move_direction;
+	int		walk_direction;
 }	t_player;
 
 typedef struct s_ray
@@ -75,14 +86,15 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*window;
-	void		*img;
-	int			window_width;
-	int			window_height;
+	t_img		*img;
+	int			width;
+	int			height;
 	int			fov_radian;
 	t_params	params;
 	char		*file_content;
 	char		*map_cub;
 	t_ray		*rays;
+	t_player	player;
 }	t_game;
 
 #endif

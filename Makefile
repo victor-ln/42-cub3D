@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/19 22:48:08 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/07/20 18:44:59 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SOURCES			=	main.c \
 					resize_map.c \
 					save_utils.c \
 					debug_map.c \
-					load_environment.c \
+					load_game.c \
 					draw_game.c \
 					events.c \
 					rays.c \
