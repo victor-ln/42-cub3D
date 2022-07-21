@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 22:02:27 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/13 23:01:20 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:03:25 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	resize_column(t_game *g)
 
 static int	is_garbage(char **map, t_validation v)
 {
-	if (map[v.line][v.counter - 1] == '0' || map[v.line][v.counter] == '0')
+	if (map[v.line][v.counter] == '0' || (!v.counter || map[v.line][v.counter - 1] == '0'))
 		return (0);
 	if (v.line)
 		if (v.counter <= v.column_limit[TOP_LINE])
