@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/20 22:20:01 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:22:46 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <math.h>
 # include <errno.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include "mlx.h"
 # include "mlx_int.h"
 # include "../libft/libft.h"
@@ -25,21 +26,39 @@
 # include <string.h>
 
 # define INPUT_ERR			(void *)-1
-# define MOVEMENT_SPEED		2
+
+# define MOVEMENT_SPEED		4
 # define RAY_STRIP			2
 # define TILE_SIZE			32
-# define FOV_ANGLE			60
+
+/*
+	Field Of View angle is equals to 60 degrees
+	times PI divided by 180 degrees.
+*/
+# define FOV_ANGLE			1.0471975511965977461542144610932
+
+/*
+	Rotation speed is equals to 4
+	times PI divided by 180 degrees.
+*/
 # define STD_ROTATION_SPEED 0.03490658503988659153847381536977
+
 # define RIGHT				1
 # define LEFT				-1
 # define DOWN				-1
 # define UP					1
+
 # define ESC				65307
 
 /* COLORS */
 # define RED				0xFF0000
 # define BLACK				0x0
 # define WHITE				0xFFFFFF
+
+enum e_column_limits{
+	TOP_LINE,
+	BOT_LINE
+};
 
 enum e_environment{
 	celling,
@@ -72,6 +91,11 @@ typedef struct s_player
 typedef struct s_ray
 {
 	t_coord	coords;
+	bool	was_hit_vertical;
+	bool	is_facing_down;
+	bool	is_facing_up;
+	bool	is_facing_right;
+	bool	is_facing_left;
 }	t_ray;
 
 typedef struct s_params
@@ -90,6 +114,7 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			fov_radian;
+	int			ray_nums;
 	t_params	params;
 	char		*file_content;
 	char		*map_cub;

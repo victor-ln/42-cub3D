@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/12 22:26:25 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/13 23:06:08 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,73 +15,87 @@
 typedef struct s_validation
 {
 	int		behind;
-	int		limit;
-	int		index;
+	int		column_limit[2];
+	int		column;
+	size_t	line_num;
+	size_t	total_lines;
 }	t_validation;
 
-static int	is_surrounded(char **map, int direction, t_validation v);
-static int	validate_horizontal_max_min(char **map, int direction);
+static int	is_surrounded(char **map, t_validation v);
+static int	line_validate(char **map, t_validation v);
+static int	is_closed_on_the_sides(char **map);
 static void	empty_lines_validate(t_game *game);
 
 void	map_validate(t_game *game)
 {
-	size_t		total_lines;
-	size_t		line;
+	t_validation	v;
 
 	resize_line(game);
 	resize_column(game);
 	empty_lines_validate(game);
-	total_lines = ft_count_vectors((void **)game->params.map);
-	line = 0;
-	if (validate_horizontal_max_min(game->params.map, 0))
-		error("Not surrounded by walls", game);
-	if (validate_horizontal_max_min(game->params.map + 1, -1))
-		error("Not surrounded by walls", game);
-	if (validate_horizontal_max_min(game->params.map + total_lines - 2, 1))
-		error("Not surrounded by walls", game);
-	if (validate_horizontal_max_min(game->params.map + total_lines - 1, 0))
-		error("Not surrounded by walls", game);
-	while (++line < total_lines - 2)
-		if (validate_horizontal_max_min(game->params.map + line, 0))
+	ft_bzero(v.column_limit, sizeof(int) * 2);
+	v.total_lines = ft_count_vectors((void **)game->params.map);
+	v.line_num = -1;
+	v.column = 0;
+	v.behind = 0;
+	while (++v.line_num < v.total_lines)
+		if (line_validate(game->params.map, v))
 			error("Not surrounded by walls", game);
 }
 
-static int	validate_horizontal_max_min(char **map, int direction)
+static int	line_validate(char **map, t_validation v)
 {
-	t_validation	v;
-
-	v.index = 0;
-	v.behind = 0;
-	v.limit = ft_strlen(map[direction]);
-	while (map[0][v.index])
+	if (!is_closed_on_the_sides(map + v.line_num))
+		return (EXIT_FAILURE);
+	if (v.line_num)
+		v.column_limit[TOP_LINE] = ft_strlen(map[v.line_num - 1]) - 1;
+	if (v.line_num < v.total_lines - 1)
+		v.column_limit[BOT_LINE] = ft_strlen(map[v.line_num + 1]) - 1;
+	while (map[v.line_num][v.column])
 	{
-		if (!ft_strchr("0NEWS", map[0][v.index]))
+		if (!ft_strchr("0NEWS", map[v.line_num][v.column]))
 		{
-			if (map[0][v.index] != '1' && v.behind)
+			if (map[v.line_num][v.column] != '1' && v.behind)
 				return (EXIT_FAILURE);
 			v.behind = 0;
 		}
 		else
 		{
-			if (!is_surrounded(map, direction, v))
+			if (!is_surrounded(map, v))
 				return (EXIT_FAILURE);
 			v.behind = 1;
 		}
-		v.index++;
+		v.column++;
 	}
 	return (EXIT_SUCCESS);
 }
 
-/*
-	Dividir condições em vários "ifs" e tratar erros no map.cub
-*/
-static int	is_surrounded(char **map, int direction, t_validation v)
+static int	is_surrounded(char **map, t_validation v)
 {
-	return (!((v.index + 1 > v.limit) || \
-			(map[0][v.index - 1] != '1' && !v.behind) || \
-			(map[direction][v.index - 1] != '1' && direction) || \
-			(map[direction][v.index + 1] != '1' && direction) || \
-			(map[direction][v.index] != '1' && direction)));
+	if (!v.line_num || v.line_num == v.total_lines - 1)
+		return (0);
+	if (map[v.line_num][v.column - 1] != '1' && !v.behind)
+		return (0);
+	if (v.line_num)
+		if ((v.column >= v.column_limit[TOP_LINE] || \
+			(map[v.line_num - 1][v.column - 1] == ' ') || \
+			(map[v.line_num - 1][v.column] == ' ')))
+			return (0);
+	if (v.line_num < v.total_lines - 1)
+		if ((v.column >= v.column_limit[BOT_LINE] || \
+			(map[v.line_num + 1][v.column - 1] == ' ') || \
+			(map[v.line_num + 1][v.column] == ' ')))
+			return (0);
+	return (1);
+}
+
+static int	is_closed_on_the_sides(char **map)
+{
+	if (ft_strrchr(*map, '1') < ft_strrchr(*map, '0'))
+		return (0);
+	if (ft_strchr(*map, '1') > ft_strchr(*map, '0') && ft_strchr(*map, '0'))
+		return (0);
+	return (1);
 }
 
 static void	empty_lines_validate(t_game *game)

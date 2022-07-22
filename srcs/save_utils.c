@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 19:23:26 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/12 19:23:44 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/13 17:46:37 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ int	get_map(char *file_content, t_game *game)
 	characters = 0;
 	while (game->params.map[lines])
 		characters += ft_strlen(game->params.map[lines++]);
-	return (characters + lines);
+	return ((characters + lines) - 1);
 }

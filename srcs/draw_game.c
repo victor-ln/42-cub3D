@@ -15,6 +15,7 @@
 static void	draw_pixel(t_img *img, int x, int y, unsigned int color);
 static void	draw_sprite(t_img *image, unsigned int color, int x, int y);
 static void	draw_player(t_game *game);
+// static void	draw_ray(t_game *game, int i);
 
 void	draw_game(t_game *game)
 {
@@ -36,7 +37,8 @@ void	draw_game(t_game *game)
 		y++;
 	}
 	draw_player(game);
-	// draw_rays(game);
+	// for (int i = 0; i < game->ray_nums; i++)
+	// 	draw_ray(game, i);
 }
 
 static void	draw_player(t_game *game)
@@ -57,6 +59,32 @@ static void	draw_player(t_game *game)
 		y++;
 	}
 }
+
+/*
+static void	draw_ray(t_game *game, int i)
+{
+	float	dx, dy, step, x, y;
+
+	x = game->player.coords.x;
+	y = game->player.coords.y;
+	dx = abs((int)x - game->rays[i].coords.x);
+	dy = abs((int)y - game->rays[i].coords.y);
+	if (dx >= dy)
+		step = dx;
+	else
+		step = dy;
+	dx = dx / step;
+	dy = dy / step;
+	i = 0;
+	while (i < step)
+	{
+		draw_pixel(game->img, (int)x, (int)y, RED);
+		x += dx;
+		y += dy;
+		i++;
+	}
+}
+*/
 
 static void	draw_sprite(t_img *image, unsigned int color, int x, int y)
 {

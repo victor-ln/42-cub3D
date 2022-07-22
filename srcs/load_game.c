@@ -15,11 +15,22 @@
 static void	load_player(t_game *game);
 static void	save_rotation_angle(t_game *game, char c);
 static void	load_environment(t_game *game);
+static void	load_rays(t_game *game);
 
 void	load_game(t_game *game)
 {
 	load_environment(game);
 	load_player(game);
+	load_rays(game);
+	cast_all_rays(game);
+}
+
+static void	load_rays(t_game *game)
+{
+	game->ray_nums = game->width * TILE_SIZE / RAY_STRIP;
+	game->rays = malloc(sizeof(t_ray) * game->ray_nums);
+	if (!game->rays)
+		error("Malloc Failed", game);
 }
 
 static void	load_environment(t_game *game)
@@ -57,7 +68,7 @@ static void	load_player(t_game *game)
 	int		j;
 
 	i = 0;
-	game->player.rotation_speed = STD_ROTATION_SPEED;
+	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
 	while (game->params.map[i])
 	{
 		j = 0;

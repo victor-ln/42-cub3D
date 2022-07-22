@@ -13,7 +13,6 @@
 #include "cub3D.h"
 
 static void	move_player(t_game *game);
-static int	has_wall_at(t_game *game, int x, int y);
 
 int	key_press(int keycode, t_game *game)
 {
@@ -33,6 +32,7 @@ int	key_press(int keycode, t_game *game)
 	else
 		return (0);
 	move_player(game);
+	cast_all_rays(game);
 	return (0);
 }
 
@@ -68,7 +68,7 @@ static void	move_player(t_game *game)
 	}
 }
 
-static int	has_wall_at(t_game *game, int x, int y)
+int	has_wall_at(t_game *game, int x, int y)
 {
 	if (x < 0 || x > game->width * TILE_SIZE || y < 0 || \
 		y > game->height * TILE_SIZE)
