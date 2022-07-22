@@ -1,5 +1,7 @@
 #!/bin/bash
 
+make
+
 program="./cub3D"
 dir=" ./maps/failure/"
 file="map_"
@@ -49,3 +51,5 @@ do
 	fi
 	((i++))
 done
+
+make fclean
