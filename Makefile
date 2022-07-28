@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/27 20:22:37 by afaustin         ###   ########.fr        #
+#    Updated: 2022/07/28 17:53:24 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,8 @@ SOURCES			=	main.c \
 					debug_map.c \
 					load_game.c \
 					draw_game.c \
+					draw_minimap.c \
+					draw_utils.c \
 					events.c \
 					rays.c \
 					window.c \

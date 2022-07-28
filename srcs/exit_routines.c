@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/07/27 21:19:10 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/28 17:58:07 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static void	free_game(t_game *game)
 		ft_free_matrix((void **)game->params.rgb[0], 0);
 		ft_free_matrix((void **)game->params.rgb[1], 0);
 		ft_free_null(game->rays);
+		ft_free_null(game->img_properties);
 		ft_free_null(game);
 	}
 }
@@ -48,6 +49,8 @@ static void	destroy_game(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
+	if (game->minimap)
+		mlx_destroy_image(game->mlx, game->minimap);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)

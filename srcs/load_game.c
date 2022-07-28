@@ -45,16 +45,23 @@ static void	load_environment(t_game *game)
 		error("Could not open a window", game);
 	game->img = mlx_new_image(game->mlx, game->width * TILE_SIZE, \
 		game->height * TILE_SIZE);
-	if (!game->img)
+	game->minimap = mlx_new_image(game->mlx,
+		(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
+		(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
+	);
+	if (!game->img || !game->minimap)
 		error("Could not create images", game);
+	game->img_properties = malloc(sizeof(t_img_properties));
+	if (!game->img_properties)
+		error("Malloc Failed", game);
 }
 
 static void	save_rotation_angle(t_game *game, char c)
 {
 	if (c == 'N')
-		game->player.coords.angle = M_PI_2;
-	else if (c == 'S')
 		game->player.coords.angle = M_PI + M_PI_2;
+	else if (c == 'S')
+		game->player.coords.angle = M_PI_2;
 	else if (c == 'W')
 		game->player.coords.angle = M_PI;
 	else if (c == 'E')

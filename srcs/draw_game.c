@@ -12,159 +12,57 @@
 
 #include "cub3D.h"
 
-typedef	struct s_image_properties
+static void	draw_ground_and_celling(t_game *game);
+static void	draw_3d_walls(t_game *game);
+static int	display_game(t_game *game);
+static void	draw_game(t_game *game);
+
+void	start_game(t_game *game)
 {
-	unsigned int	width;
-	unsigned int	height;
-	unsigned int	color;
-	unsigned int	offset_x;
-	unsigned int	offset_y;
-}	t_image_properties;
+	display_game(game);
+	mlx_hook(game->window, 2, 1, key_press, game);
+	mlx_hook(game->window, 3, 1 << 1, key_release, game);
+	mlx_hook(game->window, 17, 0, close_window, game);
+	mlx_expose_hook(game->window, reload_image, game);
+	mlx_loop_hook(game->mlx, display_game, game);
+	mlx_loop(game->mlx);
+}
 
-static void	draw_pixel(t_img *img, int x, int y, unsigned int color);
-void	draw_3d_walls(t_game *game);
-static void	draw_rectangle(t_img *image, t_image_properties properties);
-void	draw_ground_and_celling(t_game *game);
-// static void	draw_player(t_game *game);
-// static void draw_line(t_coord player, t_coord ray, t_img *img);
-
-void	draw_game(t_game *game)
+static int	display_game(t_game *game)
 {
-	// int		i;
+	draw_game(game);
+	mlx_do_sync(game->mlx);
+	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->minimap, 0, 0);
+	return (0);
+}
 
-	// i = 0;
+static void	draw_game(t_game *game)
+{
 	cast_all_rays(game);
-	// draw_minimap(game);
-	// while (i < game->ray_nums)
-	// 	draw_line(game->player.coords, game->rays[i++].coords, game->minimap);
-	// draw_player(game);
+	draw_minimap(game);
 	draw_ground_and_celling(game);
-	if (!game->mlx)
-		draw_3d_walls(game);
+	draw_3d_walls(game);
 }
 
-void	draw_ground_and_celling(t_game *game)
+static void	draw_ground_and_celling(t_game *game)
 {
-	t_image_properties properties;
-
-	properties.color = BLACK;
-	properties.offset_x = 0;
-	properties.offset_y = 0;
-	properties.height = game->height * TILE_SIZE / 2;
-	properties.width = game->width * TILE_SIZE;
-	draw_rectangle(game->img, properties);
-	properties.color = WHITE;
-	properties.offset_x = 0;
-	properties.offset_y = game->height * TILE_SIZE / 2;
-	properties.height = game->height * TILE_SIZE / 2;
-	properties.width = game->width * TILE_SIZE;
-	draw_rectangle(game->img, properties);
+	game->img_properties->color = BLACK;
+	game->img_properties->offset_x = 0;
+	game->img_properties->offset_y = 0;
+	game->img_properties->height = game->height * TILE_SIZE / 2;
+	game->img_properties->width = game->width * TILE_SIZE;
+	draw_rectangle(game->img, game->img_properties);
+	game->img_properties->color = WHITE;
+	game->img_properties->offset_x = 0;
+	game->img_properties->offset_y = game->height * TILE_SIZE / 2;
+	game->img_properties->height = game->height * TILE_SIZE / 2;
+	game->img_properties->width = game->width * TILE_SIZE;
+	draw_rectangle(game->img, game->img_properties);
 }
 
-// static void	draw_minimap(t_game *game)
-// {
-// 	t_image_properties properies;
-
-// 	properies.height = TILE_SIZE;
-// 	properies.width = TILE_SIZE;
-// 	properies.y = 0;
-// 	while (properies.y < game->height)
-// 	{
-// 		x = 0;
-// 		properies.x = 0;
-// 		while (properies.x < game->width)
-// 		{
-// 			properies.color = BLACK;
-// 			if (game->params.map[properies.y][properies.x] == '0')
-// 			{
-// 				properies.color = WHITE;
-// 				draw_rectangle(game->minimap, properies);
-// 			}
-// 			else
-// 				draw_rectangle(game->minimap, properies);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// static void	draw_player(t_game *game)
-// {
-// 	int	y;
-// 	int	x;
-
-// 	y = -5;
-// 	while (y < 5)
-// 	{
-// 		x = -5;
-// 		while (x < 5)
-// 		{
-// 			draw_pixel(game->minimap game->player.coords.x + x, 
-// 				game->player.coords.y + y, RED);
-// 			x++;
-// 		}
-// 		y++;
-// 	}
-// }
-
-// static void draw_line(t_coord start, t_coord end, t_img *img)
-// {
-// 	int		delta_x;
-// 	int		delta_y;
-// 	int		side_length;
-// 	float	x_inc;
-// 	float	y_inc;
-// 	float	current_x;
-// 	float	current_y;
-// 	int		i;
-
-// 	delta_x = (end.x - start.x);
-// 	delta_y = (end.y - start.y);
-// 	if (abs(delta_x) >= abs(delta_y))
-// 		side_length = abs(delta_x);
-// 	else
-// 		side_length = abs(delta_y);
-// 	x_inc = delta_x / (float)side_length;
-// 	y_inc = delta_y / (float)side_length;
-// 	current_x = start.x;
-// 	current_y = start.y;
-// 	i = 0;
-// 	while (i < side_length)
-// 	{
-// 		draw_pixel(img, round(current_x), round(current_y), BLACK);
-// 		current_x += x_inc;
-// 		current_y += y_inc;
-// 		i++;
-// 	}
-// }
-
-static void	draw_rectangle(t_img *image, t_image_properties properties)
+static void	draw_3d_walls(t_game *game)
 {
-	unsigned int		i;
-	unsigned int		j;
-
-	j = properties.offset_y;
-	while (j < properties.height)
-	{
-		i = properties.offset_x;
-		while (i < properties.width)
-		{
-			draw_pixel(image, i, j, properties.color);
-			i++;
-		}
-		j++;
-	}
-}
-
-static void	draw_pixel(t_img *img, int x, int y, unsigned int color)
-{
-	*(unsigned int *)
-		((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
-}
-
-void	draw_3d_walls(t_game *game)
-{
-	t_image_properties	properties;
 	int					column;
 	float				projected_wall_dist;
 	float				projected_wall_height;
@@ -173,16 +71,18 @@ void	draw_3d_walls(t_game *game)
 	column = 0;
 	while (column < game->ray_nums)
 	{
-		ray_distance = game->rays[column].coords.distance * \
+		ray_distance = game->rays[column].coords.distance * 
 			cos(game->rays[column].coords.angle - game->player.coords.angle);
-		projected_wall_dist = (game->width * TILE_SIZE) / 2 / tan(FOV_ANGLE / 2);
+		projected_wall_dist = ((game->width * TILE_SIZE) / 2) / tan(FOV_ANGLE / 2);
 		projected_wall_height = (TILE_SIZE / ray_distance) * projected_wall_dist;
-		properties.color = (RED << 8) | (unsigned int)(100 / game->rays[column].coords.distance);
-		properties.offset_x = column * RAY_STRIP;
-		properties.offset_y = (game->height * TILE_SIZE - projected_wall_height) / 2;
-		properties.width = RAY_STRIP;
-		properties.height = projected_wall_height;
-		draw_rectangle(game->img, properties);
+		if (projected_wall_height > (unsigned)(game->height * TILE_SIZE))
+			projected_wall_height = (game->height * TILE_SIZE);
+		game->img_properties->color = RED;
+		game->img_properties->offset_x = column * RAY_STRIP;
+		game->img_properties->offset_y = (game->height * TILE_SIZE - projected_wall_height) / 2;
+		game->img_properties->width = RAY_STRIP;
+		game->img_properties->height = projected_wall_height;
+		draw_rectangle(game->img, game->img_properties);
 		column++;
 	}
 }

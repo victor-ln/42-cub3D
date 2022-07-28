@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/27 22:45:27 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:08:06 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,38 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <string.h>
+# include <limits.h>
 
-# define INPUT_ERR			(void *)-1
+# define INPUT_ERR				(void *)-1
 
-# define MOVEMENT_SPEED		4
-# define RAY_STRIP			1
-# define TILE_SIZE			64
+# define MOVEMENT_SPEED			4
+# define RAY_STRIP				1
+# define TILE_SIZE				64
+# define MINIMAP_SCALE_FACTOR	0.2
 
 /*
 	Field Of View angle is equals to 60 degrees
 	times PI divided by 180 degrees.
 */
-# define FOV_ANGLE			1.0471975511965977461542144610932
+# define FOV_ANGLE				1.0471975511965977461542144610932
 
 /*
 	Rotation speed is equals to 4
 	times PI divided by 180 degrees.
 */
-# define STD_ROTATION_SPEED 0.03490658503988659153847381536977
+# define STD_ROTATION_SPEED 	0.03490658503988659153847381536977
 
-# define RIGHT				1
-# define LEFT				-1
-# define DOWN				-1
-# define UP					1
+# define RIGHT					1
+# define LEFT					-1
+# define DOWN					-1
+# define UP						1
 
-# define ESC				65307
+# define ESC					65307
 
 /* COLORS */
-# define RED				0xFF0000
-# define BLACK				0x0
-# define WHITE				0xFFFFFF
+# define RED					0xFF0000
+# define BLACK					0x0
+# define WHITE					0xFFFFFF
 
 enum e_column_limits{
 	TOP_LINE,
@@ -71,6 +73,15 @@ enum e_coords {
 	WE,
 	EA
 };
+
+typedef	struct s_img_properties
+{
+	unsigned int	width;
+	unsigned int	height;
+	unsigned int	color;
+	unsigned int	offset_x;
+	unsigned int	offset_y;
+}	t_img_properties;
 
 typedef struct s_coord
 {
@@ -96,6 +107,7 @@ typedef struct s_ray
 	bool	is_ray_facing_up;
 	bool	is_ray_facing_right;
 	bool	is_ray_facing_left;
+	int		content_type;
 }	t_ray;
 
 typedef struct s_params
@@ -108,19 +120,20 @@ typedef struct s_params
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*window;
-	t_img		*img;
-	t_img		*minimap;
-	int			width;
-	int			height;
-	int			fov_radian;
-	int			ray_nums;
-	t_params	params;
-	char		*file_content;
-	char		*map_cub;
-	t_ray		*rays;
-	t_player	player;
+	void				*mlx;
+	void				*window;
+	t_img				*img;
+	t_img				*minimap;
+	int					width;
+	int					height;
+	int					fov_radian;
+	int					ray_nums;
+	t_params			params;
+	char				*file_content;
+	char				*map_cub;
+	t_ray				*rays;
+	t_img_properties *img_properties;
+	t_player			player;
 }	t_game;
 
 #endif
