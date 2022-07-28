@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/27 21:42:26 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/27 22:45:27 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define MOVEMENT_SPEED		4
 # define RAY_STRIP			1
-# define TILE_SIZE			32
+# define TILE_SIZE			64
 
 /*
 	Field Of View angle is equals to 60 degrees
@@ -111,6 +111,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*window;
 	t_img		*img;
+	t_img		*minimap;
 	int			width;
 	int			height;
 	int			fov_radian;
