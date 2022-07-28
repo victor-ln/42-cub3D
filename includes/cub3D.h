@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/21 21:22:52 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/26 20:38:25 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		key_press(int keycode, t_game *game);
 
 int		key_release(int keycode, t_game *game);
 
-int		has_wall_at(t_game *game, int x, int y);
+int		has_wall_at(t_game *game, double x, double y);
 
 void	cast_all_rays(t_game *game);
 

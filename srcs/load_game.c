@@ -22,7 +22,6 @@ void	load_game(t_game *game)
 	load_environment(game);
 	load_player(game);
 	load_rays(game);
-	cast_all_rays(game);
 }
 
 static void	load_rays(t_game *game)
@@ -36,7 +35,7 @@ static void	load_rays(t_game *game)
 static void	load_environment(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->width = 34;
+	game->width = ft_strlen(game->params.map[0]);
 	game->height = ft_count_vectors((void **)game->params.map);
 	if (!game->mlx)
 		error("Mlx init failed", game);
@@ -53,13 +52,13 @@ static void	load_environment(t_game *game)
 static void	save_rotation_angle(t_game *game, char c)
 {
 	if (c == 'N')
-		game->player.coords.angle = M_PI + M_PI_2;
+		game->player.coords.rayAngle = M_PI_2;
 	else if (c == 'S')
-		game->player.coords.angle = M_PI_2;
+		game->player.coords.rayAngle = M_PI + M_PI_2;
 	else if (c == 'W')
-		game->player.coords.angle = M_PI;
+		game->player.coords.rayAngle = M_PI;
 	else if (c == 'E')
-		game->player.coords.angle = 0;
+		game->player.coords.rayAngle = 0;
 }
 
 static void	load_player(t_game *game)
@@ -77,8 +76,8 @@ static void	load_player(t_game *game)
 			if (ft_strchr("NSWE", game->params.map[i][j]))
 			{
 				save_rotation_angle(game, game->params.map[i][j]);
-				game->player.coords.x = j * TILE_SIZE + TILE_SIZE * 0.5;
-				game->player.coords.y = i * TILE_SIZE + TILE_SIZE * 0.5;
+				game->player.coords.wallHitX = j * TILE_SIZE + TILE_SIZE * 0.5;
+				game->player.coords.wallHitY = i * TILE_SIZE + TILE_SIZE * 0.5;
 				game->params.map[i][j] = '0';
 				return ;
 			}

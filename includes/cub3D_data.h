@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/21 21:22:46 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:17:25 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define INPUT_ERR			(void *)-1
 
 # define MOVEMENT_SPEED		4
-# define RAY_STRIP			2
+# define RAY_STRIP			1
 # define TILE_SIZE			32
 
 /*
@@ -74,10 +74,10 @@ enum e_coords {
 
 typedef struct s_coord
 {
-	int			x;
-	int			y;
-	int			hipo;
-	double		angle;
+	double			wallHitX;
+	double			wallHitY;
+	double			distance;
+	double			rayAngle;
 }	t_coord;
 
 typedef struct s_player
@@ -91,11 +91,11 @@ typedef struct s_player
 typedef struct s_ray
 {
 	t_coord	coords;
-	bool	was_hit_vertical;
-	bool	is_facing_down;
-	bool	is_facing_up;
-	bool	is_facing_right;
-	bool	is_facing_left;
+	bool	wasHitVertical;
+	bool	isRayFacingDown;
+	bool	isRayFacingUp;
+	bool	isRayFacingRight;
+	bool	isRayFacingLeft;
 }	t_ray;
 
 typedef struct s_params

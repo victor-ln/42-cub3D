@@ -70,6 +70,7 @@ class Player {
 	update() {
 		this.rotationAngle += this.moveDirection * this.rotationSpeed;
 
+		console.log(this.rotationAngle);
 		var moveStep = this.walkDirection * this.movementSpeed;
 		var to_x = this.x + Math.cos(this.rotationAngle) * moveStep;
 		var to_y = this.y + Math.sin(this.rotationAngle) * moveStep;

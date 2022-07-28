@@ -32,7 +32,6 @@ int	key_press(int keycode, t_game *game)
 	else
 		return (0);
 	move_player(game);
-	cast_all_rays(game);
 	return (0);
 }
 
@@ -51,27 +50,26 @@ int	key_release(int keycode, t_game *game)
 
 static void	move_player(t_game *game)
 {
-	int	move_step;
-	int	to_x;
-	int	to_y;
+	double	move_step;
+	double	to_x;
+	double	to_y;
 
-	game->player.coords.angle += game->player.move_direction * \
+	game->player.coords.rayAngle += game->player.move_direction * \
 		game->player.rotation_speed;
-	printf("Angle>: %f\n", game->player.coords.angle);
 	move_step = game->player.walk_direction * MOVEMENT_SPEED;
-	to_x = game->player.coords.x + cos(game->player.coords.angle) * move_step;
-	to_y = game->player.coords.y + sin(game->player.coords.angle) * move_step;
+	to_x = game->player.coords.wallHitX + cos(game->player.coords.rayAngle) * move_step;
+	to_y = game->player.coords.wallHitY + sin(game->player.coords.rayAngle) * move_step;
 	if (!has_wall_at(game, to_x, to_y))
 	{
-		game->player.coords.x = to_x;
-		game->player.coords.y = to_y;
+		game->player.coords.wallHitX = to_x;
+		game->player.coords.wallHitY = to_y;
 	}
 }
 
-int	has_wall_at(t_game *game, int x, int y)
+int	has_wall_at(t_game *game, double x, double y)
 {
 	if (x < 0 || x > game->width * TILE_SIZE || y < 0 || \
 		y > game->height * TILE_SIZE)
 		return (1);
-	return (game->params.map[y / TILE_SIZE][x / TILE_SIZE] == '1');
+	return (game->params.map[(int)floor((y / TILE_SIZE))][(int)floor((x / TILE_SIZE))] == '1');
 }

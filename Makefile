@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/20 18:44:59 by afaustin         ###   ########.fr        #
+#    Updated: 2022/07/27 20:22:37 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,12 @@ HEADERS			=	cub3D.h
 INCLUDES		=	-I $(PATH_INC)
 
 # DEBUG
-DEBUG			=	-g3
+DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror $(DEBUG)
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
-CC				=	gcc $(CFLAGS) $(INCLUDES) $(DEBUG)
+CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \
 					--leak-check=full \
 					--show-leak-kinds=all \
