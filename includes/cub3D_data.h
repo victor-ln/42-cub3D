@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/28 18:08:06 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/07/28 18:44:40 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define MOVEMENT_SPEED			4
 # define RAY_STRIP				1
 # define TILE_SIZE				64
-# define MINIMAP_SCALE_FACTOR	0.2
+# define MINIMAP_SCALE_FACTOR	0.25
 
 /*
 	Field Of View angle is equals to 60 degrees
@@ -56,6 +56,8 @@
 # define RED					0xFF0000
 # define BLACK					0x0
 # define WHITE					0xFFFFFF
+# define GREEN					0x00FF00
+# define BLUE					0x0000FF
 
 enum e_column_limits{
 	TOP_LINE,

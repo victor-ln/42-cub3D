@@ -71,5 +71,5 @@ int	has_wall_at(t_game *game, double x, double y)
 	if (x < 0 || x > game->width * TILE_SIZE || y < 0 || \
 		y > game->height * TILE_SIZE)
 		return (1);
-	return (game->params.map[(int)floor((y / TILE_SIZE))][(int)floor((x / TILE_SIZE))] == '1');
+	return (game->params.map[(int)floor((y / TILE_SIZE))][(int)floor((x / TILE_SIZE))] != '0');
 }

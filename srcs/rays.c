@@ -12,10 +12,11 @@
 
 #include "cub3D.h"
 
-static void 	cast_ray(t_game *game, int ray_id);
-static void		normalize_angle(double *angle);
 static double	calculate_hypo(double x, double y);
+static void		normalize_angle(double *angle);
+static void 	cast_ray(t_game *game, int ray_id);
 static void		ray_constructor(t_game *game, int ray_id);
+static void		get_ray_content(t_game *game, int ray_id);
 
 void	cast_all_rays(t_game *game)
 {
@@ -27,12 +28,32 @@ void	cast_all_rays(t_game *game)
 	while (i < game->ray_nums)
 	{
 		game->rays[i].coords.angle = angle;
-		cast_ray(game, i++);
+		cast_ray(game, i);
+		get_ray_content(game, i);
 		angle += FOV_ANGLE / game->ray_nums;
+		i++;
 	}
 }
 
+static void get_ray_content(t_game *game, int ray_id)
+{
+	int	x;
+	int	y;
 
+	if (game->rays[ray_id].was_hit_vertical)
+	{
+		x = floor((game->rays[ray_id].coords.x - \
+			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
+		y = floor(game->rays[ray_id].coords.y / TILE_SIZE);
+	}
+	else
+	{
+		x = floor(game->rays[ray_id].coords.x / TILE_SIZE);
+		y = floor((game->rays[ray_id].coords.y - \
+			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
+	}
+	game->rays[ray_id].content_type = game->params.map[y][x];
+}
 
 static void	cast_ray(t_game *game, int ray_id)
 {
@@ -124,6 +145,7 @@ static void	cast_ray(t_game *game, int ray_id)
 		game->rays[ray_id].coords.y = horizontalY;
 		game->rays[ray_id].coords.distance = horizontal_distance;
 	}
+	
 }
 
 static void	ray_constructor(t_game *game, int ray_id)

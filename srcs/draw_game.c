@@ -78,6 +78,12 @@ static void	draw_3d_walls(t_game *game)
 		if (projected_wall_height > (unsigned)(game->height * TILE_SIZE))
 			projected_wall_height = (game->height * TILE_SIZE);
 		game->img_properties->color = RED;
+		if (game->rays[column].content_type == '1')
+			game->img_properties->color = RED;
+		else if (game->rays[column].content_type == '2')
+			game->img_properties->color = GREEN;
+		else if (game->rays[column].content_type == '3')
+			game->img_properties->color = BLUE;
 		game->img_properties->offset_x = column * RAY_STRIP;
 		game->img_properties->offset_y = (game->height * TILE_SIZE - projected_wall_height) / 2;
 		game->img_properties->width = RAY_STRIP;
