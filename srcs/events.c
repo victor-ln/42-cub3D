@@ -54,15 +54,15 @@ static void	move_player(t_game *game)
 	double	to_x;
 	double	to_y;
 
-	game->player.coords.rayAngle += game->player.move_direction * \
+	game->player.coords.angle += game->player.move_direction * \
 		game->player.rotation_speed;
 	move_step = game->player.walk_direction * MOVEMENT_SPEED;
-	to_x = game->player.coords.wallHitX + cos(game->player.coords.rayAngle) * move_step;
-	to_y = game->player.coords.wallHitY + sin(game->player.coords.rayAngle) * move_step;
+	to_x = game->player.coords.x + cos(game->player.coords.angle) * move_step;
+	to_y = game->player.coords.y + sin(game->player.coords.angle) * move_step;
 	if (!has_wall_at(game, to_x, to_y))
 	{
-		game->player.coords.wallHitX = to_x;
-		game->player.coords.wallHitY = to_y;
+		game->player.coords.x = to_x;
+		game->player.coords.y = to_y;
 	}
 }
 

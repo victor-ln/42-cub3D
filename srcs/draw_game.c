@@ -53,8 +53,8 @@ static void	draw_player(t_game *game)
 		x = -5;
 		while (x < 5)
 		{
-			draw_pixel(game->img, game->player.coords.wallHitX + x, \
-				game->player.coords.wallHitY + y, RED);
+			draw_pixel(game->img, game->player.coords.x + x, \
+				game->player.coords.y + y, RED);
 			x++;
 		}
 		y++;
@@ -72,16 +72,16 @@ static void draw_line(t_coord start, t_coord end, t_img *img)
 	float	current_y;
 	int		i;
 
-	delta_x = (end.wallHitX - start.wallHitX);
-	delta_y = (end.wallHitY - start.wallHitY);
+	delta_x = (end.x - start.x);
+	delta_y = (end.y - start.y);
 	if (abs(delta_x) >= abs(delta_y))
 		side_length = abs(delta_x);
 	else
 		side_length = abs(delta_y);
 	x_inc = delta_x / (float)side_length;
 	y_inc = delta_y / (float)side_length;
-	current_x = start.wallHitX;
-	current_y = start.wallHitY;
+	current_x = start.x;
+	current_y = start.y;
 	i = 0;
 	while (i < side_length)
 	{

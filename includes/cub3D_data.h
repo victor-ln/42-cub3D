@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/27 21:17:25 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/07/27 21:42:26 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ enum e_coords {
 
 typedef struct s_coord
 {
-	double			wallHitX;
-	double			wallHitY;
+	double			x;
+	double			y;
 	double			distance;
-	double			rayAngle;
+	double			angle;
 }	t_coord;
 
 typedef struct s_player
@@ -91,11 +91,11 @@ typedef struct s_player
 typedef struct s_ray
 {
 	t_coord	coords;
-	bool	wasHitVertical;
-	bool	isRayFacingDown;
-	bool	isRayFacingUp;
-	bool	isRayFacingRight;
-	bool	isRayFacingLeft;
+	bool	was_hit_vertical;
+	bool	is_ray_facing_down;
+	bool	is_ray_facing_up;
+	bool	is_ray_facing_right;
+	bool	is_ray_facing_left;
 }	t_ray;
 
 typedef struct s_params
