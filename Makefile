@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/07/28 17:53:24 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/08/01 18:55:31 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ VALGRIND		=	valgrind \
 PATH_OBJ		=	obj/
 PATH_SRC		=	srcs/
 PATH_INC		=	includes/
+PATH_TEST		=	test/
 
 # FILES
 SOURCES			=	main.c \
@@ -66,6 +67,7 @@ all:				$(NAME)
 
 $(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
 					$(MAKE) -C ./libft
+					$(MAKE) -C ./mlx_linux
 					$(CC) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
@@ -78,8 +80,12 @@ run:				all
 valgrind:			all
 					$(VALGRIND) ./$(NAME)
 
+test:
+					gcc -I includes/ -I mlx_linux/ test/img_biggerthan_window.c mlx_linux/libmlx.a -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz
+
 clean:				
 					$(MAKE) -C ./libft clean
+					$(MAKE) -C ./mlx_linux clean
 					$(RM) $(addprefix $(PATH_OBJ), $(OBJS)) rmdir obj
 
 fclean:				clean

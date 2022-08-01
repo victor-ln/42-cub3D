@@ -12,10 +12,11 @@
 
 #include "cub3D.h"
 
-static void	load_player(t_game *game);
-static void	save_rotation_angle(t_game *game, char c);
-static void	load_environment(t_game *game);
-static void	load_rays(t_game *game);
+static void		load_player(t_game *game);
+static void		save_rotation_angle(t_game *game, char c);
+static void		load_environment(t_game *game);
+static void		load_rays(t_game *game);
+static size_t	get_max_line_size(char **map);
 
 void	load_game(t_game *game)
 {
@@ -35,7 +36,7 @@ static void	load_rays(t_game *game)
 static void	load_environment(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->width = ft_strlen(game->params.map[0]);
+	game->width = get_max_line_size(game->params.map);
 	game->height = ft_count_vectors((void **)game->params.map);
 	if (!game->mlx)
 		error("Mlx init failed", game);
@@ -45,12 +46,12 @@ static void	load_environment(t_game *game)
 		error("Could not open a window", game);
 	game->img = mlx_new_image(game->mlx, game->window_width, \
 		game->window_height);
-	// game->minimap = mlx_new_image(game->mlx,
-	// 	(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
-	// 	(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
-	// );
-	// if (!game->img || !game->minimap)
-	// 	error("Could not create images", game);
+	game->extended_minimap = mlx_new_image(game->mlx,
+		(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
+		(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
+	);
+	if (!game->img || !game->extended_minimap)
+		error("Could not create images", game);
 	game->img_properties = malloc(sizeof(t_img_properties));
 	if (!game->img_properties)
 		error("Malloc Failed", game);
@@ -92,4 +93,20 @@ static void	load_player(t_game *game)
 		}
 		i++;
 	}
+}
+
+static size_t	get_max_line_size(char **map)
+{
+	size_t	max_line_size;
+	int		i;
+
+	max_line_size = 0;
+	i = 0;
+	while (map[i])
+	{
+		if (ft_strlen(map[i]) > max_line_size)
+			max_line_size = ft_strlen(map[i]);
+		i++;
+	}
+	return (max_line_size);
 }

@@ -33,7 +33,7 @@ static int	display_game(t_game *game)
 	draw_game(game);
 	mlx_do_sync(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	// mlx_put_image_to_window(game->mlx, game->window, game->minimap, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->extended_minimap, 0, 0);
 	return (0);
 }
 

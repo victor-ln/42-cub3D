@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/01 17:10:07 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:10:11 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_game
 	void				*mlx;
 	void				*window;
 	t_img				*img;
-	t_img				*minimap;
+	t_img				*extended_minimap;
 	int					width;
 	int					height;
 	int					window_width;

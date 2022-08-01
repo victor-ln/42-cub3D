@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/07/28 17:58:07 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/01 19:10:50 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ static void	destroy_game(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
-	if (game->minimap)
-		mlx_destroy_image(game->mlx, game->minimap);
+	if (game->extended_minimap)
+		mlx_destroy_image(game->mlx, game->extended_minimap);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)
