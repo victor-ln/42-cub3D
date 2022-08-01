@@ -26,7 +26,7 @@ void	load_game(t_game *game)
 
 static void	load_rays(t_game *game)
 {
-	game->ray_nums = game->width * TILE_SIZE / RAY_STRIP;
+	game->ray_nums = game->window_width / RAY_STRIP;
 	game->rays = malloc(sizeof(t_ray) * game->ray_nums);
 	if (!game->rays)
 		error("Malloc Failed", game);
@@ -39,18 +39,18 @@ static void	load_environment(t_game *game)
 	game->height = ft_count_vectors((void **)game->params.map);
 	if (!game->mlx)
 		error("Mlx init failed", game);
-	game->window = mlx_new_window(game->mlx, game->width * TILE_SIZE, \
-		game->height * TILE_SIZE, "cub3D");
+	game->window = mlx_new_window(game->mlx, game->window_width, \
+		game->window_height, "cub3D");
 	if (!game->window)
 		error("Could not open a window", game);
-	game->img = mlx_new_image(game->mlx, game->width * TILE_SIZE, \
-		game->height * TILE_SIZE);
-	game->minimap = mlx_new_image(game->mlx,
-		(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
-		(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
-	);
-	if (!game->img || !game->minimap)
-		error("Could not create images", game);
+	game->img = mlx_new_image(game->mlx, game->window_width, \
+		game->window_height);
+	// game->minimap = mlx_new_image(game->mlx,
+	// 	(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
+	// 	(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
+	// );
+	// if (!game->img || !game->minimap)
+	// 	error("Could not create images", game);
 	game->img_properties = malloc(sizeof(t_img_properties));
 	if (!game->img_properties)
 		error("Malloc Failed", game);

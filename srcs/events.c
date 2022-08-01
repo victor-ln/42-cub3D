@@ -68,8 +68,15 @@ static void	move_player(t_game *game)
 
 int	has_wall_at(t_game *game, double x, double y)
 {
-	if (x < 0 || x > game->width * TILE_SIZE || y < 0 || \
+	int	column;
+	int	line;
+
+	column = (int)floor((x / TILE_SIZE));
+	line = (int)floor((y / TILE_SIZE));
+
+	if (x < 0 || x > ft_strlen(game->params.map[line]) * TILE_SIZE || y < 0 || \
 		y > game->height * TILE_SIZE)
 		return (1);
-	return (game->params.map[(int)floor((y / TILE_SIZE))][(int)floor((x / TILE_SIZE))] != '0');
+	return (game->params.map[line][column] != '0' && \
+		game->params.map[line][column] != ' ');
 }

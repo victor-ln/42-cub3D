@@ -138,6 +138,7 @@ static void	cast_ray(t_game *game, int ray_id)
 		game->rays[ray_id].coords.x = verticalX;
 		game->rays[ray_id].coords.y = verticalY;
 		game->rays[ray_id].coords.distance = vertical_distance;
+		game->rays[ray_id].was_hit_vertical = true;
 	}
 	else
 	{

@@ -33,7 +33,7 @@ static int	display_game(t_game *game)
 	draw_game(game);
 	mlx_do_sync(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->minimap, 0, 0);
+	// mlx_put_image_to_window(game->mlx, game->window, game->minimap, 0, 0);
 	return (0);
 }
 
@@ -50,14 +50,14 @@ static void	draw_ground_and_celling(t_game *game)
 	game->img_properties->color = BLACK;
 	game->img_properties->offset_x = 0;
 	game->img_properties->offset_y = 0;
-	game->img_properties->height = game->height * TILE_SIZE / 2;
-	game->img_properties->width = game->width * TILE_SIZE;
+	game->img_properties->height = game->window_height / 2;
+	game->img_properties->width = game->window_width;
 	draw_rectangle(game->img, game->img_properties);
 	game->img_properties->color = WHITE;
 	game->img_properties->offset_x = 0;
-	game->img_properties->offset_y = game->height * TILE_SIZE / 2;
-	game->img_properties->height = game->height * TILE_SIZE / 2;
-	game->img_properties->width = game->width * TILE_SIZE;
+	game->img_properties->offset_y = game->window_height / 2;
+	game->img_properties->height = game->window_height / 2;
+	game->img_properties->width = game->window_width;
 	draw_rectangle(game->img, game->img_properties);
 }
 
@@ -73,10 +73,10 @@ static void	draw_3d_walls(t_game *game)
 	{
 		ray_distance = game->rays[column].coords.distance * 
 			cos(game->rays[column].coords.angle - game->player.coords.angle);
-		projected_wall_dist = ((game->width * TILE_SIZE) / 2) / tan(FOV_ANGLE / 2);
+		projected_wall_dist = ((game->window_width) / 2) / tan(FOV_ANGLE / 2);
 		projected_wall_height = (TILE_SIZE / ray_distance) * projected_wall_dist;
-		if (projected_wall_height > (unsigned)(game->height * TILE_SIZE))
-			projected_wall_height = (game->height * TILE_SIZE);
+		if (projected_wall_height > (unsigned)(game->window_height))
+			projected_wall_height = (game->window_height);
 		game->img_properties->color = RED;
 		if (game->rays[column].content_type == '1')
 			game->img_properties->color = RED;
@@ -85,7 +85,7 @@ static void	draw_3d_walls(t_game *game)
 		else if (game->rays[column].content_type == '3')
 			game->img_properties->color = BLUE;
 		game->img_properties->offset_x = column * RAY_STRIP;
-		game->img_properties->offset_y = (game->height * TILE_SIZE - projected_wall_height) / 2;
+		game->img_properties->offset_y = (game->window_height - projected_wall_height) / 2;
 		game->img_properties->width = RAY_STRIP;
 		game->img_properties->height = projected_wall_height;
 		draw_rectangle(game->img, game->img_properties);

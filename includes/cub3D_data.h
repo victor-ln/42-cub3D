@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/28 18:44:40 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:10:07 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define RAY_STRIP				1
 # define TILE_SIZE				64
 # define MINIMAP_SCALE_FACTOR	0.25
+
+# define STD_WINDOW_WIDTH            1280
+# define STD_WINDOW_HEIGHT           720
 
 /*
 	Field Of View angle is equals to 60 degrees
@@ -128,6 +131,8 @@ typedef struct s_game
 	t_img				*minimap;
 	int					width;
 	int					height;
+	int					window_width;
+	int					window_height;
 	int					fov_radian;
 	int					ray_nums;
 	t_params			params;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/28 18:18:16 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/01 17:08:29 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static void	init_game(t_game *game)
 	ft_bzero(game, sizeof(t_game));
 	ft_bzero(&game->params, sizeof(t_params));
 	ft_bzero(&game->player, sizeof(t_player));
+	game->window_width = STD_WINDOW_WIDTH;
+	game->window_height = STD_WINDOW_HEIGHT;
 	game->params.textures = ft_calloc(sizeof(char *), 4);
 	if (!game->params.textures)
 		error("Malloc Failed", game);
