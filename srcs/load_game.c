@@ -54,7 +54,6 @@ static void	load_environment(t_game *game)
 	if ((game->width * TILE_SIZE * MINIMAP_SCALE_FACTOR) > game->window_width * MINIMAP_SCALE_FACTOR ||
 		(game->height * TILE_SIZE * MINIMAP_SCALE_FACTOR) > game->window_height * MINIMAP_SCALE_FACTOR)
 	{
-		printf("BIG MAP WIDTH %f\n", game->window_width * MINIMAP_SCALE_FACTOR);
 		game->small_radar = mlx_new_image(game->mlx,
 			game->window_width * MINIMAP_SCALE_FACTOR,
 			game->window_height * MINIMAP_SCALE_FACTOR);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/01 21:40:19 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:15:34 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # define MOVEMENT_SPEED			4
 # define RAY_STRIP				1
-# define TILE_SIZE				64
+# define TILE_SIZE				32
 # define MINIMAP_SCALE_FACTOR	0.25
 
 # define STD_WINDOW_WIDTH            1280

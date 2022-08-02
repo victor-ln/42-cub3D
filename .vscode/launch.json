@@ -9,7 +9,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/cub3D",
-			"args": ["/home/vlima-nu/cub3D_ecole42/maps/success/map_0.cub"],
+			"args": ["/home/vlima-nu/cub3D_ecole42/maps/success/map_1.cub"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

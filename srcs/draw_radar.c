@@ -32,39 +32,93 @@ static void	draw_small_radar(t_game *game)
 	int	j;
 	int	x;
 	int	y;
+	int	offset_x;
+	int	offset_y;
+	int	player_line;
+	int	player_column;
+	int	limit_x;
+	int	limit_y;
 
 	i = 0;
-	y = floor(game->player.coords.y - 160);
-	x = floor(game->player.coords.x - 90);
-	while (i < 22)
+	player_line = (int)floor(game->player.coords.y / TILE_SIZE);
+	player_column = (int)floor(game->player.coords.x / TILE_SIZE);
+	if (player_line < 11)
+		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - (player_line * 8);
+	else if (player_line > game->height - 11)
+		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - (game->height - player_line * 8);
+	else
+		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - 90;
+	if (player_column < 20)
+		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - (player_column * 8);
+	else if (player_column > (int)game->width - 20)
+		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - \
+			((game->width - player_column) * 8);
+	else
+		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - 160;
+	if (game->width > 40)
+		limit_x = 40;
+	else
+		limit_x = game->width;
+	if (game->height > 22)
+		limit_y = 22;
+	else
+		limit_y = game->height;
+	while (i < limit_y)
 	{
 		j = 0;
-		while (j < 40)
+		while (j < limit_x)
 		{
-			draw_pixel(game->small_radar, j * TILE_SIZE * MINIMAP_SCALE_FACTOR, i * TILE_SIZE * MINIMAP_SCALE_FACTOR, get_color(game->radar, x + (j * MINIMAP_SCALE_FACTOR * TILE_SIZE), y + (i * MINIMAP_SCALE_FACTOR * TILE_SIZE)));
+			y = 0;
+			while (y < 8)
+			{
+				x = 0;
+				while (x < 8)
+				{
+					draw_pixel(game->small_radar, \
+						x + (j * TILE_SIZE * MINIMAP_SCALE_FACTOR), \
+						y + (i * TILE_SIZE * MINIMAP_SCALE_FACTOR), \
+						get_color(game->radar, \
+							offset_x + x + (j * TILE_SIZE * MINIMAP_SCALE_FACTOR),
+							offset_y + y + (i * TILE_SIZE * MINIMAP_SCALE_FACTOR)
+						)
+					);
+					x++;
+				}
+				y++;
+			}
+			/*
+			draw_pixel(game->small_radar, \
+				j * TILE_SIZE * MINIMAP_SCALE_FACTOR, \
+				i * TILE_SIZE * MINIMAP_SCALE_FACTOR, \
+				get_color(game->radar, \
+					x + (j * MINIMAP_SCALE_FACTOR * TILE_SIZE), \
+					y + (i * MINIMAP_SCALE_FACTOR * TILE_SIZE)
+				)
+			);
+			*/
 			j++;
 		}
 		i++;
 	}
 }
 
-// void    draw_sprite(t_img *image, t_img *sprite, int x, int y)
-// {
-//     register int        i;
-//     register int        j;
+void    draw_sprite(t_img *image, t_img *sprite, int x, int y)
+{
+    register int        i;
+    register int        j;
 
-//     j = 0;
-//     while (j < sprite->height)
-//     {
-//         i = 0;
-//         while (i < sprite->width)
-//         {
-//             draw_pixel(image, x + i, y + j, get_color(sprite, i, j));
-//             i++;
-//         }
-//         j++;
-//     }
-// }
+    j = 0;
+    while (j < 8)
+    {
+        i = 0;
+        while (i < 8)
+        {
+            draw_pixel(image, x + i, y + j, get_color(sprite, i, j));
+            i++;
+        }
+        j++;
+    }
+}
 
 static void	draw_field_of_view(t_game *game)
 {
@@ -117,11 +171,11 @@ static void	draw_player(t_game *game)
 	int	y;
 	int	x;
 
-	y = -5;
-	while (y < 5)
+	y = -16;
+	while (y < 16)
 	{
-		x = -5;
-		while (x < 5)
+		x = -16;
+		while (x < 16)
 		{
 			draw_pixel(
 				game->radar,
