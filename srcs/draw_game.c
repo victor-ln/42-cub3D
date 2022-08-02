@@ -33,14 +33,17 @@ static int	display_game(t_game *game)
 	draw_game(game);
 	mlx_do_sync(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, game->extended_minimap, 0, 0);
+	if (game->map_size == NORMAL)
+		mlx_put_image_to_window(game->mlx, game->window, game->radar, 0, 0);
+	else
+		mlx_put_image_to_window(game->mlx, game->window, game->small_radar, 0, 0);
 	return (0);
 }
 
 static void	draw_game(t_game *game)
 {
 	cast_all_rays(game);
-	draw_minimap(game);
+	draw_radar(game);
 	draw_ground_and_celling(game);
 	draw_3d_walls(game);
 }

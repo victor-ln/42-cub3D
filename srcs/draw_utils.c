@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/28 17:59:06 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:46:25 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,10 @@ void	draw_pixel(t_img *img, int x, int y, unsigned int color)
 {
 	*(unsigned int *)
 		((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
+}
+
+unsigned int    get_color(t_img *img, int x, int y)
+{
+    return ((*(unsigned int *)
+            (img->data + (x * img->bpp / 8 + y * img->size_line))));
 }

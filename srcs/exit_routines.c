@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/01 19:10:50 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:05:23 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ static void	destroy_game(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
-	if (game->extended_minimap)
-		mlx_destroy_image(game->mlx, game->extended_minimap);
+	if (game->radar)
+		mlx_destroy_image(game->mlx, game->radar);
+	if (game->small_radar)
+		mlx_destroy_image(game->mlx, game->small_radar);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)

@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/01 19:10:11 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/01 21:40:19 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@
 # define WHITE					0xFFFFFF
 # define GREEN					0x00FF00
 # define BLUE					0x0000FF
+
+typedef enum e_map_size{
+	BIG,
+	NORMAL
+} t_map_size;
 
 enum e_column_limits{
 	TOP_LINE,
@@ -128,7 +133,9 @@ typedef struct s_game
 	void				*mlx;
 	void				*window;
 	t_img				*img;
-	t_img				*extended_minimap;
+	t_img				*radar;
+	t_img				*small_radar;
+	t_map_size			map_size;
 	int					width;
 	int					height;
 	int					window_width;
@@ -139,7 +146,7 @@ typedef struct s_game
 	char				*file_content;
 	char				*map_cub;
 	t_ray				*rays;
-	t_img_properties *img_properties;
+	t_img_properties 	*img_properties;
 	t_player			player;
 }	t_game;
 

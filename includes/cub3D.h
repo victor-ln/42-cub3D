@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/07/28 18:16:40 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/01 22:02:40 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,12 @@ void	cast_all_rays(t_game *game);
 
 void	draw_pixel(t_img *img, int x, int y, unsigned int color);
 
-void    draw_line(t_img *minimap, t_img_properties *properties);
+void    draw_line(t_img *radar, t_img_properties *properties);
 
 void	draw_rectangle(t_img *image, t_img_properties *properties);
 
-void	draw_minimap(t_game *game);
+void	draw_radar(t_game *game);
+
+unsigned int    get_color(t_img *img, int x, int y);
 
 #endif
