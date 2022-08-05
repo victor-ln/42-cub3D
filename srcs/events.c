@@ -54,15 +54,15 @@ static void	move_player(t_game *game)
 	double	to_x;
 	double	to_y;
 
-	game->player.coords.angle += game->player.move_direction * \
+	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
 	move_step = game->player.walk_direction * MOVEMENT_SPEED;
-	to_x = game->player.coords.x + cos(game->player.coords.angle) * move_step;
-	to_y = game->player.coords.y + sin(game->player.coords.angle) * move_step;
+	to_x = game->player.coord.x + cos(game->player.coord.angle) * move_step;
+	to_y = game->player.coord.y + sin(game->player.coord.angle) * move_step;
 	if (!has_wall_at(game, to_x, to_y))
 	{
-		game->player.coords.x = to_x;
-		game->player.coords.y = to_y;
+		game->player.coord.x = to_x;
+		game->player.coord.y = to_y;
 	}
 }
 
@@ -73,7 +73,7 @@ int	has_wall_at(t_game *game, double x, double y)
 
 	column = (int)floor((x / TILE_SIZE));
 	line = (int)floor((y / TILE_SIZE));
-	if (y < 0 || y > game->height * TILE_SIZE || x < 0 || x > ft_strlen(game->params.map[line]) * TILE_SIZE)
+	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || x > ft_strlen(game->params.map[line]) * TILE_SIZE)
 		return (1);
 	return (game->params.map[line][column] != '0' && \
 		game->params.map[line][column] != ' ');

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 19:23:26 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/13 17:46:37 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:36:38 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	get_textures(char *file_content, int identifier, t_game *game)
 		error("Double Identifier", game);
 	while (file_content[n] != '\n' && file_content[n])
 		n++;
-	game->params.textures[identifier] = ft_substr(file_content + 2, 0, n);
+	game->params.textures[identifier] = ft_substr(file_content + 3, 0, n - 3);
 	if (!game->params.textures[identifier])
 		error("Malloc Failed", game);
 	return (n);

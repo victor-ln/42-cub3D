@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/01 21:46:25 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/04 22:00:59 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	draw_rectangle(t_img *image, t_img_properties *properties)
 {
-	unsigned int		i;
-	unsigned int		j;
+	int		i;
+	int		j;
 
 	j = 0;
 	while (j < properties->height)
@@ -23,11 +23,11 @@ void	draw_rectangle(t_img *image, t_img_properties *properties)
 		i = 0;
 		while (i < properties->width)
 		{
-			draw_pixel(image,
-                properties->offset_x + i,
-                properties->offset_y + j,
-                properties->color
-            );
+			draw_pixel(image, \
+				properties->offset_x + i, \
+				properties->offset_y + j, \
+				properties->color \
+			);
 			i++;
 		}
 		j++;
@@ -73,6 +73,6 @@ void	draw_pixel(t_img *img, int x, int y, unsigned int color)
 
 unsigned int    get_color(t_img *img, int x, int y)
 {
-    return ((*(unsigned int *)
-            (img->data + (x * img->bpp / 8 + y * img->size_line))));
+	return ((*(unsigned int *)
+			(img->data + (x * img->bpp / 8 + y * img->size_line))));
 }

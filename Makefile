@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/01 21:07:16 by afaustin         ###   ########.fr        #
+#    Updated: 2022/08/04 21:50:22 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,10 @@ PATH_TEST		=	test/
 
 # FILES
 SOURCES			=	main.c \
-					load_file.c \
+					draw_game.c \
+					draw_radar.c \
+					draw_utils.c \
+					draw_3d_walls.c \
 					save_params.c \
 					validate_routines.c \
 					map_validate.c \
@@ -52,10 +55,9 @@ SOURCES			=	main.c \
 					resize_map.c \
 					save_utils.c \
 					debug_map.c \
+					load_file.c \
 					load_game.c \
-					draw_game.c \
-					draw_radar.c \
-					draw_utils.c \
+					load_utils.c \
 					events.c \
 					rays.c \
 					window.c \

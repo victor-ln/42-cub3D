@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/01 21:05:23 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/04 21:52:35 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ static void	free_game(t_game *game)
 		ft_free_matrix((void **)game->params.rgb[0], 0);
 		ft_free_matrix((void **)game->params.rgb[1], 0);
 		ft_free_null(game->rays);
-		ft_free_null(game->img_properties);
+		ft_free_null(game->img_prop);
+		ft_free_null(game->wall_prop);
 		ft_free_null(game);
 	}
 }
@@ -49,10 +50,18 @@ static void	destroy_game(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
-	if (game->radar)
-		mlx_destroy_image(game->mlx, game->radar);
-	if (game->small_radar)
-		mlx_destroy_image(game->mlx, game->small_radar);
+	if (game->minimap.radar)
+		mlx_destroy_image(game->mlx, game->minimap.radar);
+	if (game->minimap.small_radar)
+		mlx_destroy_image(game->mlx, game->minimap.small_radar);
+	if (game->wall_textures[NO])
+		mlx_destroy_image(game->mlx, game->wall_textures[NO]);
+	if (game->wall_textures[SO])
+		mlx_destroy_image(game->mlx, game->wall_textures[SO]);
+	if (game->wall_textures[WE])
+		mlx_destroy_image(game->mlx, game->wall_textures[WE]);
+	if (game->wall_textures[EA])
+		mlx_destroy_image(game->mlx, game->wall_textures[EA]);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)

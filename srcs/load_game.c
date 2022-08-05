@@ -12,110 +12,90 @@
 
 #include "cub3D.h"
 
-static void		load_player(t_game *game);
-static void		save_rotation_angle(t_game *game, char c);
 static void		load_environment(t_game *game);
-static void		load_rays(t_game *game);
-static size_t	get_max_line_size(char **map);
+static void		load_textures(t_game *game);
+static void		load_images(t_game *game);
+static int		load_sprite(t_img **image, void *mlx, char *path);
 
 void	load_game(t_game *game)
 {
 	load_environment(game);
+	load_images(game);
+	load_textures(game);
 	load_player(game);
 	load_rays(game);
-}
-
-static void	load_rays(t_game *game)
-{
-	game->ray_nums = game->window_width / RAY_STRIP;
-	game->rays = malloc(sizeof(t_ray) * game->ray_nums);
-	if (!game->rays)
-		error("Malloc Failed", game);
 }
 
 static void	load_environment(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->width = get_max_line_size(game->params.map);
-	game->height = ft_count_vectors((void **)game->params.map);
+	game->minimap.width = get_max_line_size(game->params.map);
+	game->minimap.height = ft_count_vectors((void **)game->params.map);
 	if (!game->mlx)
 		error("Mlx init failed", game);
 	game->window = mlx_new_window(game->mlx, game->window_width, \
 		game->window_height, "cub3D");
 	if (!game->window)
 		error("Could not open a window", game);
-	game->img = mlx_new_image(game->mlx, game->window_width, \
-		game->window_height);
-	game->radar = mlx_new_image(game->mlx,
-		(game->width * TILE_SIZE) * MINIMAP_SCALE_FACTOR,
-		(game->height * TILE_SIZE) * MINIMAP_SCALE_FACTOR
-	);
-	game->map_size = NORMAL;
-	if ((game->width * TILE_SIZE * MINIMAP_SCALE_FACTOR) > game->window_width * MINIMAP_SCALE_FACTOR ||
-		(game->height * TILE_SIZE * MINIMAP_SCALE_FACTOR) > game->window_height * MINIMAP_SCALE_FACTOR)
-	{
-		game->small_radar = mlx_new_image(game->mlx,
-			game->window_width * MINIMAP_SCALE_FACTOR,
-			game->window_height * MINIMAP_SCALE_FACTOR);
-		game->map_size = BIG;
-	}
-	if (!game->img || !game->radar)
-		error("Could not create images", game);
-	game->img_properties = malloc(sizeof(t_img_properties));
-	if (!game->img_properties)
+	game->img_prop = malloc(sizeof(t_img_properties));
+	game->wall_prop = malloc(sizeof(t_wall_properties));
+	if (!game->img_prop || !game->wall_prop)
 		error("Malloc Failed", game);
 }
 
-static void	save_rotation_angle(t_game *game, char c)
+static void	load_images(t_game *game)
 {
-	if (c == 'N')
-		game->player.coords.angle = M_PI + M_PI_2;
-	else if (c == 'S')
-		game->player.coords.angle = M_PI_2;
-	else if (c == 'W')
-		game->player.coords.angle = M_PI;
-	else if (c == 'E')
-		game->player.coords.angle = 0;
+	game->img = mlx_new_image(game->mlx, game->window_width, \
+		game->window_height);
+	game->minimap.tile_size = TILE_SIZE * MINIMAP_SCALE_FACTOR;
+	game->minimap.radar = mlx_new_image(game->mlx, \
+		game->minimap.width * game->minimap.tile_size, \
+		game->minimap.height * game->minimap.tile_size \
+	);
+	game->minimap.minimap_size = NORMAL;
+	if ((game->minimap.width * game->minimap.tile_size) > \
+			game->window_width * MINIMAP_SCALE_FACTOR || \
+		(game->minimap.height * game->minimap.tile_size) > \
+			game->window_height * MINIMAP_SCALE_FACTOR)
+	{
+		game->minimap.small_radar = mlx_new_image(game->mlx, \
+			game->window_width * MINIMAP_SCALE_FACTOR, \
+			game->window_height * MINIMAP_SCALE_FACTOR \
+		);
+		game->minimap.minimap_size = BIG;
+	}
+	if (!game->img || !game->minimap.radar || !game->minimap.small_radar)
+		error("Could not create images", game);
 }
 
-static void	load_player(t_game *game)
+static void	load_textures(t_game *game)
 {
-	int		i;
-	int		j;
+	int		status;
 
-	i = 0;
-	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
-	while (game->params.map[i])
-	{
-		j = 0;
-		while (game->params.map[i][j])
-		{
-			if (ft_strchr("NSWE", game->params.map[i][j]))
-			{
-				save_rotation_angle(game, game->params.map[i][j]);
-				game->player.coords.x = j * TILE_SIZE + TILE_SIZE * 0.5;
-				game->player.coords.y = i * TILE_SIZE + TILE_SIZE * 0.5;
-				game->params.map[i][j] = '0';
-				return ;
-			}
-			j++;
-		}
-		i++;
-	}
+	status = load_sprite(game->wall_textures + NO, game->mlx, \
+		game->params.textures[NO]);
+	status += load_sprite(game->wall_textures + SO, game->mlx, \
+		game->params.textures[SO]);
+	status += load_sprite(game->wall_textures + WE, game->mlx, \
+		game->params.textures[WE]);
+	status += load_sprite(game->wall_textures + EA, game->mlx, \
+		game->params.textures[EA]);
+	if (status != EXIT_SUCCESS)
+		error("Could not load textures", game);
 }
 
-static size_t	get_max_line_size(char **map)
+/*
+	Loads a xpm file located in path to the image address pointer passed.
+*/
+static int	load_sprite(t_img **image, void *mlx, char *path)
 {
-	size_t	max_line_size;
-	int		i;
+	int		height;
+	int		width;
 
-	max_line_size = 0;
-	i = 0;
-	while (map[i])
-	{
-		if (ft_strlen(map[i]) > max_line_size)
-			max_line_size = ft_strlen(map[i]);
-		i++;
-	}
-	return (max_line_size);
+	*(image) = mlx_xpm_file_to_image(mlx, path, &width, &height);
+	if (!*(image))
+		return (1);
+	(*image)->height = height;
+	(*image)->width = width;
+	return (0);
 }

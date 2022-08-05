@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   resize_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 22:02:27 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/01 17:22:17 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/04 21:54:33 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,22 @@ void	resize_column(t_game *g)
 	}
 }
 
-static int    is_garbage(char **map, t_validation v)
+static int	is_garbage(char **map, t_validation v)
 {
-    if (map[v.line][v.counter] == '0' || (!v.counter || ft_strchr("0NEWS", map[v.line][v.counter - 1])))
-        return (0);
-    if (v.line)
-        if (v.counter <= v.column_limit[TOP_LINE])
-            if (ft_strchr("0NEWS", map[v.line - 1][v.counter]) || \
-                ft_strchr("0NEWS", map[v.line - 1][v.counter - 1]))
-                return (0);
-    if (v.line < v.total_lines)
-        if (v.counter <= v.column_limit[BOT_LINE])
-            if (ft_strchr("0NEWS", map[v.line + 1][v.counter]) || \
-                ft_strchr("0NEWS", map[v.line + 1][v.counter - 1]))
-                return (0);
-    return (1);
+	if (map[v.line][v.counter] == '0' || \
+		(!v.counter || ft_strchr("0NEWS", map[v.line][v.counter - 1])))
+		return (0);
+	if (v.line)
+		if (v.counter <= v.column_limit[TOP_LINE])
+			if (ft_strchr("0NEWS", map[v.line - 1][v.counter]) || \
+				ft_strchr("0NEWS", map[v.line - 1][v.counter - 1]))
+				return (0);
+	if (v.line < v.total_lines)
+		if (v.counter <= v.column_limit[BOT_LINE])
+			if (ft_strchr("0NEWS", map[v.line + 1][v.counter]) || \
+				ft_strchr("0NEWS", map[v.line + 1][v.counter - 1]))
+				return (0);
+	return (1);
 }
 
 static int	just_walls_and_spaces(char *map_line)

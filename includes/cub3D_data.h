@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/02 18:15:34 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/04 22:00:59 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@
 # include "../libft/libft.h"
 # include <fcntl.h>
 # include <string.h>
+# include <stdint.h>
 # include <limits.h>
 
 # define INPUT_ERR				(void *)-1
 
 # define MOVEMENT_SPEED			4
 # define RAY_STRIP				1
-# define TILE_SIZE				32
+# define TILE_SIZE				64
 # define MINIMAP_SCALE_FACTOR	0.25
 
-# define STD_WINDOW_WIDTH            1280
-# define STD_WINDOW_HEIGHT           720
+# define STD_WINDOW_WIDTH		1280
+# define STD_WINDOW_HEIGHT		720
+# define TEXTURES_NUM			4
 
 /*
 	Field Of View angle is equals to 60 degrees
@@ -62,10 +64,10 @@
 # define GREEN					0x00FF00
 # define BLUE					0x0000FF
 
-typedef enum e_map_size{
+typedef enum e_minimap_size{
 	BIG,
 	NORMAL
-} t_map_size;
+} t_minimap_size;
 
 enum e_column_limits{
 	TOP_LINE,
@@ -86,11 +88,11 @@ enum e_coords {
 
 typedef	struct s_img_properties
 {
-	unsigned int	width;
-	unsigned int	height;
-	unsigned int	color;
-	unsigned int	offset_x;
-	unsigned int	offset_y;
+	uint32_t	color;
+	int			width;
+	int			height;
+	int			offset_x;
+	int			offset_y;
 }	t_img_properties;
 
 typedef struct s_coord
@@ -103,7 +105,7 @@ typedef struct s_coord
 
 typedef struct s_player
 {
-	t_coord	coords;
+	t_coord	coord;
 	double	rotation_speed;
 	int		move_direction;
 	int		walk_direction;
@@ -111,7 +113,7 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	t_coord	coords;
+	t_coord	coord;
 	bool	was_hit_vertical;
 	bool	is_ray_facing_down;
 	bool	is_ray_facing_up;
@@ -128,26 +130,43 @@ typedef struct s_params
 	int		environment[2];
 }	t_params;
 
+typedef struct s_minimap
+{
+	t_img				*radar;
+	t_img				*small_radar;
+	int					width;
+	int					height;
+	int					tile_size;
+	t_minimap_size		minimap_size;
+}	t_minimap;
+
+typedef struct s_wall_properties
+{
+	float		proj_wall_height;
+	float		proj_wall_dist;
+	float		ray_distance;
+	int			distance_from_top;
+	u_int32_t	color_y;
+	u_int32_t	color_x;
+}	t_wall_properties;
+
 typedef struct s_game
 {
 	void				*mlx;
 	void				*window;
-	t_img				*img;
-	t_img				*radar;
-	t_img				*small_radar;
-	t_map_size			map_size;
-	int					width;
-	int					height;
 	int					window_width;
 	int					window_height;
-	int					fov_radian;
 	int					ray_nums;
-	t_params			params;
 	char				*file_content;
 	char				*map_cub;
 	t_ray				*rays;
-	t_img_properties 	*img_properties;
+	t_params			params;
+	t_minimap			minimap;
 	t_player			player;
+	t_img				*img;
+	t_img				*wall_textures[TEXTURES_NUM];
+	t_img_properties 	*img_prop;
+	t_wall_properties	*wall_prop;
 }	t_game;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/01 22:02:40 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/04 21:51:05 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,13 @@ void	draw_rectangle(t_img *image, t_img_properties *properties);
 void	draw_radar(t_game *game);
 
 unsigned int    get_color(t_img *img, int x, int y);
+
+void	load_player(t_game *game);
+
+void	load_rays(t_game *game);
+
+size_t	get_max_line_size(char **map);
+
+void	draw_3d_walls(t_game *game);
 
 #endif
