@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/04 21:50:22 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/08/04 22:09:57 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SOURCES			=	main.c \
 					load_utils.c \
 					events.c \
 					rays.c \
+					rays_utils.c \
 					window.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)

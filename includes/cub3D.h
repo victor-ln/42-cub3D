@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/04 21:51:05 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/04 22:09:44 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,11 @@ void	load_rays(t_game *game);
 size_t	get_max_line_size(char **map);
 
 void	draw_3d_walls(t_game *game);
+
+void	normalize_angle(double *angle);
+
+void get_ray_content(t_game *game, int ray_id);
+
+void	ray_constructor(t_game *game, int ray_id);
 
 #endif

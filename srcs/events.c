@@ -73,7 +73,8 @@ int	has_wall_at(t_game *game, double x, double y)
 
 	column = (int)floor((x / TILE_SIZE));
 	line = (int)floor((y / TILE_SIZE));
-	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || x > ft_strlen(game->params.map[line]) * TILE_SIZE)
+	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || \
+		x > ft_strlen(game->params.map[line]) * TILE_SIZE)
 		return (1);
 	return (game->params.map[line][column] != '0' && \
 		game->params.map[line][column] != ' ');

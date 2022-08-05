@@ -39,7 +39,8 @@ static void	load_environment(t_game *game)
 		error("Could not open a window", game);
 	game->img_prop = malloc(sizeof(t_img_properties));
 	game->wall_prop = malloc(sizeof(t_wall_properties));
-	if (!game->img_prop || !game->wall_prop)
+	game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
+	if (!game->img_prop || !game->wall_prop || !game->ray_prop)
 		error("Malloc Failed", game);
 }
 

@@ -12,11 +12,7 @@
 
 #include "cub3D.h"
 
-static double	calculate_hypo(double x, double y);
-static void		normalize_angle(double *angle);
 static void 	cast_ray(t_game *game, int ray_id);
-static void		ray_constructor(t_game *game, int ray_id);
-static void		get_ray_content(t_game *game, int ray_id);
 
 void	cast_all_rays(t_game *game)
 {
@@ -28,6 +24,7 @@ void	cast_all_rays(t_game *game)
 	while (i < game->ray_nums)
 	{
 		game->rays[i].coord.angle = angle;
+		ray_constructor(game, i);
 		cast_ray(game, i);
 		get_ray_content(game, i);
 		angle += FOV_ANGLE / game->ray_nums;
@@ -35,74 +32,20 @@ void	cast_all_rays(t_game *game)
 	}
 }
 
-static void get_ray_content(t_game *game, int ray_id)
-{
-	int	x;
-	int	y;
-
-	if (game->rays[ray_id].was_hit_vertical)
-	{
-		x = floor((game->rays[ray_id].coord.x - \
-			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
-		y = floor(game->rays[ray_id].coord.y / TILE_SIZE);
-	}
-	else
-	{
-		x = floor(game->rays[ray_id].coord.x / TILE_SIZE);
-		y = floor((game->rays[ray_id].coord.y - \
-			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
-	}
-	game->rays[ray_id].content_type = game->params.map[y][x];
-}
-
 static void	cast_ray(t_game *game, int ray_id)
 {
-	float	x_interception;
-	float	y_interception;
-	float	x_step;
-	float	y_step;
-	float	horizontalX;
-	float	horizontalY;
 	float	angle;
 	bool	horizontal_was_hit;
 	float	horizontal_distance;
-	float	verticalX;
-	float	verticalY;
 	bool	vertical_was_hit;
 	float	vertical_distance;
 
-
 	vertical_was_hit = false;
 	horizontal_was_hit = false;
-	vertical_distance = __INT_MAX__;
-	horizontal_distance = __INT_MAX__;
-	ray_constructor(game, ray_id);
-	angle = game->rays[ray_id].coord.angle;
+	vertical_distance = __FLT_MAX__;
+	horizontal_distance = __FLT_MAX__;
 	/*HORIZONTAL INTERCEPTION*/
-	y_interception = floor(game->player.coord.y / TILE_SIZE) * TILE_SIZE;
-	y_interception += game->rays[ray_id].is_ray_facing_down * TILE_SIZE;
-	x_interception = game->player.coord.x + (y_interception - game->player.coord.y) / tan(angle);
-	y_step = TILE_SIZE;
-	if (game->rays[ray_id].is_ray_facing_up == true)
-		y_step *= -1;
-	x_step = TILE_SIZE / tan(angle);
-	if (x_step < 0 && game->rays[ray_id].is_ray_facing_right)
-		x_step *= -1;
-	if (x_step > 0 && game->rays[ray_id].is_ray_facing_left)
-		x_step *= -1;
-	while (x_interception >= 0 && x_interception < (game->minimap.width * TILE_SIZE) && 
-		y_interception >= 0 && y_interception < (game->minimap.height * TILE_SIZE))
-	{
-		if (has_wall_at(game, x_interception, y_interception - game->rays[ray_id].is_ray_facing_up))
-		{
-			horizontalX = x_interception;
-			horizontalY = y_interception;
-			horizontal_was_hit = true;
-			break;
-		}
-		x_interception += x_step;
-		y_interception += y_step;
-	}
+	
 	/*VERTICAL INTERCEPTION*/
 	x_interception = floor(game->player.coord.x / TILE_SIZE) * TILE_SIZE;
 	x_interception += game->rays[ray_id].is_ray_facing_right * TILE_SIZE;
@@ -149,34 +92,39 @@ static void	cast_ray(t_game *game, int ray_id)
 	
 }
 
-static void	ray_constructor(t_game *game, int ray_id)
+static void	cast_vertical(t_game *game, int ray_id)
 {
-	game->rays[ray_id].was_hit_vertical = false;
-	normalize_angle(&game->rays[ray_id].coord.angle);
-	game->rays[ray_id].is_ray_facing_down = false;
-	game->rays[ray_id].is_ray_facing_up = false;
-	game->rays[ray_id].is_ray_facing_right = false;
-	game->rays[ray_id].is_ray_facing_left = false;
-	if (game->rays[ray_id].coord.angle > 0 && 
-		game->rays[ray_id].coord.angle < M_PI)
-		game->rays[ray_id].is_ray_facing_down = true;
-	else
-		game->rays[ray_id].is_ray_facing_up = true;
-	if (game->rays[ray_id].coord.angle > M_PI + M_PI_2 || 
-		game->rays[ray_id].coord.angle < M_PI_2)
-		game->rays[ray_id].is_ray_facing_right = true;
-	else
-		game->rays[ray_id].is_ray_facing_left = true;
+	float	verticalX;
+	float	verticalY;
 }
 
-static void	normalize_angle(double *angle)
+static void	cast_horizontal(t_game *game, int ray_id)
 {
-	*angle = remainder(*angle, (M_PI + M_PI));
-	if (*angle < 0)
-		*angle = (M_PI + M_PI) + *angle;
-}
+	float	horizontalX;
+	float	horizontalY;
 
-static	double	calculate_hypo(double x, double y)
-{
-	return (sqrt(x * x + y * y));
+	game->ray_prop[horizontal].y_interception = floor(game->player.coord.y / TILE_SIZE) * TILE_SIZE;
+	game->ray_prop[horizontal].y_interception += game->rays[ray_id].is_ray_facing_down * TILE_SIZE;
+	game->ray_prop[horizontal].x_interception = game->player.coord.x + (game->ray_prop[horizontal].y_interception - game->player.coord.y) / tan(angle);
+	game->ray_prop[horizontal].y_step = TILE_SIZE;
+	if (game->rays[ray_id].is_ray_facing_up == true)
+		game->ray_prop[horizontal].y_step *= -1;
+	game->ray_prop[horizontal].x_step = TILE_SIZE / tan(game->rays[ray_id].coord.angle);
+	if (game->ray_prop[horizontal].x_step < 0 && game->rays[ray_id].is_ray_facing_right)
+		game->ray_prop[horizontal].x_step *= -1;
+	if (game->ray_prop[horizontal].x_step > 0 && game->rays[ray_id].is_ray_facing_left)
+		game->ray_prop[horizontal].x_step *= -1;
+	while (game->ray_prop[horizontal].x_interception >= 0 && game->ray_prop[horizontal].x_interception < (game->minimap.width * TILE_SIZE) && 
+		game->ray_prop[horizontal].y_interception >= 0 && game->ray_prop[horizontal].y_interception < (game->minimap.height * TILE_SIZE))
+	{
+		if (has_wall_at(game, game->ray_prop[horizontal].x_interception, game->ray_prop[horizontal].y_interception - game->rays[ray_id].is_ray_facing_up))
+		{
+			horizontalX = game->ray_prop[horizontal].x_interception;
+			horizontalY = game->ray_prop[horizontal].y_interception;
+			game->ray_prop[horizontal].was_hit = true;
+			break;
+		}
+		game->ray_prop[horizontal].x_interception += game->ray_prop[horizontal].x_step;
+		game->ray_prop[horizontal].y_interception += game->ray_prop[horizontal].y_step;
+	}
 }
