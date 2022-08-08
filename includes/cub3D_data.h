@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 22:22:24 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:21:02 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,17 @@
 typedef enum e_minimap_size{
 	BIG,
 	NORMAL
-} t_minimap_size;
+}	t_minimap_size;
 
 enum e_leveling{
 	horizontal,
 	vertical
-} t_leveling;
+};
 
 enum e_coord_enum{
 	x,
 	y
-} t_coord_enum;
+};
 
 enum e_column_limits{
 	TOP_LINE,
@@ -96,7 +96,7 @@ enum e_coords {
 	EA
 };
 
-typedef	struct s_img_properties
+typedef struct s_img_properties
 {
 	uint32_t	color;
 	int			width;
@@ -109,7 +109,7 @@ typedef struct s_coord
 {
 	double			x;
 	double			y;
-	double			distance;
+	double			hipo;
 	double			angle;
 }	t_coord;
 
@@ -123,12 +123,12 @@ typedef struct s_player
 
 typedef struct s_rays_properties
 {
-	float	x_interception;
-	float	y_interception;
+	float	x_intercept;
+	float	y_intercept;
 	float	x_step;
 	float	y_step;
 	bool	was_hit;
-	float	distance;
+	float	hipo;
 }	t_rays_properties;
 
 typedef struct s_ray
@@ -157,6 +157,8 @@ typedef struct s_minimap
 	int					width;
 	int					height;
 	int					tile_size;
+	int					widthpx;
+	int					heightpx;
 	t_minimap_size		minimap_size;
 }	t_minimap;
 
@@ -185,7 +187,7 @@ typedef struct s_game
 	t_player			player;
 	t_img				*img;
 	t_img				*wall_textures[TEXTURES_NUM];
-	t_img_properties 	*img_prop;
+	t_img_properties	*img_prop;
 	t_wall_properties	*wall_prop;
 	t_rays_properties	*ray_prop;
 }	t_game;

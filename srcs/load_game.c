@@ -46,6 +46,8 @@ static void	load_environment(t_game *game)
 
 static void	load_images(t_game *game)
 {
+	game->minimap.widthpx = game->minimap.width * TILE_SIZE;
+	game->minimap.heightpx = game->minimap.height * TILE_SIZE;
 	game->img = mlx_new_image(game->mlx, game->window_width, \
 		game->window_height);
 	game->minimap.tile_size = TILE_SIZE * MINIMAP_SCALE_FACTOR;

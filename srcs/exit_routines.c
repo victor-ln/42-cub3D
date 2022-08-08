@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/04 21:52:35 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:27:48 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	free_game(t_game *game)
 		ft_free_null(game->rays);
 		ft_free_null(game->img_prop);
 		ft_free_null(game->wall_prop);
+		ft_free_null(game->ray_prop);
 		ft_free_null(game);
 	}
 }

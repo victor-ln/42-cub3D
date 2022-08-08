@@ -56,7 +56,7 @@ static void	get_offsets(t_game *game, int col, int line)
 
 static void	get_wall_dimension(t_game *game, int col)
 {
-	game->wall_prop->ray_distance = game->rays[col].coord.distance * \
+	game->wall_prop->ray_distance = game->rays[col].coord.hipo * \
 		cos(game->rays[col].coord.angle - game->player.coord.angle);
 	game->wall_prop->proj_wall_dist = (game->window_width / 2) \
 		/ tan(FOV_ANGLE / 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 22:05:56 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:17:16 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	draw_line(t_img *minimap, t_img_properties *properties)
 	}
 }
 
-void	draw_pixel(t_img *img, int x, int y, unsigned int color)
+void	draw_pixel(t_img *img, int x, int y, uint32_t color)
 {
 	*(unsigned int *)
 		((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
 }
 
-unsigned int	get_color(t_img *img, int x, int y)
+uint32_t	get_color(t_img *img, int x, int y)
 {
 	return ((*(unsigned int *)
 			(img->data + (x * img->bpp / 8 + y * img->size_line))));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 22:10:29 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:07:04 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	normalize_angle(double *angle)
 		*angle = (M_PI + M_PI) + *angle;
 }
 
-static	double	calculate_hypo(double x, double y)
+double	calculate_hipo(double x, double y)
 {
 	return (sqrt(x * x + y * y));
 }

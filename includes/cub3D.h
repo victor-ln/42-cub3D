@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/04 22:09:44 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 18:19:08 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,68 +15,70 @@
 
 # include "cub3D_data.h"
 
-void	save_params(t_game *game);
+void		save_params(t_game *game);
 
-void	load_file(t_game *game, int argc, char *argv);
+void		load_file(t_game *game, int argc, char *argv);
 
-void	error(char *msg, t_game *game);
+void		error(char *msg, t_game *game);
 
-void	file_validate(t_game *game);
+void		file_validate(t_game *game);
 
-void	map_validate(t_game *game);
+void		map_validate(t_game *game);
 
-void	resize_line(t_game *game);
+void		resize_line(t_game *game);
 
-void	resize_column(t_game *game);
+void		resize_column(t_game *game);
 
-void	end_program(t_game *game);
+void		end_program(t_game *game);
 
-int		get_textures(char *file_content, int identifier, t_game *game);
+int			get_textures(char *file_content, int identifier, t_game *game);
 
-int		get_env_colors(char *file_content, int identifier, t_game *game);
+int			get_env_colors(char *file_content, int identifier, t_game *game);
 
-int		get_map(char *file_content, t_game *game);
+int			get_map(char *file_content, t_game *game);
 
-void	load_game(t_game *game);
+void		load_game(t_game *game);
 
-int		reload_image(t_game *game);
+int			reload_image(t_game *game);
 
-int		close_window(t_game *game);
+int			close_window(t_game *game);
 
-void	print_matrix(char **map);
+void		print_matrix(char **map);
 
-int		key_press(int keycode, t_game *game);
+int			key_press(int keycode, t_game *game);
 
-int		key_release(int keycode, t_game *game);
+int			key_release(int keycode, t_game *game);
 
-int		has_wall_at(t_game *game, double x, double y);
+int			has_wall_at(t_game *game, double x, double y);
 
-void	start_game(t_game *game);
+void		start_game(t_game *game);
 
-void	cast_all_rays(t_game *game);
+void		cast_all_rays(t_game *game);
 
-void	draw_pixel(t_img *img, int x, int y, unsigned int color);
+void		draw_pixel(t_img *img, int x, int y, uint32_t color);
 
-void    draw_line(t_img *radar, t_img_properties *properties);
+void		draw_line(t_img *radar, t_img_properties *properties);
 
-void	draw_rectangle(t_img *image, t_img_properties *properties);
+void		draw_rectangle(t_img *image, t_img_properties *properties);
 
-void	draw_radar(t_game *game);
+void		draw_radar(t_game *game);
 
-unsigned int    get_color(t_img *img, int x, int y);
+uint32_t	get_color(t_img *img, int x, int y);
 
-void	load_player(t_game *game);
+void		load_player(t_game *game);
 
-void	load_rays(t_game *game);
+void		load_rays(t_game *game);
 
-size_t	get_max_line_size(char **map);
+size_t		get_max_line_size(char **map);
 
-void	draw_3d_walls(t_game *game);
+void		draw_3d_walls(t_game *game);
 
-void	normalize_angle(double *angle);
+void		normalize_angle(double *angle);
 
-void get_ray_content(t_game *game, int ray_id);
+void		get_ray_content(t_game *game, int ray_id);
 
-void	ray_constructor(t_game *game, int ray_id);
+void		ray_constructor(t_game *game, int ray_id);
+
+double		calculate_hipo(double x, double y);
 
 #endif
