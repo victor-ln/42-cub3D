@@ -3,44 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   draw_small_radar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:51:21 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/08 21:28:49 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:56:54 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	copy_block(t_game *game, int i, int j);
+static void	get_offset(t_game *game);
+
 void	draw_small_radar(t_game *game)
 {
-	int	i;
-	int	j;
 	int	x;
 	int	y;
-	int	offset_x;
-	int	offset_y;
-	int	player_line;
-	int	player_column;
 	int	limit_x;
 	int	limit_y;
 
-	i = 0;
-	player_line = (int)floor(game->player.coord.y / TILE_SIZE);
-	player_column = (int)floor(game->player.coord.x / TILE_SIZE);
-	// printf("Player Line %d Player Column %d\n", player_line, player_column);
-	if (player_line < 5)
-		offset_y = 0;
-	else if (player_line > game->minimap.height - 5)
-		offset_y = (11 - (game->minimap.height - player_line)) * game->minimap.tile_size;
-	else
-		offset_y = floor(game->player.coord.y * MINIMAP_SCALE_FACTOR) - 90;
-	if (player_column < 10)
-		offset_x = 0;
-	else if (player_column > (int)game->minimap.width - 10)
-		offset_x = (20 - (game->minimap.width - player_column)) * game->minimap.tile_size;
-	else
-		offset_x = floor(game->player.coord.x * MINIMAP_SCALE_FACTOR) - 160;
+	get_offset(game);
 	if (game->minimap.width > 20)
 		limit_x = 20;
 	else
@@ -49,39 +31,69 @@ void	draw_small_radar(t_game *game)
 		limit_y = 11;
 	else
 		limit_y = game->minimap.height;
-	while (i < limit_y)
+	game->img_prop->height = 16;
+	game->img_prop->width = 16;
+	y = 0;
+	while (y < limit_y)
 	{
-		j = 0;
-		while (j < limit_x)
+		x = 0;
+		while (x < limit_x)
 		{
-			y = 0;
-			while (y < 16)
-			{
-				x = 0;
-				while (x < 16)
-				{
-					draw_pixel(game->minimap.small_radar, \
-						x + (j * game->minimap.tile_size), \
-						y + (i * game->minimap.tile_size), \
-						get_color(game->minimap.radar, \
-							offset_x + x + (j * game->minimap.tile_size),
-							offset_y + y + (i * game->minimap.tile_size)
-						)
-					);
-					x++;
-				}
-				y++;
-			}
-			draw_pixel(game->minimap.small_radar, \
-				j * game->minimap.tile_size, \
-				i * game->minimap.tile_size, \
-				get_color(game->minimap.radar, \
-					x + (j * MINIMAP_SCALE_FACTOR * TILE_SIZE), \
-					y + (i * MINIMAP_SCALE_FACTOR * TILE_SIZE)
-				)
-			);
-			j++;
+			copy_block(game, x, y);
+			x++;
 		}
-		i++;
+		y++;
+	}
+}
+
+static void	get_offset(t_game *game)
+{
+	int	player_line;
+	int	player_column;
+
+	player_line = (int)floor(game->player.coord.y / TILE_SIZE);
+	player_column = (int)floor(game->player.coord.x / TILE_SIZE);
+	if (player_line <= 5)
+		game->img_prop->offset_y = 0;
+	else if (player_line >= game->minimap.height - 5)
+		game->img_prop->offset_y = (game->minimap.height - 11) * \
+			game->minimap.tile_size;
+	else
+		game->img_prop->offset_y = floor(game->player.coord.y * \
+			MINIMAP_SCALE_FACTOR) - 90;
+	if (player_column <= 10)
+		game->img_prop->offset_x = 0;
+	else if (player_column >= game->minimap.width - 10)
+		game->img_prop->offset_x = (game->minimap.width - 20) * \
+			game->minimap.tile_size;
+	else
+		game->img_prop->offset_x = floor(game->player.coord.x * \
+			MINIMAP_SCALE_FACTOR) - 160;
+}
+
+static void	copy_block(t_game *game, int j, int i)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < game->img_prop->height)
+	{
+		x = 0;
+		while (x < game->img_prop->width)
+		{
+			draw_pixel(game->minimap.small_radar, \
+				x + (j * game->minimap.tile_size), \
+				y + (i * game->minimap.tile_size), \
+				get_color(\
+					game->minimap.radar, \
+					game->img_prop->offset_x + x + \
+						(j * game->minimap.tile_size),
+					game->img_prop->offset_y + y + \
+						(i * game->minimap.tile_size))
+				);
+			x++;
+		}
+		y++;
 	}
 }

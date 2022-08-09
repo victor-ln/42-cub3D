@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/08 17:27:48 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:02:32 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	destroy_game(t_game *game);
 void	error(char *msg, t_game *game)
 {
 	printf("Error\n%s.\n%s\n", msg, strerror(errno));
+	destroy_game(game);
 	free_game(game);
 	exit(errno);
 }

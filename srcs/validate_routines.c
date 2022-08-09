@@ -6,13 +6,13 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:18:18 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/04 16:29:49 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:00:39 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// static void	characteres_and_player_nums_validate(t_game *game);
+static void	characteres_and_player_nums_validate(t_game *game);
 static void	colors_validate(t_game *game, int env);
 
 //texture_validate; 2nd moment of development
@@ -20,8 +20,8 @@ void	file_validate(t_game *game)
 {
 	colors_validate(game, ground);
 	colors_validate(game, celling);
-	// characteres_and_player_nums_validate(game);
-	// map_validate(game);
+	characteres_and_player_nums_validate(game);
+	map_validate(game);
 }
 
 static void	colors_validate(t_game *game, int env)
@@ -49,29 +49,29 @@ static void	colors_validate(t_game *game, int env)
 	}
 }
 
-// static void	characteres_and_player_nums_validate(t_game *game)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		player;
+static void	characteres_and_player_nums_validate(t_game *game)
+{
+	int		i;
+	int		j;
+	int		player;
 
-// 	i = 0;
-// 	player = 0;
-// 	while (game->params.map[i])
-// 	{
-// 		j = 0;
-// 		while (game->params.map[i][j])
-// 		{
-// 			if (!ft_strchr("10NSEW ", game->params.map[i][j]))
-// 				error("Invalid character on map", game);
-// 			if (ft_strchr("NSEW", game->params.map[i][j]))
-// 				player++;
-// 			if (player > 1)
-// 				error("Invalid number of players", game);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	if (player == 0)
-// 		error("There is no player to play", game);
-// }
+	i = 0;
+	player = 0;
+	while (game->params.map[i])
+	{
+		j = 0;
+		while (game->params.map[i][j])
+		{
+			if (!ft_strchr("10NSEW ", game->params.map[i][j]))
+				error("Invalid character on map", game);
+			if (ft_strchr("NSEW", game->params.map[i][j]))
+				player++;
+			if (player > 1)
+				error("Invalid number of players", game);
+			j++;
+		}
+		i++;
+	}
+	if (player == 0)
+		error("There is no player to play", game);
+}
