@@ -1,49 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/adrianofaus/workspace/cub3D_ecole42'
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/main.c -o obj/main.o
- 
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/draw_game.c -o obj/draw_game.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/draw_radar.c -o obj/draw_radar.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/draw_utils.c -o obj/draw_utils.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/draw_3d_walls.c -o obj/draw_3d_walls.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/validate_routines.c -o obj/validate_routines.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/exit_routines.c -o obj/exit_routines.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/resize_map.c -o obj/resize_map.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/save_utils.c -o obj/save_utils.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/load_game.c -o obj/load_game.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/load_utils.c -o obj/load_utils.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/events.c -o obj/events.o
-mkdir -p obj
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/rays.c -o obj/rays.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/rays_utils.c -o obj/rays_utils.o
-mkdir -p obj
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -c srcs/window.c -o obj/window.o
-make -C ./libft
- 
-make[1]: Entering directory '/home/adrianofaus/workspace/cub3D_ecole42/libft'
-ar crs libft.a obj/ft_atoi.o obj/ft_bzero.o obj/ft_calloc.o obj/ft_putendl_fd.o obj/ft_isspace.o obj/ft_isdigit.o obj/ft_substr.o obj/ft_strdup.o obj/ft_strjoin.o obj/ft_strlen.o obj/ft_memcpy.o obj/ft_split.o obj/ft_strcmp.o obj/ft_utoa.o obj/ft_rand.o obj/ft_delay.o obj/ft_free_null.o obj/ft_free_matrix.o obj/ft_count_vectors.o obj/ft_strchr.o obj/ft_strrchr.o obj/ft_strncmp.o
-make[1]: Leaving directory '/home/adrianofaus/workspace/cub3D_ecole42/libft'
- 
-make -C ./mlx_linux
- 
-make[1]: Entering directory '/home/adrianofaus/workspace/cub3D_ecole42/mlx_linux'
-./configure
-make[1]: Leaving directory '/home/adrianofaus/workspace/cub3D_ecole42/mlx_linux'
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -I includes/ libft/libft.a obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_walls.o obj/save_params.o obj/validate_routines.o obj/map_validate.o obj/exit_routines.o obj/resize_map.o obj/save_utils.o obj/debug_map.o obj/load_file.o obj/load_game.o obj/load_utils.o obj/events.o obj/rays.o obj/rays_utils.o obj/window.o -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft -o cub3D
+make: Nothing to be done for 'all'.
 make: Leaving directory '/home/adrianofaus/workspace/cub3D_ecole42'
  

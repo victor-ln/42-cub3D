@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/08 16:34:27 by afaustin         ###   ########.fr        #
+#    Updated: 2022/08/08 20:21:14 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ SOURCES			=	main.c \
 					rays.c \
 					rays_utils.c \
 					window.c \
+					draw_small_radar.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 

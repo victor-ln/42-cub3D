@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_small_radar.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:51:21 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 20:51:51 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:28:49 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/*
-static void	draw_small_radar(t_game *game)
+void	draw_small_radar(t_game *game)
 {
 	int	i;
 	int	j;
@@ -27,27 +26,27 @@ static void	draw_small_radar(t_game *game)
 	int	limit_y;
 
 	i = 0;
-	player_line = (int)floor(game->player.coords.y / TILE_SIZE);
-	player_column = (int)floor(game->player.coords.x / TILE_SIZE);
-	if (player_line < 11)
-		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - (player_line * 8);
-	else if (player_line > game->minimap.height - 11)
-		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - (game->minimap.height - player_line * 8);
+	player_line = (int)floor(game->player.coord.y / TILE_SIZE);
+	player_column = (int)floor(game->player.coord.x / TILE_SIZE);
+	// printf("Player Line %d Player Column %d\n", player_line, player_column);
+	if (player_line < 5)
+		offset_y = 0;
+	else if (player_line > game->minimap.height - 5)
+		offset_y = (11 - (game->minimap.height - player_line)) * game->minimap.tile_size;
 	else
-		offset_y = floor(game->player.coords.y * MINIMAP_SCALE_FACTOR) - 90;
-	if (player_column < 20)
-		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - (player_column * 8);
-	else if (player_column > (int)game->minimap.width - 20)
-		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - \
-			((game->minimap.width - player_column) * 8);
+		offset_y = floor(game->player.coord.y * MINIMAP_SCALE_FACTOR) - 90;
+	if (player_column < 10)
+		offset_x = 0;
+	else if (player_column > (int)game->minimap.width - 10)
+		offset_x = (20 - (game->minimap.width - player_column)) * game->minimap.tile_size;
 	else
-		offset_x = floor(game->player.coords.x * MINIMAP_SCALE_FACTOR) - 160;
-	if (game->minimap.width > 40)
-		limit_x = 40;
+		offset_x = floor(game->player.coord.x * MINIMAP_SCALE_FACTOR) - 160;
+	if (game->minimap.width > 20)
+		limit_x = 20;
 	else
 		limit_x = game->minimap.width;
-	if (game->minimap.height > 22)
-		limit_y = 22;
+	if (game->minimap.height > 11)
+		limit_y = 11;
 	else
 		limit_y = game->minimap.height;
 	while (i < limit_y)
@@ -56,10 +55,10 @@ static void	draw_small_radar(t_game *game)
 		while (j < limit_x)
 		{
 			y = 0;
-			while (y < 8)
+			while (y < 16)
 			{
 				x = 0;
-				while (x < 8)
+				while (x < 16)
 				{
 					draw_pixel(game->minimap.small_radar, \
 						x + (j * game->minimap.tile_size), \
@@ -86,4 +85,3 @@ static void	draw_small_radar(t_game *game)
 		i++;
 	}
 }
-*/

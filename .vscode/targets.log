@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Aug  8 16:35:10 2022
+# Make data base, printed on Mon Aug  8 20:22:23 2022
 
 # Variables
 
@@ -45,8 +45,8 @@ DEBUG = -g3 -fsanitize=address
 # 'override' directive
 GNUMAKEFLAGS := 
 # makefile (from 'Makefile', line 46)
-SOURCES = main.c draw_game.c draw_radar.c draw_utils.c draw_3d_walls.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c save_utils.c debug_map.c load_file.c load_game.c load_utils.c events.c rays.c rays_utils.c window.c 
-# makefile (from 'Makefile', line 66)
+SOURCES = main.c draw_game.c draw_radar.c draw_utils.c draw_3d_walls.c save_params.c validate_routines.c map_validate.c exit_routines.c resize_map.c save_utils.c debug_map.c load_file.c load_game.c load_utils.c events.c rays.c rays_utils.c window.c draw_small_radar.c 
+# makefile (from 'Makefile', line 67)
 OBJS = $(SOURCES:%.c=%.o)
 # makefile (from 'Makefile', line 43)
 PATH_TEST = test/
@@ -63,7 +63,7 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-ec679814-4f44-4c78-858d-b0e6847319ec.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-247f2474-a4d0-4cad-92e0-d2ce7b08d3dc.sock
 # makefile (from 'Makefile', line 42)
 PATH_INC = includes/
 # default
@@ -79,7 +79,7 @@ PWD = /home/adrianofaus/workspace/cub3D_ecole42
 # default
 .LOADED := 
 # environment
-WSL_INTEROP = /run/WSL/1182_interop
+WSL_INTEROP = /run/WSL/11_interop
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
@@ -171,7 +171,7 @@ TERM = xterm-256color
 # environment
 WSL_DISTRO_NAME = Ubuntu-20.04
 # variable set hash-table stats:
-# Load=80/1024=8%, Rehash=0, Collisions=6/124=5%
+# Load=80/1024=8%, Rehash=0, Collisions=6/115=5%
 
 # Pattern-specific Variable Values
 
@@ -188,7 +188,7 @@ WSL_DISTRO_NAME = Ubuntu-20.04
 # Implicit Rules
 
 obj/%.o: srcs/%.c includes/cub3D.h
-#  recipe to execute (from 'Makefile', line 77):
+#  recipe to execute (from 'Makefile', line 78):
 					@mkdir -p obj
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
@@ -197,15 +197,33 @@ obj/%.o: srcs/%.c includes/cub3D.h
 # Files
 
 # Not a target:
-obj/rays_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/map_validate.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:24:24.9572455
+#  File has been updated.
+#  Successfully updated.
+
+obj/rays_utils.o: srcs/rays_utils.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rays_utils'
+#  Last modified 2022-08-08 20:21:27.5158323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
 includes/cub3D.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 16:29:48.7572455
+#  Last modified 2022-08-08 19:43:05.8058323
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/rays_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 18:07:05.0272455
 #  File has been updated.
 #  Successfully updated.
 
@@ -215,23 +233,19 @@ all: cub3D
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
+#  Successfully updated.
 
 .PHONY: all clean fclean re run valgrind
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
-cub3D: obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_walls.o obj/save_params.o obj/validate_routines.o obj/map_validate.o obj/exit_routines.o obj/resize_map.o obj/save_utils.o obj/debug_map.o obj/load_file.o obj/load_game.o obj/load_utils.o obj/events.o obj/rays.o obj/rays_utils.o obj/window.o
+cub3D: obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_walls.o obj/save_params.o obj/validate_routines.o obj/map_validate.o obj/exit_routines.o obj/resize_map.o obj/save_utils.o obj/debug_map.o obj/load_file.o obj/load_game.o obj/load_utils.o obj/events.o obj/rays.o obj/rays_utils.o obj/window.o obj/draw_small_radar.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-08 16:29:48.7572455
+#  Last modified 2022-08-08 20:21:40.1458323
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/9=0%
-#  recipe to execute (from 'Makefile', line 72):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 73):
 					$(MAKE) -C ./libft
 					$(MAKE) -C ./mlx_linux
 					$(CC) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
@@ -239,35 +253,17 @@ cub3D: obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_
 obj/main.o: srcs/main.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  Last modified 2022-08-08 16:29:48.8672455
+#  Last modified 2022-08-08 20:21:20.7458323
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := obj/main.o
-# automatic
-# % := 
-# automatic
-# * := main
-# automatic
-# + := srcs/main.c includes/cub3D.h
-# automatic
-# | := 
-# automatic
-# < := srcs/main.c
-# automatic
-# ^ := srcs/main.c includes/cub3D.h
-# automatic
-# ? := srcs/main.c
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/19=5%
-#  recipe to execute (from 'Makefile', line 77):
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
 					@mkdir -p obj
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 16:34:27.4272455
+#  Last modified 2022-08-08 20:21:14.8958323
 #  File has been updated.
 #  Successfully updated.
 
@@ -277,72 +273,128 @@ srcs/main.c:
 #  Last modified 2022-08-08 16:29:48.9072455
 #  File has been updated.
 #  Successfully updated.
- 
 
 test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 90):
+ 
+#  recipe to execute (from 'Makefile', line 91):
 					gcc -I includes/ -I mlx_linux/ test/img_biggerthan_window.c mlx_linux/libmlx.a -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
+obj/rays.o: srcs/rays.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'rays'
+#  Last modified 2022-08-08 20:21:27.1958323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
 # Not a target:
-obj/rays.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/rays.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 18:10:20.6772455
+#  File has been updated.
+#  Successfully updated.
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 98):
+#  recipe to execute (from 'Makefile', line 99):
 					$(MAKE) -C ./libft fclean
 					$(RM) $(NAME)
 
-# Not a target:
-obj/draw_game.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+obj/draw_game.o: srcs/draw_game.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'draw_game'
+#  Last modified 2022-08-08 20:21:21.0258323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/draw_3d_walls.o: srcs/draw_3d_walls.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'draw_3d_walls'
+#  Last modified 2022-08-08 20:21:22.4458323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/window.o: srcs/window.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'window'
+#  Last modified 2022-08-08 20:21:27.8558323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/save_utils.o: srcs/save_utils.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'save_utils'
+#  Last modified 2022-08-08 20:21:24.9758323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
-obj/draw_3d_walls.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/draw_3d_walls.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 18:06:35.8072455
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-obj/window.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
-obj/save_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/window.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
 
 norm:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 87):
+#  recipe to execute (from 'Makefile', line 88):
 					norminette srcs/ libft/ includes/
 
 # Not a target:
-obj/validate_routines.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/save_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
 
-# Not a target:
-obj/load_file.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+obj/validate_routines.o: srcs/validate_routines.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'validate_routines'
+#  Last modified 2022-08-08 20:21:23.3758323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/load_file.o: srcs/load_file.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'load_file'
+#  Last modified 2022-08-08 20:21:25.6058323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
 .DEFAULT:
@@ -351,22 +403,65 @@ obj/load_file.o:
 #  File has not been updated.
 
 # Not a target:
-obj/events.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/validate_routines.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-obj/save_params.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/load_file.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:24:24.9572455
+#  File has been updated.
+#  Successfully updated.
+
+obj/events.o: srcs/events.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'events'
+#  Last modified 2022-08-08 20:21:26.6258323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
-obj/draw_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/draw_game.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
+
+obj/save_params.o: srcs/save_params.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'save_params'
+#  Last modified 2022-08-08 20:21:22.9158323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/draw_small_radar.o: srcs/draw_small_radar.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'draw_small_radar'
+#  Last modified 2022-08-08 20:21:28.1558323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/draw_utils.o: srcs/draw_utils.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'draw_utils'
+#  Last modified 2022-08-08 20:21:21.9758323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -374,88 +469,187 @@ re: fclean all
 #  File does not exist.
 #  File has not been updated.
 
+# Not a target:
+srcs/events.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
+
 run: all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 81):
+#  recipe to execute (from 'Makefile', line 82):
 					./$(NAME)
+
+# Not a target:
+srcs/save_params.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:24:24.9572455
+#  File has been updated.
+#  Successfully updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 93):
+#  recipe to execute (from 'Makefile', line 94):
 					$(MAKE) -C ./libft clean
 					$(MAKE) -C ./mlx_linux clean
 					$(RM) $(addprefix $(PATH_OBJ), $(OBJS)) rmdir obj
 
 # Not a target:
-obj/resize_map.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/draw_small_radar.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 20:18:35.0558323
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-obj/draw_radar.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/draw_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 18:17:17.2972455
+#  File has been updated.
+#  Successfully updated.
+
+obj/resize_map.o: srcs/resize_map.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'resize_map'
+#  Last modified 2022-08-08 20:21:24.6058323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/draw_radar.o: srcs/draw_radar.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'draw_radar'
+#  Last modified 2022-08-08 20:21:21.5058323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
-obj/load_game.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/resize_map.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
-obj/debug_map.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/draw_radar.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 19:59:26.7758323
+#  File has been updated.
+#  Successfully updated.
+
+obj/load_game.o: srcs/load_game.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'load_game'
+#  Last modified 2022-08-08 20:21:25.9458323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+ 
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
-obj/exit_routines.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/load_game.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 19:58:28.7458323
+#  File has been updated.
+#  Successfully updated.
+
+obj/debug_map.o: srcs/debug_map.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'debug_map'
+#  Last modified 2022-08-08 20:21:25.2558323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+obj/exit_routines.o: srcs/exit_routines.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'exit_routines'
+#  Last modified 2022-08-08 20:21:24.2458323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
-obj/load_utils.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+srcs/debug_map.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:24:24.9572455
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/exit_routines.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 17:27:58.1072455
+#  File has been updated.
+#  Successfully updated.
+
+obj/load_utils.o: srcs/load_utils.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'load_utils'
+#  Last modified 2022-08-08 20:21:26.2658323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
+
+# Not a target:
+srcs/load_utils.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-08 16:29:48.9072455
+#  File has been updated.
+#  Successfully updated.
 
 valgrind: all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 84):
+#  recipe to execute (from 'Makefile', line 85):
 					$(VALGRIND) ./$(NAME)
 
-# Not a target:
-obj/map_validate.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+obj/map_validate.o: srcs/map_validate.c includes/cub3D.h
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'map_validate'
+#  Last modified 2022-08-08 20:21:23.8858323
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 78):
+					@mkdir -p obj
+					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # files hash-table stats:
-# Load=34/1024=3%, Rehash=0, Collisions=0/82=0%
+# Load=54/1024=5%, Rehash=0, Collisions=3/198=2%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 75 / storage = 848 B / avg = 11 B
-# current buf: size = 8162 B / used = 848 B / count = 75 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 114 / storage = 1430 B / avg = 12 B
+# current buf: size = 8162 B / used = 1430 B / count = 114 / avg = 12 B
 
-# strcache performance: lookups = 111 / hit rate = 32%
+# strcache performance: lookups = 207 / hit rate = 44%
 # hash-table stats:
-# Load=75/8192=1%, Rehash=0, Collisions=2/111=2%
-# Finished Make data base on Mon Aug  8 16:35:10 2022
+# Load=114/8192=1%, Rehash=0, Collisions=2/207=1%
+# Finished Make data base on Mon Aug  8 20:22:23 2022
 
  

@@ -66,8 +66,10 @@ static void	load_images(t_game *game)
 			game->window_height * MINIMAP_SCALE_FACTOR \
 		);
 		game->minimap.minimap_size = BIG;
+		if (!game->minimap.small_radar)
+			error("Could not create images", game);
 	}
-	if (!game->img || !game->minimap.radar || !game->minimap.small_radar)
+	if (!game->img || !game->minimap.radar)
 		error("Could not create images", game);
 }
 

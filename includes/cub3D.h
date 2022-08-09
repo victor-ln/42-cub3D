@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/08 18:19:08 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/08 19:43:05 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		draw_line(t_img *radar, t_img_properties *properties);
 void		draw_rectangle(t_img *image, t_img_properties *properties);
 
 void		draw_radar(t_game *game);
+
+void		draw_small_radar(t_game *game);
 
 uint32_t	get_color(t_img *img, int x, int y);
 

@@ -21,8 +21,8 @@ void	draw_radar(t_game *game)
 	draw_environment(game);
 	draw_player(game);
 	draw_field_of_view(game);
-	// if (game->minimap.minimap_size == BIG)
-	// 	draw_small_radar(game);
+	if (game->minimap.minimap_size == BIG)
+		draw_small_radar(game);
 }
 
 void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
