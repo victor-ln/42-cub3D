@@ -1,7 +1,7 @@
-NO ./assets/xpm/blue_wall_01.xpm
-SO ./assets/xpm/brown_wall_01.xpm
-WE ./assets/xpm/yellow_wall_02.xpm
-EA ./assets/xpm/painting_wall_01.xpm
+NO ./assets/xpm/walls/iron_door_01.xpm
+SO ./assets/xpm/walls/iron_wall_02.xpm
+WE ./assets/xpm/walls/yellow_wall_02.xpm
+EA ./assets/xpm/walls/painting_wall_01.xpm
 F 128,128,128
 C 222,222,222
 

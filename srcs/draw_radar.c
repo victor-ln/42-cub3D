@@ -48,18 +48,18 @@ static void	draw_field_of_view(t_game *game)
 	int		i;
 
 	i = 0;
-	game->img_prop->color = RED;
-	game->img_prop->offset_x = game->player.coord.x * \
+	game->texture_prop->color = RED;
+	game->texture_prop->offset_x = game->player.coord.x * \
 		MINIMAP_SCALE_FACTOR;
-	game->img_prop->offset_y = game->player.coord.y * \
+	game->texture_prop->offset_y = game->player.coord.y * \
 		MINIMAP_SCALE_FACTOR;
 	while (i < game->ray_nums)
 	{
-		game->img_prop->width = game->rays[i].coord.x * \
+		game->texture_prop->width = game->rays[i].coord.x * \
 			MINIMAP_SCALE_FACTOR;
-		game->img_prop->height = game->rays[i].coord.y * \
+		game->texture_prop->height = game->rays[i].coord.y * \
 			MINIMAP_SCALE_FACTOR;
-		draw_line(game->minimap.radar, game->img_prop);
+		draw_line(game->minimap.radars[NORMAL], game->texture_prop);
 		i++;
 	}
 }
@@ -69,24 +69,23 @@ static void	draw_environment(t_game *game)
 	int	x;
 	int	y;
 
-	game->img_prop->height = game->minimap.tile_size;
-	game->img_prop->width = game->minimap.tile_size;
+	game->texture_prop->height = game->minimap.tile_size;
+	game->texture_prop->width = game->minimap.tile_size;
 	y = 0;
 	while (y < game->minimap.height)
 	{
 		x = 0;
-		game->img_prop->offset_y = y * game->minimap.tile_size;
+		game->texture_prop->offset_y = y * game->minimap.tile_size;
 		while (game->params.map[y][x])
 		{
-			game->img_prop->offset_x = x * game->minimap.tile_size;
-			game->img_prop->color = BLACK;
+			game->texture_prop->offset_x = x * game->minimap.tile_size;
 			if (game->params.map[y][x] == '0')
-			{
-				game->img_prop->color = WHITE;
-				draw_rectangle(game->minimap.radar, game->img_prop);
-			}
+				game->texture_prop->color = WHITE;
+			else if (game->params.map[y][x] == '1')
+				game->texture_prop->color = BLACK;
 			else
-				draw_rectangle(game->minimap.radar, game->img_prop);
+				game->texture_prop->color = MIDNIGHT_BLUE;
+			draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);
 			x++;
 		}
 		y++;
@@ -105,7 +104,7 @@ static void	draw_player(t_game *game)
 		while (x < 16)
 		{
 			draw_pixel(
-				game->minimap.radar, \
+				game->minimap.radars[NORMAL], \
 				(game->player.coord.x + x) * MINIMAP_SCALE_FACTOR, \
 				(game->player.coord.y + y) * MINIMAP_SCALE_FACTOR, \
 				RED \

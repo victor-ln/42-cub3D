@@ -16,19 +16,24 @@ static void	move_player(t_game *game);
 
 int	key_press(int keycode, t_game *game)
 {
-	if (keycode == 'd')
-		game->player.move_direction = RIGHT;
+	if (keycode == ARROW_RIGHT)
+		game->player.move_direction = TURN_RIGHT;
+	else if (keycode == ARROW_LEFT)
+		game->player.move_direction = TURN_LEFT;
 	else if (keycode == 'a')
-		game->player.move_direction = LEFT;
+		game->player.walk_direction = WALK_LEFT;
+	else if (keycode == 'd')
+		game->player.walk_direction = WALK_RIGHT;
 	else if (keycode == 's')
-		game->player.walk_direction = DOWN;
+		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')
-		game->player.walk_direction = UP;
+		game->player.walk_direction = WALK_UP;
 	else if (keycode == ESC)
-	{
-		printf("Esc Pressed\n");
-		end_program(game);//Refatorar f(x) para receber mensagem
-	}
+		end_program(game);
+	// else if (keycode == CTRL)
+	// 	shot();
+	// else if (keycode == 'e')
+	// 	open_door();
 	else
 		return (0);
 	move_player(game);
@@ -37,28 +42,55 @@ int	key_press(int keycode, t_game *game)
 
 int	key_release(int keycode, t_game *game)
 {
-	if (keycode == 'd')
+	if (keycode == ARROW_RIGHT)
 		game->player.move_direction = 0;
+	else if (keycode == ARROW_LEFT)
+		game->player.move_direction = 0;
+	else if (keycode == 'd')
+		game->player.walk_direction = -1;
 	else if (keycode == 'a')
-		game->player.move_direction = 0;
+		game->player.walk_direction = -1;
 	else if (keycode == 's')
-		game->player.walk_direction = 0;
+		game->player.walk_direction = -1;
 	else if (keycode == 'w')
-		game->player.walk_direction = 0;
+		game->player.walk_direction = -1;
+	return (0);
+}
+
+int	mouse_click(int button, int x, int y, t_game *game)
+{
+	(void)button;
+	(void)x;
+	(void)y;
+	(void)game;
+	// if (button == LEFT_CLICK)
+		// shot
+	// if (button == RIGHT_CLICK)
+		// open_door
+	// if (button == SCROLL_UP)
+		// change weapon
+	// if (button == SCROLL_DOWN)
+		// change weapon
 	return (0);
 }
 
 static void	move_player(t_game *game)
 {
-	double	move_step;
 	double	to_x;
 	double	to_y;
 
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
-	move_step = game->player.walk_direction * MOVEMENT_SPEED;
-	to_x = game->player.coord.x + cos(game->player.coord.angle) * move_step;
-	to_y = game->player.coord.y + sin(game->player.coord.angle) * move_step;
+	if (game->player.walk_direction == WALK_LEFT)
+		to_x = -1;
+	else if (game->player.walk_direction == WALK_UP)
+		to_y = 1;
+	else if (game->player.walk_direction == WALK_RIGHT)
+		to_x = 1;
+	else if (game->player.walk_direction == WALK_DOWN)
+		to_y = -1;
+	to_x = game->player.coord.x + (cos(game->player.coord.angle) * to_x * MOVEMENT_SPEED);
+	to_y = game->player.coord.y + (sin(game->player.coord.angle) * to_y * MOVEMENT_SPEED);
 	if (!has_wall_at(game, to_x, to_y))
 	{
 		game->player.coord.x = to_x;

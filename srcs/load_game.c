@@ -37,10 +37,10 @@ static void	load_environment(t_game *game)
 		game->window_height, "cub3D");
 	if (!game->window)
 		error("Could not open a window", game);
-	game->img_prop = malloc(sizeof(t_img_properties));
+	game->texture_prop = malloc(sizeof(t_texture_properties));
 	game->wall_prop = malloc(sizeof(t_wall_properties));
 	game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
-	if (!game->img_prop || !game->wall_prop || !game->ray_prop)
+	if (!game->texture_prop || !game->wall_prop || !game->ray_prop)
 		error("Malloc Failed", game);
 }
 
@@ -51,7 +51,7 @@ static void	load_images(t_game *game)
 	game->img = mlx_new_image(game->mlx, game->window_width, \
 		game->window_height);
 	game->minimap.tile_size = TILE_SIZE * MINIMAP_SCALE_FACTOR;
-	game->minimap.radar = mlx_new_image(game->mlx, \
+	game->minimap.radars[NORMAL] = mlx_new_image(game->mlx, \
 		game->minimap.width * game->minimap.tile_size, \
 		game->minimap.height * game->minimap.tile_size \
 	);
@@ -61,15 +61,15 @@ static void	load_images(t_game *game)
 		(game->minimap.height * game->minimap.tile_size) > \
 			game->window_height * MINIMAP_SCALE_FACTOR)
 	{
-		game->minimap.small_radar = mlx_new_image(game->mlx, \
+		game->minimap.radars[BIG] = mlx_new_image(game->mlx, \
 			game->window_width * MINIMAP_SCALE_FACTOR, \
 			game->window_height * MINIMAP_SCALE_FACTOR \
 		);
 		game->minimap.minimap_size = BIG;
-		if (!game->minimap.small_radar)
+		if (!game->minimap.radars[BIG])
 			error("Could not create images", game);
 	}
-	if (!game->img || !game->minimap.radar)
+	if (!game->img || !game->minimap.radars[NORMAL])
 		error("Could not create images", game);
 }
 
@@ -85,6 +85,10 @@ static void	load_textures(t_game *game)
 		game->params.textures[WE]);
 	status += load_sprite(game->wall_textures + EA, game->mlx, \
 		game->params.textures[EA]);
+	status += load_sprite(game->crosshair, game->mlx, \
+		"./assets/xpm/player/48px/crosshair_green.xpm");
+	status += load_sprite(game->crosshair + 1, game->mlx, \
+		"./assets/xpm/player/48px/crosshair_red.xpm");
 	if (status != EXIT_SUCCESS)
 		error("Could not load textures", game);
 }
