@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/08 18:17:16 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:26:33 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_rectangle(t_img *image, t_img_properties *properties)
+void	draw_rectangle(t_img *image, t_texture_properties *properties)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ void	draw_rectangle(t_img *image, t_img_properties *properties)
 	}
 }
 
-void	draw_line(t_img *minimap, t_img_properties *properties)
+void	draw_line(t_img *minimap, t_texture_properties *properties)
 {
 	float	increment[2];
 	float	current[2];
@@ -65,8 +65,9 @@ void	draw_line(t_img *minimap, t_img_properties *properties)
 
 void	draw_pixel(t_img *img, int x, int y, uint32_t color)
 {
-	*(unsigned int *)
-		((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
+	if (color != TRANSPARENCY)
+		*(unsigned int *)
+			((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
 }
 
 uint32_t	get_color(t_img *img, int x, int y)

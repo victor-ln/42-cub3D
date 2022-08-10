@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/08 18:21:02 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:38:05 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,25 @@
 	times PI divided by 180 degrees.
 */
 # define STD_ROTATION_SPEED 	0.03490658503988659153847381536977
+# define STD_ROTATION_SPEED_M 	0.01745329251994329576923690768489
 
-# define RIGHT					1
-# define LEFT					-1
-# define DOWN					-1
-# define UP						1
+# define TURN_RIGHT				1
+# define TURN_LEFT				-1
+# define WALK_LEFT				0
+# define WALK_UP				1
+# define WALK_RIGHT				2
+# define WALK_DOWN				3
 
 # define ESC					65307
+# define CTRL					65507
+# define LEFT_CLICK				1
+# define RIGHT_CLICK			2
+# define SCROLL_UP				4
+# define SCROLL_DOWN			5
+# define ARROW_LEFT				65361
+# define ARROW_UP				65362
+# define ARROW_RIGHT			65363
+# define ARROW_DOWN				65364
 
 /* COLORS */
 # define RED					0xFF0000
@@ -63,6 +75,8 @@
 # define WHITE					0xFFFFFF
 # define GREEN					0x00FF00
 # define BLUE					0x0000FF
+# define MIDNIGHT_BLUE			0x191970
+# define TRANSPARENCY			0xFF000000
 
 typedef enum e_minimap_size{
 	BIG,
@@ -103,7 +117,7 @@ typedef struct s_img_properties
 	int			height;
 	int			offset_x;
 	int			offset_y;
-}	t_img_properties;
+}	t_texture_properties;
 
 typedef struct s_coord
 {
@@ -152,8 +166,7 @@ typedef struct s_params
 
 typedef struct s_minimap
 {
-	t_img				*radar;
-	t_img				*small_radar;
+	t_img				*radars[2];
 	int					width;
 	int					height;
 	int					tile_size;
@@ -174,22 +187,23 @@ typedef struct s_wall_properties
 
 typedef struct s_game
 {
-	void				*mlx;
-	void				*window;
-	int					window_width;
-	int					window_height;
-	int					ray_nums;
-	char				*file_content;
-	char				*map_cub;
-	t_ray				*rays;
-	t_params			params;
-	t_minimap			minimap;
-	t_player			player;
-	t_img				*img;
-	t_img				*wall_textures[TEXTURES_NUM];
-	t_img_properties	*img_prop;
-	t_wall_properties	*wall_prop;
-	t_rays_properties	*ray_prop;
+	void					*mlx;
+	void					*window;
+	int						window_width;
+	int						window_height;
+	int						ray_nums;
+	char					*file_content;
+	char					*map_cub;
+	t_ray					*rays;
+	t_params				params;
+	t_minimap				minimap;
+	t_player				player;
+	t_img					*img;
+	t_img					*crosshair[2];
+	t_img					*wall_textures[TEXTURES_NUM];
+	t_texture_properties	*texture_prop;
+	t_wall_properties		*wall_prop;
+	t_rays_properties		*ray_prop;
 }	t_game;
 
 #endif

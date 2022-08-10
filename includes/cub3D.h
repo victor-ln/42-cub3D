@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/08 19:43:05 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/09 22:26:33 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void		cast_all_rays(t_game *game);
 
 void		draw_pixel(t_img *img, int x, int y, uint32_t color);
 
-void		draw_line(t_img *radar, t_img_properties *properties);
+void		draw_line(t_img *radar, t_texture_properties *properties);
 
-void		draw_rectangle(t_img *image, t_img_properties *properties);
+void		draw_rectangle(t_img *image, t_texture_properties *properties);
 
 void		draw_radar(t_game *game);
 
@@ -82,5 +82,9 @@ void		get_ray_content(t_game *game, int ray_id);
 void		ray_constructor(t_game *game, int ray_id);
 
 double		calculate_hipo(double x, double y);
+
+int			mouse_click(int button, int x, int y, t_game *game);
+
+void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 
 #endif

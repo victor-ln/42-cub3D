@@ -12,10 +12,10 @@
 
 #include "cub3D.h"
 
-static int	get_texture_id_and_texture_offset(t_game *game, int col);
-static void	get_image_properties(t_game *game, int col);
+static int	get_texture_id(t_game *game, int col);
+static void	get_texture_properties(t_game *game, int col);
 static void	get_wall_dimension(t_game *game, int col);
-static void	get_offsets(t_game *game, int col, int line);
+static void	get_texture_coordinates(t_game *game, int col, int line);
 
 void	draw_3d_walls(t_game *game)
 {
@@ -27,12 +27,12 @@ void	draw_3d_walls(t_game *game)
 	while (col < game->ray_nums)
 	{
 		get_wall_dimension(game, col);
-		get_image_properties(game, col);
-		texture_id = get_texture_id_and_texture_offset(game, col);
-		line = game->img_prop->offset_y;
-		while (line < game->img_prop->height)
+		get_texture_properties(game, col);
+		texture_id = get_texture_id(game, col);
+		line = game->texture_prop->offset_y;
+		while (line < game->texture_prop->height)
 		{
-			get_offsets(game, col, line);
+			get_texture_coordinates(game, col, line);
 			draw_pixel(game->img, col, line, \
 				get_color(game->wall_textures[texture_id], \
 				game->wall_prop->color_x, game->wall_prop->color_y));
@@ -42,7 +42,7 @@ void	draw_3d_walls(t_game *game)
 	}
 }
 
-static void	get_offsets(t_game *game, int col, int line)
+static void	get_texture_coordinates(t_game *game, int col, int line)
 {
 	if (game->rays[col].was_hit_vertical)
 		game->wall_prop->color_x = (int)game->rays[col].coord.y % (TILE_SIZE);
@@ -65,21 +65,21 @@ static void	get_wall_dimension(t_game *game, int col)
 		game->wall_prop->proj_wall_dist;
 }
 
-static void	get_image_properties(t_game *game, int col)
+static void	get_texture_properties(t_game *game, int col)
 {
-	game->img_prop->offset_y = (game->window_height / 2) - \
+	game->texture_prop->offset_y = (game->window_height / 2) - \
 		((int)game->wall_prop->proj_wall_height / 2);
-	if (game->img_prop->offset_y < 0)
-		game->img_prop->offset_y = 0;
-	game->img_prop->offset_x = col * RAY_STRIP;
-	game->img_prop->width = RAY_STRIP;
-	game->img_prop->height = (game->window_height / 2) + \
+	if (game->texture_prop->offset_y < 0)
+		game->texture_prop->offset_y = 0;
+	game->texture_prop->offset_x = col * RAY_STRIP;
+	game->texture_prop->width = RAY_STRIP;
+	game->texture_prop->height = (game->window_height / 2) + \
 		((int)game->wall_prop->proj_wall_height / 2);
-	if (game->img_prop->height > game->window_height)
-		game->img_prop->height = game->window_height;
+	if (game->texture_prop->height > game->window_height)
+		game->texture_prop->height = game->window_height;
 }
 
-static int	get_texture_id_and_texture_offset(t_game *game, int col)
+static int	get_texture_id(t_game *game, int col)
 {
 	int		texture_id;
 

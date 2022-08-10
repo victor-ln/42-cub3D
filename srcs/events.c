@@ -16,19 +16,24 @@ static void	move_player(t_game *game);
 
 int	key_press(int keycode, t_game *game)
 {
-	if (keycode == 'd')
-		game->player.move_direction = RIGHT;
+	if (keycode == ARROW_RIGHT)
+		game->player.move_direction = TURN_RIGHT;
+	else if (keycode == ARROW_LEFT)
+		game->player.move_direction = TURN_LEFT;
 	else if (keycode == 'a')
-		game->player.move_direction = LEFT;
+		game->player.walk_direction = WALK_LEFT;
+	else if (keycode == 'd')
+		game->player.walk_direction = WALK_RIGHT;
 	else if (keycode == 's')
-		game->player.walk_direction = DOWN;
+		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')
-		game->player.walk_direction = UP;
+		game->player.walk_direction = WALK_UP;
 	else if (keycode == ESC)
-	{
-		printf("Esc Pressed\n");
-		end_program(game);//Refatorar f(x) para receber mensagem
-	}
+		end_program(game);
+	// else if (keycode == CTRL)
+	// 	shot();
+	// else if (keycode == 'e')
+	// 	open_door();
 	else
 		return (0);
 	move_player(game);
@@ -37,14 +42,35 @@ int	key_press(int keycode, t_game *game)
 
 int	key_release(int keycode, t_game *game)
 {
-	if (keycode == 'd')
+	if (keycode == ARROW_RIGHT)
 		game->player.move_direction = 0;
+	else if (keycode == ARROW_LEFT)
+		game->player.move_direction = 0;
+	else if (keycode == 'd')
+		game->player.walk_direction = -1;
 	else if (keycode == 'a')
-		game->player.move_direction = 0;
+		game->player.walk_direction = -1;
 	else if (keycode == 's')
-		game->player.walk_direction = 0;
+		game->player.walk_direction = -1;
 	else if (keycode == 'w')
-		game->player.walk_direction = 0;
+		game->player.walk_direction = -1;
+	return (0);
+}
+
+int	mouse_click(int button, int x, int y, t_game *game)
+{
+	(void)button;
+	(void)x;
+	(void)y;
+	(void)game;
+	// if (button == LEFT_CLICK)
+		// shot
+	// if (button == RIGHT_CLICK)
+		// open_door
+	// if (button == SCROLL_UP)
+		// change weapon
+	// if (button == SCROLL_DOWN)
+		// change weapon
 	return (0);
 }
 
