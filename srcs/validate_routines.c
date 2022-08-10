@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_routines.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:18:18 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/09 17:00:39 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:29:48 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	characteres_and_player_nums_validate(t_game *game)
 		j = 0;
 		while (game->params.map[i][j])
 		{
-			if (!ft_strchr("10NSEW ", game->params.map[i][j]))
+			if (!ft_strchr("10NSEWD ", game->params.map[i][j]))
 				error("Invalid character on map", game);
 			if (ft_strchr("NSEW", game->params.map[i][j]))
 				player++;

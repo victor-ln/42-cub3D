@@ -20,10 +20,10 @@ int	key_press(int keycode, t_game *game)
 		game->player.move_direction = TURN_RIGHT;
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = TURN_LEFT;
-	else if (keycode == 'a')
-		game->player.walk_direction = WALK_LEFT;
-	else if (keycode == 'd')
-		game->player.walk_direction = WALK_RIGHT;
+	// else if (keycode == 'a')
+	// 	game->player.walk_direction = WALK_LEFT;
+	// else if (keycode == 'd')
+	// 	game->player.walk_direction = WALK_RIGHT;
 	else if (keycode == 's')
 		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')
@@ -46,14 +46,14 @@ int	key_release(int keycode, t_game *game)
 		game->player.move_direction = 0;
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = 0;
-	else if (keycode == 'd')
-		game->player.walk_direction = -1;
-	else if (keycode == 'a')
-		game->player.walk_direction = -1;
+	// else if (keycode == 'd')
+	// 	game->player.walk_direction = -1;
+	// else if (keycode == 'a')
+	// 	game->player.walk_direction = -1;
 	else if (keycode == 's')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	else if (keycode == 'w')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	return (0);
 }
 
