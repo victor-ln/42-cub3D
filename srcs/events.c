@@ -76,21 +76,15 @@ int	mouse_click(int button, int x, int y, t_game *game)
 
 static void	move_player(t_game *game)
 {
+	double	move_step;
 	double	to_x;
 	double	to_y;
 
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
-	if (game->player.walk_direction == WALK_LEFT)
-		to_x = -1;
-	else if (game->player.walk_direction == WALK_UP)
-		to_y = 1;
-	else if (game->player.walk_direction == WALK_RIGHT)
-		to_x = 1;
-	else if (game->player.walk_direction == WALK_DOWN)
-		to_y = -1;
-	to_x = game->player.coord.x + (cos(game->player.coord.angle) * to_x * MOVEMENT_SPEED);
-	to_y = game->player.coord.y + (sin(game->player.coord.angle) * to_y * MOVEMENT_SPEED);
+	move_step = game->player.walk_direction * MOVEMENT_SPEED;
+	to_x = game->player.coord.x + cos(game->player.coord.angle) * move_step;
+	to_y = game->player.coord.y + sin(game->player.coord.angle) * move_step;
 	if (!has_wall_at(game, to_x, to_y))
 	{
 		game->player.coord.x = to_x;

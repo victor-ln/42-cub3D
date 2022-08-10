@@ -19,8 +19,8 @@ static void	mouse_move(t_game *game);
 
 void	start_game(t_game *game)
 {
-	display_game(game);
 	mlx_mouse_hide(game->mlx, game->window);
+	display_game(game);
 	mlx_hook(game->window, 2, 1, key_press, game);
 	mlx_hook(game->window, 3, 1 << 1, key_release, game);
 	mlx_hook(game->window, 17, 0, close_window, game);

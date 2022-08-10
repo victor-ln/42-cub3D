@@ -5,8 +5,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Mon Aug  8 20:22:23 2022
+# Make data base, printed on Wed Aug 10 16:21:39 2022
 
 # Variables
 
@@ -63,7 +64,7 @@ LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-247f2474-a4d0-4cad-92e0-d2ce7b08d3dc.sock
+VSCODE_IPC_HOOK_CLI = /tmp/vscode-ipc-ae770b7d-9fbc-4b9f-abd7-80b098bf5c1b.sock
 # makefile (from 'Makefile', line 42)
 PATH_INC = includes/
 # default
@@ -179,11 +180,11 @@ WSL_DISTRO_NAME = Ubuntu-20.04
 
 # Directories
 
-# . (device 2064, inode 96317): 18 files, no impossibilities.
+# . (device 2064, inode 96317): 16 files, no impossibilities.
 # includes (device 2064, inode 102166): 1 files, no impossibilities so far.
 # srcs (device 2064, inode 102171): 22 files, no impossibilities so far.
 
-# 41 files, no impossibilities in 3 directories.
+# 39 files, no impossibilities in 3 directories.
 
 # Implicit Rules
 
@@ -206,7 +207,7 @@ srcs/map_validate.c:
 obj/rays_utils.o: srcs/rays_utils.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'rays_utils'
-#  Last modified 2022-08-08 20:21:27.5158323
+#  Last modified 2022-08-09 23:57:13.352465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -216,7 +217,7 @@ obj/rays_utils.o: srcs/rays_utils.c includes/cub3D.h
 # Not a target:
 includes/cub3D.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 19:43:05.8058323
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
@@ -242,7 +243,7 @@ all: cub3D
 
 cub3D: obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_walls.o obj/save_params.o obj/validate_routines.o obj/map_validate.o obj/exit_routines.o obj/resize_map.o obj/save_utils.o obj/debug_map.o obj/load_file.o obj/load_game.o obj/load_utils.o obj/events.o obj/rays.o obj/rays_utils.o obj/window.o obj/draw_small_radar.o
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-08 20:21:40.1458323
+#  Last modified 2022-08-09 23:57:19.862465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 73):
@@ -253,8 +254,9 @@ cub3D: obj/main.o obj/draw_game.o obj/draw_radar.o obj/draw_utils.o obj/draw_3d_
 obj/main.o: srcs/main.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'main'
-#  Last modified 2022-08-08 20:21:20.7458323
+#  Last modified 2022-08-09 23:57:10.672465
 #  File has been updated.
+ 
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
 					@mkdir -p obj
@@ -263,7 +265,7 @@ obj/main.o: srcs/main.c includes/cub3D.h
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 20:21:14.8958323
+#  Last modified 2022-08-09 23:55:22.012465
 #  File has been updated.
 #  Successfully updated.
 
@@ -278,14 +280,13 @@ test:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  recipe to execute (from 'Makefile', line 91):
 					gcc -I includes/ -I mlx_linux/ test/img_biggerthan_window.c mlx_linux/libmlx.a -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz
 
 obj/rays.o: srcs/rays.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'rays'
-#  Last modified 2022-08-08 20:21:27.1958323
+#  Last modified 2022-08-09 23:57:13.172465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -311,7 +312,7 @@ fclean: clean
 obj/draw_game.o: srcs/draw_game.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'draw_game'
-#  Last modified 2022-08-08 20:21:21.0258323
+#  Last modified 2022-08-09 23:57:10.822465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -321,7 +322,7 @@ obj/draw_game.o: srcs/draw_game.c includes/cub3D.h
 obj/draw_3d_walls.o: srcs/draw_3d_walls.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'draw_3d_walls'
-#  Last modified 2022-08-08 20:21:22.4458323
+#  Last modified 2022-08-09 23:57:11.292465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -331,7 +332,7 @@ obj/draw_3d_walls.o: srcs/draw_3d_walls.c includes/cub3D.h
 obj/window.o: srcs/window.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'window'
-#  Last modified 2022-08-08 20:21:27.8558323
+#  Last modified 2022-08-09 23:57:13.532465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -341,7 +342,7 @@ obj/window.o: srcs/window.c includes/cub3D.h
 obj/save_utils.o: srcs/save_utils.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'save_utils'
-#  Last modified 2022-08-08 20:21:24.9758323
+#  Last modified 2022-08-09 23:57:12.232465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -351,7 +352,7 @@ obj/save_utils.o: srcs/save_utils.c includes/cub3D.h
 # Not a target:
 srcs/draw_3d_walls.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 18:06:35.8072455
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
@@ -379,7 +380,7 @@ srcs/save_utils.c:
 obj/validate_routines.o: srcs/validate_routines.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'validate_routines'
-#  Last modified 2022-08-08 20:21:23.3758323
+#  Last modified 2022-08-09 23:57:11.622465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -389,7 +390,7 @@ obj/validate_routines.o: srcs/validate_routines.c includes/cub3D.h
 obj/load_file.o: srcs/load_file.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'load_file'
-#  Last modified 2022-08-08 20:21:25.6058323
+#  Last modified 2022-08-09 23:57:12.522465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -405,7 +406,7 @@ obj/load_file.o: srcs/load_file.c includes/cub3D.h
 # Not a target:
 srcs/validate_routines.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 16:29:48.9072455
+#  Last modified 2022-08-09 23:55:45.352465
 #  File has been updated.
 #  Successfully updated.
 
@@ -419,7 +420,7 @@ srcs/load_file.c:
 obj/events.o: srcs/events.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'events'
-#  Last modified 2022-08-08 20:21:26.6258323
+#  Last modified 2022-08-09 23:57:12.992465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -429,14 +430,14 @@ obj/events.o: srcs/events.c includes/cub3D.h
 # Not a target:
 srcs/draw_game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 16:29:48.9072455
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 obj/save_params.o: srcs/save_params.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'save_params'
-#  Last modified 2022-08-08 20:21:22.9158323
+#  Last modified 2022-08-09 23:57:11.472465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -446,7 +447,7 @@ obj/save_params.o: srcs/save_params.c includes/cub3D.h
 obj/draw_small_radar.o: srcs/draw_small_radar.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'draw_small_radar'
-#  Last modified 2022-08-08 20:21:28.1558323
+#  Last modified 2022-08-09 23:57:13.702465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -456,7 +457,7 @@ obj/draw_small_radar.o: srcs/draw_small_radar.c includes/cub3D.h
 obj/draw_utils.o: srcs/draw_utils.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'draw_utils'
-#  Last modified 2022-08-08 20:21:21.9758323
+#  Last modified 2022-08-09 23:57:11.132465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -472,13 +473,14 @@ re: fclean all
 # Not a target:
 srcs/events.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 16:29:48.9072455
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 run: all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
+ 
 #  File does not exist.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 82):
@@ -504,21 +506,21 @@ clean:
 # Not a target:
 srcs/draw_small_radar.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 20:18:35.0558323
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/draw_utils.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 18:17:17.2972455
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 obj/resize_map.o: srcs/resize_map.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'resize_map'
-#  Last modified 2022-08-08 20:21:24.6058323
+#  Last modified 2022-08-09 23:57:12.092465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -528,7 +530,7 @@ obj/resize_map.o: srcs/resize_map.c includes/cub3D.h
 obj/draw_radar.o: srcs/draw_radar.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'draw_radar'
-#  Last modified 2022-08-08 20:21:21.5058323
+#  Last modified 2022-08-09 23:57:10.992465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -545,32 +547,31 @@ srcs/resize_map.c:
 # Not a target:
 srcs/draw_radar.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 19:59:26.7758323
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 obj/load_game.o: srcs/load_game.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'load_game'
-#  Last modified 2022-08-08 20:21:25.9458323
+#  Last modified 2022-08-09 23:57:12.682465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
 					@mkdir -p obj
- 
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 # Not a target:
 srcs/load_game.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 19:58:28.7458323
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 obj/debug_map.o: srcs/debug_map.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'debug_map'
-#  Last modified 2022-08-08 20:21:25.2558323
+#  Last modified 2022-08-09 23:57:12.362465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -580,8 +581,9 @@ obj/debug_map.o: srcs/debug_map.c includes/cub3D.h
 obj/exit_routines.o: srcs/exit_routines.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'exit_routines'
-#  Last modified 2022-08-08 20:21:24.2458323
+#  Last modified 2022-08-09 23:57:11.932465
 #  File has been updated.
+ 
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
 					@mkdir -p obj
@@ -597,14 +599,14 @@ srcs/debug_map.c:
 # Not a target:
 srcs/exit_routines.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-08 17:27:58.1072455
+#  Last modified 2022-08-09 23:56:46.522465
 #  File has been updated.
 #  Successfully updated.
 
 obj/load_utils.o: srcs/load_utils.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'load_utils'
-#  Last modified 2022-08-08 20:21:26.2658323
+#  Last modified 2022-08-09 23:57:12.832465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -629,7 +631,7 @@ valgrind: all
 obj/map_validate.o: srcs/map_validate.c includes/cub3D.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'map_validate'
-#  Last modified 2022-08-08 20:21:23.8858323
+#  Last modified 2022-08-09 23:57:11.792465
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 78):
@@ -644,12 +646,12 @@ obj/map_validate.o: srcs/map_validate.c includes/cub3D.h
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 114 / storage = 1430 B / avg = 12 B
-# current buf: size = 8162 B / used = 1430 B / count = 114 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 113 / storage = 1424 B / avg = 12 B
+# current buf: size = 8162 B / used = 1424 B / count = 113 / avg = 12 B
 
-# strcache performance: lookups = 207 / hit rate = 44%
+# strcache performance: lookups = 205 / hit rate = 44%
 # hash-table stats:
-# Load=114/8192=1%, Rehash=0, Collisions=2/207=1%
-# Finished Make data base on Mon Aug  8 20:22:23 2022
+# Load=113/8192=1%, Rehash=0, Collisions=2/205=1%
+# Finished Make data base on Wed Aug 10 16:21:39 2022
 
  
