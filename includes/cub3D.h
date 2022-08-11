@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/09 22:26:33 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:57:23 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ double		calculate_hipo(double x, double y);
 int			mouse_click(int button, int x, int y, t_game *game);
 
 void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
+
+void		doors_validate(t_game *game);
 
 #endif

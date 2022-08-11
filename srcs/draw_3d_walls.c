@@ -12,29 +12,29 @@
 
 #include "cub3D.h"
 
-static int	get_texture_id(t_game *game, int col);
-static void	get_texture_properties(t_game *game, int col);
-static void	get_wall_dimension(t_game *game, int col);
-static void	get_texture_coordinates(t_game *game, int col, int line);
+static t_img	*get_texture_id(t_game *game, int col);
+static void		get_texture_properties(t_game *game, int col);
+static void		get_wall_dimension(t_game *game, int col);
+static void		get_texture_coordinates(t_game *game, int col, int line);
 
 void	draw_3d_walls(t_game *game)
 {
 	int		col;
 	int		line;
-	int		texture_id;
+	t_img	*current_img;
 
 	col = 0;
 	while (col < game->ray_nums)
 	{
 		get_wall_dimension(game, col);
 		get_texture_properties(game, col);
-		texture_id = get_texture_id(game, col);
+		current_img = get_texture_id(game, col);
 		line = game->texture_prop->offset_y;
 		while (line < game->texture_prop->height)
 		{
 			get_texture_coordinates(game, col, line);
 			draw_pixel(game->img, col, line, \
-				get_color(game->wall_textures[texture_id], \
+				get_color(current_img, \
 				game->wall_prop->color_x, game->wall_prop->color_y));
 			line++;
 		}
@@ -79,23 +79,24 @@ static void	get_texture_properties(t_game *game, int col)
 		game->texture_prop->height = game->window_height;
 }
 
-static int	get_texture_id(t_game *game, int col)
+static t_img	*get_texture_id(t_game *game, int col)
 {
-	int		texture_id;
-
-	if (game->rays[col].was_hit_vertical)
+	if (game->rays[col].content_type == 'D')
+	{
+		if (game->rays[col].was_hit_vertical)
+			return (game->door_textures[0]);
+		return (game->door_textures[1]);
+	}
+	else if (game->rays[col].was_hit_vertical)
 	{
 		if (game->rays[col].is_ray_facing_right)
-			texture_id = EA;
-		else
-			texture_id = WE;
+			return (game->wall_textures[EA]);
+		return (game->wall_textures[WE]);
 	}
 	else
 	{
 		if (game->rays[col].is_ray_facing_up)
-			texture_id = NO;
-		else
-			texture_id = SO;
+			return (game->wall_textures[NO]);
+		return (game->wall_textures[SO]);
 	}
-	return (texture_id);
 }

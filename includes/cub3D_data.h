@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/11 16:23:45 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:52:19 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,28 @@
 # define GREEN					0x00FF00
 # define BLUE					0x0000FF
 # define MIDNIGHT_BLUE			0x191970
+# define DARK_ORANGE			0xFF8C00
 # define TRANSPARENCY			0xFF000000
+
+# define GREEN_CROSSHAIR		"./assets/xpm/player/48px/crosshair_green.xpm"
+# define RED_CROSSHAIR			"./assets/xpm/player/48px/crosshair_red.xpm"
+
+# define LIGHT_FRONT_DOOR		"./assets/xpm/walls/iron_door_01.xpm"
+# define DARK_FRONT_DOOR		"./assets/xpm/walls/iron_door_02.xpm"
+# define LIGHT_SIDE_DOOR		"./assets/xpm/walls/iron_wall_02.xpm"
+# define DARK_SIDE_DOOR			"./assets/xpm/walls/iron_wall_03.xpm"
 
 typedef enum e_minimap_size{
 	BIG,
 	NORMAL
 }	t_minimap_size;
+
+typedef enum e_door_status{
+	OPEN,
+	CLOSED,
+	OPENING,
+	CLOSING
+}	t_door_status;
 
 enum e_leveling{
 	horizontal,
@@ -185,6 +201,13 @@ typedef struct s_wall_properties
 	u_int32_t	color_x;
 }	t_wall_properties;
 
+typedef struct s_doors
+{
+	t_door_status	status;
+	int				x;
+	int				y;
+}	t_doors;
+
 typedef struct s_game
 {
 	void					*mlx;
@@ -192,6 +215,7 @@ typedef struct s_game
 	int						window_width;
 	int						window_height;
 	int						ray_nums;
+	int						doors_num;
 	char					*file_content;
 	char					*map_cub;
 	t_ray					*rays;
@@ -201,6 +225,8 @@ typedef struct s_game
 	t_img					*img;
 	t_img					*crosshair[2];
 	t_img					*wall_textures[TEXTURES_NUM];
+	t_img					*door_textures[TEXTURES_NUM];
+	t_doors					*doors;
 	t_texture_properties	*texture_prop;
 	t_wall_properties		*wall_prop;
 	t_rays_properties		*ray_prop;

@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/13 23:06:08 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/11 18:57:04 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	map_validate(t_game *game)
 	while (++v.line_num < v.total_lines)
 		if (line_validate(game->params.map, v))
 			error("Not surrounded by walls", game);
+	doors_validate(game);
 }
 
 static int	line_validate(char **map, t_validation v)
@@ -53,7 +54,7 @@ static int	line_validate(char **map, t_validation v)
 		v.column_limit[BOT_LINE] = ft_strlen(map[v.line_num + 1]) - 1;
 	while (map[v.line_num][v.column])
 	{
-		if (!ft_strchr("0NEWS", map[v.line_num][v.column]))
+		if (!ft_strchr("0NEWSD", map[v.line_num][v.column]))
 		{
 			if (map[v.line_num][v.column] != '1' && v.behind)
 				return (EXIT_FAILURE);
@@ -95,6 +96,13 @@ static int	is_closed_on_the_sides(char **map)
 		return (0);
 	if (ft_strchr(*map, '1') > ft_strchr(*map, '0') && ft_strchr(*map, '0'))
 		return (0);
+	if (ft_strchr(*map, 'D'))
+	{
+		if (ft_strchr(*map, 'D') < ft_strchr(*map, '1'))
+			return (0);
+		if (ft_strrchr(*map, 'D') > ft_strrchr(*map, '1'))
+			return (0);
+	}
 	return (1);
 }
 

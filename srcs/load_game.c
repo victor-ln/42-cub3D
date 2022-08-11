@@ -85,10 +85,12 @@ static void	load_textures(t_game *game)
 		game->params.textures[WE]);
 	status += load_sprite(game->wall_textures + EA, game->mlx, \
 		game->params.textures[EA]);
-	status += load_sprite(game->crosshair, game->mlx, \
-		"./assets/xpm/player/48px/crosshair_green.xpm");
-	status += load_sprite(game->crosshair + 1, game->mlx, \
-		"./assets/xpm/player/48px/crosshair_red.xpm");
+	status += load_sprite(game->crosshair, game->mlx, GREEN_CROSSHAIR);
+	status += load_sprite(game->crosshair + 1, game->mlx, RED_CROSSHAIR);
+	status += load_sprite(game->door_textures, game->mlx, LIGHT_FRONT_DOOR);
+	status += load_sprite(game->door_textures + 1, game->mlx, DARK_FRONT_DOOR);
+	status += load_sprite(game->door_textures + 2, game->mlx, LIGHT_SIDE_DOOR);
+	status += load_sprite(game->door_textures + 3, game->mlx, DARK_SIDE_DOOR);
 	if (status != EXIT_SUCCESS)
 		error("Could not load textures", game);
 }

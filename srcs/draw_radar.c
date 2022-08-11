@@ -83,6 +83,8 @@ static void	draw_environment(t_game *game)
 				game->texture_prop->color = WHITE;
 			else if (game->params.map[y][x] == '1')
 				game->texture_prop->color = BLACK;
+			else if (game->params.map[y][x] == 'D')
+				game->texture_prop->color = DARK_ORANGE;
 			else
 				game->texture_prop->color = MIDNIGHT_BLUE;
 			draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);

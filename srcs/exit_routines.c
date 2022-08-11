@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/09 22:26:07 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/11 17:22:50 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	free_game(t_game *game);
 static void	destroy_game(t_game *game);
+static void	destroy_sprites(t_img **images, void *mlx, int x);
 
 void	error(char *msg, t_game *game)
 {
@@ -52,22 +53,10 @@ static void	destroy_game(t_game *game)
 {
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
-	if (game->minimap.radars[NORMAL])
-		mlx_destroy_image(game->mlx, game->minimap.radars[NORMAL]);
-	if (game->minimap.radars[BIG])
-		mlx_destroy_image(game->mlx, game->minimap.radars[BIG]);
-	if (game->wall_textures[NO])
-		mlx_destroy_image(game->mlx, game->wall_textures[NO]);
-	if (game->wall_textures[SO])
-		mlx_destroy_image(game->mlx, game->wall_textures[SO]);
-	if (game->wall_textures[WE])
-		mlx_destroy_image(game->mlx, game->wall_textures[WE]);
-	if (game->wall_textures[EA])
-		mlx_destroy_image(game->mlx, game->wall_textures[EA]);
-	if (game->crosshair[0])
-		mlx_destroy_image(game->mlx, game->crosshair[0]);
-	if (game->crosshair[1])
-		mlx_destroy_image(game->mlx, game->crosshair[1]);
+	destroy_sprites(game->minimap.radars, game->mlx, 2);
+	destroy_sprites(game->wall_textures, game->mlx, TEXTURES_NUM);
+	destroy_sprites(game->crosshair, game->mlx, 2);
+	destroy_sprites(game->door_textures, game->mlx, TEXTURES_NUM);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)
@@ -75,4 +64,20 @@ static void	destroy_game(t_game *game)
 		mlx_destroy_display(game->mlx);
 		ft_free_null(game->mlx);
 	}
+}
+
+static void    destroy_sprites(t_img **images, void *mlx, int x)
+{
+    int        i;
+
+    i = 0;
+    if (images)
+    {
+        while (i < x)
+        {
+            if (images[i])
+                mlx_destroy_image(mlx, images[i]);
+            i++;
+        }
+    }
 }
