@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/10 21:50:49 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/11 16:23:45 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@
 
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
-# define WALK_LEFT				0
+# define WALK_LEFT				-2
 # define WALK_UP				1
 # define WALK_RIGHT				2
-# define WALK_DOWN				3
+# define WALK_DOWN				-1
 
 # define ESC					65307
 # define CTRL					65507
