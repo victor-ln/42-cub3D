@@ -47,13 +47,13 @@ int	key_release(int keycode, t_game *game)
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = 0;
 	else if (keycode == 'd')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	else if (keycode == 'a')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	else if (keycode == 's')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	else if (keycode == 'w')
-		game->player.walk_direction = -1;
+		game->player.walk_direction = 0;
 	return (0);
 }
 
@@ -78,19 +78,21 @@ static void	move_player(t_game *game)
 {
 	double	to_x;
 	double	to_y;
+	double	move_step;
+	double	angle;
 
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
-	if (game->player.walk_direction == WALK_LEFT)
-		to_x = -1;
-	else if (game->player.walk_direction == WALK_UP)
-		to_y = 1;
-	else if (game->player.walk_direction == WALK_RIGHT)
-		to_x = 1;
-	else if (game->player.walk_direction == WALK_DOWN)
-		to_y = -1;
-	to_x = game->player.coord.x + (cos(game->player.coord.angle) * to_x * MOVEMENT_SPEED);
-	to_y = game->player.coord.y + (sin(game->player.coord.angle) * to_y * MOVEMENT_SPEED);
+	angle = game->player.coord.angle;
+	if (game->player.walk_direction == WALK_LEFT || \
+		game->player.walk_direction == WALK_RIGHT)
+	{
+		game->player.walk_direction /= 2;
+		angle += M_PI_2;
+	}
+	move_step = game->player.walk_direction * MOVEMENT_SPEED;
+	to_x = game->player.coord.x + (cos(angle) * move_step);
+	to_y = game->player.coord.y + (sin(angle) * move_step);
 	if (!has_wall_at(game, to_x, to_y))
 	{
 		game->player.coord.x = to_x;
