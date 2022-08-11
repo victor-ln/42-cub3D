@@ -106,4 +106,6 @@ int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int				ft_atoi(const char *str);
 
+int				ft_count_char(char *str, char c);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/11 18:57:04 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/11 19:32:08 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	map_validate(t_game *game)
 	while (++v.line_num < v.total_lines)
 		if (line_validate(game->params.map, v))
 			error("Not surrounded by walls", game);
-	doors_validate(game);
+	save_doors_params(game);
 }
 
 static int	line_validate(char **map, t_validation v)
