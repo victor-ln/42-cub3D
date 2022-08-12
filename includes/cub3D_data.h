@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/11 17:52:19 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/11 22:14:54 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,8 @@ typedef struct s_doors
 	t_door_status	status;
 	int				x;
 	int				y;
+	float			x_intercept;
+	float			y_intercept;
 }	t_doors;
 
 typedef struct s_game

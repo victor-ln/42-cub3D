@@ -32,8 +32,8 @@ int	key_press(int keycode, t_game *game)
 		end_program(game);
 	// else if (keycode == CTRL)
 	// 	shot();
-	// else if (keycode == 'e')
-	// 	open_door();
+	else if (keycode == 'e')
+		return (open_door(game));
 	else
 		return (0);
 	move_player(game);
@@ -110,6 +110,10 @@ int	has_wall_at(t_game *game, double x, double y)
 	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || \
 		x > ft_strlen(game->params.map[line]) * TILE_SIZE)
 		return (1);
+	if (game->params.map[line][column] == 'D')
+		return (1);
+	else if (game->params.map[line][column] == 'O')
+		return (0);
 	return (game->params.map[line][column] != '0' && \
 		game->params.map[line][column] != ' ');
 }

@@ -81,6 +81,12 @@ static void	get_texture_properties(t_game *game, int col)
 
 static t_img	*get_texture_id(t_game *game, int col)
 {
+	if (game->rays[col].content_type == 'O')
+	{
+		if (game->rays[col].was_hit_vertical)
+			return (game->door_textures[2]);
+		return (game->door_textures[3]);
+	}
 	if (game->rays[col].content_type == 'D')
 	{
 		if (game->rays[col].was_hit_vertical)

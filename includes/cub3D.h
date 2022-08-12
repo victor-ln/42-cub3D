@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/11 19:28:56 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/11 21:37:28 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int			mouse_click(int button, int x, int y, t_game *game);
 void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 
 void		save_doors_params(t_game *game);
+
+int			open_door(t_game *game);
 
 #endif
