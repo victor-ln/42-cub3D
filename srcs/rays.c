@@ -29,7 +29,6 @@ void	cast_all_rays(t_game *game)
 		game->rays[i].coord.angle = angle;
 		ray_constructor(game, i);
 		cast_ray(game, i);
-		get_ray_content(game, i);
 		angle += FOV_ANGLE / game->ray_nums;
 		i++;
 	}
@@ -119,4 +118,122 @@ static void	calculate_distances(t_game *game, int ray_id)
 	game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
 	game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
 	game->rays[ray_id].was_hit_vertical = closer;
+	get_ray_content(game, ray_id);
+	if (game->rays[ray_id].content_type == 'D')
+	{
+		if (closer != vertical)
+		{
+			if (game->rays[ray_id].is_ray_facing_left)
+			{
+				if (game->ray_prop[!closer].x_intercept > 0 && \
+					game->ray_prop[!closer].x_intercept < game->minimap.widthpx && \
+					game->ray_prop[!closer].y_intercept > 0 && \
+					game->ray_prop[!closer].y_intercept < game->minimap.heightpx && \
+					remainder(game->ray_prop[!closer].x_intercept, TILE_SIZE) >= TILE_SIZE)
+				{
+					closer = !closer;
+					game->rays[ray_id].content_type = 'O';
+				}
+				else
+				{
+					game->ray_prop[closer].x_intercept += game->ray_prop[closer].x_step / 2.0f;
+					game->ray_prop[closer].y_intercept += game->ray_prop[closer].y_step / 2.0f;
+					game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
+					game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
+					game->ray_prop[closer].hipo = calculate_hipo(\
+						(game->ray_prop[closer].x_intercept - game->player.coord.x), \
+						(game->ray_prop[closer].y_intercept - game->player.coord.y));
+					game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
+					game->rays[ray_id].content_type = 'D';
+					return ;
+				}
+			}
+			else
+			{
+				if (game->ray_prop[!closer].x_intercept > 0 && \
+					game->ray_prop[!closer].x_intercept < game->minimap.widthpx && \
+					game->ray_prop[!closer].y_intercept > 0 && \
+					game->ray_prop[!closer].y_intercept < game->minimap.heightpx && \
+					remainder(game->ray_prop[!closer].x_intercept, TILE_SIZE) <= TILE_SIZE)
+				{
+					closer = !closer;
+					game->rays[ray_id].content_type = 'O';
+				}
+				else
+				{
+					game->ray_prop[closer].x_intercept += game->ray_prop[closer].x_step / 2.0f;
+					game->ray_prop[closer].y_intercept += game->ray_prop[closer].y_step / 2.0f;
+					game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
+					game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
+					game->ray_prop[closer].hipo = calculate_hipo(\
+						(game->ray_prop[closer].x_intercept - game->player.coord.x), \
+						(game->ray_prop[closer].y_intercept - game->player.coord.y));
+					game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
+					game->rays[ray_id].content_type = 'D';
+					return ;
+				}
+			}
+		}
+		else
+		{
+			if (game->rays[ray_id].is_ray_facing_up)
+			{
+				if (game->ray_prop[!closer].y_intercept > 0 && \
+					game->ray_prop[!closer].y_intercept < game->minimap.heightpx && \
+					game->ray_prop[!closer].x_intercept > 0 && \
+					game->ray_prop[!closer].x_intercept < game->minimap.widthpx && \
+					remainder(game->ray_prop[!closer].y_intercept, TILE_SIZE) >= TILE_SIZE)
+				{
+					closer = !closer;
+					game->rays[ray_id].content_type = 'O';
+				}
+				else
+				{
+					game->ray_prop[closer].x_intercept += game->ray_prop[closer].x_step / 2.0f;
+					game->ray_prop[closer].y_intercept += game->ray_prop[closer].y_step / 2.0f;
+					game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
+					game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
+					game->ray_prop[closer].hipo = calculate_hipo(\
+						(game->ray_prop[closer].x_intercept - game->player.coord.x), \
+						(game->ray_prop[closer].y_intercept - game->player.coord.y));
+					game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
+					game->rays[ray_id].content_type = 'D';
+					return ;
+				}
+			}
+			else
+			{
+				if (game->ray_prop[!closer].y_intercept > 0 && \
+					game->ray_prop[!closer].y_intercept < game->minimap.heightpx && \
+					game->ray_prop[!closer].x_intercept > 0 && \
+					game->ray_prop[!closer].x_intercept < game->minimap.widthpx && \
+					remainder(game->ray_prop[!closer].y_intercept, TILE_SIZE) <= TILE_SIZE)
+				{
+					closer = !closer;
+					game->rays[ray_id].content_type = 'O';
+				}
+				else
+				{
+					game->ray_prop[closer].x_intercept += game->ray_prop[closer].x_step / 2.0f;
+					game->ray_prop[closer].y_intercept += game->ray_prop[closer].y_step / 2.0f;
+					game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
+					game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
+					game->ray_prop[closer].hipo = calculate_hipo(\
+						(game->ray_prop[closer].x_intercept - game->player.coord.x), \
+						(game->ray_prop[closer].y_intercept - game->player.coord.y));
+					game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
+					game->rays[ray_id].content_type = 'D';
+					return ;
+				}
+			}
+		}
+		game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
+		game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
+		game->ray_prop[closer].hipo = calculate_hipo(\
+			(game->ray_prop[closer].x_intercept - game->player.coord.x), \
+			(game->ray_prop[closer].y_intercept - game->player.coord.y));
+		game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
+		game->rays[ray_id].was_hit_vertical = closer;
+		// get_ray_content(game, ray_id);
+	}
 }

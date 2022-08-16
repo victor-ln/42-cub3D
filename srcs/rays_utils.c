@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/11 22:06:51 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/15 21:44:23 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,31 @@ void	get_ray_content(t_game *game, int ray_id)
 
 	if (game->rays[ray_id].was_hit_vertical)
 	{
-		x = floor((game->rays[ray_id].coord.x - \
+		x = (int)floor((game->rays[ray_id].coord.x - \
 			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
-		y = floor(game->rays[ray_id].coord.y / TILE_SIZE);
-		if (x < (int)ft_strlen(game->params.map[y]) && game->params.map[y][x + 1] == 'O')
+		y = (int)floor(game->rays[ray_id].coord.y / TILE_SIZE);
+		/*
+		if (x < (int)ft_strlen(game->params.map[y]) - 1 && \
+			game->params.map[y][x + 1] == 'O')
 			x++;
-		else if (x && game->params.map[y][x - 1] == 'O')
+		else if (x > 0 && game->params.map[y][x - 1] == 'O')
 			x--;
+		*/
 	}
 	else
 	{
-		x = floor(game->rays[ray_id].coord.x / TILE_SIZE);
-		y = floor((game->rays[ray_id].coord.y - \
+		x = (int)floor(game->rays[ray_id].coord.x / TILE_SIZE);
+		y = (int)floor((game->rays[ray_id].coord.y - \
 			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
-		if (y < game->minimap.height && game->params.map[y + 1][x] == 'O')
+		/*
+		if (y < game->minimap.height - 1 && \
+			x < (int)ft_strlen(game->params.map[y + 1]) && \
+			game->params.map[y + 1][x] == 'O')
 			y++;
-		else if (y && game->params.map[y - 1][x] == 'O')
+		else if (y > 0 && x < (int)ft_strlen(game->params.map[y - 1]) && \
+			game->params.map[y - 1][x] == 'O')
 			y--;
+		*/
 	}
 	game->rays[ray_id].content_type = game->params.map[y][x];
 }
