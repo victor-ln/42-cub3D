@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/11 22:14:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/16 21:00:01 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,6 @@ typedef enum e_minimap_size{
 	BIG,
 	NORMAL
 }	t_minimap_size;
-
-typedef enum e_door_status{
-	OPEN,
-	CLOSED,
-	OPENING,
-	CLOSING
-}	t_door_status;
 
 enum e_leveling{
 	horizontal,
@@ -201,15 +194,6 @@ typedef struct s_wall_properties
 	u_int32_t	color_x;
 }	t_wall_properties;
 
-typedef struct s_doors
-{
-	t_door_status	status;
-	int				x;
-	int				y;
-	float			x_intercept;
-	float			y_intercept;
-}	t_doors;
-
 typedef struct s_game
 {
 	void					*mlx;
@@ -228,7 +212,6 @@ typedef struct s_game
 	t_img					*crosshair[2];
 	t_img					*wall_textures[TEXTURES_NUM];
 	t_img					*door_textures[TEXTURES_NUM];
-	t_doors					*doors;
 	t_texture_properties	*texture_prop;
 	t_wall_properties		*wall_prop;
 	t_rays_properties		*ray_prop;

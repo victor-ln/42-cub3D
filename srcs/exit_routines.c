@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/11 19:33:15 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/16 21:00:13 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	free_game(t_game *game)
 		ft_free_null(game->texture_prop);
 		ft_free_null(game->wall_prop);
 		ft_free_null(game->ray_prop);
-		ft_free_null(game->doors);
 		ft_free_null(game);
 	}
 }

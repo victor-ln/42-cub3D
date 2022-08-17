@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/15 21:44:23 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/16 20:56:00 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,17 @@ void	get_ray_content(t_game *game, int ray_id)
 		x = (int)floor((game->rays[ray_id].coord.x - \
 			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
 		y = (int)floor(game->rays[ray_id].coord.y / TILE_SIZE);
-		/*
 		if (x < (int)ft_strlen(game->params.map[y]) - 1 && \
 			game->params.map[y][x + 1] == 'O')
 			x++;
 		else if (x > 0 && game->params.map[y][x - 1] == 'O')
 			x--;
-		*/
 	}
 	else
 	{
 		x = (int)floor(game->rays[ray_id].coord.x / TILE_SIZE);
 		y = (int)floor((game->rays[ray_id].coord.y - \
 			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
-		/*
 		if (y < game->minimap.height - 1 && \
 			x < (int)ft_strlen(game->params.map[y + 1]) && \
 			game->params.map[y + 1][x] == 'O')
@@ -55,7 +52,6 @@ void	get_ray_content(t_game *game, int ray_id)
 		else if (y > 0 && x < (int)ft_strlen(game->params.map[y - 1]) && \
 			game->params.map[y - 1][x] == 'O')
 			y--;
-		*/
 	}
 	game->rays[ray_id].content_type = game->params.map[y][x];
 }
