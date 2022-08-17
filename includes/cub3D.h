@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/15 21:36:53 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/17 18:43:01 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,11 @@ void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 void		save_doors_params(t_game *game);
 
 int			open_door(t_game *game);
+
+void		draw_ground_and_celling(t_game *game);
+
+void		draw_crosshair(t_game *game);
+
+void		draw_weapon(t_game *game);
 
 #endif

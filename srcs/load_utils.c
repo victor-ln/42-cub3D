@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 19:23:50 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 21:47:07 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:21:17 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	load_player(t_game *game)
 	int		j;
 
 	i = 0;
+	game->player.is_shoting = 0;
+	game->player.weapon = pistol;
+	game->player.weapon_frame = 0;
 	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
 	while (game->params.map[i])
 	{

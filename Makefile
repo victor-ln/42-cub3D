@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/11 18:57:40 by afaustin         ###   ########.fr        #
+#    Updated: 2022/08/17 18:43:41 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SOURCES			=	main.c \
 					draw_game.c \
 					draw_radar.c \
 					draw_utils.c \
+					draw_env.c \
 					draw_3d_walls.c \
 					save_params.c \
 					validate_routines.c \

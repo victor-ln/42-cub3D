@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/17 18:19:16 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:17:21 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@
 # define KNIFE_03				"./assets/xpm/weapons/knife_04.xpm"
 # define KNIFE_04				"./assets/xpm/weapons/knife_05.xpm"
 
-# define PISTOL_00				"./assets/xpm/weapons/pistol_01.xpm"
+# define PISTOL_00				"./assets/xpm/weapons/pistol_01_big.xpm"
 # define PISTOL_01				"./assets/xpm/weapons/pistol_02.xpm"
 # define PISTOL_02				"./assets/xpm/weapons/pistol_03.xpm"
 # define PISTOL_03				"./assets/xpm/weapons/pistol_04.xpm"
@@ -206,6 +206,75 @@ enum e_coords {
 	EA
 };
 
+typedef enum e_weapons {
+	knife,
+	pistol,
+	machine_gun,
+	submachine_gun
+} t_weapons;
+
+enum e_guard {
+	front_idle_guard,
+	backwards_idle_guard,
+	shooting_guard_01,
+	shooting_guard_02,
+	dying_guard_01,
+	dying_guard_02,
+	dying_guard_03,
+	dying_guard_04,
+	dying_guard_05
+};
+
+enum e_objects {
+	ammo,
+	armor,
+	barrel,
+	bed,
+	blood,
+	blue_key,
+	brass,
+	bucket,
+	bunch_skeletons,
+	cage,
+	cage_skeleton,
+	crown,
+	crucifix,
+	cup,
+	drinking_fountain,
+	empty_pit,
+	flag,
+	food_01,
+	food_02,
+	key,
+	lamp_01,
+	lamp_02,
+	lamp_03,
+	little_table,
+	machine_gun_item,
+	medkit,
+	oven,
+	pillar,
+	pitcher,
+	pit,
+	plant_01,
+	plant_02,
+	portrait,
+	pots_01,
+	pots_02,
+	puddle,
+	roots,
+	skeleton_blood,
+	skeleton,
+	skeleton_lying,
+	spears,
+	submachine_gun_item,
+	table_chairs,
+	trash_01,
+	trash_02,
+	trash_03,
+	treasure
+};
+
 typedef struct s_img_properties
 {
 	uint32_t	color;
@@ -225,10 +294,13 @@ typedef struct s_coord
 
 typedef struct s_player
 {
-	t_coord	coord;
-	double	rotation_speed;
-	int		move_direction;
-	int		walk_direction;
+	t_coord		coord;
+	double		rotation_speed;
+	int			move_direction;
+	int			walk_direction;
+	t_weapons	weapon;
+	int			weapon_frame;
+	int			is_shoting;
 }	t_player;
 
 typedef struct s_rays_properties
@@ -300,7 +372,7 @@ typedef struct s_game
 	t_img					*wall_textures[TEXTURES_NUM];
 	t_img					*door_textures[TEXTURES_NUM];
 	t_img					*weapons[WEAPONS_TYPES][WEAPONS_FRAMES];
-	t_img					*enemies[GUARD_NUM];
+	t_img					*enemy[GUARD_NUM];
 	t_img					*objects[OBJECTS_NUM];
 	t_texture_properties	*texture_prop;
 	t_wall_properties		*wall_prop;

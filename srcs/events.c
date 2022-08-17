@@ -59,12 +59,11 @@ int	key_release(int keycode, t_game *game)
 
 int	mouse_click(int button, int x, int y, t_game *game)
 {
-	(void)button;
 	(void)x;
 	(void)y;
-	(void)game;
-	// if (button == LEFT_CLICK)
-		// shot
+	if (button == LEFT_CLICK)
+		game->player.is_shoting = 1;
+		// shot(game);
 	// if (button == RIGHT_CLICK)
 		// open_door
 	// if (button == SCROLL_UP)

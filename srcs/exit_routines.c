@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_routines.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/16 21:00:13 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/17 18:34:06 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,19 @@ static void	free_game(t_game *game)
 
 static void	destroy_game(t_game *game)
 {
+	int	i;
+
 	if (game->img)
 		mlx_destroy_image(game->mlx, game->img);
 	destroy_sprites(game->minimap.radars, game->mlx, 2);
 	destroy_sprites(game->wall_textures, game->mlx, TEXTURES_NUM);
 	destroy_sprites(game->crosshair, game->mlx, 2);
 	destroy_sprites(game->door_textures, game->mlx, TEXTURES_NUM);
+	destroy_sprites(game->enemy, game->mlx, GUARD_NUM);
+	// destroy_sprites(game->objects, game->mlx, OBJECTS_NUM);
+	i = 0;
+	while (i < WEAPONS_TYPES)
+		destroy_sprites(game->weapons[i++], game->mlx, WEAPONS_FRAMES);
 	if (game->window)
 		mlx_destroy_window(game->mlx, game->window);
 	if (game->mlx)
