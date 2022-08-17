@@ -28,10 +28,12 @@ int	key_press(int keycode, t_game *game)
 		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')
 		game->player.walk_direction = WALK_UP;
+	else if (ft_strchr("1234", keycode))
+		game->player.weapon = keycode - '0' - 1;
 	else if (keycode == ESC)
 		end_program(game);
-	// else if (keycode == CTRL)
-	// 	shot();
+	else if (keycode == CTRL)
+		game->player.is_shoting = 1;
 	else if (keycode == 'e')
 		return (open_door(game));
 	else
@@ -66,10 +68,22 @@ int	mouse_click(int button, int x, int y, t_game *game)
 		// shot(game);
 	// if (button == RIGHT_CLICK)
 		// open_door
-	// if (button == SCROLL_UP)
+	if (button == SCROLL_UP)
+	{
 		// change weapon
-	// if (button == SCROLL_DOWN)
+		if (game->player.weapon)
+			game->player.weapon--;
+		else
+			game->player.weapon = WEAPONS_TYPES - 1;
+	}
+	if (button == SCROLL_DOWN)
+	{
+		if (game->player.weapon < WEAPONS_TYPES - 1)
+			game->player.weapon++;
+		else
+			game->player.weapon = 0;
 		// change weapon
+	}
 	return (0);
 }
 

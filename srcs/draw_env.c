@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:25:38 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:39:41 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    draw_weapon(t_game *game)
 		from_x, \
 		from_y \
 	);
-    if (game->player.is_shoting && game->player.weapon_frame < WEAPONS_FRAMES)
+    if (game->player.is_shoting && game->player.weapon_frame < WEAPONS_FRAMES - 1)
         game->player.weapon_frame++;
     else
     {
