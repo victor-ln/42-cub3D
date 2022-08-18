@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/17 19:45:07 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/18 18:22:45 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@
 # define KNIFE_04				"./assets/xpm/weapons/knife_05.xpm"
 
 // 384px 384px tamanho para editar em todos os sprites de armas
-# define PISTOL_00				"./assets/xpm/weapons/pistol_01_big.xpm"
+# define PISTOL_00				"./assets/xpm/weapons/pistol_01.xpm"
 # define PISTOL_01				"./assets/xpm/weapons/pistol_02.xpm"
 # define PISTOL_02				"./assets/xpm/weapons/pistol_03.xpm"
 # define PISTOL_03				"./assets/xpm/weapons/pistol_04.xpm"
