@@ -127,6 +127,8 @@ int	has_wall_at(t_game *game, double x, double y)
 		return (1);
 	else if (game->params.map[line][column] == 'O')
 		return (0);
+	else if (game->params.map[line][column] == 'e')
+		return (0);
 	return (game->params.map[line][column] != '0' && \
 		game->params.map[line][column] != ' ');
 }

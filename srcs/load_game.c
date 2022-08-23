@@ -24,6 +24,8 @@ void	load_game(t_game *game)
 	load_textures(game);
 	load_player(game);
 	load_rays(game);
+	save_doors_params(game);
+	save_sprites(game);
 }
 
 static void	load_environment(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/17 18:34:06 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:35:44 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	free_game(t_game *game)
 		ft_free_null(game->texture_prop);
 		ft_free_null(game->wall_prop);
 		ft_free_null(game->ray_prop);
+		ft_free_null(game->sprites);
 		ft_free_null(game);
 	}
 }

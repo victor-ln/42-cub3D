@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/18 18:22:45 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/22 22:08:59 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,6 +354,13 @@ typedef struct s_wall_properties
 	u_int32_t	color_x;
 }	t_wall_properties;
 
+typedef struct s_sprites
+{
+	t_coord		coord;
+	t_img		*img;
+	bool		is_visible;
+}	t_sprites;
+
 typedef struct s_game
 {
 	void					*mlx;
@@ -362,6 +369,8 @@ typedef struct s_game
 	int						window_height;
 	int						ray_nums;
 	int						doors_num;
+	int						sprites_num;
+	int						enemies_num;
 	char					*file_content;
 	char					*map_cub;
 	t_ray					*rays;
@@ -378,6 +387,7 @@ typedef struct s_game
 	t_texture_properties	*texture_prop;
 	t_wall_properties		*wall_prop;
 	t_rays_properties		*ray_prop;
+	t_sprites				*sprites;
 }	t_game;
 
 #endif

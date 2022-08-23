@@ -12,15 +12,16 @@
 
 #include "cub3D.h"
 
-static void	draw_field_of_view(t_game *game);
-static void	draw_environment(t_game *game);
-static void	draw_player(t_game *game);
+static void	draw_radar_field_of_view(t_game *game);
+static void	draw_radar_environment(t_game *game);
+static void	draw_radar_player(t_game *game);
 
 void	draw_radar(t_game *game)
 {
-	draw_environment(game);
-	draw_player(game);
-	draw_field_of_view(game);
+	draw_radar_environment(game);
+	draw_radar_player(game);
+	draw_radar_field_of_view(game);
+	draw_radar_objects(game);
 	if (game->minimap.minimap_size == BIG)
 		draw_small_radar(game);
 }
@@ -43,7 +44,7 @@ void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
 	}
 }
 
-static void	draw_field_of_view(t_game *game)
+static void	draw_radar_field_of_view(t_game *game)
 {
 	int		i;
 
@@ -64,7 +65,7 @@ static void	draw_field_of_view(t_game *game)
 	}
 }
 
-static void	draw_environment(t_game *game)
+static void	draw_radar_environment(t_game *game)
 {
 	int	x;
 	int	y;
@@ -74,9 +75,9 @@ static void	draw_environment(t_game *game)
 	y = 0;
 	while (y < game->minimap.height)
 	{
-		x = 0;
+		x = -1;
 		game->texture_prop->offset_y = y * game->minimap.tile_size;
-		while (game->params.map[y][x])
+		while (game->params.map[y][++x])
 		{
 			game->texture_prop->offset_x = x * game->minimap.tile_size;
 			if (game->params.map[y][x] == '0')
@@ -85,16 +86,17 @@ static void	draw_environment(t_game *game)
 				game->texture_prop->color = BLACK;
 			else if (game->params.map[y][x] == 'D')
 				game->texture_prop->color = DARK_ORANGE;
-			else
+			else if (game->params.map[y][x] == ' ')
 				game->texture_prop->color = MIDNIGHT_BLUE;
+			else
+				game->texture_prop->color = WHITE;
 			draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);
-			x++;
 		}
 		y++;
 	}
 }
 
-static void	draw_player(t_game *game)
+static void	draw_radar_player(t_game *game)
 {
 	int		y;
 	int		x;

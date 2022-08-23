@@ -32,9 +32,11 @@ static int	display_game(t_game *game)
 {
 	mouse_move(game);
 	cast_all_rays(game);
+	get_visible_sprites(game);
 	draw_radar(game);
 	draw_ground_and_celling(game);
 	draw_3d_walls(game);
+	// draw_enemies(game);
 	draw_crosshair(game);
 	draw_weapon(game);
 	mlx_do_sync(game->mlx);

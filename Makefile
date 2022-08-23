@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/17 18:43:41 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/08/22 22:22:15 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ PATH_TEST		=	test/
 # FILES
 SOURCES			=	main.c \
 					draw_game.c \
+					draw_sprites.c \
 					draw_radar.c \
 					draw_utils.c \
 					draw_env.c \
@@ -65,6 +66,7 @@ SOURCES			=	main.c \
 					window.c \
 					draw_small_radar.c \
 					doors.c \
+					sprites.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 
