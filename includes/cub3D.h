@@ -107,4 +107,6 @@ int			mouse_release(int button, int x, int y, t_game *game);
 
 void		move_player(t_game *game);
 
+int			mouse_move(int x, int y, t_game *game);
+
 #endif

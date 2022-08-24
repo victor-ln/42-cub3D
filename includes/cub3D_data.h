@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 18:06:16 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:00:09 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define INPUT_ERR				(void *)-1
 
-# define MOVEMENT_SPEED			4
+# define MOVEMENT_SPEED			8
 # define RAY_STRIP				1
 # define TILE_SIZE				64
 # define MINIMAP_SCALE_FACTOR	0.25

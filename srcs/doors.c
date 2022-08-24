@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:57:33 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/16 21:01:48 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:00:02 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		open_door(t_game *game)
 	int		to_y;
 	double	move_step;
 
-	move_step = 16 * MOVEMENT_SPEED;
+	move_step = TILE_SIZE;
 	angle = game->player.coord.angle;
 	to_x = (game->player.coord.x + (cos(angle) * move_step)) / TILE_SIZE;
 	to_y = (game->player.coord.y + (sin(angle) * move_step)) / TILE_SIZE;

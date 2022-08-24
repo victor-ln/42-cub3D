@@ -99,3 +99,20 @@ int	mouse_release(int button, int x, int y, t_game *game)
 	}
 	return (0);
 }
+
+int	mouse_move(int x, int y, t_game *game)
+{
+	static int		last_x = -1;
+	static float	move_direction;
+
+	(void)y;
+	if (x != game->window_width / 2 && last_x != x)
+	{
+		move_direction = (x - (game->window_width / 2)) * 0.001;
+		game->player.coord.angle += move_direction * \
+			STD_ROTATION_SPEED_M;
+		move_direction = 0;
+		last_x = x;
+	}
+	return (0);
+}

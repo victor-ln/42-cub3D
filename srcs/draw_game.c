@@ -13,12 +13,9 @@
 #include "cub3D.h"
 
 static int	display_game(t_game *game);
-static int	mouse_move(int x, int y, t_game *game);
 
 void	start_game(t_game *game)
 {
-	mlx_mouse_hide(game->mlx, game->window);
-	display_game(game);
 	mlx_hook(game->window, 2, 1, key_press, game);
 	mlx_hook(game->window, 3, 2, key_release, game);
 	mlx_hook(game->window, 4, 4, mouse_click, game);
@@ -44,21 +41,5 @@ static int	display_game(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->minimap.radars[game->minimap.minimap_size], 0, 0);
-	return (0);
-}
-
-static int	mouse_move(int x, int y, t_game *game)
-{
-	static int	last_x = -1;
-
-	(void)y;
-	if (x != game->window_width / 2 && last_x != x)
-	{
-		game->player.move_direction = (x - (game->window_width / 2)) * 0.01;
-		game->player.coord.angle += game->player.move_direction * \
-			STD_ROTATION_SPEED_M;
-		game->player.move_direction = 0;
-		last_x = x;
-	}
 	return (0);
 }
