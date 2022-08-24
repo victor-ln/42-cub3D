@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/23 20:59:34 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/24 18:06:16 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,7 +302,8 @@ typedef struct s_player
 	int			walk_direction;
 	t_weapons	weapon;
 	int			weapon_frame;
-	int			is_shoting;
+	bool		is_shooting;
+	bool		has_shooted;
 }	t_player;
 
 typedef struct s_rays_properties

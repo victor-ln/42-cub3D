@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/22 22:22:15 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/08/24 18:01:22 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SOURCES			=	main.c \
 					draw_small_radar.c \
 					doors.c \
 					sprites.c \
+					move_player.c \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 

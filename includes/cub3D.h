@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/23 18:40:40 by afaustin         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   cub3D.h											:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>	+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2022/07/01 16:40:09 by adrianofaus	   #+#	#+#			 */
+/*   Updated: 2022/08/24 17:25:24 by vlima-nu		 ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
@@ -97,10 +97,14 @@ void		draw_crosshair(t_game *game);
 
 void		draw_weapon(t_game *game);
 
-void    	get_visible_sprites(t_game *game);
+void		get_visible_sprites(t_game *game);
 
-void    	save_sprites(t_game *game);
+void		save_sprites(t_game *game);
 
 void		draw_3d_sprites(t_game *game);
+
+int			mouse_release(int button, int x, int y, t_game *game);
+
+void		move_player(t_game *game);
 
 #endif

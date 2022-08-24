@@ -12,8 +12,6 @@
 
 #include "cub3D.h"
 
-static void	move_player(t_game *game);
-
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == ARROW_RIGHT)
@@ -33,7 +31,7 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == ESC)
 		end_program(game);
 	else if (keycode == CTRL)
-		game->player.is_shoting = 1;
+		game->player.is_shooting = true;
 	else if (keycode == 'e')
 		return (open_door(game));
 	else
@@ -56,6 +54,8 @@ int	key_release(int keycode, t_game *game)
 		game->player.walk_direction = 0;
 	else if (keycode == 'w')
 		game->player.walk_direction = 0;
+	else if (keycode == CTRL)
+		game->player.is_shooting = false;
 	return (0);
 }
 
@@ -63,73 +63,39 @@ int	mouse_click(int button, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
+	// printf("%d\n", game->player.is_shoting);
 	if (button == LEFT_CLICK)
-		game->player.is_shoting = 1;
-		// shot(game);
-	// if (button == RIGHT_CLICK)
-		// open_door
-	if (button == SCROLL_UP)
 	{
-		// change weapon
+		game->player.is_shooting = true;
+		game->player.has_shooted = false;
+	}
+	else if (button == RIGHT_CLICK)
+		open_door(game);
+	else if (button == SCROLL_UP)
+	{
 		if (game->player.weapon)
 			game->player.weapon--;
 		else
 			game->player.weapon = WEAPONS_TYPES - 1;
 	}
-	if (button == SCROLL_DOWN)
+	else if (button == SCROLL_DOWN)
 	{
 		if (game->player.weapon < WEAPONS_TYPES - 1)
 			game->player.weapon++;
 		else
 			game->player.weapon = 0;
-		// change weapon
 	}
 	return (0);
 }
 
-static void	move_player(t_game *game)
+int	mouse_release(int button, int x, int y, t_game *game)
 {
-	double	move_step;
-	double	to_x;
-	double	to_y;
-	double	angle;
-
-	game->player.coord.angle += game->player.move_direction * \
-		game->player.rotation_speed;
-	normalize_angle(&game->player.coord.angle);
-	angle = game->player.coord.angle;
-	if (game->player.walk_direction == WALK_LEFT || \
-		game->player.walk_direction == WALK_RIGHT)
+	(void)x;
+	(void)y;
+	if (button == LEFT_CLICK && game->player.has_shooted)
 	{
-		game->player.walk_direction /= 2;
-		angle += M_PI_2;
+		game->player.is_shooting = false;
+		game->player.has_shooted = false;
 	}
-	move_step = game->player.walk_direction * MOVEMENT_SPEED;
-	to_x = game->player.coord.x + (cos(angle) * move_step);
-	to_y = game->player.coord.y + (sin(angle) * move_step);
-	if (!has_wall_at(game, to_x, to_y))
-	{
-		game->player.coord.x = to_x;
-		game->player.coord.y = to_y;
-	}
-}
-
-int	has_wall_at(t_game *game, double x, double y)
-{
-	int	column;
-	int	line;
-
-	column = (int)floor((x / TILE_SIZE));
-	line = (int)floor((y / TILE_SIZE));
-	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || \
-		x > ft_strlen(game->params.map[line]) * TILE_SIZE)
-		return (1);
-	if (game->params.map[line][column] == 'D')
-		return (1);
-	else if (game->params.map[line][column] == 'O')
-		return (0);
-	else if (game->params.map[line][column] == 'e')
-		return (0);
-	return (game->params.map[line][column] != '0' && \
-		game->params.map[line][column] != ' ');
+	return (0);
 }
