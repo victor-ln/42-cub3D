@@ -96,6 +96,7 @@ static void	move_player(t_game *game)
 
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
+	normalize_angle(&game->player.coord.angle);
 	angle = game->player.coord.angle;
 	if (game->player.walk_direction == WALK_LEFT || \
 		game->player.walk_direction == WALK_RIGHT)

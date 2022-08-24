@@ -51,7 +51,7 @@ static void	save_sprites_position(t_game *game)
 					(TILE_SIZE / 2);
 				game->sprites[sprite_counter].is_visible = false;
 				game->sprites[sprite_counter].img = game->enemy[0];
-                game->params.map[line][col] = '0';
+				game->params.map[line][col] = '0';
 				sprite_counter++;
 			}
 		}

@@ -56,7 +56,7 @@ static char *front_idle_guard_011660768017[] = {
 "b c MediumBlue",
 "n c #0000A9",
 "m c black",
-"M c white",
+"M c #B3008C",
 "N c #B3008C",
 "B c black",
 "V c black",

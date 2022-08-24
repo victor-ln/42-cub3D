@@ -15,6 +15,7 @@
 static void	draw_radar_field_of_view(t_game *game);
 static void	draw_radar_environment(t_game *game);
 static void	draw_radar_player(t_game *game);
+static void	draw_radar_objects(t_game *game);
 
 void	draw_radar(t_game *game)
 {
@@ -26,21 +27,25 @@ void	draw_radar(t_game *game)
 		draw_small_radar(game);
 }
 
-void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
+static void	draw_radar_objects(t_game *game)
 {
-	register int	i;
-	register int	j;
+	int		i;
 
-	j = 0;
-	while (j < sprite->height)
+	i = 0;
+	while (i < game->sprites_num)
 	{
-		i = 0;
-		while (i < sprite->width)
-		{
-			draw_pixel(image, x + i, y + j, get_color(sprite, i, j));
-			i++;
-		}
-		j++;
+		if (game->sprites[i].is_visible)
+			game->texture_prop->color = 0xcd00cd;
+		else
+			game->texture_prop->color = 0xc6e2ff;
+		game->texture_prop->offset_x = (game->sprites[i].coord.x - 12) * \
+			MINIMAP_SCALE_FACTOR;
+		game->texture_prop->offset_y = (game->sprites[i].coord.y - 12) * \
+			MINIMAP_SCALE_FACTOR;
+		game->texture_prop->width = 24 * MINIMAP_SCALE_FACTOR;
+		game->texture_prop->height = 24 * MINIMAP_SCALE_FACTOR;
+		draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);
+		i++;
 	}
 }
 
@@ -98,23 +103,12 @@ static void	draw_radar_environment(t_game *game)
 
 static void	draw_radar_player(t_game *game)
 {
-	int		y;
-	int		x;
-
-	y = -16;
-	while (y < 16)
-	{
-		x = -16;
-		while (x < 16)
-		{
-			draw_pixel(
-				game->minimap.radars[NORMAL], \
-				(game->player.coord.x + x) * MINIMAP_SCALE_FACTOR, \
-				(game->player.coord.y + y) * MINIMAP_SCALE_FACTOR, \
-				RED \
-			);
-			x++;
-		}
-		y++;
-	}
+	game->texture_prop->color = RED;
+	game->texture_prop->offset_x = (game->player.coord.x - 16) * \
+		MINIMAP_SCALE_FACTOR;
+	game->texture_prop->offset_y = (game->player.coord.y - 16) * \
+		MINIMAP_SCALE_FACTOR;
+	game->texture_prop->width = 32 * MINIMAP_SCALE_FACTOR;
+	game->texture_prop->height = 32 * MINIMAP_SCALE_FACTOR;
+	draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);
 }

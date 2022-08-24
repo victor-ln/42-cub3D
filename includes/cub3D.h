@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:40:09 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/22 22:35:23 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/23 18:40:40 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,10 @@ void		draw_crosshair(t_game *game);
 
 void		draw_weapon(t_game *game);
 
-void        draw_enemies(t_game *game);
-
-void	    draw_radar_objects(t_game *game);
-
 void    	get_visible_sprites(t_game *game);
 
 void    	save_sprites(t_game *game);
+
+void		draw_3d_sprites(t_game *game);
 
 #endif

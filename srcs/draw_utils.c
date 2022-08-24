@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/09 22:26:33 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:21:09 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,22 @@ uint32_t	get_color(t_img *img, int x, int y)
 {
 	return ((*(unsigned int *)
 			(img->data + (x * img->bpp / 8 + y * img->size_line))));
+}
+
+void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
+{
+	register int	i;
+	register int	j;
+
+	j = 0;
+	while (j < sprite->height)
+	{
+		i = 0;
+		while (i < sprite->width)
+		{
+			draw_pixel(image, x + i, y + j, get_color(sprite, i, j));
+			i++;
+		}
+		j++;
+	}
 }
