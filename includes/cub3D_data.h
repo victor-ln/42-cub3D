@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 19:00:09 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/24 19:12:55 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,6 +363,13 @@ typedef struct s_sprites
 	bool		is_visible;
 }	t_sprites;
 
+typedef struct s_enemy
+{
+	int			enemy_index;
+	bool		is_dead;
+	int			enemy_frame;
+}	t_enemy;
+
 typedef struct s_game
 {
 	void					*mlx;
@@ -390,6 +397,7 @@ typedef struct s_game
 	t_wall_properties		*wall_prop;
 	t_rays_properties		*ray_prop;
 	t_sprites				*sprites;
+	t_enemy					*enemies;
 }	t_game;
 
 #endif

@@ -24,8 +24,10 @@ void	save_sprites(t_game *game)
 		game->sprites_num += ft_count_char(game->params.map[line], 'e');
 	if (!game->sprites_num)
 		return ;
+	game->enemies_num = game->sprites_num;
 	game->sprites = malloc(sizeof(t_sprites) * game->sprites_num);
-	if (!game->sprites)
+	game->enemies = ft_calloc(sizeof(t_sprites), game->enemies_num);
+	if (!game->sprites || !game->enemies)
 		error("Malloc Failed", game);
 	save_sprites_position(game);
 }
@@ -33,11 +35,13 @@ void	save_sprites(t_game *game)
 static void	save_sprites_position(t_game *game)
 {
 	int		sprite_counter;
+	int		enemy_counter;
 	int		line;
 	int		col;
 
 	line = -1;
 	sprite_counter = 0;
+	enemy_counter = 0;
 	while (game->params.map[++line])
 	{
 		col = -1;
@@ -52,7 +56,9 @@ static void	save_sprites_position(t_game *game)
 				game->sprites[sprite_counter].is_visible = false;
 				game->sprites[sprite_counter].img = game->enemy[0];
 				game->params.map[line][col] = '0';
+				game->enemies[enemy_counter].enemy_index = sprite_counter;
 				sprite_counter++;
+				enemy_counter++;
 			}
 		}
 	}

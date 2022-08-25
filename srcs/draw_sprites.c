@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/23 21:20:50 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:37:39 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ void	draw_3d_sprites(t_game *game)
 			get_sprite_dimension(game, i);
 			get_sprite_properties(game, i);
 			x = game->texture_prop->offset_x;
+			int	var = x / 2 + (game->texture_prop->width / 2) - ((game->texture_prop->width - game->texture_prop->offset_x) * 0.15);
+			int	var2 = x / 2 + (game->texture_prop->width / 2) + ((game->texture_prop->width - game->texture_prop->offset_x) * 0.15);
+			for (int z = x; z < game->texture_prop->width; z++)
+			{
+				draw_pixel(game->img, z, game->window_height / 2, WHITE);
+			}
+			for (int z = 0; z < game->texture_prop->offset_y; z++)
+			{
+				draw_pixel(game->img, var, z, RED);
+				draw_pixel(game->img, var2, z, RED);
+			}
 			while (x < game->texture_prop->width)
 			{
 				texel_width = game->sprites[i].img->width / game->wall_prop->proj_wall_height;
