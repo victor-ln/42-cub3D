@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 19:12:55 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:13:21 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,6 +368,8 @@ typedef struct s_enemy
 	int			enemy_index;
 	bool		is_dead;
 	int			enemy_frame;
+	int			enemy_area;
+	int			enemy_location;
 }	t_enemy;
 
 typedef struct s_game
@@ -380,6 +382,8 @@ typedef struct s_game
 	int						doors_num;
 	int						sprites_num;
 	int						enemies_num;
+	int						enemy_spotted;
+	int						enemy_spotted_index;
 	char					*file_content;
 	char					*map_cub;
 	t_ray					*rays;

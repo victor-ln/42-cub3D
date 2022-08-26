@@ -68,6 +68,10 @@ int	mouse_click(int button, int x, int y, t_game *game)
 	{
 		game->player.is_shooting = true;
 		game->player.has_shooted = false;
+		if (game->enemy_spotted)
+		{
+			game->enemies[game->enemy_spotted_index].is_dead = true;
+		}
 	}
 	else if (button == RIGHT_CLICK)
 		open_door(game);

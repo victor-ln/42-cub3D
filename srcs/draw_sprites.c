@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/25 20:37:39 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:33:27 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	draw_3d_sprites(t_game *game)
 	u_int32_t	color;
 
 	i = 0;
+	game->enemy_spotted = 0;
 	while (i < game->sprites_num)
 	{
 		if (game->sprites[i].is_visible)
@@ -34,16 +35,19 @@ void	draw_3d_sprites(t_game *game)
 			get_sprite_dimension(game, i);
 			get_sprite_properties(game, i);
 			x = game->texture_prop->offset_x;
-			int	var = x / 2 + (game->texture_prop->width / 2) - ((game->texture_prop->width - game->texture_prop->offset_x) * 0.15);
-			int	var2 = x / 2 + (game->texture_prop->width / 2) + ((game->texture_prop->width - game->texture_prop->offset_x) * 0.15);
-			for (int z = x; z < game->texture_prop->width; z++)
+			/**
+			 * @brief Drawing hitbox
+			 * 
+			 */
+			game->enemies[i].enemy_area = (x + game->texture_prop->width) / 2;
+			game->enemies[i].enemy_location = (game->texture_prop->width - game->texture_prop->offset_x) * 0.15;
+			if (!game->enemies[i].is_dead && (((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
+			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location) || \
+			((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
+			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location)))
 			{
-				draw_pixel(game->img, z, game->window_height / 2, WHITE);
-			}
-			for (int z = 0; z < game->texture_prop->offset_y; z++)
-			{
-				draw_pixel(game->img, var, z, RED);
-				draw_pixel(game->img, var2, z, RED);
+				game->enemy_spotted = 1;
+				game->enemy_spotted_index = i;
 			}
 			while (x < game->texture_prop->width)
 			{
@@ -127,6 +131,13 @@ void	get_visible_sprites(t_game *game)
 				game->player.coord.x - game->sprites[i].coord.x, \
 				game->player.coord.y - game->sprites[i].coord.y\
 			);
+			if (game->enemies[i].is_dead)
+			{
+				if (!game->enemies[i].enemy_frame)
+					game->enemies[i].enemy_frame = dying_guard_01;
+				if (game->enemies[i].enemy_frame <= dying_guard_05)
+					game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
+			}
 		}
 		else
 			game->sprites[i].is_visible = false;

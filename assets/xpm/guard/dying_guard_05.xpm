@@ -57,7 +57,7 @@ static char *dying_guard_051660768017[] = {
 "n c #FF9558",
 "m c #C00000",
 "M c #FFB17E",
-"N c white",
+"N c #B3008C",
 "B c #B3008C",
 "V c black",
 "C c black",

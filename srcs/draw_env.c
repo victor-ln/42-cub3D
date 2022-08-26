@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 18:38:43 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/25 20:56:45 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,13 @@ void	draw_crosshair(t_game *game)
 {
 	int		from_x;
 	int		from_y;
-	int		enemy_spotted;
 
-	enemy_spotted = 0;
 	from_x = (game->window_width / 2) - \
-			game->crosshair[enemy_spotted]->width / 2;
+			game->crosshair[game->enemy_spotted]->width / 2;
 	from_y = (game->window_height / 2) - \
-			game->crosshair[enemy_spotted]->height / 2;
+			game->crosshair[game->enemy_spotted]->height / 2;
 	draw_sprite(game->img, \
-		game->crosshair[enemy_spotted], \
+		game->crosshair[game->enemy_spotted], \
 		from_x, \
 		from_y \
 	);

@@ -56,7 +56,7 @@ static char *dead_guard_011660768017[] = {
 "b c #717171",
 "n c #FF9558",
 "m c black",
-"M c white",
+"M c #B3008C",
 "N c #B3008C",
 "B c black",
 "V c black",
