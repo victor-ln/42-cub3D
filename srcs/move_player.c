@@ -18,18 +18,20 @@ void	move_player(t_game *game)
 	double	to_x;
 	double	to_y;
 	double	angle;
+	int		walk_direction;
 
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
 	normalize_angle(&game->player.coord.angle);
 	angle = game->player.coord.angle;
+	walk_direction = game->player.walk_direction;
 	if (game->player.walk_direction == WALK_LEFT || \
 		game->player.walk_direction == WALK_RIGHT)
 	{
-		game->player.walk_direction /= 2;
+		walk_direction /= 2;
 		angle += M_PI_2;
 	}
-	move_step = game->player.walk_direction * MOVEMENT_SPEED;
+	move_step = walk_direction * game->player.movement_speed;
 	to_x = game->player.coord.x + (cos(angle) * move_step);
 	to_y = game->player.coord.y + (sin(angle) * move_step);
 	if (!has_wall_at(game, to_x, to_y))

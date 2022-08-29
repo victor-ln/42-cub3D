@@ -24,6 +24,7 @@ void	load_player(t_game *game)
 	game->player.weapon = pistol;
 	game->player.weapon_frame = 0;
 	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
+	game->player.movement_speed = 8;
 	while (game->params.map[i])
 	{
 		j = 0;

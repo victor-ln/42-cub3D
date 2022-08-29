@@ -31,12 +31,18 @@ int	key_press(int keycode, t_game *game)
 	else if (keycode == ESC)
 		end_program(game);
 	else if (keycode == CTRL)
+	{
 		game->player.is_shooting = true;
+		game->player.has_shooted = false;
+		if (game->enemy_spotted)
+			game->enemies[game->enemy_spotted_index].is_dead = true;
+	}
 	else if (keycode == 'e')
 		return (open_door(game));
-	else
-		return (0);
-	move_player(game);
+	else if (keycode == ALT)
+		game->player.movement_speed = 16;
+	// else
+	// 	return (0);
 	return (0);
 }
 
@@ -56,6 +62,8 @@ int	key_release(int keycode, t_game *game)
 		game->player.walk_direction = 0;
 	else if (keycode == CTRL)
 		game->player.is_shooting = false;
+	else if (keycode == ALT)
+		game->player.movement_speed = 8;
 	return (0);
 }
 
@@ -69,9 +77,7 @@ int	mouse_click(int button, int x, int y, t_game *game)
 		game->player.is_shooting = true;
 		game->player.has_shooted = false;
 		if (game->enemy_spotted)
-		{
 			game->enemies[game->enemy_spotted_index].is_dead = true;
-		}
 	}
 	else if (button == RIGHT_CLICK)
 		open_door(game);

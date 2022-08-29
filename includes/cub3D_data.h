@@ -54,6 +54,7 @@
 
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
+
 # define WALK_LEFT				-2
 # define WALK_UP				1
 # define WALK_RIGHT				2
@@ -61,6 +62,7 @@
 
 # define ESC					65307
 # define CTRL					65507
+# define ALT					65505
 # define LEFT_CLICK				1
 # define RIGHT_CLICK			2
 # define SCROLL_UP				4
@@ -298,6 +300,7 @@ typedef struct s_player
 {
 	t_coord		coord;
 	double		rotation_speed;
+	int			movement_speed;
 	int			move_direction;
 	int			walk_direction;
 	t_weapons	weapon;

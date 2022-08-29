@@ -29,6 +29,7 @@ void	start_game(t_game *game)
 
 static int	display_game(t_game *game)
 {
+	move_player(game);
 	cast_all_rays(game);
 	get_visible_sprites(game);
 	draw_radar(game);

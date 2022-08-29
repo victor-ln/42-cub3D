@@ -63,8 +63,7 @@ void	draw_3d_sprites(t_game *game)
 							distance_from_top = y + (game->wall_prop->proj_wall_height / 2) - (game->window_height / 2);
 							texture_offset_y = distance_from_top * (game->sprites[i].img->height / game->wall_prop->proj_wall_height);
 							color = get_color(game->sprites[i].img, texture_offset_x, texture_offset_y);
-							if (color != 0xB3008C)
-								draw_pixel(game->img, x, y, color);
+							draw_pixel(game->img, x, y, color);
 						}
 						y++;
 					}
@@ -138,6 +137,14 @@ void	get_visible_sprites(t_game *game)
 				if (game->enemies[i].enemy_frame <= dying_guard_05)
 					game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
 			}
+			else if (game->sprites[i].coord.hipo < 400)
+			{
+				if (game->enemies[i].enemy_frame > shooting_guard_02 || game->enemies[i].enemy_frame < shooting_guard_01)
+					game->enemies[i].enemy_frame = shooting_guard_01;
+				game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
+			}
+			else
+				game->sprites[i].img = game->enemy[front_idle_guard];
 		}
 		else
 			game->sprites[i].is_visible = false;
