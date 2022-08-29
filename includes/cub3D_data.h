@@ -26,6 +26,7 @@
 # include <string.h>
 # include <stdint.h>
 # include <limits.h>
+# include <sys/time.h>
 
 # define INPUT_ERR				(void *)-1
 
@@ -379,6 +380,8 @@ typedef struct s_game
 {
 	void					*mlx;
 	void					*window;
+	unsigned long			last_fps;
+	int						fps;
 	int						window_width;
 	int						window_height;
 	int						ray_nums;
@@ -389,6 +392,7 @@ typedef struct s_game
 	int						enemy_spotted_index;
 	char					*file_content;
 	char					*map_cub;
+	char					*fps_string;
 	t_ray					*rays;
 	t_params				params;
 	t_minimap				minimap;

@@ -14,8 +14,17 @@
 
 static int	display_game(t_game *game);
 
+// void	start_time(unsigned long *last_fps)
+// {
+// 	static struct timeval	tv;
+
+// 	gettimeofday(&tv, NULL);
+// 	*last_fps = 0;
+// }
+
 void	start_game(t_game *game)
 {
+	// start_time(&game->last_fps);
 	mlx_hook(game->window, 2, 1, key_press, game);
 	mlx_hook(game->window, 3, 2, key_release, game);
 	mlx_hook(game->window, 4, 4, mouse_click, game);
@@ -27,8 +36,26 @@ void	start_game(t_game *game)
 	mlx_loop(game->mlx);
 }
 
+// void	count_fps(t_game *game)
+// {
+// 	static struct timeval	tv;
+
+// 	gettimeofday(&tv, NULL);
+// 	if ((tv.tv_usec - game->last_fps) / 1000 > 1000)
+// 	{
+// 		game->last_fps = tv.tv_usec;
+// 		if (game->fps_string)
+// 			free(game->fps_string);
+// 		game->fps_string = ft_itoa(game->fps);
+// 		printf("%s\n", game->fps_string);
+// 		game->fps = 0; //reseta o contador de FPS
+// 	}
+// 	game->fps++;
+// }
+
 static int	display_game(t_game *game)
 {
+	// count_fps(game);
 	move_player(game);
 	cast_all_rays(game);
 	get_visible_sprites(game);
@@ -42,5 +69,7 @@ static int	display_game(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->minimap.radars[game->minimap.minimap_size], 0, 0);
+	if (game->fps_string)
+		mlx_string_put(game->mlx, game->window, game->window_width * 0.8, 20, WHITE, game->fps_string);
 	return (0);
 }

@@ -35,6 +35,7 @@ static void	init_game(t_game *game)
 	ft_bzero(game, sizeof(t_game));
 	ft_bzero(&game->params, sizeof(t_params));
 	ft_bzero(&game->player, sizeof(t_player));
+	game->fps_string = 0;
 	game->window_width = STD_WINDOW_WIDTH;
 	game->window_height = STD_WINDOW_HEIGHT;
 	game->params.textures = ft_calloc(sizeof(char *), 4);

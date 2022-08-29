@@ -41,8 +41,6 @@ int	key_press(int keycode, t_game *game)
 		return (open_door(game));
 	else if (keycode == ALT)
 		game->player.movement_speed = 16;
-	// else
-	// 	return (0);
 	return (0);
 }
 
@@ -71,7 +69,6 @@ int	mouse_click(int button, int x, int y, t_game *game)
 {
 	(void)x;
 	(void)y;
-	// printf("%d\n", game->player.is_shoting);
 	if (button == LEFT_CLICK)
 	{
 		game->player.is_shooting = true;

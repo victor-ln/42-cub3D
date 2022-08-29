@@ -108,4 +108,6 @@ int				ft_atoi(const char *str);
 
 int				ft_count_char(char *str, char c);
 
+char			*ft_itoa(int nbr);
+
 #endif

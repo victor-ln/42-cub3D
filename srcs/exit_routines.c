@@ -41,6 +41,7 @@ static void	free_game(t_game *game)
 		ft_free_matrix((void **)game->params.textures, 4);
 		ft_free_matrix((void **)game->params.rgb[0], 0);
 		ft_free_matrix((void **)game->params.rgb[1], 0);
+		ft_free_null(game->fps_string);
 		ft_free_null(game->rays);
 		ft_free_null(game->texture_prop);
 		ft_free_null(game->wall_prop);
