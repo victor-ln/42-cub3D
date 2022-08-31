@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/08/04 17:50:54 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:15:29 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ static void	init_game(t_game *game)
 	ft_bzero(game, sizeof(t_game));
 	ft_bzero(&game->params, sizeof(t_params));
 	ft_bzero(&game->player, sizeof(t_player));
-	game->fps_string = 0;
 	game->window_width = STD_WINDOW_WIDTH;
 	game->window_height = STD_WINDOW_HEIGHT;
 	game->params.textures = ft_calloc(sizeof(char *), 4);

@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/24 19:24:00 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/29 21:34:58 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	free_game(t_game *game)
 		ft_free_matrix((void **)game->params.textures, 4);
 		ft_free_matrix((void **)game->params.rgb[0], 0);
 		ft_free_matrix((void **)game->params.rgb[1], 0);
-		ft_free_null(game->fps_string);
+		ft_free_null(game->fps.fps_string);
 		ft_free_null(game->rays);
 		ft_free_null(game->texture_prop);
 		ft_free_null(game->wall_prop);

@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/25 21:13:21 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/30 20:55:27 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <stdint.h>
 # include <limits.h>
 # include <sys/time.h>
+# include <time.h>
 
 # define INPUT_ERR				(void *)-1
 
@@ -38,6 +39,7 @@
 # define STD_WINDOW_WIDTH		1280
 # define STD_WINDOW_HEIGHT		720
 # define TEXTURES_NUM			4
+# define FPS_RATE				30.0f
 
 /*
 	Field Of View angle is equals to 60 degrees
@@ -376,12 +378,21 @@ typedef struct s_enemy
 	int			enemy_location;
 }	t_enemy;
 
+typedef	struct s_fps
+{
+	clock_t				ticks_last_frame;
+	double				fps_length;
+	double				delta;
+	int						frames;
+	char					*fps_string;
+}	t_fps;
+
+
 typedef struct s_game
 {
 	void					*mlx;
 	void					*window;
-	unsigned long			last_fps;
-	int						fps;
+	t_fps					fps;
 	int						window_width;
 	int						window_height;
 	int						ray_nums;
@@ -389,10 +400,8 @@ typedef struct s_game
 	int						sprites_num;
 	int						enemies_num;
 	int						enemy_spotted;
-	int						enemy_spotted_index;
 	char					*file_content;
 	char					*map_cub;
-	char					*fps_string;
 	t_ray					*rays;
 	t_params				params;
 	t_minimap				minimap;

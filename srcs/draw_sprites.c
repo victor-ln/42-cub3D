@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/25 21:33:27 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/30 21:02:48 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,19 @@ void	draw_3d_sprites(t_game *game)
 			 */
 			game->enemies[i].enemy_area = (x + game->texture_prop->width) / 2;
 			game->enemies[i].enemy_location = (game->texture_prop->width - game->texture_prop->offset_x) * 0.15;
-			if (!game->enemies[i].is_dead && (((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
+			if ((game->rays[game->window_width / 2].coord.hipo > game->sprites[i].coord.hipo) && !game->enemies[i].is_dead && (((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
 			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location) || \
 			((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
 			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location)))
 			{
 				game->enemy_spotted = 1;
-				game->enemy_spotted_index = i;
+				if (game->player.is_shooting)
+				{
+					if (game->player.weapon != knife)
+						game->enemies[i].is_dead = true;
+					else if (game->sprites[i].coord.hipo <= TILE_SIZE)
+						game->enemies[i].is_dead = true;
+				}
 			}
 			while (x < game->texture_prop->width)
 			{
