@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/24 18:01:22 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/08/31 18:25:56 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,32 +42,50 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 PATH_TEST		=	test/
 
-# FILES
-SOURCES			=	main.c \
-					draw_game.c \
-					draw_sprites.c \
-					draw_radar.c \
-					draw_utils.c \
-					draw_env.c \
-					draw_3d_walls.c \
+LOAD_FILE		=	load_file.c \
 					save_params.c \
-					validate_routines.c \
-					map_validate.c \
-					exit_routines.c \
-					resize_map.c \
 					save_utils.c \
-					debug_map.c \
-					load_file.c \
-					load_game.c \
+
+LOAD_GAME		=	load_game.c \
+					load_textures.c \
 					load_utils.c \
-					events.c \
-					rays.c \
-					rays_utils.c \
+
+CORE			=	main.c \
+					start_game.c \
+					end_game.c \
+
+EVENTS			=	keyboard.c \
+					mouse.c \
+					player.c \
 					window.c \
+
+FPS				=	fps.c \
+
+RAY_CASTING		=	rays.c \
+					rays_utils.c \
+
+RENDER			=	draw_3d_sprites.c \
+					draw_3d_walls.c \
+					draw_env.c \
+					draw_radar.c \
 					draw_small_radar.c \
-					doors.c \
+					draw_utils.c \
+
+VALIDATE		=	doors.c \
+					map_validate.c \
+					resize_map.c \
 					sprites.c \
-					move_player.c \
+					validate_routines.c \
+
+# FILES
+SOURCES			=	$(addprefix core/load_file/, $(LOAD_FILE)) \
+					$(addprefix core/load_game/, $(LOAD_GAME)) \
+					$(addprefix core/, $(CORE)) \
+					$(addprefix events/, $(EVENTS)) \
+					$(addprefix fps/, $(FPS)) \
+					$(addprefix ray_casting/, $(RAY_CASTING)) \
+					$(addprefix render/, $(RENDER)) \
+					$(addprefix validate/, $(VALIDATE)) \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 
@@ -81,6 +99,14 @@ $(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
 					@mkdir -p obj
+					@mkdir -p obj/core/load_file
+					@mkdir -p obj/core/load_game
+					@mkdir -p obj/core
+					@mkdir -p obj/events
+					@mkdir -p obj/fps
+					@mkdir -p obj/ray_casting
+					@mkdir -p obj/render
+					@mkdir -p obj/validate
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all

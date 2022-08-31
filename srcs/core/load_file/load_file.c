@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 17:21:25 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/07/13 23:11:09 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:54:10 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	load_file(t_game *game, int argc, char *argv)
 
 	fd = check_input(argc, argv);
 	if (fd == -1)
-		end_program(game);
+		end_game(game);
 	game->file_content = ft_calloc(sizeof(char), 1);
 	size = read(fd, buffer, 500);
 	while (size > 0)

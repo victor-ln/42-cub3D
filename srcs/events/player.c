@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_player.c                                      :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 18:00:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 18:02:01 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:07:55 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,21 @@ int	has_wall_at(t_game *game, double x, double y)
 		return (0);
 	return (game->params.map[line][column] != '0' && \
 		game->params.map[line][column] != ' ');
+}
+
+void	open_door(t_game *game)
+{
+	double	angle;
+	int		to_x;
+	int		to_y;
+	double	move_step;
+
+	move_step = TILE_SIZE;
+	angle = game->player.coord.angle;
+	to_x = (game->player.coord.x + (cos(angle) * move_step)) / TILE_SIZE;
+	to_y = (game->player.coord.y + (sin(angle) * move_step)) / TILE_SIZE;
+	if (game->params.map[to_y][to_x] == 'D')
+		game->params.map[to_y][to_x] = 'O';
+	else if (game->params.map[to_y][to_x] == 'O')
+		game->params.map[to_y][to_x] = 'D';
 }

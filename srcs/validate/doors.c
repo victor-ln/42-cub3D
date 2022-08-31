@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   doors.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:57:33 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/24 19:00:02 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:29:34 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,22 +51,4 @@ static void	doors_validate(t_game *game)
 			error("The door must be between two facing walls", game);
 		}
 	}
-}
-
-int		open_door(t_game *game)
-{
-	double	angle;
-	int		to_x;
-	int		to_y;
-	double	move_step;
-
-	move_step = TILE_SIZE;
-	angle = game->player.coord.angle;
-	to_x = (game->player.coord.x + (cos(angle) * move_step)) / TILE_SIZE;
-	to_y = (game->player.coord.y + (sin(angle) * move_step)) / TILE_SIZE;
-	if (game->params.map[to_y][to_x] == 'D')
-		game->params.map[to_y][to_x] = 'O';
-	else if (game->params.map[to_y][to_x] == 'O')
-		game->params.map[to_y][to_x] = 'D';
-	return (0);
 }

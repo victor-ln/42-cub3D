@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 19:23:50 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/24 18:06:16 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:11:43 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ void	load_player(t_game *game)
 	int		j;
 
 	i = 0;
-	game->player.is_shooting = 0;
 	game->player.weapon = pistol;
-	game->player.weapon_frame = 0;
 	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
 	game->player.movement_speed = 8;
 	while (game->params.map[i])
@@ -33,8 +31,8 @@ void	load_player(t_game *game)
 			if (ft_strchr("NSWE", game->params.map[i][j]))
 			{
 				save_rotation_angle(game, game->params.map[i][j]);
-				game->player.coord.x = j * TILE_SIZE + TILE_SIZE * 0.5;
-				game->player.coord.y = i * TILE_SIZE + TILE_SIZE * 0.5;
+				game->player.coord.x = j * TILE_SIZE + (TILE_SIZE * 0.5);
+				game->player.coord.y = i * TILE_SIZE + (TILE_SIZE * 0.5);
 				game->params.map[i][j] = '0';
 				return ;
 			}

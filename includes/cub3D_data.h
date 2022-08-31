@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/30 20:55:27 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 19:13:32 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,19 @@
 # define MOVEMENT_SPEED			8
 # define RAY_STRIP				1
 # define TILE_SIZE				64
+
+# define MINIMAP_TILE_SIZE		16
 # define MINIMAP_SCALE_FACTOR	0.25
 
-# define STD_WINDOW_WIDTH		1280
-# define STD_WINDOW_HEIGHT		720
+# define STD_WINDOW_WIDTH_1		1280
+# define STD_WINDOW_HEIGHT_1	720
+
+# define STD_WINDOW_WIDTH_2		1024
+# define STD_WINDOW_HEIGHT_2	768
+
+# define STD_WINDOW_WIDTH_3		720
+# define STD_WINDOW_HEIGHT_3	480
+
 # define TEXTURES_NUM			4
 # define FPS_RATE				30.0f
 
@@ -182,7 +191,7 @@
 # define GUARD_NUM				9
 
 typedef enum e_minimap_size{
-	BIG,
+	SMALL,
 	NORMAL
 }	t_minimap_size;
 
@@ -346,9 +355,12 @@ typedef struct s_minimap
 	t_img				*radars[2];
 	int					width;
 	int					height;
-	int					tile_size;
 	int					widthpx;
 	int					heightpx;
+	int					small_radar_limit_x;
+	int					small_radar_limit_y;
+	int					small_radar_widthpx;
+	int					small_radar_heightpx;
 	t_minimap_size		minimap_size;
 }	t_minimap;
 
@@ -383,8 +395,10 @@ typedef	struct s_fps
 	clock_t				ticks_last_frame;
 	double				fps_length;
 	double				delta;
-	int						frames;
-	char					*fps_string;
+	int					frames;
+	char				*fps_string;
+	int					fps_offset_x;
+	int					fps_offset_y;
 }	t_fps;
 
 

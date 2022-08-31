@@ -3,48 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   draw_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/25 20:56:45 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 18:27:38 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	update_weapon_frame(t_player *player);
+
 void	draw_weapon(t_game *game)
 {
 	int		from_x;
 	int		from_y;
+	t_img	*weapon;
 
-	from_x = (game->window_width / 2) - \
-		game->weapons[game->player.weapon][game->player.weapon_frame]->width / 2;
-	from_y = (game->window_height) - \
-		game->weapons[game->player.weapon][game->player.weapon_frame]->height;
+	weapon = game->weapons[game->player.weapon][game->player.weapon_frame];
+	from_x = (game->window_width >> 1) - (weapon->width >> 1);
+	from_y = game->window_height - weapon->height;
 	draw_sprite(game->img, \
-		game->weapons[game->player.weapon][game->player.weapon_frame], \
+		weapon, \
 		from_x, \
 		from_y \
 	);
-	if (game->player.is_shooting && game->player.weapon_frame < WEAPONS_FRAMES - 1)
+	update_weapon_frame(&game->player);
+}
+
+static void	update_weapon_frame(t_player *player)
+{
+	if (player->is_shooting && player->weapon_frame < WEAPONS_FRAMES - 1)
 	{
-		game->player.weapon_frame++;
-		if (game->player.weapon != knife && game->player.weapon != pistol)
-			game->player.has_shooted = true;
+		player->weapon_frame++;
+		if (player->weapon != knife && player->weapon != pistol)
+			player->has_shooted = true;
 	}
-	else if (game->player.weapon != knife && game->player.weapon != pistol)
+	else if (player->weapon != knife && player->weapon != pistol)
 	{
-		game->player.weapon_frame = 1;
-		game->player.has_shooted = true;
+		player->weapon_frame = 1;
+		player->has_shooted = true;
 	}
 	else
 	{
-		game->player.weapon_frame = 0;
-		game->player.is_shooting = false;
-		game->player.has_shooted = true;
+		player->weapon_frame = 0;
+		player->is_shooting = false;
+		player->has_shooted = true;
 	}
 }
-
 
 void	draw_crosshair(t_game *game)
 {

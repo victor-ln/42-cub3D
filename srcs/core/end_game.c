@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_routines.c                                    :+:      :+:    :+:   */
+/*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/29 21:34:58 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 17:54:35 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	error(char *msg, t_game *game)
 	exit(errno);
 }
 
-void	end_program(t_game *game)
+void	end_game(t_game *game)
 {
 	destroy_game(game);
 	free_game(game);
@@ -76,18 +76,18 @@ static void	destroy_game(t_game *game)
 	}
 }
 
-static void    destroy_sprites(t_img **images, void *mlx, int x)
+static void	destroy_sprites(t_img **images, void *mlx, int x)
 {
-    int        i;
+	int		i;
 
-    i = 0;
-    if (images)
-    {
-        while (i < x)
-        {
-            if (images[i])
-                mlx_destroy_image(mlx, images[i]);
-            i++;
-        }
-    }
+	i = 0;
+	if (images)
+	{
+		while (i < x)
+		{
+			if (images[i])
+				mlx_destroy_image(mlx, images[i]);
+			i++;
+		}
+	}
 }

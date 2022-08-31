@@ -14,18 +14,9 @@
 
 static int	display_game(t_game *game);
 
-void	start_time(t_fps *fps)
-{
-	fps->fps_length = 1000 / FPS_RATE;
-	fps->ticks_last_frame = 0;
-	fps->delta = 0;
-	fps->frames = 0;
-	fps->fps_string = 0;
-}
-
 void	start_game(t_game *game)
 {
-	start_time(&game->fps);
+	start_time(game);
 	mlx_hook(game->window, 2, 1, key_press, game);
 	mlx_hook(game->window, 3, 2, key_release, game);
 	mlx_hook(game->window, 4, 4, mouse_click, game);
@@ -35,18 +26,6 @@ void	start_game(t_game *game)
 	mlx_expose_hook(game->window, reload_image, game);
 	mlx_loop_hook(game->mlx, display_game, game);
 	mlx_loop(game->mlx);
-}
-
-void	count_fps(t_game *game)
-{
-	while (clock() < (game->fps.ticks_last_frame + game->fps.fps_length))
-		continue ;
-	game->fps.delta = (clock() - game->fps.ticks_last_frame) / 1000.0f; 
-	game->fps.ticks_last_frame = clock();
-	if (game->fps.delta > 0)
-		game->fps.frames = (CLOCKS_PER_SEC / game->fps.delta) / 1000;
-	free(game->fps.fps_string);
-	game->fps.fps_string = ft_itoa(game->fps.frames);
 }
 
 static int	display_game(t_game *game)
@@ -65,6 +44,9 @@ static int	display_game(t_game *game)
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->minimap.radars[game->minimap.minimap_size], 0, 0);
-	mlx_string_put(game->mlx, game->window, game->window_width * 0.8, 20, WHITE, game->fps.fps_string);
+	mlx_string_put(game->mlx, game->window, \
+		game->fps.fps_offset_x, game->fps.fps_offset_y, \
+		WHITE, game->fps.fps_string\
+	);
 	return (0);
 }

@@ -29,7 +29,7 @@ void		resize_line(t_game *game);
 
 void		resize_column(t_game *game);
 
-void		end_program(t_game *game);
+void		end_game(t_game *game);
 
 int			get_textures(char *file_content, int identifier, t_game *game);
 
@@ -89,7 +89,7 @@ void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 
 void		save_doors_params(t_game *game);
 
-int			open_door(t_game *game);
+void		open_door(t_game *game);
 
 void		draw_ground_and_celling(t_game *game);
 
@@ -108,5 +108,11 @@ int			mouse_release(int button, int x, int y, t_game *game);
 void		move_player(t_game *game);
 
 int			mouse_move(int x, int y, t_game *game);
+
+void		start_time(t_game *game);
+
+void		count_fps(t_game *game);
+
+void		load_textures(t_game *game);
 
 #endif

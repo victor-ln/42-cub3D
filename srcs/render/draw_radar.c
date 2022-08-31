@@ -23,7 +23,7 @@ void	draw_radar(t_game *game)
 	draw_radar_player(game);
 	draw_radar_field_of_view(game);
 	draw_radar_objects(game);
-	if (game->minimap.minimap_size == BIG)
+	if (game->minimap.minimap_size == SMALL)
 		draw_small_radar(game);
 }
 
@@ -75,27 +75,25 @@ static void	draw_radar_environment(t_game *game)
 	int	x;
 	int	y;
 
-	game->texture_prop->height = game->minimap.tile_size;
-	game->texture_prop->width = game->minimap.tile_size;
+	game->texture_prop->height = MINIMAP_TILE_SIZE;
+	game->texture_prop->width = MINIMAP_TILE_SIZE;
 	y = 0;
 	while (y < game->minimap.height)
 	{
-		x = -1;
-		game->texture_prop->offset_y = y * game->minimap.tile_size;
-		while (game->params.map[y][++x])
+		x = 0;
+		game->texture_prop->offset_y = y * MINIMAP_TILE_SIZE;
+		while (game->params.map[y][x])
 		{
-			game->texture_prop->offset_x = x * game->minimap.tile_size;
-			if (game->params.map[y][x] == '0')
-				game->texture_prop->color = WHITE;
-			else if (game->params.map[y][x] == '1')
+			game->texture_prop->offset_x = x * MINIMAP_TILE_SIZE;
+			game->texture_prop->color = WHITE;
+			if (game->params.map[y][x] == '1')
 				game->texture_prop->color = BLACK;
 			else if (game->params.map[y][x] == 'D')
 				game->texture_prop->color = DARK_ORANGE;
 			else if (game->params.map[y][x] == ' ')
 				game->texture_prop->color = MIDNIGHT_BLUE;
-			else
-				game->texture_prop->color = WHITE;
 			draw_rectangle(game->minimap.radars[NORMAL], game->texture_prop);
+			x++;
 		}
 		y++;
 	}

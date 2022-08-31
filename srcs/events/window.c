@@ -21,6 +21,6 @@ int	reload_image(t_game *game)
 int	close_window(t_game *game)
 {
 	printf("Window closed\n");
-	end_program(game);
+	end_game(game);
 	return (0);
 }
