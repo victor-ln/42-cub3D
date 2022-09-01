@@ -49,14 +49,14 @@ static void	cast_ray(t_game *game, int ray_id)
 static void	cast_vertical(t_game *game, t_rays_properties *vert, t_ray *ray)
 {
 	vert->x_intercept = floor(game->player.coord.x / TILE_SIZE) * TILE_SIZE;
-	vert->x_intercept += ray->is_ray_facing_right * TILE_SIZE;
+	vert->x_intercept += !ray->is_ray_facing_left * TILE_SIZE;
 	vert->y_intercept = game->player.coord.y + \
 		(vert->x_intercept - game->player.coord.x) * tan(ray->coord.angle);
 	vert->x_step = TILE_SIZE;
 	if (ray->is_ray_facing_left == true)
 		vert->x_step *= -1;
 	vert->y_step = TILE_SIZE * tan(ray->coord.angle);
-	if (vert->y_step < 0 && ray->is_ray_facing_down == true)
+	if (vert->y_step < 0 && !ray->is_ray_facing_up == true)
 		vert->y_step *= -1;
 	if (vert->y_step > 0 && ray->is_ray_facing_up == true)
 		vert->y_step *= -1;
@@ -77,14 +77,14 @@ static void	cast_vertical(t_game *game, t_rays_properties *vert, t_ray *ray)
 static void	cast_horizontal(t_game *game, t_rays_properties *horz, t_ray *ray)
 {
 	horz->y_intercept = floor(game->player.coord.y / TILE_SIZE) * TILE_SIZE;
-	horz->y_intercept += ray->is_ray_facing_down * TILE_SIZE;
+	horz->y_intercept += !ray->is_ray_facing_up * TILE_SIZE;
 	horz->x_intercept = game->player.coord.x + \
 		(horz->y_intercept - game->player.coord.y) / tan(ray->coord.angle);
 	horz->y_step = TILE_SIZE;
 	if (ray->is_ray_facing_up == true)
 		horz->y_step *= -1;
 	horz->x_step = TILE_SIZE / tan(ray->coord.angle);
-	if (horz->x_step < 0 && ray->is_ray_facing_right)
+	if (horz->x_step < 0 && !ray->is_ray_facing_left)
 		horz->x_step *= -1;
 	if (horz->x_step > 0 && ray->is_ray_facing_left)
 		horz->x_step *= -1;

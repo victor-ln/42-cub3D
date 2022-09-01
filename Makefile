@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/08/31 18:25:56 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/01 17:52:13 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INCLUDES		=	-I $(PATH_INC)
 DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror $(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
 CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \

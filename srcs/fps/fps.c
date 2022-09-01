@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:41:04 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 18:06:17 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/31 21:09:20 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	start_time(t_game *game)
 {
-	game->fps.fps_length = 1000 / FPS_RATE;
+	game->fps.fps_length = 1000000 / FPS_RATE;
 	game->fps.ticks_last_frame = 0;
 	game->fps.delta = 0;
 	game->fps.frames = 0;

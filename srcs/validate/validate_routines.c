@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:18:18 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/22 17:33:29 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:55:51 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	file_validate(t_game *game)
 	colors_validate(game, celling);
 	characteres_and_player_nums_validate(game);
 	map_validate(game);
+	doors_validate(game);
 }
 
 static void	colors_validate(t_game *game, int env)

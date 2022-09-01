@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 18:27:38 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:17:50 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,16 @@ void	draw_crosshair(t_game *game)
 
 void	draw_ground_and_celling(t_game *game)
 {
-	game->texture_prop->color = game->params.environment[celling];
-	game->texture_prop->offset_x = 0;
-	game->texture_prop->offset_y = 0;
-	game->texture_prop->height = game->window_height / 2;
-	game->texture_prop->width = game->window_width;
-	draw_rectangle(game->img, game->texture_prop);
-	game->texture_prop->color = game->params.environment[ground];
-	game->texture_prop->offset_x = 0;
-	game->texture_prop->offset_y = game->window_height / 2;
-	game->texture_prop->height = game->window_height / 2;
-	game->texture_prop->width = game->window_width;
-	draw_rectangle(game->img, game->texture_prop);
+	game->texture_prop.color = game->params.environment[celling];
+	game->texture_prop.offset_x = 0;
+	game->texture_prop.offset_y = 0;
+	game->texture_prop.height = game->window_height / 2;
+	game->texture_prop.width = game->window_width;
+	draw_rectangle(game->img, &game->texture_prop);
+	game->texture_prop.color = game->params.environment[ground];
+	game->texture_prop.offset_x = 0;
+	game->texture_prop.offset_y = game->window_height / 2;
+	game->texture_prop.height = game->window_height / 2;
+	game->texture_prop.width = game->window_width;
+	draw_rectangle(game->img, &game->texture_prop);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_sprites.c                                     :+:      :+:    :+:   */
+/*   draw_3d_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/30 21:02:48 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:24:32 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	draw_3d_sprites(t_game *game)
 	int		texture_offset_y;
 	int		texture_offset_x;
 	float	texel_width;
-	u_int32_t	color;
 
 	i = 0;
 	game->enemy_spotted = 0;
@@ -34,17 +33,13 @@ void	draw_3d_sprites(t_game *game)
 		{
 			get_sprite_dimension(game, i);
 			get_sprite_properties(game, i);
-			x = game->texture_prop->offset_x;
-			/**
-			 * @brief Drawing hitbox
-			 * 
-			 */
-			game->enemies[i].enemy_area = (x + game->texture_prop->width) / 2;
-			game->enemies[i].enemy_location = (game->texture_prop->width - game->texture_prop->offset_x) * 0.15;
-			if ((game->rays[game->window_width / 2].coord.hipo > game->sprites[i].coord.hipo) && !game->enemies[i].is_dead && (((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
-			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location) || \
-			((game->window_width / 2) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
-			(game->window_width / 2) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location)))
+			x = game->texture_prop.offset_x;
+			game->enemies[i].enemy_area = (x + game->texture_prop.width) >> 1;
+			game->enemies[i].enemy_location = (game->texture_prop.width - game->texture_prop.offset_x) * 0.15;
+			if ((game->rays[game->window_width >> 1].coord.hipo > game->sprites[i].coord.hipo) && !game->enemies[i].is_dead && (((game->window_width >> 1) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
+			(game->window_width >> 1) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location) || \
+			((game->window_width >> 1) >= game->enemies[i].enemy_area - game->enemies[i].enemy_location && \
+			(game->window_width >> 1) <= game->enemies[i].enemy_area + game->enemies[i].enemy_location)))
 			{
 				game->enemy_spotted = 1;
 				if (game->player.is_shooting)
@@ -55,21 +50,20 @@ void	draw_3d_sprites(t_game *game)
 						game->enemies[i].is_dead = true;
 				}
 			}
-			while (x < game->texture_prop->width)
+			while (x < game->texture_prop.width)
 			{
-				texel_width = game->sprites[i].img->width / game->wall_prop->proj_wall_height;
-				texture_offset_x = (x - game->texture_prop->offset_x) * texel_width;
-				y = game->texture_prop->offset_y;
+				texel_width = game->sprites[i].img->width / game->wall_prop.proj_wall_height;
+				texture_offset_x = (x - game->texture_prop.offset_x) * texel_width;
+				y = game->texture_prop.offset_y;
 				if (x > 0 && x < game->window_width && game->rays[x].coord.hipo > game->sprites[i].coord.hipo)
 				{
-					while (y < game->texture_prop->height)
+					while (y < game->texture_prop.height)
 					{
 						if (y > 0 && y < game->window_height)
 						{
-							distance_from_top = y + (game->wall_prop->proj_wall_height / 2) - (game->window_height / 2);
-							texture_offset_y = distance_from_top * (game->sprites[i].img->height / game->wall_prop->proj_wall_height);
-							color = get_color(game->sprites[i].img, texture_offset_x, texture_offset_y);
-							draw_pixel(game->img, x, y, color);
+							distance_from_top = y + (game->wall_prop.proj_wall_height / 2) - (game->window_height >> 1);
+							texture_offset_y = distance_from_top * (game->sprites[i].img->height / game->wall_prop.proj_wall_height);
+							draw_pixel(game->img, x, y, get_color(game->sprites[i].img, texture_offset_x, texture_offset_y));
 						}
 						y++;
 					}
@@ -83,11 +77,11 @@ void	draw_3d_sprites(t_game *game)
 
 static void	get_sprite_dimension(t_game *game, int id)
 {
-	game->wall_prop->proj_wall_dist = (game->window_width / 2) \
+	game->wall_prop.proj_wall_dist = (game->window_width >> 1) \
 		/ tan(FOV_ANGLE / 2);
-	game->wall_prop->proj_wall_height = \
+	game->wall_prop.proj_wall_height = \
 		(TILE_SIZE / game->sprites[id].coord.hipo) * \
-		game->wall_prop->proj_wall_dist;
+		game->wall_prop.proj_wall_dist;
 }
 
 static void	get_sprite_properties(t_game *game, int id)
@@ -97,20 +91,37 @@ static void	get_sprite_properties(t_game *game, int id)
 	sprite_angle = atan2(game->sprites[id].coord.y - game->player.coord.y, \
 				game->sprites[id].coord.x - game->player.coord.x) - \
 				game->player.coord.angle;
-	game->texture_prop->offset_y = (game->window_height / 2) - \
-		((int)game->wall_prop->proj_wall_height / 2);
-	if (game->texture_prop->offset_y < 0)
-		game->texture_prop->offset_y = 0;
-	game->texture_prop->offset_x = (tan(sprite_angle) * \
-		game->wall_prop->proj_wall_dist) + (game->window_width / 2) - (game->wall_prop->proj_wall_height / 2);
-	game->texture_prop->width = game->texture_prop->offset_x + game->wall_prop->proj_wall_height;
-	game->texture_prop->height = (game->window_height / 2) + \
-		((int)game->wall_prop->proj_wall_height / 2);
-	if (game->texture_prop->height > game->window_height)
-		game->texture_prop->height = game->window_height;
+	game->texture_prop.offset_y = (game->window_height >> 1) - \
+		((int)game->wall_prop.proj_wall_height / 2);
+	if (game->texture_prop.offset_y < 0)
+		game->texture_prop.offset_y = 0;
+	game->texture_prop.offset_x = (tan(sprite_angle) * \
+		game->wall_prop.proj_wall_dist) + (game->window_width >> 1) - (game->wall_prop.proj_wall_height / 2);
+	game->texture_prop.width = game->texture_prop.offset_x + game->wall_prop.proj_wall_height;
+	game->texture_prop.height = (game->window_height >> 1) + \
+		((int)game->wall_prop.proj_wall_height / 2);
+	if (game->texture_prop.height > game->window_height)
+		game->texture_prop.height = game->window_height;
 }
 
-
+void	update_enemy_sprite(t_game *game)
+{
+	if (game->enemies[i].is_dead)
+	{
+		if (!game->enemies[i].enemy_frame)
+			game->enemies[i].enemy_frame = dying_guard_01;
+		if (game->enemies[i].enemy_frame <= dying_guard_05)
+			game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
+	}
+	else if (game->sprites[i].coord.hipo < 400)
+	{
+		if (game->enemies[i].enemy_frame > shooting_guard_02 || game->enemies[i].enemy_frame < shooting_guard_01)
+			game->enemies[i].enemy_frame = shooting_guard_01;
+		game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
+	}
+	else
+		game->sprites[i].img = game->enemy[front_idle_guard];
+}
 
 void	get_visible_sprites(t_game *game)
 {
@@ -120,6 +131,7 @@ void	get_visible_sprites(t_game *game)
 	i = 0;
 	while (i < game->sprites_num)
 	{
+		game->sprites[i].is_visible = false;
 		sprite_angle = game->player.coord.angle - \
 			atan2(game->sprites[i].coord.y - game->player.coord.y, \
 				game->sprites[i].coord.x - game->player.coord.x);
@@ -136,24 +148,9 @@ void	get_visible_sprites(t_game *game)
 				game->player.coord.x - game->sprites[i].coord.x, \
 				game->player.coord.y - game->sprites[i].coord.y\
 			);
-			if (game->enemies[i].is_dead)
-			{
-				if (!game->enemies[i].enemy_frame)
-					game->enemies[i].enemy_frame = dying_guard_01;
-				if (game->enemies[i].enemy_frame <= dying_guard_05)
-					game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
-			}
-			else if (game->sprites[i].coord.hipo < 400)
-			{
-				if (game->enemies[i].enemy_frame > shooting_guard_02 || game->enemies[i].enemy_frame < shooting_guard_01)
-					game->enemies[i].enemy_frame = shooting_guard_01;
-				game->sprites[i].img = game->enemy[game->enemies[i].enemy_frame++];
-			}
-			else
-				game->sprites[i].img = game->enemy[front_idle_guard];
+			if (game->sprites[i].is_enemy)
+				update_enemy_sprite(game);
 		}
-		else
-			game->sprites[i].is_visible = false;
 		i++;
 	}
 }

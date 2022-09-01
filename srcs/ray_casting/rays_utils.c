@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/23 16:25:39 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:38:41 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,16 @@ void	ray_constructor(t_game *game, int ray_id)
 {
 	game->rays[ray_id].was_hit_vertical = false;
 	normalize_angle(&game->rays[ray_id].coord.angle);
-	game->rays[ray_id].is_ray_facing_down = false;
 	game->rays[ray_id].is_ray_facing_up = false;
-	game->rays[ray_id].is_ray_facing_right = false;
 	game->rays[ray_id].is_ray_facing_left = false;
 	if (game->rays[ray_id].coord.angle > 0 && \
 		game->rays[ray_id].coord.angle < M_PI)
-		game->rays[ray_id].is_ray_facing_down = true;
+		game->rays[ray_id].is_ray_facing_up = false;
 	else
 		game->rays[ray_id].is_ray_facing_up = true;
 	if (game->rays[ray_id].coord.angle > M_PI + M_PI_2 || \
 		game->rays[ray_id].coord.angle < M_PI_2)
-		game->rays[ray_id].is_ray_facing_right = true;
+		game->rays[ray_id].is_ray_facing_left = false;
 	else
 		game->rays[ray_id].is_ray_facing_left = true;
 }

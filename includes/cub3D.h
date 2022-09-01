@@ -87,7 +87,7 @@ int			mouse_click(int button, int x, int y, t_game *game);
 
 void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 
-void		save_doors_params(t_game *game);
+void		doors_validate(t_game *game);;
 
 void		open_door(t_game *game);
 

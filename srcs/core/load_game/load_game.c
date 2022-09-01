@@ -22,7 +22,6 @@ void	load_game(t_game *game)
 	load_textures(game);
 	load_player(game);
 	load_rays(game);
-	save_doors_params(game);
 	save_sprites(game);
 }
 
@@ -37,11 +36,11 @@ static void	load_environment(t_game *game)
 		game->window_height, "cub3D");
 	if (!game->window)
 		error("Could not open a window", game);
-	game->texture_prop = malloc(sizeof(t_texture_properties));
-	game->wall_prop = malloc(sizeof(t_wall_properties));
-	game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
-	if (!game->texture_prop || !game->wall_prop || !game->ray_prop)
-		error("Malloc Failed", game);
+	// game->texture_prop = malloc(sizeof(t_texture_properties));
+	// game->wall_prop = malloc(sizeof(t_wall_properties));
+	// game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
+	// if (!game->texture_prop)
+	// 	error("Malloc Failed", game);
 }
 
 static void	set_radar_limits(t_game *game)

@@ -6,30 +6,13 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 16:57:33 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/31 17:29:34 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/08/31 20:54:48 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	doors_validate(t_game *game);
-
-void	save_doors_params(t_game *game)
-{
-	int		line;
-	char	**map;
-
-	line = -1;
-	map = game->params.map;
-	game->doors_num = 0;
-	while (map[++line])
-		game->doors_num += ft_count_char(map[line], 'D');
-	if (!game->doors_num)
-		return ;
-	doors_validate(game);
-}
-
-static void	doors_validate(t_game *game)
+void	doors_validate(t_game *game)
 {
 	int		line;
 	int		column;

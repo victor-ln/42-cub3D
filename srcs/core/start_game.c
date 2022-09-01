@@ -42,8 +42,10 @@ static int	display_game(t_game *game)
 	draw_weapon(game);
 	mlx_do_sync(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
+	// /*
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->minimap.radars[game->minimap.minimap_size], 0, 0);
+	// */
 	mlx_string_put(game->mlx, game->window, \
 		game->fps.fps_offset_x, game->fps.fps_offset_y, \
 		WHITE, game->fps.fps_string\

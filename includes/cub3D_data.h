@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 19:13:32 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:23:58 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -335,9 +335,7 @@ typedef struct s_ray
 {
 	t_coord	coord;
 	bool	was_hit_vertical;
-	bool	is_ray_facing_down;
 	bool	is_ray_facing_up;
-	bool	is_ray_facing_right;
 	bool	is_ray_facing_left;
 	int		content_type;
 }	t_ray;
@@ -379,6 +377,7 @@ typedef struct s_sprites
 	t_coord		coord;
 	t_img		*img;
 	bool		is_visible;
+	bool		is_enemy;
 }	t_sprites;
 
 typedef struct s_enemy
@@ -401,25 +400,25 @@ typedef	struct s_fps
 	int					fps_offset_y;
 }	t_fps;
 
-
 typedef struct s_game
 {
 	void					*mlx;
 	void					*window;
-	t_fps					fps;
-	int						window_width;
-	int						window_height;
-	int						ray_nums;
-	int						doors_num;
-	int						sprites_num;
-	int						enemies_num;
-	int						enemy_spotted;
-	char					*file_content;
-	char					*map_cub;
 	t_ray					*rays;
-	t_params				params;
+	t_rays_properties		ray_prop[2];
+	long					ray_nums;
+	long					window_width;
+	long					window_height;
+	t_fps					fps;
+	long					sprites_num;
+	long					visible_sprites_num;
+	long					enemies_num;
+	long					enemy_spotted;
+	t_texture_properties	texture_prop;
+	t_wall_properties		wall_prop;
 	t_minimap				minimap;
 	t_player				player;
+	t_params				params;
 	t_img					*img;
 	t_img					*crosshair[2];
 	t_img					*wall_textures[TEXTURES_NUM];
@@ -427,11 +426,11 @@ typedef struct s_game
 	t_img					*weapons[WEAPONS_TYPES][WEAPONS_FRAMES];
 	t_img					*enemy[GUARD_NUM];
 	t_img					*objects[OBJECTS_NUM];
-	t_texture_properties	*texture_prop;
-	t_wall_properties		*wall_prop;
-	t_rays_properties		*ray_prop;
 	t_sprites				*sprites;
+	t_sprites				*visible_sprites;
 	t_enemy					*enemies;
+	char					*file_content;
+	char					*map_cub;
 }	t_game;
 
 #endif

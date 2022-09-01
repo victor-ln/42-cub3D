@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:51:21 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 19:03:42 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:16:10 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static void	get_offset(t_game *game)
 	mid_x = (game->minimap.small_radar_widthpx / MINIMAP_TILE_SIZE) >> 1;
 	mid_y = (game->minimap.small_radar_heightpx / MINIMAP_TILE_SIZE) >> 1;
 	if (player_line <= mid_y)
-		game->texture_prop->offset_y = 0;
+		game->texture_prop.offset_y = 0;
 	else if (player_line >= game->minimap.height - mid_y)
-		game->texture_prop->offset_y = (game->minimap.height - (mid_y << 1)) * \
+		game->texture_prop.offset_y = (game->minimap.height - (mid_y << 1)) * \
 			MINIMAP_TILE_SIZE;
 	else
-		game->texture_prop->offset_y = floor(game->player.coord.y * \
+		game->texture_prop.offset_y = floor(game->player.coord.y * \
 			MINIMAP_SCALE_FACTOR) - (game->minimap.small_radar_heightpx >> 1);
 	if (player_column <= mid_x)
-		game->texture_prop->offset_x = 0;
+		game->texture_prop.offset_x = 0;
 	else if (player_column >= game->minimap.width - mid_x)
-		game->texture_prop->offset_x = (game->minimap.width - (mid_x << 1)) * \
+		game->texture_prop.offset_x = (game->minimap.width - (mid_x << 1)) * \
 			MINIMAP_TILE_SIZE;
 	else
-		game->texture_prop->offset_x = floor(game->player.coord.x * \
+		game->texture_prop.offset_x = floor(game->player.coord.x * \
 			MINIMAP_SCALE_FACTOR) - (game->minimap.small_radar_widthpx >> 1);
 }
 
@@ -79,9 +79,9 @@ static void	copy_pixels_to_small_radar(t_game *game, int j, int i)
 				y + (i * MINIMAP_TILE_SIZE), \
 				get_color(\
 					game->minimap.radars[NORMAL], \
-					game->texture_prop->offset_x + x + \
+					game->texture_prop.offset_x + x + \
 						(j * MINIMAP_TILE_SIZE),
-					game->texture_prop->offset_y + y + \
+					game->texture_prop.offset_y + y + \
 						(i * MINIMAP_TILE_SIZE))
 				);
 			x++;
