@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 20:38:41 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:52:54 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,39 @@ void	get_ray_content(t_game *game, int ray_id)
 		x = (int)floor((game->rays[ray_id].coord.x - \
 			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
 		y = (int)floor(game->rays[ray_id].coord.y / TILE_SIZE);
-		if (x < (int)ft_strlen(game->params.map[y]) - 1 && \
-			game->params.map[y][x + 1] == 'O')
-			x++;
-		else if (x > 0 && game->params.map[y][x - 1] == 'O')
-			x--;
+		x = manipulate_ray_axis(game, x, y, horizontal);
 	}
 	else
 	{
 		x = (int)floor(game->rays[ray_id].coord.x / TILE_SIZE);
 		y = (int)floor((game->rays[ray_id].coord.y - \
 			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
+		y = manipulate_ray_axis(game, x, y, vertical);
+	}
+	game->rays[ray_id].content_type = game->params.map[y][x];
+}
+
+static int	manipulate_ray_axis(t_game *game, int x, int y, int axis)
+{
+	if (axis == horizontal)
+	{
+		if (x < (int)ft_strlen(game->params.map[y]) - 1 && \
+			game->params.map[y][x + 1] == 'O')
+			return (1);
+		else if (x > 0 && game->params.map[y][x - 1] == 'O')
+			return (-1);
+	}
+	else if (axis == vertical)
+	{
 		if (y < game->minimap.height - 1 && \
 			x < (int)ft_strlen(game->params.map[y + 1]) && \
 			game->params.map[y + 1][x] == 'O')
-			y++;
+			return (1);
 		else if (y > 0 && x < (int)ft_strlen(game->params.map[y - 1]) && \
 			game->params.map[y - 1][x] == 'O')
-			y--;
+			return (-1);
 	}
-	game->rays[ray_id].content_type = game->params.map[y][x];
+	return (0);
 }
 
 void	ray_constructor(t_game *game, int ray_id)

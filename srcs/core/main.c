@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/09/01 18:04:55 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 19:04:56 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	// game = ft_calloc(sizeof(t_game), 1);
+	game = ft_calloc(sizeof(t_game), 1);
 	init_game(&game);
 	load_file(&game, argc, argv[argc - 1]);
 	save_params(&game);

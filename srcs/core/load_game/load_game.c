@@ -36,22 +36,25 @@ static void	load_environment(t_game *game)
 		game->window_height, "cub3D");
 	if (!game->window)
 		error("Could not open a window", game);
-	// game->texture_prop = malloc(sizeof(t_texture_properties));
-	// game->wall_prop = malloc(sizeof(t_wall_properties));
-	// game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
-	// if (!game->texture_prop)
-	// 	error("Malloc Failed", game);
+	game->texture_prop = malloc(sizeof(t_texture_properties));
+	game->wall_prop = malloc(sizeof(t_wall_properties));
+	game->ray_prop = malloc(sizeof(t_rays_properties) * 2);
+	if (!game->texture_prop)
+		error("Malloc Failed", game);
 }
 
 static void	set_radar_limits(t_game *game)
 {
-	game->minimap.small_radar_heightpx = game->window_height * MINIMAP_SCALE_FACTOR;
-	game->minimap.small_radar_widthpx = game->window_width * MINIMAP_SCALE_FACTOR;
+	game->minimap.small_radar_heightpx = \
+	game->window_height * MINIMAP_SCALE_FACTOR;
+	game->minimap.small_radar_widthpx = \
+	game->window_width * MINIMAP_SCALE_FACTOR;
 	if (game->minimap.width > game->window_width * \
 		MINIMAP_SCALE_FACTOR / MINIMAP_TILE_SIZE)
 	{
 		game->minimap.small_radar_limit_x = \
-			floor(game->minimap.small_radar_widthpx / (float)MINIMAP_TILE_SIZE);
+			floor(game->minimap.small_radar_widthpx \
+			/ (float)MINIMAP_TILE_SIZE);
 	}
 	else
 		game->minimap.small_radar_limit_x = game->minimap.width;
@@ -59,7 +62,8 @@ static void	set_radar_limits(t_game *game)
 		MINIMAP_SCALE_FACTOR / MINIMAP_TILE_SIZE)
 	{
 		game->minimap.small_radar_limit_y = \
-			floor(game->minimap.small_radar_heightpx / (float)MINIMAP_TILE_SIZE);
+			floor(game->minimap.small_radar_heightpx \
+			/ (float)MINIMAP_TILE_SIZE);
 	}
 	else
 		game->minimap.small_radar_limit_y = game->minimap.height;
