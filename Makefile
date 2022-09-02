@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/01 17:52:13 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/01 21:54:22 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,9 +50,9 @@ LOAD_GAME		=	load_game.c \
 					load_textures.c \
 					load_utils.c \
 
-CORE			=	main.c \
+CORE			=	end_game.c \
+					main.c \
 					start_game.c \
-					end_game.c \
 
 EVENTS			=	keyboard.c \
 					mouse.c \
@@ -61,8 +61,8 @@ EVENTS			=	keyboard.c \
 
 FPS				=	fps.c \
 
-RAY_CASTING		=	rays.c \
-					rays_utils.c \
+RAY_CASTING		=	rays_utils.c \
+					rays.c \
 
 RENDER			=	draw_3d_sprites.c \
 					draw_3d_walls.c \
@@ -72,10 +72,14 @@ RENDER			=	draw_3d_sprites.c \
 					draw_utils.c \
 
 VALIDATE		=	doors.c \
+					enemy.c \
 					map_validate.c \
 					resize_map.c \
-					sprites.c \
+					sprites_selection.c \
+					sprites_validate.c \
 					validate_routines.c \
+
+SORTING			=	quick_sort.c \
 
 # FILES
 SOURCES			=	$(addprefix core/load_file/, $(LOAD_FILE)) \
@@ -86,6 +90,7 @@ SOURCES			=	$(addprefix core/load_file/, $(LOAD_FILE)) \
 					$(addprefix ray_casting/, $(RAY_CASTING)) \
 					$(addprefix render/, $(RENDER)) \
 					$(addprefix validate/, $(VALIDATE)) \
+					$(addprefix sorting/, $(SORTING)) \
 
 OBJS			=	$(SOURCES:%.c=%.o)
 
@@ -107,6 +112,7 @@ $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
 					@mkdir -p obj/ray_casting
 					@mkdir -p obj/render
 					@mkdir -p obj/validate
+					@mkdir -p obj/sorting
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all

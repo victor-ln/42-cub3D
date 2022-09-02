@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 22:08:37 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 18:53:13 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	mouse_move(int x, int y, t_game *game)
 	(void)y;
 	if (last_x != x)
 	{
-		move_direction = (x - (game->window_width >> 1)) * 0.001;
+		move_direction = (x - (game->half_width)) * 0.001;
 		game->player.coord.angle += move_direction * \
 			STD_ROTATION_SPEED_M;
 		move_direction = 0;

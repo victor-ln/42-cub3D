@@ -87,7 +87,7 @@ int			mouse_click(int button, int x, int y, t_game *game);
 
 void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
 
-void		doors_validate(t_game *game);;
+void		doors_validate(t_game *game);
 
 void		open_door(t_game *game);
 
@@ -101,7 +101,7 @@ void		get_visible_sprites(t_game *game);
 
 void		save_sprites(t_game *game);
 
-void		draw_3d_sprites(t_game *game);
+void		draw_visible_sprites(t_game *game);
 
 int			mouse_release(int button, int x, int y, t_game *game);
 
@@ -114,5 +114,11 @@ void		start_time(t_game *game);
 void		count_fps(t_game *game);
 
 void		load_textures(t_game *game);
+
+bool		is_enemy_spotted(t_game *game, int i);
+
+void		kill_enemy(t_game *game, int i);
+
+void		qsort_recursive(t_sprites *sprites, int start, int end);
 
 #endif

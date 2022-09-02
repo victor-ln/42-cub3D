@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:54:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/01 19:06:02 by afaustin         ###   ########.fr       */
+/*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
+/*   Updated: 2022/09/01 21:31:58 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,17 @@ void	end_game(t_game *game)
 
 static void	free_game(t_game *game)
 {
-	if (game)
-	{
-		if (game->file_content != INPUT_ERR)
-			ft_free_null(game->file_content);
-		ft_free_matrix((void **)game->params.map, 0);
-		ft_free_matrix((void **)game->params.textures, 4);
-		ft_free_matrix((void **)game->params.rgb[0], 0);
-		ft_free_matrix((void **)game->params.rgb[1], 0);
-		ft_free_null(game->fps.fps_string);
-		ft_free_null(game->rays);
-		ft_free_null(game->sprites);
-		ft_free_null(game->enemies);
-	}
+	if (game->file_content != INPUT_ERR)
+		ft_free_null(game->file_content);
+	ft_free_matrix((void **)game->params.map, 0);
+	ft_free_matrix((void **)game->params.textures, 4);
+	ft_free_matrix((void **)game->params.rgb[0], 0);
+	ft_free_matrix((void **)game->params.rgb[1], 0);
+	ft_free_null(game->fps.fps_string);
+	ft_free_null(game->rays);
+	ft_free_null(game->sprites);
+	ft_free_null(game->visible_sprites);
+	ft_free_null(game->enemies);
 }
 
 static void	destroy_game(t_game *game)

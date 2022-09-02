@@ -49,32 +49,32 @@ static void	get_texture_coordinates(t_game *game, int col, int line)
 	else
 		game->wall_prop.color_x = (int)game->rays[col].coord.x % (TILE_SIZE);
 	game->wall_prop.distance_from_top = line + \
-	((int)game->wall_prop.proj_wall_height / 2) - (game->window_height / 2);
+	((int)game->wall_prop.proj_height / 2) - (game->half_height);
 	game->wall_prop.color_y = game->wall_prop.distance_from_top * \
-		((float)TILE_SIZE / (int)game->wall_prop.proj_wall_height);
+		((float)TILE_SIZE / (int)game->wall_prop.proj_height);
 }
 
 static void	get_wall_dimension(t_game *game, int col)
 {
 	game->wall_prop.ray_distance = game->rays[col].coord.hipo * \
 		cos(game->rays[col].coord.angle - game->player.coord.angle);
-	game->wall_prop.proj_wall_dist = (game->window_width / 2) \
+	game->wall_prop.proj_wall_dist = (game->half_width) \
 		/ tan(FOV_ANGLE / 2);
-	game->wall_prop.proj_wall_height = \
+	game->wall_prop.proj_height = \
 		(TILE_SIZE / game->wall_prop.ray_distance) * \
 		game->wall_prop.proj_wall_dist;
 }
 
 static void	get_texture_properties(t_game *game, int col)
 {
-	game->texture_prop.offset_y = (game->window_height / 2) - \
-		((int)game->wall_prop.proj_wall_height / 2);
+	game->texture_prop.offset_y = (game->half_height) - \
+		((int)game->wall_prop.proj_height / 2);
 	if (game->texture_prop.offset_y < 0)
 		game->texture_prop.offset_y = 0;
 	game->texture_prop.offset_x = col * RAY_STRIP;
 	game->texture_prop.width = RAY_STRIP;
-	game->texture_prop.height = (game->window_height / 2) + \
-		((int)game->wall_prop.proj_wall_height / 2);
+	game->texture_prop.height = (game->half_height) + \
+		((int)game->wall_prop.proj_height / 2);
 	if (game->texture_prop.height > game->window_height)
 		game->texture_prop.height = game->window_height;
 }

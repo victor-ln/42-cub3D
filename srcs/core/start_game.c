@@ -37,7 +37,7 @@ static int	display_game(t_game *game)
 	draw_radar(game);
 	draw_ground_and_celling(game);
 	draw_3d_walls(game);
-	draw_3d_sprites(game);
+	draw_visible_sprites(game);
 	draw_crosshair(game);
 	draw_weapon(game);
 	mlx_do_sync(game->mlx);

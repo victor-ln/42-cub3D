@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 18:23:58 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/01 21:56:10 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,21 +169,21 @@
 # define MACHINE_GUN_03				"./assets/xpm/weapons/machine_gun_04.xpm"
 # define MACHINE_GUN_04				"./assets/xpm/weapons/machine_gun_05.xpm"
 
-# define SUBMACHINE_GUN_00				"./assets/xpm/weapons/submachine_gun_01.xpm"
-# define SUBMACHINE_GUN_01				"./assets/xpm/weapons/submachine_gun_02.xpm"
-# define SUBMACHINE_GUN_02				"./assets/xpm/weapons/submachine_gun_03.xpm"
-# define SUBMACHINE_GUN_03				"./assets/xpm/weapons/submachine_gun_04.xpm"
-# define SUBMACHINE_GUN_04				"./assets/xpm/weapons/submachine_gun_05.xpm"
+# define SUBMACHINE_GUN_00			"./assets/xpm/weapons/submachine_gun_01.xpm"
+# define SUBMACHINE_GUN_01			"./assets/xpm/weapons/submachine_gun_02.xpm"
+# define SUBMACHINE_GUN_02			"./assets/xpm/weapons/submachine_gun_03.xpm"
+# define SUBMACHINE_GUN_03			"./assets/xpm/weapons/submachine_gun_04.xpm"
+# define SUBMACHINE_GUN_04			"./assets/xpm/weapons/submachine_gun_05.xpm"
 
-# define GUARD_00						"./assets/xpm/guard/front_idle_guard_01.xpm"
-# define GUARD_01						"./assets/xpm/guard/backwards_idle_guard_01.xpm"
-# define GUARD_02						"./assets/xpm/guard/shooting_guard_01.xpm"
-# define GUARD_03						"./assets/xpm/guard/shooting_guard_02.xpm"
-# define GUARD_04						"./assets/xpm/guard/dying_guard_01.xpm"
-# define GUARD_05						"./assets/xpm/guard/dying_guard_02.xpm"
-# define GUARD_06						"./assets/xpm/guard/dying_guard_03.xpm"
-# define GUARD_07						"./assets/xpm/guard/dying_guard_04.xpm"
-# define GUARD_08						"./assets/xpm/guard/dying_guard_05.xpm"
+# define GUARD_00				"./assets/xpm/guard/front_idle_guard_01.xpm"
+# define GUARD_01				"./assets/xpm/guard/backwards_idle_guard_01.xpm"
+# define GUARD_02				"./assets/xpm/guard/shooting_guard_01.xpm"
+# define GUARD_03				"./assets/xpm/guard/shooting_guard_02.xpm"
+# define GUARD_04				"./assets/xpm/guard/dying_guard_01.xpm"
+# define GUARD_05				"./assets/xpm/guard/dying_guard_02.xpm"
+# define GUARD_06				"./assets/xpm/guard/dying_guard_03.xpm"
+# define GUARD_07				"./assets/xpm/guard/dying_guard_04.xpm"
+# define GUARD_08				"./assets/xpm/guard/dying_guard_05.xpm"
 
 # define WEAPONS_TYPES			4
 # define WEAPONS_FRAMES			5
@@ -227,7 +227,7 @@ typedef enum e_weapons {
 	pistol,
 	machine_gun,
 	submachine_gun
-} t_weapons;
+}	t_weapons;
 
 enum e_guard {
 	front_idle_guard,
@@ -364,7 +364,7 @@ typedef struct s_minimap
 
 typedef struct s_wall_properties
 {
-	float		proj_wall_height;
+	float		proj_height;
 	float		proj_wall_dist;
 	float		ray_distance;
 	int			distance_from_top;
@@ -378,6 +378,7 @@ typedef struct s_sprites
 	t_img		*img;
 	bool		is_visible;
 	bool		is_enemy;
+	int			enemy_index;
 }	t_sprites;
 
 typedef struct s_enemy
@@ -385,11 +386,9 @@ typedef struct s_enemy
 	int			enemy_index;
 	bool		is_dead;
 	int			enemy_frame;
-	int			enemy_area;
-	int			enemy_location;
 }	t_enemy;
 
-typedef	struct s_fps
+typedef struct s_fps
 {
 	clock_t				ticks_last_frame;
 	double				fps_length;
@@ -408,6 +407,8 @@ typedef struct s_game
 	t_rays_properties		ray_prop[2];
 	long					ray_nums;
 	long					window_width;
+	long					half_width;
+	long					half_height;
 	long					window_height;
 	t_fps					fps;
 	long					sprites_num;

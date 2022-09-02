@@ -12,7 +12,10 @@
 
 #include "cub3D.h"
 
-static void	save_sprites_position(t_game *game);
+static void		save_sprites_params(t_game *game);
+static void		update_enemy_sprite(t_game *game, int i);
+static float	get_sprite_angle(t_game *game, int sprite_id);
+static void		save_sprite_position(t_sprites *sprite, int col, int line);
 
 void	save_sprites(t_game *game)
 {
@@ -26,20 +29,23 @@ void	save_sprites(t_game *game)
 		return ;
 	game->enemies_num = game->sprites_num;
 	game->sprites = malloc(sizeof(t_sprites) * game->sprites_num);
+	game->visible_sprites = malloc(sizeof(t_sprites) * game->sprites_num);
 	game->enemies = ft_calloc(sizeof(t_sprites), game->enemies_num);
-	if (!game->sprites || !game->enemies)
+	if (!game->sprites || !game->enemies || !game->visible_sprites)
 		error("Malloc Failed", game);
-	save_sprites_position(game);
+	save_sprites_params(game);
 }
 
-static void	save_sprites_position(t_game *game)
+static void	save_sprites_params(t_game *game)
 {
 	int		sprite_counter;
+	int		enemy_counter;
 	int		line;
 	int		col;
 
 	line = -1;
 	sprite_counter = 0;
+	enemy_counter = 0;
 	while (game->params.map[++line])
 	{
 		col = -1;
@@ -47,16 +53,19 @@ static void	save_sprites_position(t_game *game)
 		{
 			if (game->params.map[line][col] == 'e')
 			{
-				game->sprites[sprite_counter].coord.x = (col * TILE_SIZE) + \
-					(TILE_SIZE / 2);
-				game->sprites[sprite_counter].coord.y = (line * TILE_SIZE) + \
-					(TILE_SIZE / 2);
-				game->sprites[sprite_counter].is_visible = false;
+				save_sprite_position(game->sprites + sprite_counter, col, line);
 				game->sprites[sprite_counter].img = game->enemy[0];
 				game->params.map[line][col] = '0';
-				game->enemies[sprite_counter].enemy_index = sprite_counter;
-				sprite_counter++;
+				game->enemies[enemy_counter++].enemy_index = sprite_counter;
+				game->sprites[sprite_counter].is_enemy = true;
+				game->sprites[sprite_counter++].enemy_index = sprite_counter;
 			}
 		}
 	}
+}
+
+static void	save_sprite_position(t_sprites *sprite, int col, int line)
+{
+	sprite->coord.x = (col * TILE_SIZE) + (TILE_SIZE / 2);
+	sprite->coord.y = (line * TILE_SIZE) + (TILE_SIZE / 2);
 }
