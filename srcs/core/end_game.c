@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 21:31:58 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:58:14 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	free_game(t_game *game);
 static void	destroy_game(t_game *game);
-static void	destroy_sprites(t_img **images, void *mlx, int x);
 
 void	error(char *msg, t_game *game)
 {
@@ -57,6 +56,8 @@ static void	destroy_game(t_game *game)
 	destroy_sprites(game->crosshair, game->mlx, 2);
 	destroy_sprites(game->door_textures, game->mlx, TEXTURES_NUM);
 	destroy_sprites(game->enemy, game->mlx, GUARD_NUM);
+	destroy_sprites(game->options_menu, game->mlx, 16);
+	destroy_sprites(game->selection_menu, game->mlx, 10);
 	i = 0;
 	while (i < WEAPONS_TYPES)
 		destroy_sprites(game->weapons[i++], game->mlx, WEAPONS_FRAMES);
@@ -69,7 +70,7 @@ static void	destroy_game(t_game *game)
 	}
 }
 
-static void	destroy_sprites(t_img **images, void *mlx, int x)
+void	destroy_sprites(t_img **images, void *mlx, int x)
 {
 	int		i;
 

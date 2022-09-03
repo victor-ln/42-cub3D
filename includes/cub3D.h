@@ -119,16 +119,16 @@ void		kill_enemy(t_game *game, int i);
 
 void		qsort_recursive(t_sprites *sprites, int start, int end);
 
-int			display_game(t_game *game);
-
-int			display_general_menu(t_game *game);
-
-int			display_options_menu(t_game *game);
-
 int			load_sprite(t_img **image, void *mlx, char *path);
 
 void		load_menus(t_game *game);
 
 int			key_press_menu(int key_code, t_game *game);
+
+void		load_window(t_game *game);
+
+void		load_images(t_game *game);
+
+void		destroy_sprites(t_img **images, void *mlx, int x);
 
 #endif

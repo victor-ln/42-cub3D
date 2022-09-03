@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_selection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 16:39:41 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:06:08 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	update_enemy_sprite(t_game *game, int i);
+static void		update_enemy_sprite(t_game *game, int i);
 static float	get_sprite_angle(t_game *game, int sprite_id);
 
 void	get_visible_sprites(t_game *game)
@@ -43,6 +43,8 @@ void	get_visible_sprites(t_game *game)
 
 static void	update_enemy_sprite(t_game *game, int i)
 {
+	if (game->frame & 1)
+		return ;
 	if (game->enemies[i].is_dead)
 	{
 		if (!game->enemies[i].enemy_frame)

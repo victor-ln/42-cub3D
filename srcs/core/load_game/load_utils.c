@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 19:23:50 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 17:50:06 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:10:32 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	load_player(t_game *game)
 
 	i = 0;
 	game->player.weapon = pistol;
-	game->player.rotation_speed = STD_ROTATION_SPEED * 2;
+	game->player.rotation_speed = STD_ROTATION_SPEED_2;
 	game->player.movement_speed = 8;
 	while (game->params.map[i])
 	{

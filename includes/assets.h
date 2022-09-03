@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:45:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/02 21:39:13 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:28:02 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,21 @@
 
 # define OPTION_MENU_PATH "./assets/xpm/options_menu/"
 # define O_MENU_STD_01 "options_unselected.xpm"
-# define O_MENU_MAIN_01 "main_menu01.xpm"
-# define O_MENU_MAIN_02 "main_menu02.xpm"
-# define O_MENU_MAIN_03 "main_menu03.xpm"
 # define O_MENU_MOUSE_01 "mouse_speed01.xpm"
 # define O_MENU_MOUSE_02 "mouse_speed02.xpm"
 # define O_MENU_MOUSE_03 "mouse_speed03.xpm"
+# define O_MENU_RES_01 "resolution01.xpm"
+# define O_MENU_RES_02 "resolution02.xpm"
+# define O_MENU_RES_03 "resolution03.xpm"
+# define O_MENU_MAIN_01 "main_menu01.xpm"
+# define O_MENU_MAIN_02 "main_menu02.xpm"
+# define O_MENU_MAIN_03 "main_menu03.xpm"
 # define O_MENU_MBAR_01 "ms_bar01.xpm"
 # define O_MENU_MBAR_02 "ms_bar02.xpm"
 # define O_MENU_MBAR_03 "ms_bar03.xpm"
 # define O_MENU_RBAR_01 "res_bar01.xpm"
 # define O_MENU_RBAR_02 "res_bar02.xpm"
 # define O_MENU_RBAR_03 "res_bar03.xpm"
-# define O_MENU_RES_01 "resolution01.xpm"
-# define O_MENU_RES_02 "resolution02.xpm"
-# define O_MENU_RES_03 "resolution03.xpm"
 
 //SELECTION_MENU
 # define SELECTION_MENU_PATH "./assets/xpm/selection_menu/"

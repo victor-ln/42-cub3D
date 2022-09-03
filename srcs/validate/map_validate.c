@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/22 22:38:17 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:51:55 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	map_validate(t_game *game)
 	while (++v.line_num < v.total_lines)
 		if (line_validate(game->params.map, v))
 			error("Not surrounded by walls", game);
+	game->minimap.width = get_max_line_size(game->params.map);
+	game->minimap.height = ft_count_vectors((void **)game->params.map);
 }
 
 static int	line_validate(char **map, t_validation v)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 17:41:51 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:10:16 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	mouse_move(int x, int y, t_game *game)
 	{
 		move_direction = (x - (game->half_width)) * 0.001;
 		game->player.coord.angle += move_direction * \
-			STD_ROTATION_SPEED_M;
+			game->player.rotation_speed;
 		move_direction = 0;
 		last_x = x;
 	}

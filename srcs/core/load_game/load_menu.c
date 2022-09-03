@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:43:30 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/02 21:59:40 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:43:16 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	load_menus(t_game *game)
 {
 	char	*path;
 	char	*file[17];
-	
+
 	path = ft_strjoin(OPTION_MENU_PATH, get_resolution(game->resolution));
 	save_options_file_name(file);
 	load_menu_group(game, path, file, game->options_menu);
@@ -38,7 +38,7 @@ static void	load_menu_group(t_game *game, char *path, char **file, t_img **img)
 	char	*full_path;
 	int		i;
 	int		status;
-	
+
 	i = 0;
 	status = 0;
 	while (file[i] != NULL)
@@ -65,21 +65,21 @@ static char	*get_resolution(int resolution)
 static void	save_options_file_name(char **file_name)
 {
 	file_name[0] = O_MENU_STD_01;
-	file_name[1] = O_MENU_MAIN_01;
-	file_name[2] = O_MENU_MAIN_02;
-	file_name[3] = O_MENU_MAIN_03;
-	file_name[4] = O_MENU_MOUSE_01;
-	file_name[5] = O_MENU_MOUSE_02;
-	file_name[6] = O_MENU_MOUSE_03;
-	file_name[7] = O_MENU_MBAR_01;
-	file_name[8] = O_MENU_MBAR_02;
-	file_name[9] = O_MENU_MBAR_03;
-	file_name[10] = O_MENU_RBAR_01;
-	file_name[11] = O_MENU_RBAR_02;
-	file_name[12] = O_MENU_RBAR_03;
-	file_name[13] = O_MENU_RES_01;
-	file_name[14] = O_MENU_RES_02;
-	file_name[15] = O_MENU_RES_03;
+	file_name[1] = O_MENU_MOUSE_01;
+	file_name[2] = O_MENU_MOUSE_02;
+	file_name[3] = O_MENU_MOUSE_03;
+	file_name[4] = O_MENU_RES_01;
+	file_name[5] = O_MENU_RES_02;
+	file_name[6] = O_MENU_RES_03;
+	file_name[7] = O_MENU_MAIN_01;
+	file_name[8] = O_MENU_MAIN_02;
+	file_name[9] = O_MENU_MAIN_03;
+	file_name[10] = O_MENU_MBAR_01;
+	file_name[11] = O_MENU_MBAR_02;
+	file_name[12] = O_MENU_MBAR_03;
+	file_name[13] = O_MENU_RBAR_01;
+	file_name[14] = O_MENU_RBAR_02;
+	file_name[15] = O_MENU_RBAR_03;
 	file_name[16] = 0;
 }
 

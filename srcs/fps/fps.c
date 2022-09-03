@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:41:04 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/31 21:09:20 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:08:58 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ void	count_fps(t_game *game)
 	game->fps.ticks_last_frame = clock();
 	if (game->fps.delta > 0)
 		game->fps.frames = (CLOCKS_PER_SEC / game->fps.delta) / 1000;
-	free(game->fps.fps_string);
-	game->fps.fps_string = ft_itoa(game->fps.frames);
+	if (game->is_on_the_game)
+	{
+		free(game->fps.fps_string);
+		game->fps.fps_string = ft_itoa(game->fps.frames);
+	}
 }

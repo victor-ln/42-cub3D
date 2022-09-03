@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 18:55:28 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/03 17:05:55 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	draw_weapon(t_game *game)
 		from_x, \
 		from_y \
 	);
-	update_weapon_frame(&game->player);
+	if (game->frame & 1)
+		update_weapon_frame(&game->player);
 }
 
 static void	update_weapon_frame(t_player *player)

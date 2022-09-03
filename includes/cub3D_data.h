@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 21:54:04 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:09:17 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,20 @@
 # define EPSILON				0.2
 
 /*
+	Rotation speed is equals to 1
+	times PI divided by 180 degrees.
+*/
+# define STD_ROTATION_SPEED_1 	0.01745329251994329576923690768489
+/*
 	Rotation speed is equals to 4
 	times PI divided by 180 degrees.
 */
-# define STD_ROTATION_SPEED 	0.03490658503988659153847381536977
-# define STD_ROTATION_SPEED_M 	0.01745329251994329576923690768489
+# define STD_ROTATION_SPEED_2	0.03490658503988659153847381536977
+/*
+	Rotation speed is equals to 6
+	times PI divided by 180 degrees.
+*/
+# define STD_ROTATION_SPEED_3	0.10471975511965977461542144610932
 
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
@@ -74,7 +83,7 @@
 
 # define ESC					65307
 # define CTRL					65507
-# define ALT					65505
+# define SHIFT					65505
 # define LEFT_CLICK				1
 # define RIGHT_CLICK			2
 # define SCROLL_UP				4
@@ -83,6 +92,8 @@
 # define ARROW_UP				65362
 # define ARROW_RIGHT			65363
 # define ARROW_DOWN				65364
+# define ENTER_1				65293
+# define ENTER_2				65421
 
 /* COLORS */
 # define RED					0xFF0000
@@ -110,9 +121,9 @@ enum e_leveling{
 };
 
 enum e_resolution{
-	BIG,
+	LIT,
 	MID,
-	LIT
+	BIG
 };
 
 enum e_menu_selection{
@@ -122,9 +133,20 @@ enum e_menu_selection{
 };
 
 enum e_menu_options{
-	RESOLUTION,
 	MOUSE_SPEED,
-	MAIN_MENU	
+	RESOLUTION,
+	MAIN_MENU,
+	MOUSE_SPEED_SELECTED_1,
+	MOUSE_SPEED_SELECTED_2,
+	MOUSE_SPEED_SELECTED_3,
+	RESOLUTION_SELECTED_1,
+	RESOLUTION_SELECTED_2,
+	RESOLUTION_SELECTED_3
+};
+
+enum e_menu_screen{
+	SELECTION_MENU,
+	OPTIONS_MENU
 };
 
 enum e_coord_enum{
@@ -365,6 +387,7 @@ typedef struct s_game
 	t_img					*selection_menu[10];
 	int						menu_index;
 	int						menu_screen;
+	bool					is_selected;
 	int						frame;
 }	t_game;
 

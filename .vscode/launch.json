@@ -11,7 +11,7 @@
 			"program": "${workspaceFolder}/cub3D",
 			"args": ["${workspaceFolder}/maps/success/map_1.cub"],
 			"stopAtEntry": false,
-			"cwd": "${fileDirname}",
+			"cwd": "/home/vlima-nu/cub3D_ecole42/",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "gdb",

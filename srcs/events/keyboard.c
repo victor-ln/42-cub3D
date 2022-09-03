@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 21:34:02 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/03 19:29:49 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ static void	key_movement(int keycode, t_game *game);
 
 int	key_press_game(int keycode, t_game *game)
 {
+	if (!game->is_on_the_game)
+		return (key_press_menu(keycode, game));
 	key_movement(keycode, game);
 	if (ft_strchr("1234", keycode))
 		game->player.weapon = keycode - '0' - 1;
 	else if (keycode == ESC)
 	{
+		game->frame = 0;
+		game->menu_index = 0;
 		game->is_on_the_game = false;
-		game->mlx->loop_hook = display_general_menu;
-		game->window->hooks[2].hook = key_press_menu;
+		game->menu_screen = SELECTION_MENU;
 	}
 	else if (keycode == CTRL)
 	{
@@ -32,7 +35,7 @@ int	key_press_game(int keycode, t_game *game)
 	}
 	else if (keycode == 'e')
 		open_door(game);
-	else if (keycode == ALT)
+	else if (keycode == SHIFT)
 		game->player.movement_speed = 16;
 	return (0);
 }
@@ -53,9 +56,9 @@ int	key_release(int keycode, t_game *game)
 		game->player.walk_direction = 0;
 	else if (keycode == 'w')
 		game->player.walk_direction = 0;
-	else if (keycode == CTRL)
+	else if (keycode == CTRL && game->player.has_shooted)
 		game->player.is_shooting = false;
-	else if (keycode == ALT)
+	else if (keycode == SHIFT)
 		game->player.movement_speed = 8;
 	return (0);
 }
