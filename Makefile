@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/01 21:54:22 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/02 20:53:35 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,14 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 PATH_TEST		=	test/
 
+MENU			=	menu.c
+
 LOAD_FILE		=	load_file.c \
 					save_params.c \
 					save_utils.c \
 
 LOAD_GAME		=	load_game.c \
+					load_menu.c \
 					load_textures.c \
 					load_utils.c \
 
@@ -84,6 +87,7 @@ SORTING			=	quick_sort.c \
 # FILES
 SOURCES			=	$(addprefix core/load_file/, $(LOAD_FILE)) \
 					$(addprefix core/load_game/, $(LOAD_GAME)) \
+					$(addprefix menu/, $(MENU)) \
 					$(addprefix core/, $(CORE)) \
 					$(addprefix events/, $(EVENTS)) \
 					$(addprefix fps/, $(FPS)) \
@@ -113,6 +117,7 @@ $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)$(HEADERS)
 					@mkdir -p obj/render
 					@mkdir -p obj/validate
 					@mkdir -p obj/sorting
+					@mkdir -p obj/menu
 					$(CC) $(MLXFLAGS) -c $< -o $@
 
 run:				all

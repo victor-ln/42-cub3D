@@ -12,23 +12,20 @@
 
 #include "cub3D.h"
 
-static int	display_game(t_game *game);
-
 void	start_game(t_game *game)
 {
 	start_time(game);
-	mlx_hook(game->window, 2, 1, key_press, game);
+	mlx_hook(game->window, 2, 1, key_press_game, game);
 	mlx_hook(game->window, 3, 2, key_release, game);
 	mlx_hook(game->window, 4, 4, mouse_click, game);
 	mlx_hook(game->window, 5, 8, mouse_release, game);
 	mlx_hook(game->window, 6, 64, mouse_move, game);
 	mlx_hook(game->window, 17, 0, close_window, game);
-	mlx_expose_hook(game->window, reload_image, game);
 	mlx_loop_hook(game->mlx, display_game, game);
 	mlx_loop(game->mlx);
 }
 
-static int	display_game(t_game *game)
+int	display_game(t_game *game)
 {
 	count_fps(game);
 	move_player(game);
@@ -49,3 +46,29 @@ static int	display_game(t_game *game)
 		WHITE, game->fps.fps_string);
 	return (0);
 }
+
+int	display_general_menu(t_game *game)
+{
+	int			frame;
+	static int	direction = 1;
+
+	game->frame += direction;
+	if (game->frame == 8)
+	{
+		direction = -1;
+		game->frame--;
+	}
+	else if (!game->frame)
+		direction = 1;
+	if (game->frame < 2)
+		frame = 0;
+	else
+		frame = (game->frame / 2) + ((game->menu_index) * 3);
+	mlx_put_image_to_window(game->mlx, game->window, game->selection_menu[frame], 0, 0);
+	return (0);
+}
+
+// int	display_options_menu(t_game *game)
+// {
+// 	return (0);
+// }

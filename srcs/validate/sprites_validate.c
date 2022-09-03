@@ -13,8 +13,6 @@
 #include "cub3D.h"
 
 static void		save_sprites_params(t_game *game);
-static void		update_enemy_sprite(t_game *game, int i);
-static float	get_sprite_angle(t_game *game, int sprite_id);
 static void		save_sprite_position(t_sprites *sprite, int col, int line);
 
 void	save_sprites(t_game *game)
@@ -58,7 +56,8 @@ static void	save_sprites_params(t_game *game)
 				game->params.map[line][col] = '0';
 				game->enemies[enemy_counter++].enemy_index = sprite_counter;
 				game->sprites[sprite_counter].is_enemy = true;
-				game->sprites[sprite_counter++].enemy_index = sprite_counter;
+				game->sprites[sprite_counter].enemy_index = sprite_counter;
+				sprite_counter++;
 			}
 		}
 	}

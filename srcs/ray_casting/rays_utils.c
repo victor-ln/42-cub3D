@@ -6,11 +6,13 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 19:52:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:44:47 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static int	manipulate_ray_axis(t_game *game, int x, int y, int axis);
 
 void	normalize_angle(double *angle)
 {
@@ -34,14 +36,14 @@ void	get_ray_content(t_game *game, int ray_id)
 		x = (int)floor((game->rays[ray_id].coord.x - \
 			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
 		y = (int)floor(game->rays[ray_id].coord.y / TILE_SIZE);
-		x = manipulate_ray_axis(game, x, y, horizontal);
+		x += manipulate_ray_axis(game, x, y, horizontal);
 	}
 	else
 	{
 		x = (int)floor(game->rays[ray_id].coord.x / TILE_SIZE);
 		y = (int)floor((game->rays[ray_id].coord.y - \
 			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
-		y = manipulate_ray_axis(game, x, y, vertical);
+		y += manipulate_ray_axis(game, x, y, vertical);
 	}
 	game->rays[ray_id].content_type = game->params.map[y][x];
 }

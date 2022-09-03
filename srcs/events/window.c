@@ -12,12 +12,6 @@
 
 #include "cub3D.h"
 
-int	reload_image(t_game *game)
-{
-	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	return (0);
-}
-
 int	close_window(t_game *game)
 {
 	printf("Window closed\n");

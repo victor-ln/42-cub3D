@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 18:53:13 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/02 17:41:51 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	mouse_click(int button, int x, int y, t_game *game)
 {
-	(void)x;
-	(void)y;
+	(void)x, (void)y;
+	if (!game->is_on_the_game)
+		return (0);
 	if (button == LEFT_CLICK)
 	{
 		game->player.is_shooting = true;
@@ -42,8 +43,9 @@ int	mouse_click(int button, int x, int y, t_game *game)
 
 int	mouse_release(int button, int x, int y, t_game *game)
 {
-	(void)x;
-	(void)y;
+	(void)x, (void)y;
+	if (!game->is_on_the_game)
+		return (0);
 	if (button == LEFT_CLICK && game->player.has_shooted)
 	{
 		game->player.is_shooting = false;
@@ -58,6 +60,8 @@ int	mouse_move(int x, int y, t_game *game)
 	static float	move_direction;
 
 	(void)y;
+	if (!game->is_on_the_game)
+		return (0);
 	if (last_x != x)
 	{
 		move_direction = (x - (game->half_width)) * 0.001;

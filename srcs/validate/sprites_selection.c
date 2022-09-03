@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_selection.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 21:52:37 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/02 16:39:41 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+static void	update_enemy_sprite(t_game *game, int i);
+static float	get_sprite_angle(t_game *game, int sprite_id);
 
 void	get_visible_sprites(t_game *game)
 {
@@ -62,7 +65,7 @@ static float	get_sprite_angle(t_game *game, int sprite_id)
 {
 	float	sprite_angle;
 
-	game->player.coord.angle - \
+	sprite_angle = game->player.coord.angle - \
 		atan2(game->sprites[sprite_id].coord.y - game->player.coord.y, \
 			game->sprites[sprite_id].coord.x - game->player.coord.x);
 	if (sprite_angle > M_PI)

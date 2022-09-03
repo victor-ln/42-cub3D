@@ -39,13 +39,11 @@ int			get_map(char *file_content, t_game *game);
 
 void		load_game(t_game *game);
 
-int			reload_image(t_game *game);
-
 int			close_window(t_game *game);
 
 void		print_matrix(char **map);
 
-int			key_press(int keycode, t_game *game);
+int			key_press_game(int keycode, t_game *game);
 
 int			key_release(int keycode, t_game *game);
 
@@ -120,5 +118,17 @@ bool		is_enemy_spotted(t_game *game, int i);
 void		kill_enemy(t_game *game, int i);
 
 void		qsort_recursive(t_sprites *sprites, int start, int end);
+
+int			display_game(t_game *game);
+
+int			display_general_menu(t_game *game);
+
+int			display_options_menu(t_game *game);
+
+int			load_sprite(t_img **image, void *mlx, char *path);
+
+void		load_menus(t_game *game);
+
+int			key_press_menu(int key_code, t_game *game);
 
 #endif

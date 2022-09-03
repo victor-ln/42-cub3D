@@ -6,16 +6,16 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:33:40 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 18:58:24 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:52:03 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include "assets.h"
 
-static int	load_sprite(t_img **image, void *mlx, char *path);
 static int	load_weapon_texture(t_game *game);
 static int	load_automatic_weapon_texture(t_game *game);
-static int	load_env_texture(t_game *game);
+static int	load_env_textures(t_game *game);
 
 void	load_textures(t_game *game)
 {
@@ -36,7 +36,7 @@ void	load_textures(t_game *game)
 		error("Could not load textures", game);
 }
 
-static int	load_sprite(t_img **image, void *mlx, char *path)
+int	load_sprite(t_img **image, void *mlx, char *path)
 {
 	int		height;
 	int		width;
@@ -49,11 +49,11 @@ static int	load_sprite(t_img **image, void *mlx, char *path)
 	return (0);
 }
 
-static int	load_env_texture(t_game *game)
+static int	load_env_textures(t_game *game)
 {
 	int	status;
 
-	status += load_sprite(game->crosshair, game->mlx, GREEN_CROSSHAIR);
+	status = load_sprite(game->crosshair, game->mlx, GREEN_CROSSHAIR);
 	status += load_sprite(game->crosshair + 1, game->mlx, RED_CROSSHAIR);
 	status += load_sprite(game->door_textures, game->mlx, LIGHT_FRONT_DOOR);
 	status += load_sprite(game->door_textures + 1, game->mlx, DARK_FRONT_DOOR);
@@ -75,7 +75,7 @@ static int	load_automatic_weapon_texture(t_game *game)
 {
 	int	status;
 
-	status += load_sprite(game->weapons[machine_gun], \
+	status = load_sprite(game->weapons[machine_gun], \
 	game->mlx, MACHINE_GUN_00);
 	status += load_sprite(game->weapons[machine_gun] + 1, \
 	game->mlx, MACHINE_GUN_01);
@@ -102,7 +102,7 @@ static int	load_weapon_texture(t_game *game)
 {
 	int	status;
 
-	status += load_sprite(game->weapons[knife], game->mlx, KNIFE_00);
+	status = load_sprite(game->weapons[knife], game->mlx, KNIFE_00);
 	status += load_sprite(game->weapons[knife] + 1, game->mlx, KNIFE_01);
 	status += load_sprite(game->weapons[knife] + 2, game->mlx, KNIFE_02);
 	status += load_sprite(game->weapons[knife] + 3, game->mlx, KNIFE_03);
