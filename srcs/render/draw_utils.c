@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/23 17:21:09 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:33:26 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,20 @@ void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
 		}
 		j++;
 	}
+}
+
+int32_t	add_shade(int32_t color, float scale)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	if (color == (int)TRANSPARENCY)
+		return (color);
+	if (scale > 1)
+		scale = 1;
+	r = ((color >> 16) & 0xFF) * scale;
+	g = ((color >> 8) & 0xFF) * scale;
+	b = (color & 0xFF) * scale;
+	return ((r << 16) | (g << 8) | b);
 }

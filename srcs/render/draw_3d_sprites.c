@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 21:25:08 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/04 21:40:50 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ static void	draw_3d_sprite(t_game *game, t_sprites *sprite, int x, int y)
 				{
 					texture_y = get_color_offset_y(game, y, sprite);
 					draw_pixel(game->img, \
-						x, y, get_color(sprite->img, texture_x, texture_y));
+						x, y, add_shade(get_color(sprite->img, texture_x, texture_y), 
+						600 / sprite->coord.hipo));
 				}
 				y++;
 			}

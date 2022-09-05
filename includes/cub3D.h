@@ -131,4 +131,6 @@ void		load_images(t_game *game);
 
 void		destroy_sprites(t_img **images, void *mlx, int x);
 
+int32_t		add_shade(int32_t color, float scale);
+
 #endif

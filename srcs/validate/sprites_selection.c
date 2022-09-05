@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/03 17:06:08 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:52:02 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	get_visible_sprites(t_game *game)
 	game->visible_sprites_num = 0;
 	while (i < game->sprites_num)
 	{
+		game->sprites[i].is_visible = false;
 		sprite_angle = get_sprite_angle(game, i);
 		if (sprite_angle < (FOV_ANGLE / 2) + EPSILON)
 		{
@@ -36,6 +37,7 @@ void	get_visible_sprites(t_game *game)
 				update_enemy_sprite(game, i);
 			game->visible_sprites[game->visible_sprites_num++] = \
 				game->sprites[i];
+			game->sprites[i].is_visible = true;
 		}
 		i++;
 	}

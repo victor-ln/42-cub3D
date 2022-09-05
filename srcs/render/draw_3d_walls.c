@@ -34,8 +34,9 @@ void	draw_3d_walls(t_game *game)
 		{
 			get_texture_coordinates(game, col, line);
 			draw_pixel(game->img, col, line, \
-				get_color(current_img, \
-				game->wall_prop.color_x, game->wall_prop.color_y));
+				add_shade(get_color(current_img, \
+				game->wall_prop.color_x, game->wall_prop.color_y), 
+				600 / game->rays[col].coord.hipo));
 			line++;
 		}
 		col++;
