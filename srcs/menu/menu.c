@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:21:09 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/03 19:34:47 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:59:15 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,23 @@ static int	set_resolution(t_game *game)
 	if (game->menu_index == RESOLUTION_SELECTED_3 && game->resolution == BIG)
 		return (EXIT_FAILURE);
 	game->resolution = game->menu_index % 3;
+	if (game->resolution == LIT)
+	{
+		game->window_width = STD_WINDOW_WIDTH_3;
+		game->window_height = STD_WINDOW_HEIGHT_3;
+	}
+	else if (game->resolution == MID)
+	{
+		game->window_width = STD_WINDOW_WIDTH_2;
+		game->window_height = STD_WINDOW_HEIGHT_2;
+	}
+	else
+	{
+		game->window_width = STD_WINDOW_WIDTH_1;
+		game->window_height = STD_WINDOW_HEIGHT_1;
+	}
+	game->half_width = game->window_width / 2;
+	game->half_height = game->window_height / 2;
 	return (EXIT_SUCCESS);
 }
 
@@ -148,7 +165,16 @@ static void	reload_game(t_game *game)
 	destroy_sprites(game->minimap.radars, game->mlx, 2);
 	destroy_sprites(game->options_menu, game->mlx, 16);
 	destroy_sprites(game->selection_menu, game->mlx, 10);
+	ft_free_null(game->rays);
+	load_rays(game);
 	load_window(game);
 	load_images(game);
 	load_menus(game);
+	start_time(game);
+	mlx_hook(game->window, 2, 1, key_press_game, game);
+	mlx_hook(game->window, 3, 2, key_release, game);
+	mlx_hook(game->window, 4, 4, mouse_click, game);
+	mlx_hook(game->window, 5, 8, mouse_release, game);
+	mlx_hook(game->window, 6, 64, mouse_move, game);
+	mlx_hook(game->window, 17, 0, close_window, game);
 }

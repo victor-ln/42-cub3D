@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:45:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/03 18:28:02 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 18:49:45 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@
 
 //SELECTION_MENU
 # define SELECTION_MENU_PATH "./assets/xpm/selection_menu/"
-# define S_MENU_00 "selected_menu_01.xpm"
+# define S_MENU_00 "selected_menu_0.xpm"
 # define S_MENU_RES_00 "selected_resume1.xpm"
 # define S_MENU_RES_01 "selected_resume2.xpm"
 # define S_MENU_RES_02 "selected_resume3.xpm"
