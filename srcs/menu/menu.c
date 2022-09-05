@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:21:09 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:59:15 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:48:46 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ int	key_press_menu(int key_code, t_game *game)
 	if (key_code == ESC)
 	{
 		if (game->menu_screen == SELECTION_MENU)
-		{
 			game->is_on_the_game = true;
+		else if (game->is_selected)
+		{
+			game->menu_index /= 6;
+			game->is_selected = false;
 		}
 		else
 		{
@@ -78,6 +81,10 @@ int	key_press_menu(int key_code, t_game *game)
 			{
 				game->menu_index = (game->menu_index * 3) + 3;
 				game->is_selected = true;
+				if (game->menu_index == MOUSE_SPEED_SELECTED_1)
+					game->menu_index += game->mouse_speed;
+				else
+					game->menu_index += game->resolution;
 			}
 			else
 			{
@@ -111,9 +118,17 @@ int	key_press_menu(int key_code, t_game *game)
 static void	apply_changes(t_game *game)
 {
 	float	new_rotation_speed;
+	// int		mouse_x;
+	// int		mouse_y;
 
 	if (game->menu_index >= RESOLUTION_SELECTED_1)
+	{
 		reload_game(game);
+		game->menu_index = RESOLUTION;
+		// mlx_mouse_show(game->mlx, game->window);
+		// mlx_mouse_move(game->mlx, game->window, game->half_width, game->half_height);
+		// mlx_mouse_get_pos(game->mlx, game->window, &mouse_x, &mouse_y);
+	}
 	else
 	{
 		if (game->menu_index == MOUSE_SPEED_SELECTED_1)
@@ -124,6 +139,8 @@ static void	apply_changes(t_game *game)
 			new_rotation_speed = STD_ROTATION_SPEED_3;
 		if (game->player.rotation_speed != new_rotation_speed)
 			game->player.rotation_speed = new_rotation_speed;
+		game->mouse_speed = game->menu_index % 3;
+		game->menu_index = MOUSE_SPEED;
 	}
 }
 
@@ -174,7 +191,7 @@ static void	reload_game(t_game *game)
 	mlx_hook(game->window, 2, 1, key_press_game, game);
 	mlx_hook(game->window, 3, 2, key_release, game);
 	mlx_hook(game->window, 4, 4, mouse_click, game);
-	mlx_hook(game->window, 5, 8, mouse_release, game);
 	mlx_hook(game->window, 6, 64, mouse_move, game);
+	mlx_hook(game->window, 5, 8, mouse_release, game);
 	mlx_hook(game->window, 17, 0, close_window, game);
 }

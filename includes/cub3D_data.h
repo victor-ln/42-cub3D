@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/03 18:09:17 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 19:21:51 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,17 @@ enum e_leveling{
 	vertical
 };
 
-enum e_resolution{
+typedef enum e_resolution{
 	LIT,
 	MID,
 	BIG
-};
+}	t_resolution;
+
+typedef enum e_mouse_speed{
+	SLOW,
+	MEDIUM,
+	FAST
+}	t_mouse_speed;
 
 enum e_menu_selection{
 	RESUME,
@@ -382,7 +388,8 @@ typedef struct s_game
 	char					*file_content;
 	char					*map_cub;
 	bool					is_on_the_game;
-	int						resolution;
+	t_resolution			resolution;
+	t_mouse_speed			mouse_speed;
 	t_img					*options_menu[16];
 	t_img					*selection_menu[10];
 	int						menu_index;
