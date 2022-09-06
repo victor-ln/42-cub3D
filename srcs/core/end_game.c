@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: a <afaustin@student.42sp.org.br>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/05 21:54:31 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:16:47 by a                ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	error(char *msg, t_game *game)
 {
 	printf("Error\n%s.\n%s\n", msg, strerror(errno));
+	ft_free_matrix((void **)game->params.map, 0);
+	ft_free_matrix((void **)game->params.textures, 4);
+	ft_free_matrix((void **)game->params.rgb[0], 0);
+	ft_free_matrix((void **)game->params.rgb[1], 0);
 	destroy_game(game);
 	free_game(game);
 	exit(errno);
