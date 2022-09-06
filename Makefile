@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/04 18:58:25 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/05 22:10:13 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ INCLUDES		=	-I $(PATH_INC)
 DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror #$(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
 CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \
@@ -124,7 +124,7 @@ run:				all
 					./$(NAME)
 
 valgrind:			all
-					$(VALGRIND) ./$(NAME)
+					$(VALGRIND) ./$(NAME) maps/success/map_1.cub
 
 norm:
 					norminette srcs/ libft/ includes/

@@ -84,7 +84,7 @@ void			*ft_memcpy(void *dest, const void *src, size_t len);
 /*
 	Frees a pointer and set it to NULL
 */
-void			ft_free_null(void *ptr);
+void			ft_free_null(void **ptr);
 
 int				ft_isspace(int c);
 

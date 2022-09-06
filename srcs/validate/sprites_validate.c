@@ -53,7 +53,7 @@ static void	save_sprites_params(t_game *game)
 			{
 				save_sprite_position(game->sprites + sprite_counter, col, line);
 				game->sprites[sprite_counter].img = game->enemy[0];
-				game->params.map[line][col] = '0';
+				// game->params.map[line][col] = '0';
 				game->enemies[enemy_counter++].enemy_index = sprite_counter;
 				game->sprites[sprite_counter].is_enemy = true;
 				game->sprites[sprite_counter].enemy_index = sprite_counter;

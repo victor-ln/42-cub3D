@@ -1,7 +1,7 @@
 NAME		=	libft.a
 
-CC			=	clang
-FLAGS		=	-Wall -Wextra -Werror -g3 -O3 -fPIE
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror -O3
 
 SRC			=	ft_atoi.c ft_bzero.c ft_calloc.c ft_putendl_fd.c ft_isspace.c ft_isdigit.c ft_substr.c \
 				ft_strdup.c ft_strjoin.c ft_strlen.c ft_memcpy.c ft_split.c\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:21:09 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/05 20:48:46 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/05 22:01:58 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	apply_changes(t_game *game);
 static int	set_resolution(t_game *game);
-static void	reload_game(t_game *game);
-
 
 int	key_press_menu(int key_code, t_game *game)
 {
@@ -35,14 +33,14 @@ int	key_press_menu(int key_code, t_game *game)
 			game->menu_screen = SELECTION_MENU;
 		}
 	}
-	else if (key_code == ARROW_DOWN)
+	else if (key_code == ARROW_DOWN && !game->is_selected)
 	{
 		if (game->menu_index >= EXIT)
 			game->menu_index = RESUME;
 		else
 			game->menu_index++;
 	}
-	else if (key_code == ARROW_UP)
+	else if (key_code == ARROW_UP && !game->is_selected)
 	{
 		if (game->menu_index <= RESUME)
 			game->menu_index = EXIT;
@@ -118,16 +116,12 @@ int	key_press_menu(int key_code, t_game *game)
 static void	apply_changes(t_game *game)
 {
 	float	new_rotation_speed;
-	// int		mouse_x;
-	// int		mouse_y;
 
 	if (game->menu_index >= RESOLUTION_SELECTED_1)
 	{
-		reload_game(game);
+		if (set_resolution(game) == EXIT_SUCCESS)
+			game->mlx->end_loop = true;
 		game->menu_index = RESOLUTION;
-		// mlx_mouse_show(game->mlx, game->window);
-		// mlx_mouse_move(game->mlx, game->window, game->half_width, game->half_height);
-		// mlx_mouse_get_pos(game->mlx, game->window, &mouse_x, &mouse_y);
 	}
 	else
 	{
@@ -171,27 +165,4 @@ static int	set_resolution(t_game *game)
 	game->half_width = game->window_width / 2;
 	game->half_height = game->window_height / 2;
 	return (EXIT_SUCCESS);
-}
-
-static void	reload_game(t_game *game)
-{
-	if (set_resolution(game) == EXIT_FAILURE)
-		return ;
-	mlx_destroy_window(game->mlx, game->window);
-	mlx_destroy_image(game->mlx, game->img);
-	destroy_sprites(game->minimap.radars, game->mlx, 2);
-	destroy_sprites(game->options_menu, game->mlx, 16);
-	destroy_sprites(game->selection_menu, game->mlx, 10);
-	ft_free_null(game->rays);
-	load_rays(game);
-	load_window(game);
-	load_images(game);
-	load_menus(game);
-	start_time(game);
-	mlx_hook(game->window, 2, 1, key_press_game, game);
-	mlx_hook(game->window, 3, 2, key_release, game);
-	mlx_hook(game->window, 4, 4, mouse_click, game);
-	mlx_hook(game->window, 6, 64, mouse_move, game);
-	mlx_hook(game->window, 5, 8, mouse_release, game);
-	mlx_hook(game->window, 17, 0, close_window, game);
 }

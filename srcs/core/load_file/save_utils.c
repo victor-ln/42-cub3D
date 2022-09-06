@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 19:23:26 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 16:36:38 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:54:31 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	get_env_colors(char *file_content, int identifier, t_game *game)
 	if (!colors)
 		error("Malloc Failed", game);
 	game->params.rgb[identifier] = ft_split(colors, ',');
-	ft_free_null(colors);
+	ft_free_null((void *)&colors);
 	if (!game->params.rgb[identifier])
 		error("Malloc Failed", game);
 	return (n);

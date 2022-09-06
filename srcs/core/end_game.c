@@ -6,14 +6,11 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/03 17:58:14 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:54:31 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-static void	free_game(t_game *game);
-static void	destroy_game(t_game *game);
 
 void	error(char *msg, t_game *game)
 {
@@ -25,27 +22,27 @@ void	error(char *msg, t_game *game)
 
 void	end_game(t_game *game)
 {
+	ft_free_matrix((void **)game->params.map, 0);
+	ft_free_matrix((void **)game->params.textures, 4);
+	ft_free_matrix((void **)game->params.rgb[0], 0);
+	ft_free_matrix((void **)game->params.rgb[1], 0);
 	destroy_game(game);
 	free_game(game);
 	exit(errno);
 }
 
-static void	free_game(t_game *game)
+void	free_game(t_game *game)
 {
 	if (game->file_content != INPUT_ERR)
-		ft_free_null(game->file_content);
-	ft_free_matrix((void **)game->params.map, 0);
-	ft_free_matrix((void **)game->params.textures, 4);
-	ft_free_matrix((void **)game->params.rgb[0], 0);
-	ft_free_matrix((void **)game->params.rgb[1], 0);
-	ft_free_null(game->fps.fps_string);
-	ft_free_null(game->rays);
-	ft_free_null(game->sprites);
-	ft_free_null(game->visible_sprites);
-	ft_free_null(game->enemies);
+		ft_free_null((void *)&game->file_content);
+	ft_free_null((void *)&game->fps.fps_string);
+	ft_free_null((void *)&game->rays);
+	ft_free_null((void *)&game->sprites);
+	ft_free_null((void *)&game->visible_sprites);
+	ft_free_null((void *)&game->enemies);
 }
 
-static void	destroy_game(t_game *game)
+void	destroy_game(t_game *game)
 {
 	int	i;
 
@@ -66,7 +63,7 @@ static void	destroy_game(t_game *game)
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
-		ft_free_null(game->mlx);
+		ft_free_null((void *)&game->mlx);
 	}
 }
 

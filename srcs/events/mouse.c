@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/05 20:49:59 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:43:27 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	mouse_move(int x, int y, t_game *game)
 	(void)y;
 	if (!game->is_on_the_game)
 		return (0);
-	mlx_mouse_get_pos(game->mlx, game->window, &x, &y);
 	if (last_x != x)
 	{
 		move_direction = (x- (game->half_width)) * 0.001;

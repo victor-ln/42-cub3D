@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 22:02:27 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/08/04 21:54:33 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:54:31 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	resize_column(t_game *g)
 		if (v.counter == ft_strlen(g->params.map[v.line]) - 1)
 			continue ;
 		temp = ft_substr(g->params.map[v.line], 0, v.counter + 1);
-		ft_free_null(g->params.map[v.line]);
+		ft_free_null((void *)&g->params.map[v.line]);
 		g->params.map[v.line] = temp;
 	}
 }
