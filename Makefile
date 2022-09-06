@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/06 19:01:11 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/06 20:45:10 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ EVENTS			=	keyboard.c \
 
 FPS				=	fps.c \
 
-RAY_CASTING		=	rays_utils.c \
+RAY_CASTING		=	ray_content.c \
+					rays_utils.c \
 					rays.c \
 
 RENDER			=	draw_3d_sprites.c \

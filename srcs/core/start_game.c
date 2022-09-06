@@ -34,6 +34,7 @@ void	start_game(t_game *game)
 
 static int	game_loop(t_game *game)
 {
+	count_fps(game);
 	if (game->is_on_the_game)
 		display_game(game);
 	else if (game->menu.menu_screen == SELECTION_MENU)
@@ -47,7 +48,6 @@ static void	display_game(t_game *game)
 {
 	if (++game->frame == 2)
 		game->frame = 0;
-	count_fps(game);
 	move_player(game);
 	cast_all_rays(game);
 	get_visible_sprites(game);
@@ -71,7 +71,6 @@ static void	display_general_menu(t_game *game)
 	int			frame;
 	static int	direction = 1;
 
-	count_fps(game);
 	game->frame += direction;
 	if (game->frame >= 8)
 	{
@@ -93,7 +92,6 @@ static void	display_options_menu(t_game *game)
 	int			frame;
 	static int	direction = 1;
 
-	count_fps(game);
 	if (game->menu.menu_index < MOUSE_SPEED_SELECTED_1)
 	{
 		game->frame += direction;

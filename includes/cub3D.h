@@ -143,4 +143,6 @@ int			set_resolution(t_game *game);
 
 void		change_menu(t_menu *menu, t_menu_screen menu_screen);
 
+int			manipulate_ray_axis(t_game *game, int x, int y, int axis);
+
 #endif
