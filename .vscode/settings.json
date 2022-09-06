@@ -13,6 +13,9 @@
 		"*.tcc": "c",
 		"type_traits": "c",
 		"typeinfo": "c",
-		"clocale": "c"
+		"clocale": "c",
+		"system_error": "c",
+		"types.h": "c",
+		"time.h": "c"
 	}
 }

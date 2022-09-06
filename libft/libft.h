@@ -84,7 +84,7 @@ void			*ft_memcpy(void *dest, const void *src, size_t len);
 /*
 	Frees a pointer and set it to NULL
 */
-void			ft_free_null(void *ptr);
+void			ft_free_null(void **ptr);
 
 int				ft_isspace(int c);
 
@@ -105,5 +105,9 @@ char			*ft_strrchr(const char *src, int c);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int				ft_atoi(const char *str);
+
+int				ft_count_char(char *str, char c);
+
+char			*ft_itoa(int nbr);
 
 #endif
