@@ -131,11 +131,16 @@ void		load_images(t_game *game);
 
 void		destroy_sprites(t_img **images, void *mlx, int x);
 
-int32_t		add_shade(int32_t color, float scale);
+uint32_t	add_shade(uint32_t color, double scale);
 
 void		free_game(t_game *game);
 
 void		destroy_game(t_game *game);
 
+void		apply_changes(t_game *game);
+
+int			set_resolution(t_game *game);
+
+void		change_menu(t_menu *menu, t_menu_screen menu_screen);
 
 #endif

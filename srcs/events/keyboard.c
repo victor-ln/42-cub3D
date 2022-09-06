@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/05 21:43:22 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:45:08 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	key_press_game(int keycode, t_game *game)
 	else if (keycode == ESC)
 	{
 		game->frame = 0;
-		game->menu_index = 0;
+		game->menu.menu_index = 0;
 		game->is_on_the_game = false;
-		game->menu_screen = SELECTION_MENU;
+		game->menu.menu_screen = SELECTION_MENU;
 	}
 	else if (keycode == CTRL)
 	{

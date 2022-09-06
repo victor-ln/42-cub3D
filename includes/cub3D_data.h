@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/05 19:21:51 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:32:24 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <limits.h>
 # include <sys/time.h>
 # include <time.h>
+# include "menu.h"
 
 # define INPUT_ERR				(void *)-1
 
@@ -110,6 +111,8 @@
 # define OBJECTS_NUM			47
 # define GUARD_NUM				9
 
+# define SHADE_NUMERATOR		600
+
 typedef enum e_minimap_size{
 	SMALL,
 	NORMAL
@@ -118,41 +121,6 @@ typedef enum e_minimap_size{
 enum e_leveling{
 	horizontal,
 	vertical
-};
-
-typedef enum e_resolution{
-	LIT,
-	MID,
-	BIG
-}	t_resolution;
-
-typedef enum e_mouse_speed{
-	SLOW,
-	MEDIUM,
-	FAST
-}	t_mouse_speed;
-
-enum e_menu_selection{
-	RESUME,
-	OPTIONS,
-	EXIT
-};
-
-enum e_menu_options{
-	MOUSE_SPEED,
-	RESOLUTION,
-	MAIN_MENU,
-	MOUSE_SPEED_SELECTED_1,
-	MOUSE_SPEED_SELECTED_2,
-	MOUSE_SPEED_SELECTED_3,
-	RESOLUTION_SELECTED_1,
-	RESOLUTION_SELECTED_2,
-	RESOLUTION_SELECTED_3
-};
-
-enum e_menu_screen{
-	SELECTION_MENU,
-	OPTIONS_MENU
 };
 
 enum e_coord_enum{
@@ -361,10 +329,10 @@ typedef struct s_game
 	t_ray					*rays;
 	t_rays_properties		ray_prop[2];
 	long					ray_nums;
-	long					window_width;
-	long					half_width;
+	int						window_width;
+	int						window_height;
 	long					half_height;
-	long					window_height;
+	long					half_width;
 	t_fps					fps;
 	long					sprites_num;
 	long					visible_sprites_num;
@@ -388,14 +356,10 @@ typedef struct s_game
 	char					*file_content;
 	char					*map_cub;
 	bool					is_on_the_game;
-	t_resolution			resolution;
-	t_mouse_speed			mouse_speed;
 	t_img					*options_menu[16];
 	t_img					*selection_menu[10];
-	int						menu_index;
-	int						menu_screen;
-	bool					is_selected;
 	int						frame;
+	t_menu					menu;
 }	t_game;
 
 #endif

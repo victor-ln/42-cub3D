@@ -36,7 +36,7 @@ static int	game_loop(t_game *game)
 {
 	if (game->is_on_the_game)
 		display_game(game);
-	else if (game->menu_screen == SELECTION_MENU)
+	else if (game->menu.menu_screen == SELECTION_MENU)
 		display_general_menu(game);
 	else
 		display_options_menu(game);
@@ -83,7 +83,7 @@ static void	display_general_menu(t_game *game)
 	if (game->frame < 2)
 		frame = 0;
 	else
-		frame = (game->frame / 2) + (game->menu_index * 3);
+		frame = (game->frame / 2) + (game->menu.menu_index * 3);
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->selection_menu[frame], 0, 0);
 }
@@ -94,7 +94,7 @@ static void	display_options_menu(t_game *game)
 	static int	direction = 1;
 
 	count_fps(game);
-	if (game->menu_index < MOUSE_SPEED_SELECTED_1)
+	if (game->menu.menu_index < MOUSE_SPEED_SELECTED_1)
 	{
 		game->frame += direction;
 		if (game->frame >= 8)
@@ -107,10 +107,10 @@ static void	display_options_menu(t_game *game)
 		if (game->frame < 2)
 			frame = 0;
 		else
-			frame = (game->frame / 2) + (game->menu_index * 3);
+			frame = (game->frame / 2) + (game->menu.menu_index * 3);
 	}
 	else
-		frame = game->menu_index + 7;
+		frame = game->menu.menu_index + 7;
 	mlx_put_image_to_window(game->mlx, game->window, \
 		game->options_menu[frame], 0, 0);
 }

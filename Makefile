@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/05 22:10:13 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/06 19:01:11 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ PATH_SRC		=	srcs/
 PATH_INC		=	includes/
 PATH_TEST		=	test/
 
-MENU			=	menu.c
+MENU			=	menu.c \
+					menu_actions.c \
 
 LOAD_FILE		=	load_file.c \
 					save_params.c \
@@ -73,6 +74,7 @@ RENDER			=	draw_3d_sprites.c \
 					draw_radar.c \
 					draw_small_radar.c \
 					draw_utils.c \
+					pixels.c \
 
 VALIDATE		=	doors.c \
 					enemy.c \
@@ -127,7 +129,7 @@ valgrind:			all
 					$(VALGRIND) ./$(NAME) maps/success/map_1.cub
 
 norm:
-					norminette srcs/ libft/ includes/
+					norminette srcs/ libft/ includes/ | grep Error
 
 test:
 					gcc -I includes/ -I mlx_linux/ test/img_biggerthan_window.c mlx_linux/libmlx.a -Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz

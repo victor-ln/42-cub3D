@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/04 21:40:50 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:25:59 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	draw_visible_sprites(t_game *game)
 
 static void	draw_3d_sprite(t_game *game, t_sprites *sprite, int x, int y)
 {
-	int		texture_y;
-	int		texture_x;
-	float	texel_width;
+	register int		texture_y;
+	register int		texture_x;
+	float				texel_width;
 
 	texel_width = TILE_SIZE / game->wall_prop.proj_height;
 	while (x < game->texture_prop.width)
@@ -62,9 +62,8 @@ static void	draw_3d_sprite(t_game *game, t_sprites *sprite, int x, int y)
 				if (y > 0 && y < game->window_height)
 				{
 					texture_y = get_color_offset_y(game, y, sprite);
-					draw_pixel(game->img, \
-						x, y, add_shade(get_color(sprite->img, texture_x, texture_y), 
-						600 / sprite->coord.hipo));
+					draw_pixel(game->img, x, y, add_shade(get_color(\
+					sprite->img, texture_x, texture_y), sprite->coord.hipo));
 				}
 				y++;
 			}
@@ -84,8 +83,6 @@ static int	get_color_offset_y(t_game *game, int y, t_sprites *sprite)
 
 static void	get_sprite_dimension(t_game *game, int id)
 {
-	game->wall_prop.proj_wall_dist = (game->half_width) \
-		/ tan(FOV_ANGLE / 2);
 	game->wall_prop.proj_height = \
 		(TILE_SIZE / game->visible_sprites[id].coord.hipo) * \
 		game->wall_prop.proj_wall_dist;

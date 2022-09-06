@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/04 21:33:26 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 17:27:59 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,6 @@ void	draw_line(t_img *minimap, t_texture_properties *properties)
 	}
 }
 
-void	draw_pixel(t_img *img, int x, int y, uint32_t color)
-{
-	if (color != TRANSPARENCY)
-		*(unsigned int *)
-			((img->data + (x * img->bpp / 8 + y * img->size_line))) = color;
-}
-
-uint32_t	get_color(t_img *img, int x, int y)
-{
-	return ((*(unsigned int *)
-			(img->data + (x * img->bpp / 8 + y * img->size_line))));
-}
-
 void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
 {
 	register int	i;
@@ -92,20 +79,4 @@ void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
 		}
 		j++;
 	}
-}
-
-int32_t	add_shade(int32_t color, float scale)
-{
-	int		r;
-	int		g;
-	int		b;
-
-	if (color == (int)TRANSPARENCY)
-		return (color);
-	if (scale > 1)
-		scale = 1;
-	r = ((color >> 16) & 0xFF) * scale;
-	g = ((color >> 8) & 0xFF) * scale;
-	b = (color & 0xFF) * scale;
-	return ((r << 16) | (g << 8) | b);
 }

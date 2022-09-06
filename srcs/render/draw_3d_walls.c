@@ -19,9 +19,9 @@ static void		get_texture_coordinates(t_game *game, int col, int line);
 
 void	draw_3d_walls(t_game *game)
 {
-	int		col;
-	int		line;
-	t_img	*current_img;
+	register int		col;
+	register int		line;
+	t_img				*current_img;
 
 	col = 0;
 	while (col < game->ray_nums)
@@ -35,8 +35,10 @@ void	draw_3d_walls(t_game *game)
 			get_texture_coordinates(game, col, line);
 			draw_pixel(game->img, col, line, \
 				add_shade(get_color(current_img, \
-				game->wall_prop.color_x, game->wall_prop.color_y), 
-				600 / game->rays[col].coord.hipo));
+						game->wall_prop.color_x, \
+						game->wall_prop.color_y), \
+					game->rays[col].coord.hipo) \
+			);
 			line++;
 		}
 		col++;
@@ -59,8 +61,6 @@ static void	get_wall_dimension(t_game *game, int col)
 {
 	game->wall_prop.ray_distance = game->rays[col].coord.hipo * \
 		cos(game->rays[col].coord.angle - game->player.coord.angle);
-	game->wall_prop.proj_wall_dist = (game->half_width) \
-		/ tan(FOV_ANGLE / 2);
 	game->wall_prop.proj_height = \
 		(TILE_SIZE / game->wall_prop.ray_distance) * \
 		game->wall_prop.proj_wall_dist;

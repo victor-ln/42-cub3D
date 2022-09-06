@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:43:30 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/03 19:43:16 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 19:05:31 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ void	load_menus(t_game *game)
 	char	*path;
 	char	*file[17];
 
-	path = ft_strjoin(OPTION_MENU_PATH, get_resolution(game->resolution));
+	path = ft_strjoin(OPTION_MENU_PATH, get_resolution(game->menu.resolution));
 	save_options_file_name(file);
 	load_menu_group(game, path, file, game->options_menu);
 	free(path);
-	path = ft_strjoin(SELECTION_MENU_PATH, get_resolution(game->resolution));
+	path = ft_strjoin(SELECTION_MENU_PATH, \
+		get_resolution(game->menu.resolution));
 	save_selection_file_name(file);
 	load_menu_group(game, path, file, game->selection_menu);
 	free(path);
