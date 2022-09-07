@@ -58,7 +58,7 @@ static void	display_game(t_game *game)
 	draw_weapon(game);
 	draw_radar(game);
 	mlx_do_sync(game->mlx);
-	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, game->img.img, 0, 0);
 	mlx_string_put(game->mlx, game->window, \
 		game->fps.fps_offset_x, game->fps.fps_offset_y, \
 		WHITE, game->fps.fps_string);
@@ -82,7 +82,7 @@ static void	display_general_menu(t_game *game)
 	else
 		frame = (game->frame / 2) + (game->menu.menu_index * 3);
 	mlx_put_image_to_window(game->mlx, game->window, \
-		game->selection_menu[frame], 0, 0);
+		game->selection_menu[frame].img, 0, 0);
 }
 
 static void	display_options_menu(t_game *game)
@@ -108,5 +108,5 @@ static void	display_options_menu(t_game *game)
 	else
 		frame = game->menu.menu_index + 7;
 	mlx_put_image_to_window(game->mlx, game->window, \
-		game->options_menu[frame], 0, 0);
+		game->options_menu[frame].img, 0, 0);
 }

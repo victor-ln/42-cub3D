@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   load_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:43:30 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/06 22:02:55 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:09:07 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "assets.h"
 
-static void	load_menu_group(t_game *game, char *path, char **file, t_img **img);
+static void	load_menu_group(t_game *game, char *path, char **file, t_image *img);
 static void	save_selection_file_name(char **file_name);
 static void	save_options_file_name(char **file_name);
 static char	*get_resolution(int resolution);
@@ -34,7 +34,7 @@ void	load_menus(t_game *game)
 	free(path);
 }
 
-static void	load_menu_group(t_game *game, char *path, char **file, t_img **img)
+static void	load_menu_group(t_game *game, char *path, char **file, t_image *img)
 {
 	char	*full_path;
 	int		i;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_3d_sprites.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/06 17:25:59 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:13:56 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	get_color_offset_y(t_game *game, int y, t_sprites *sprite)
 
 	dist_from_top = y + (game->wall_prop.proj_height / 2) - game->half_height;
 	return (dist_from_top * \
-		(sprite->img->height / game->wall_prop.proj_height));
+		(sprite->img.img->height / game->wall_prop.proj_height));
 }
 
 static void	get_sprite_dimension(t_game *game, int id)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 16:18:15 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:03:07 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,12 @@ enum e_objects {
 	treasure
 };
 
+typedef struct s_image
+{
+	uint32_t	*buffer;
+	t_img		*img;
+}	t_image;
+
 typedef struct s_img_properties
 {
 	uint32_t	color;
@@ -274,7 +280,7 @@ typedef struct s_params
 
 typedef struct s_minimap
 {
-	t_img				*radars;
+	t_image				radars;
 	int					width;
 	int					height;
 	int					widthpx;
@@ -298,7 +304,7 @@ typedef struct s_wall_properties
 typedef struct s_sprites
 {
 	t_coord		coord;
-	t_img		*img;
+	t_image		img;
 	bool		is_visible;
 	bool		is_enemy;
 	int			enemy_index;
@@ -322,6 +328,7 @@ typedef struct s_fps
 	int					fps_offset_y;
 }	t_fps;
 
+
 typedef struct s_game
 {
 	t_xvar					*mlx;
@@ -343,21 +350,21 @@ typedef struct s_game
 	t_minimap				minimap;
 	t_player				player;
 	t_params				params;
-	t_img					*img;
-	t_img					*crosshair[2];
-	t_img					*wall_textures[TEXTURES_NUM];
-	t_img					*door_textures[TEXTURES_NUM];
-	t_img					*weapons[WEAPONS_TYPES][WEAPONS_FRAMES];
-	t_img					*enemy[GUARD_NUM];
-	t_img					*objects[OBJECTS_NUM];
+	t_image					img;
+	t_image					crosshair[2];
+	t_image					wall_textures[TEXTURES_NUM];
+	t_image					door_textures[TEXTURES_NUM];
+	t_image					weapons[WEAPONS_TYPES][WEAPONS_FRAMES];
+	t_image					enemy[GUARD_NUM];
+	t_image					objects[OBJECTS_NUM];
 	t_sprites				*sprites;
 	t_sprites				*visible_sprites;
 	t_enemy					*enemies;
 	char					*file_content;
 	char					*map_cub;
 	bool					is_on_the_game;
-	t_img					*options_menu[18];
-	t_img					*selection_menu[10];
+	t_image					options_menu[18];
+	t_image					selection_menu[10];
 	int						frame;
 	t_menu					menu;
 }	t_game;

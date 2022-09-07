@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static t_img	*get_texture_id(t_game *game, int col);
+static t_image	get_texture_id(t_game *game, int col);
 static void		get_texture_properties(t_game *game, int col);
 static void		get_wall_dimension(t_game *game, int col);
 static void		get_texture_coordinates(t_game *game, int col, int line);
@@ -21,7 +21,7 @@ void	draw_3d_walls(t_game *game)
 {
 	register int		col;
 	register int		line;
-	t_img				*current_img;
+	t_image				current_img;
 
 	col = 0;
 	while (col < game->ray_nums)
@@ -80,7 +80,7 @@ static void	get_texture_properties(t_game *game, int col)
 		game->texture_prop.height = game->window_height;
 }
 
-static t_img	*get_texture_id(t_game *game, int col)
+static t_image	get_texture_id(t_game *game, int col)
 {
 	if (game->rays[col].content_type == 'O')
 	{

@@ -53,17 +53,17 @@ void		start_game(t_game *game);
 
 void		cast_all_rays(t_game *game);
 
-void		draw_pixel(t_img *img, int x, int y, uint32_t color);
+void		draw_pixel(t_image image, int x, int y, uint32_t color);
 
-void		draw_line(t_img *radar, t_texture_properties *properties);
+void		draw_line(t_image radar, t_texture_properties *properties);
 
-void		draw_rectangle(t_img *image, t_texture_properties *properties);
+void		draw_rectangle(t_image image, t_texture_properties *properties);
 
 void		draw_radar(t_game *game);
 
 void		draw_small_radar(t_game *game);
 
-uint32_t	get_color(t_img *img, int x, int y);
+uint32_t	get_color(t_image image, int x, int y);
 
 void		load_player(t_game *game);
 
@@ -83,7 +83,7 @@ double		calculate_hipo(double x, double y);
 
 int			mouse_click(int button, int x, int y, t_game *game);
 
-void		draw_sprite(t_img *image, t_img *sprite, int x, int y);
+void		draw_sprite(t_image image, t_image sprite, int x, int y);
 
 void		doors_validate(t_game *game);
 
@@ -119,7 +119,7 @@ void		kill_enemy(t_game *game, int i);
 
 void		qsort_recursive(t_sprites *sprites, int start, int end);
 
-int			load_sprite(t_img **image, void *mlx, char *path);
+int			load_sprite(t_image *image, void *mlx, char *path);
 
 void		load_menus(t_game *game);
 
@@ -129,7 +129,7 @@ void		load_window(t_game *game);
 
 void		load_images(t_game *game);
 
-void		destroy_sprites(t_img **images, void *mlx, int x);
+void		destroy_sprites(t_image *images, void *mlx, int x);
 
 uint32_t	add_shade(uint32_t color, double scale);
 

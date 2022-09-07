@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 16:23:25 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:12:54 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	destroy_game(t_game *game)
 {
 	int	i;
 
-	if (game->img)
-		mlx_destroy_image(game->mlx, game->img);
-	if (game->img)
-		mlx_destroy_image(game->mlx, game->minimap.radars);
+	if (game->img.img)
+		mlx_destroy_image(game->mlx, game->img.img);
+	if (game->minimap.radars.img)
+		mlx_destroy_image(game->mlx, game->minimap.radars.img);
 	destroy_sprites(game->wall_textures, game->mlx, TEXTURES_NUM);
 	destroy_sprites(game->crosshair, game->mlx, 2);
 	destroy_sprites(game->door_textures, game->mlx, TEXTURES_NUM);
@@ -72,18 +72,15 @@ void	destroy_game(t_game *game)
 	}
 }
 
-void	destroy_sprites(t_img **images, void *mlx, int x)
+void	destroy_sprites(t_image *images, void *mlx, int x)
 {
 	int		i;
 
 	i = 0;
-	if (images)
+	while (i < x)
 	{
-		while (i < x)
-		{
-			if (images[i])
-				mlx_destroy_image(mlx, images[i]);
-			i++;
-		}
+		if (images[i].img)
+			mlx_destroy_image(mlx, images[i].img);
+		i++;
 	}
 }

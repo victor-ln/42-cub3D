@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:33:40 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 16:10:49 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:41:51 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,19 @@ void	load_textures(t_game *game)
 		error("Could not load textures", game);
 }
 
-int	load_sprite(t_img **image, void *mlx, char *path)
+int	load_sprite(t_image *image, void *mlx, char *path)
 {
 	int		height;
 	int		width;
 
-	*(image) = mlx_xpm_file_to_image(mlx, path, &width, &height);
-	if (!*(image))
+	image->img = mlx_xpm_file_to_image(mlx, path, &width, &height);
+	if (!image->img)
 		return (1);
-	(*image)->height = height;
-	(*image)->width = width;
-	(*image)->bpp /= 8;
-	(*image)->size_line /= (*image)->bpp;
+	image->img->height = height;
+	image->img->width = width;
+	image->img->bpp /= 8;
+	image->img->size_line /= image->img->bpp;
+	image->buffer = (uint32_t *)image->img->data;
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 18:39:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/04 22:03:37 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:19:42 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	draw_weapon(t_game *game)
 {
 	int		from_x;
 	int		from_y;
-	t_img	*weapon;
+	t_image	weapon;
 
 	weapon = game->weapons[game->player.weapon][game->player.weapon_frame];
-	from_x = (game->half_width) - (weapon->width >> 1);
-	from_y = game->window_height - weapon->height;
+	from_x = (game->half_width) - (weapon.img->width >> 1);
+	from_y = game->window_height - weapon.img->height;
 	draw_sprite(game->img, \
 		weapon, \
 		from_x, \
@@ -59,9 +59,9 @@ void	draw_crosshair(t_game *game)
 	int		from_y;
 
 	from_x = game->half_width - \
-			game->crosshair[game->enemy_spotted]->width / 2;
+			game->crosshair[game->enemy_spotted].img->width / 2;
 	from_y = game->half_height - \
-			game->crosshair[game->enemy_spotted]->height / 2;
+			game->crosshair[game->enemy_spotted].img->height / 2;
 	draw_sprite(game->img, \
 		game->crosshair[game->enemy_spotted], \
 		from_x, \

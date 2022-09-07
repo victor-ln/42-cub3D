@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 17:45:17 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/06 17:27:59 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 17:24:42 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_rectangle(t_img *image, t_texture_properties *properties)
+void	draw_rectangle(t_image image, t_texture_properties *properties)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ void	draw_rectangle(t_img *image, t_texture_properties *properties)
 	}
 }
 
-void	draw_line(t_img *minimap, t_texture_properties *properties)
+void	draw_line(t_image radar, t_texture_properties *properties)
 {
 	float	increment[2];
 	float	current[2];
@@ -55,7 +55,7 @@ void	draw_line(t_img *minimap, t_texture_properties *properties)
 	i = 0;
 	while (i < side_length)
 	{
-		draw_pixel(minimap, \
+		draw_pixel(radar, \
 			round(current[x]), round(current[y]), properties->color);
 		current[x] += increment[x];
 		current[y] += increment[y];
@@ -63,16 +63,16 @@ void	draw_line(t_img *minimap, t_texture_properties *properties)
 	}
 }
 
-void	draw_sprite(t_img *image, t_img *sprite, int x, int y)
+void	draw_sprite(t_image image, t_image sprite, int x, int y)
 {
 	register int	i;
 	register int	j;
 
 	j = 0;
-	while (j < sprite->height)
+	while (j < sprite.img->height)
 	{
 		i = 0;
-		while (i < sprite->width)
+		while (i < sprite.img->width)
 		{
 			draw_pixel(image, x + i, y + j, get_color(sprite, i, j));
 			i++;
