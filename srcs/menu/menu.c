@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:21:09 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/06 19:00:41 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:07:02 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	esc_pressed(t_game *game)
 		game->is_on_the_game = true;
 	else if (game->menu.is_selected)
 	{
-		game->menu.menu_index /= 6;
+		game->menu.menu_index /= 7;
 		game->menu.is_selected = false;
 	}
 	else
@@ -53,20 +53,38 @@ static void	esc_pressed(t_game *game)
 
 static void	increase_menu_index(t_menu *menu, int last_index)
 {
+	int		first_index;
+
+	first_index = 2;
 	if (last_index == FIND_LST_INDEX)
-		last_index = menu->menu_index / 3 * 3 + 2;
+	{
+		if (menu->menu_index < RESOLUTION_SELECTED_1)
+			last_index = MOUSE_SPEED_SELECTED_4;
+		else
+			last_index = RESOLUTION_SELECTED_4;
+		first_index = 3;
+	}
 	if (menu->menu_index >= last_index)
-		menu->menu_index = last_index - 2;
+		menu->menu_index = last_index - first_index;
 	else
 		menu->menu_index++;
 }
 
 static void	decrease_menu_index(t_menu *menu, int first_index)
 {
+	int		last_index;
+
+	last_index = 2;
 	if (first_index == FIND_FST_INDEX)
-		first_index = menu->menu_index / 3 * 3;
+	{
+		if (menu->menu_index > MOUSE_SPEED_SELECTED_4)
+			first_index = RESOLUTION_SELECTED_1;
+		else
+			first_index = MOUSE_SPEED_SELECTED_1;
+		last_index = 3;
+	}
 	if (menu->menu_index <= first_index)
-		menu->menu_index = first_index + 2;
+		menu->menu_index = first_index + last_index;
 	else
 		menu->menu_index--;
 }
@@ -82,7 +100,7 @@ static void	enter_pressed(t_game *game)
 		else
 		{
 			game->menu.is_selected = true;
-			game->menu.menu_index = (game->menu.menu_index * 3) + 3;
+			game->menu.menu_index = (game->menu.menu_index * 4) + 3;
 			if (game->menu.menu_index == MOUSE_SPEED_SELECTED_1)
 				game->menu.menu_index += game->menu.mouse_speed;
 			else

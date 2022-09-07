@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:43:30 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/06 19:05:31 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:02:55 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*get_resolution(int resolution);
 void	load_menus(t_game *game)
 {
 	char	*path;
-	char	*file[17];
+	char	*file[19];
 
 	path = ft_strjoin(OPTION_MENU_PATH, get_resolution(game->menu.resolution));
 	save_options_file_name(file);
@@ -55,12 +55,12 @@ static void	load_menu_group(t_game *game, char *path, char **file, t_img **img)
 
 static char	*get_resolution(int resolution)
 {
-	if (resolution == BIG)
-		return ("1280x720/");
+	if (resolution == LIT)
+		return ("720x480/");
 	else if (resolution == MID)
 		return ("1024x768/");
 	else
-		return ("720x480/");
+		return ("1280x720/");
 }
 
 static void	save_options_file_name(char **file_name)
@@ -78,10 +78,12 @@ static void	save_options_file_name(char **file_name)
 	file_name[10] = O_MENU_MBAR_01;
 	file_name[11] = O_MENU_MBAR_02;
 	file_name[12] = O_MENU_MBAR_03;
-	file_name[13] = O_MENU_RBAR_01;
-	file_name[14] = O_MENU_RBAR_02;
-	file_name[15] = O_MENU_RBAR_03;
-	file_name[16] = 0;
+	file_name[13] = O_MENU_MBAR_04;
+	file_name[14] = O_MENU_RBAR_01;
+	file_name[15] = O_MENU_RBAR_02;
+	file_name[16] = O_MENU_RBAR_03;
+	file_name[17] = O_MENU_RBAR_04;
+	file_name[18] = 0;
 }
 
 static void	save_selection_file_name(char **file_name)

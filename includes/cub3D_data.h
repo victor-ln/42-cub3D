@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/06 18:32:24 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:06:05 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,22 @@
 	times PI divided by 180 degrees.
 */
 # define STD_ROTATION_SPEED_1 	0.01745329251994329576923690768489
+
+/*
+	Rotation speed is equals to 2
+	times PI divided by 180 degrees.
+*/
+# define STD_ROTATION_SPEED_2 	0.03490658503988659153847381536977
 /*
 	Rotation speed is equals to 4
 	times PI divided by 180 degrees.
 */
-# define STD_ROTATION_SPEED_2	0.03490658503988659153847381536977
+# define STD_ROTATION_SPEED_3	0.03490658503988659153847381536977
 /*
 	Rotation speed is equals to 6
 	times PI divided by 180 degrees.
 */
-# define STD_ROTATION_SPEED_3	0.10471975511965977461542144610932
+# define STD_ROTATION_SPEED_4	0.10471975511965977461542144610932
 
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
@@ -356,7 +362,7 @@ typedef struct s_game
 	char					*file_content;
 	char					*map_cub;
 	bool					is_on_the_game;
-	t_img					*options_menu[16];
+	t_img					*options_menu[18];
 	t_img					*selection_menu[10];
 	int						frame;
 	t_menu					menu;

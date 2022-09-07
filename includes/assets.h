@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assets.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:45:37 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/05 18:49:45 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:42:35 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,11 @@
 # define O_MENU_MBAR_01 "ms_bar01.xpm"
 # define O_MENU_MBAR_02 "ms_bar02.xpm"
 # define O_MENU_MBAR_03 "ms_bar03.xpm"
+# define O_MENU_MBAR_04 "ms_bar04.xpm"
 # define O_MENU_RBAR_01 "res_bar01.xpm"
 # define O_MENU_RBAR_02 "res_bar02.xpm"
 # define O_MENU_RBAR_03 "res_bar03.xpm"
+# define O_MENU_RBAR_04 "res_bar04.xpm"
 
 //SELECTION_MENU
 # define SELECTION_MENU_PATH "./assets/xpm/selection_menu/"

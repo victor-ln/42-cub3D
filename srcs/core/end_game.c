@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   end_game.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: a <afaustin@student.42sp.org.br>           +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/05 22:16:47 by a                ###   ########.fr       */
+/*   Updated: 2022/09/06 21:44:44 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	destroy_game(t_game *game)
 	destroy_sprites(game->crosshair, game->mlx, 2);
 	destroy_sprites(game->door_textures, game->mlx, TEXTURES_NUM);
 	destroy_sprites(game->enemy, game->mlx, GUARD_NUM);
-	destroy_sprites(game->options_menu, game->mlx, 16);
+	destroy_sprites(game->options_menu, game->mlx, 18);
 	destroy_sprites(game->selection_menu, game->mlx, 10);
 	i = 0;
 	while (i < WEAPONS_TYPES)
