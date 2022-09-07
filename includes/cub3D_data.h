@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 17:03:07 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:33:57 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,7 +327,6 @@ typedef struct s_fps
 	int					fps_offset_x;
 	int					fps_offset_y;
 }	t_fps;
-
 
 typedef struct s_game
 {

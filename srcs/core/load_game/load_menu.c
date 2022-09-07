@@ -6,14 +6,15 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:43:30 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/07 17:09:07 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 18:33:10 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include "assets.h"
 
-static void	load_menu_group(t_game *game, char *path, char **file, t_image *img);
+static void	load_menu_group(t_game *game, char *path, char **file, \
+	t_image *img);
 static void	save_selection_file_name(char **file_name);
 static void	save_options_file_name(char **file_name);
 static char	*get_resolution(int resolution);
