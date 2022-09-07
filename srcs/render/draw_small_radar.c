@@ -6,13 +6,12 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:51:21 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/01 18:16:10 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:20:32 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	copy_pixels_to_small_radar(t_game *game, int i, int j);
 static void	get_offset(t_game *game);
 
 void	draw_small_radar(t_game *game)
@@ -27,7 +26,11 @@ void	draw_small_radar(t_game *game)
 		x = 0;
 		while (x < game->minimap.small_radar_limit_x)
 		{
-			copy_pixels_to_small_radar(game, x, y);
+			draw_pixel(game->img, x, y, get_color(\
+					game->minimap.radars, \
+					game->texture_prop.offset_x + x,
+					game->texture_prop.offset_y + y)
+				);
 			x++;
 		}
 		y++;
@@ -61,31 +64,4 @@ static void	get_offset(t_game *game)
 	else
 		game->texture_prop.offset_x = floor(game->player.coord.x * \
 			MINIMAP_SCALE_FACTOR) - (game->minimap.small_radar_widthpx >> 1);
-}
-
-static void	copy_pixels_to_small_radar(t_game *game, int j, int i)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y < MINIMAP_TILE_SIZE)
-	{
-		x = 0;
-		while (x < MINIMAP_TILE_SIZE)
-		{
-			draw_pixel(game->minimap.radars[SMALL], \
-				x + (j * MINIMAP_TILE_SIZE), \
-				y + (i * MINIMAP_TILE_SIZE), \
-				get_color(\
-					game->minimap.radars[NORMAL], \
-					game->texture_prop.offset_x + x + \
-						(j * MINIMAP_TILE_SIZE),
-					game->texture_prop.offset_y + y + \
-						(i * MINIMAP_TILE_SIZE))
-				);
-			x++;
-		}
-		y++;
-	}
 }

@@ -51,16 +51,14 @@ static void	display_game(t_game *game)
 	move_player(game);
 	cast_all_rays(game);
 	get_visible_sprites(game);
-	draw_radar(game);
 	draw_ground_and_celling(game);
 	draw_3d_walls(game);
 	draw_visible_sprites(game);
 	draw_crosshair(game);
 	draw_weapon(game);
+	draw_radar(game);
 	mlx_do_sync(game->mlx);
 	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	mlx_put_image_to_window(game->mlx, game->window, \
-		game->minimap.radars[game->minimap.minimap_size], 0, 0);
 	mlx_string_put(game->mlx, game->window, \
 		game->fps.fps_offset_x, game->fps.fps_offset_y, \
 		WHITE, game->fps.fps_string);

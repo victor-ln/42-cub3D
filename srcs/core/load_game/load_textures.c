@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:33:40 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/02 20:52:03 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:10:49 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	load_sprite(t_img **image, void *mlx, char *path)
 		return (1);
 	(*image)->height = height;
 	(*image)->width = width;
+	(*image)->bpp /= 8;
+	(*image)->size_line /= (*image)->bpp;
 	return (0);
 }
 

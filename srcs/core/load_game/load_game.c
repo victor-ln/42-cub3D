@@ -42,26 +42,18 @@ void	load_images(t_game *game)
 	game->minimap.heightpx = game->minimap.height * TILE_SIZE;
 	game->img = mlx_new_image(game->mlx, game->window_width, \
 		game->window_height);
-	game->minimap.radars[NORMAL] = mlx_new_image(game->mlx, \
+	game->minimap.radars = mlx_new_image(game->mlx, \
 		game->minimap.width * MINIMAP_TILE_SIZE, \
 		game->minimap.height * MINIMAP_TILE_SIZE \
 	);
-	game->minimap.minimap_size = NORMAL;
-	if ((game->minimap.width * MINIMAP_TILE_SIZE) > \
-			game->window_width * MINIMAP_SCALE_FACTOR || \
-		(game->minimap.height * MINIMAP_TILE_SIZE) > \
-			game->window_height * MINIMAP_SCALE_FACTOR)
-	{
-		game->minimap.radars[SMALL] = mlx_new_image(game->mlx, \
-			game->window_width * MINIMAP_SCALE_FACTOR, \
-			game->window_height * MINIMAP_SCALE_FACTOR \
-		);
-		game->minimap.minimap_size = SMALL;
-		if (!game->minimap.radars[SMALL])
-			error("Could not create images", game);
-		set_radar_limits(game);
-	}
-	if (!game->img || !game->minimap.radars[NORMAL])
+	game->img->bpp /= 8;
+	game->img->size_line /= game->img->bpp;
+	game->minimap.radars->bpp /= 8;
+	game->minimap.radars->size_line /= game->minimap.radars->bpp;
+	set_radar_limits(game);
+	game->minimap.small_radar_limit_x *= MINIMAP_TILE_SIZE;
+	game->minimap.small_radar_limit_y *= MINIMAP_TILE_SIZE;
+	if (!game->img || !game->minimap.radars)
 		error("Could not create images", game);
 }
 

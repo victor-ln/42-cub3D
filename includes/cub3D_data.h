@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/06 22:06:05 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/07 16:18:15 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@
 	Rotation speed is equals to 4
 	times PI divided by 180 degrees.
 */
-# define STD_ROTATION_SPEED_3	0.03490658503988659153847381536977
+# define STD_ROTATION_SPEED_3	0.06981317007977318307694763073954
 /*
 	Rotation speed is equals to 6
 	times PI divided by 180 degrees.
@@ -118,11 +118,6 @@
 # define GUARD_NUM				9
 
 # define SHADE_NUMERATOR		600
-
-typedef enum e_minimap_size{
-	SMALL,
-	NORMAL
-}	t_minimap_size;
 
 enum e_leveling{
 	horizontal,
@@ -279,7 +274,7 @@ typedef struct s_params
 
 typedef struct s_minimap
 {
-	t_img				*radars[2];
+	t_img				*radars;
 	int					width;
 	int					height;
 	int					widthpx;
@@ -288,7 +283,6 @@ typedef struct s_minimap
 	int					small_radar_limit_y;
 	int					small_radar_widthpx;
 	int					small_radar_heightpx;
-	t_minimap_size		minimap_size;
 }	t_minimap;
 
 typedef struct s_wall_properties

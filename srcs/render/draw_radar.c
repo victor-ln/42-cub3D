@@ -23,8 +23,7 @@ void	draw_radar(t_game *game)
 	draw_radar_player(game);
 	draw_radar_field_of_view(game);
 	draw_radar_objects(game);
-	if (game->minimap.minimap_size == SMALL)
-		draw_small_radar(game);
+	draw_small_radar(game);
 }
 
 static void	draw_radar_objects(t_game *game)
@@ -44,7 +43,7 @@ static void	draw_radar_objects(t_game *game)
 			MINIMAP_SCALE_FACTOR;
 		game->texture_prop.width = 24 * MINIMAP_SCALE_FACTOR;
 		game->texture_prop.height = 24 * MINIMAP_SCALE_FACTOR;
-		draw_rectangle(game->minimap.radars[NORMAL], &game->texture_prop);
+		draw_rectangle(game->minimap.radars, &game->texture_prop);
 		i++;
 	}
 }
@@ -65,7 +64,7 @@ static void	draw_radar_field_of_view(t_game *game)
 			MINIMAP_SCALE_FACTOR;
 		game->texture_prop.height = game->rays[i].coord.y * \
 			MINIMAP_SCALE_FACTOR;
-		draw_line(game->minimap.radars[NORMAL], &game->texture_prop);
+		draw_line(game->minimap.radars, &game->texture_prop);
 		i++;
 	}
 }
@@ -92,7 +91,7 @@ static void	draw_radar_environment(t_game *game)
 				game->texture_prop.color = DARK_ORANGE;
 			else if (game->params.map[y][x] == ' ')
 				game->texture_prop.color = MIDNIGHT_BLUE;
-			draw_rectangle(game->minimap.radars[NORMAL], &game->texture_prop);
+			draw_rectangle(game->minimap.radars, &game->texture_prop);
 			x++;
 		}
 		y++;
@@ -108,5 +107,5 @@ static void	draw_radar_player(t_game *game)
 		MINIMAP_SCALE_FACTOR;
 	game->texture_prop.width = 32 * MINIMAP_SCALE_FACTOR;
 	game->texture_prop.height = 32 * MINIMAP_SCALE_FACTOR;
-	draw_rectangle(game->minimap.radars[NORMAL], &game->texture_prop);
+	draw_rectangle(game->minimap.radars, &game->texture_prop);
 }
