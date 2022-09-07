@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/06 20:45:10 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/06 22:15:12 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ HEADERS			=	cub3D.h
 INCLUDES		=	-I $(PATH_INC)
 
 # DEBUG
-DEBUG			=	-g3 -fsanitize=address
+DEBUG			=	-g3 #-fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror -O3 $(DEBUG)
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
 CC				=	gcc $(CFLAGS) $(INCLUDES)
 VALGRIND		=	valgrind \

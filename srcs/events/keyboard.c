@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/06 18:45:08 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:20:33 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	key_press_game(int keycode, t_game *game)
 	if (!game->is_on_the_game)
 		return (key_press_menu(keycode, game));
 	key_movement(keycode, game);
-	if (ft_strchr("1234", keycode))
+	if (keycode && ft_strchr("1234", keycode))
 		game->player.weapon = keycode - '0' - 1;
 	else if (keycode == ESC)
 	{
