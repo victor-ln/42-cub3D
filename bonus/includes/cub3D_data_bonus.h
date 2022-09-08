@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:41:15 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:00:33 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,17 @@
 */
 # define STD_ROTATION_SPEED_4	0.10471975511965977461542144610932
 
+# define HALF_PI				1.570796
+# define PI						3.141592
+# define PI_PLUS_HALF_PI		4.712388
+# define TWO_PI					6.283185
+
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
 
-# define WALK_LEFT				-2
+# define WALK_LEFT				-1
 # define WALK_UP				1
-# define WALK_RIGHT				2
+# define WALK_RIGHT				1
 # define WALK_DOWN				-1
 
 # define ESC					65307
@@ -245,6 +250,7 @@ typedef struct s_player
 	int			movement_speed;
 	int			move_direction;
 	int			walk_direction;
+	int			side_direction;
 	t_weapons	weapon;
 	int			weapon_frame;
 	bool		is_shooting;

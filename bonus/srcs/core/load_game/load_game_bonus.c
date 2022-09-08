@@ -16,6 +16,8 @@ static void	set_radar_limits(t_game *game);
 
 void	load_game(t_game *game)
 {
+	if (game->window_height < 300 || game->window_width < 300)
+		error("Resolution must be rather than 300 x 300", game);
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		error("Mlx init failed", game);

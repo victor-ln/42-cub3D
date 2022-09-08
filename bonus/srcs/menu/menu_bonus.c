@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   menu_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 17:21:09 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:59:02 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	esc_pressed(t_game *game);
 static void	enter_pressed(t_game *game);
 static void	increase_menu_index(t_menu *menu, int last_index);
 static void	decrease_menu_index(t_menu *menu, int first_index);
@@ -24,7 +23,7 @@ int	key_press_menu(int keycode, t_game *game)
 {
 	game->frame = 0;
 	if (keycode == ESC)
-		esc_pressed(game);
+		end_game(game);
 	else if (keycode == ARROW_DOWN && !game->menu.is_selected)
 		increase_menu_index(&game->menu, EXIT);
 	else if (keycode == ARROW_UP && !game->menu.is_selected)
@@ -36,19 +35,6 @@ int	key_press_menu(int keycode, t_game *game)
 	else if (keycode == ENTER_1 || keycode == ENTER_2)
 		enter_pressed(game);
 	return (0);
-}
-
-static void	esc_pressed(t_game *game)
-{
-	if (game->menu.menu_screen == SELECTION_MENU)
-		game->is_on_the_game = true;
-	else if (game->menu.is_selected)
-	{
-		game->menu.menu_index /= 7;
-		game->menu.is_selected = false;
-	}
-	else
-		change_menu(&game->menu, SELECTION_MENU);
 }
 
 static void	increase_menu_index(t_menu *menu, int last_index)

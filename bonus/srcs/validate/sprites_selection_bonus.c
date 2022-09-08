@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_selection_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:23:10 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static float	get_sprite_angle(t_game *game, int sprite_id)
 	sprite_angle = game->player.coord.angle - \
 		atan2(game->sprites[sprite_id].coord.y - game->player.coord.y, \
 			game->sprites[sprite_id].coord.x - game->player.coord.x);
-	if (sprite_angle > M_PI)
-		sprite_angle -= (M_PI + M_PI);
-	if (sprite_angle < -M_PI)
-		sprite_angle += (M_PI + M_PI);
+	if (sprite_angle > PI)
+		sprite_angle -= TWO_PI;
+	if (sprite_angle < -PI)
+		sprite_angle += TWO_PI;
 	return (fabs(sprite_angle));
 }

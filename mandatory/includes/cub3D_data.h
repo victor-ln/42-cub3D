@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 21:56:31 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:01:48 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,12 @@
 # include <string.h>
 # include <stdint.h>
 # include <limits.h>
-# include <sys/time.h>
-# include <time.h>
-# include "menu.h"
 
 # define INPUT_ERR				(void *)-1
 
 # define MOVEMENT_SPEED			4
 # define RAY_STRIP				1
 # define TILE_SIZE				64
-
-# define MINIMAP_TILE_SIZE		16
-# define MINIMAP_SCALE_FACTOR	0.25
 
 # define STD_WINDOW_WIDTH_1		1280
 # define STD_WINDOW_HEIGHT_1	720
@@ -55,7 +49,6 @@
 	times PI divided by 180 degrees.
 */
 # define FOV_ANGLE				1.0471975511965977461542144610932
-# define EPSILON				0.2
 
 /*
 	Rotation speed is equals to 1
@@ -78,6 +71,11 @@
 	times PI divided by 180 degrees.
 */
 # define STD_ROTATION_SPEED_4	0.10471975511965977461542144610932
+
+# define HALF_PI				1.570796
+# define PI						3.141592
+# define PI_PLUS_HALF_PI		4.712388
+# define TWO_PI					6.283185
 
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1

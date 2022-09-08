@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_utils_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 19:23:50 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:22:06 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	load_player(t_game *game)
 static void	save_rotation_angle(t_game *game, char c)
 {
 	if (c == 'N')
-		game->player.coord.angle = M_PI + M_PI_2;
+		game->player.coord.angle = PI_PLUS_HALF_PI;
 	else if (c == 'S')
-		game->player.coord.angle = M_PI_2;
+		game->player.coord.angle = HALF_PI;
 	else if (c == 'W')
-		game->player.coord.angle = M_PI;
+		game->player.coord.angle = PI;
 	else if (c == 'E')
 		game->player.coord.angle = 0;
 }

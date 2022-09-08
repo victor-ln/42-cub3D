@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:57:54 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	key_press_game(int keycode, t_game *game)
 	key_movement(keycode, game);
 	if (keycode && ft_strchr("1234", keycode))
 		game->player.weapon = keycode - '0' - 1;
-	else if (keycode == ESC)
+	else if (keycode == 'm' && \
+		game->window_width > 720 && game->window_height > 480)
 	{
 		game->frame = 0;
 		game->menu.menu_index = 0;
@@ -37,6 +38,8 @@ int	key_press_game(int keycode, t_game *game)
 		open_door(game);
 	else if (keycode == SHIFT)
 		game->player.movement_speed = 16;
+	else if (keycode == ESC)
+		end_game(game);
 	return (0);
 }
 
@@ -49,9 +52,9 @@ int	key_release(int keycode, t_game *game)
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = 0;
 	else if (keycode == 'd')
-		game->player.walk_direction = 0;
+		game->player.side_direction = 0;
 	else if (keycode == 'a')
-		game->player.walk_direction = 0;
+		game->player.side_direction = 0;
 	else if (keycode == 's')
 		game->player.walk_direction = 0;
 	else if (keycode == 'w')
@@ -70,9 +73,9 @@ static void	key_movement(int keycode, t_game *game)
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = TURN_LEFT;
 	else if (keycode == 'a')
-		game->player.walk_direction = WALK_LEFT;
+		game->player.side_direction = WALK_LEFT;
 	else if (keycode == 'd')
-		game->player.walk_direction = WALK_RIGHT;
+		game->player.side_direction = WALK_RIGHT;
 	else if (keycode == 's')
 		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')

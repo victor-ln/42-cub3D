@@ -16,6 +16,7 @@
 		"clocale": "c",
 		"system_error": "c",
 		"types.h": "c",
-		"time.h": "c"
+		"time.h": "c",
+		"menu_bonus.h": "c"
 	}
 }
