@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 21:20:25 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:48:51 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	key_press_game(int keycode, t_game *game)
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = TURN_LEFT;
 	else if (keycode == 'a')
-		game->player.walk_direction = WALK_LEFT;
+		game->player.side_direction = WALK_LEFT;
 	else if (keycode == 'd')
-		game->player.walk_direction = WALK_RIGHT;
+		game->player.side_direction = WALK_RIGHT;
 	else if (keycode == 's')
 		game->player.walk_direction = WALK_DOWN;
 	else if (keycode == 'w')
@@ -40,9 +40,9 @@ int	key_release(int keycode, t_game *game)
 	else if (keycode == ARROW_LEFT)
 		game->player.move_direction = 0;
 	else if (keycode == 'd')
-		game->player.walk_direction = 0;
+		game->player.side_direction = 0;
 	else if (keycode == 'a')
-		game->player.walk_direction = 0;
+		game->player.side_direction = 0;
 	else if (keycode == 's')
 		game->player.walk_direction = 0;
 	else if (keycode == 'w')

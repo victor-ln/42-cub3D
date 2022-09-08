@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 16:39:55 by adrianofaus       #+#    #+#             */
-/*   Updated: 2022/09/07 19:12:50 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:45:54 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	init_game(t_game *game)
 	game->half_height = game->window_height / 2;
 	game->wall_prop.proj_wall_dist = game->half_width / tan(FOV_ANGLE / 2);
 	game->params.textures = ft_calloc(sizeof(char *), 4);
-	game->player.rotation_speed = STD_ROTATION_SPEED_3;
-	game->player.movement_speed = 8;
+	game->player.rotation_speed = STD_ROTATION_SPEED_2;
+	game->player.movement_speed = MOVEMENT_SPEED;
 	if (!game->params.textures)
 		error("Malloc Failed", game);
 }

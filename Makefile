@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/07 21:37:27 by afaustin         ###   ########.fr        #
+#    Updated: 2022/09/07 21:40:43 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,7 +174,7 @@ clean:
 
 fclean:				clean
 					$(MAKE) -C ./libft fclean
-					$(RM) $(NAME)
+					$(RM) $(NAME) $(NAME_BONUS)
 
 re:					fclean all
 

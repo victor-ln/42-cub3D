@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 18:00:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 21:27:16 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:11:25 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,37 @@
 
 void	move_player(t_game *game)
 {
-	double	move_step;
+	int		move_step;
 	double	to_x;
 	double	to_y;
 	double	angle;
-	int		walk_direction;
+	int		side_step;
 
+	move_step = game->player.walk_direction * game->player.movement_speed;
+	side_step = game->player.side_direction * game->player.movement_speed;
+	angle = game->player.coord.angle;
+	to_x = 0;
+	to_y = 0;
 	game->player.coord.angle += game->player.move_direction * \
 		game->player.rotation_speed;
 	normalize_angle(&game->player.coord.angle);
-	angle = game->player.coord.angle;
-	walk_direction = game->player.walk_direction;
-	if (game->player.walk_direction == WALK_LEFT || \
-		game->player.walk_direction == WALK_RIGHT)
+	if (game->player.side_direction && game->player.walk_direction)
 	{
-		walk_direction /= 2;
-		angle += M_PI_2;
+		move_step /= 2;
+		side_step /= 2;
 	}
-	move_step = walk_direction * game->player.movement_speed;
-	to_x = game->player.coord.x + (cos(angle) * move_step);
-	to_y = game->player.coord.y + (sin(angle) * move_step);
+	if (game->player.walk_direction)
+	{
+		to_x = (cos(angle) * move_step);
+		to_y = (sin(angle) * move_step);
+	}
+	if (game->player.side_direction)
+	{
+		to_x += (cos(angle + M_PI_2) * side_step);
+		to_y += (sin(angle + M_PI_2) * side_step);
+	}
+	to_x += game->player.coord.x;
+	to_y += game->player.coord.y;
 	if (!has_wall_at(game, to_x, to_y))
 	{
 		game->player.coord.x = to_x;

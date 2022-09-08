@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 21:24:48 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/07 21:56:31 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # define INPUT_ERR				(void *)-1
 
-# define MOVEMENT_SPEED			8
+# define MOVEMENT_SPEED			4
 # define RAY_STRIP				1
 # define TILE_SIZE				64
 
@@ -82,9 +82,9 @@
 # define TURN_RIGHT				1
 # define TURN_LEFT				-1
 
-# define WALK_LEFT				-2
+# define WALK_LEFT				-1
 # define WALK_UP				1
-# define WALK_RIGHT				2
+# define WALK_RIGHT				1
 # define WALK_DOWN				-1
 
 # define ESC					65307
@@ -155,6 +155,7 @@ typedef struct s_player
 	int			movement_speed;
 	int			move_direction;
 	int			walk_direction;
+	int			side_direction;
 }	t_player;
 
 typedef struct s_rays_properties
