@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 17:24:32 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:57:54 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/08 20:25:34 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	key_press_game(int keycode, t_game *game)
 	key_movement(keycode, game);
 	if (keycode && ft_strchr("1234", keycode))
 		game->player.weapon = keycode - '0' - 1;
+	else if (keycode == TAB)
+		game->show_full_map = !game->show_full_map;
 	else if (keycode == 'm' && \
-		game->window_width > 720 && game->window_height > 480)
+		game->window_width >= 720 && game->window_height >= 480)
 	{
-		game->frame = 0;
-		game->menu.menu_index = 0;
 		game->is_on_the_game = false;
-		game->menu.menu_screen = SELECTION_MENU;
+		change_menu(&game->menu, SELECTION_MENU);
 	}
 	else if (keycode == CTRL)
 	{

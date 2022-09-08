@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_small_radar_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 20:51:21 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:30:22 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ static void	get_offset(t_game *game)
 	if (player_line <= mid_y)
 		game->texture_prop.offset_y = 0;
 	else if (player_line >= game->minimap.height - mid_y)
-		game->texture_prop.offset_y = (game->minimap.height - (mid_y << 1)) * \
-			MINIMAP_TILE_SIZE;
+		game->texture_prop.offset_y = (game->minimap.height - \
+		((mid_y << 1) + (mid_y & 1))) * MINIMAP_TILE_SIZE;
 	else
 		game->texture_prop.offset_y = floor(game->player.coord.y * \
 			MINIMAP_SCALE_FACTOR) - (game->minimap.small_radar_heightpx >> 1);
 	if (player_column <= mid_x)
 		game->texture_prop.offset_x = 0;
 	else if (player_column >= game->minimap.width - mid_x)
-		game->texture_prop.offset_x = (game->minimap.width - (mid_x << 1)) * \
-			MINIMAP_TILE_SIZE;
+		game->texture_prop.offset_x = (game->minimap.width - \
+			(mid_x << 1) + (mid_x & 1)) * MINIMAP_TILE_SIZE;
 	else
 		game->texture_prop.offset_x = floor(game->player.coord.x * \
 			MINIMAP_SCALE_FACTOR) - (game->minimap.small_radar_widthpx >> 1);
