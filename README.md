@@ -1,1 +1,0 @@
-# cub3D_ecole42
