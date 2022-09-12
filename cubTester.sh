@@ -2,6 +2,11 @@
 
 make
 
+# BONUS TEST
+
+#make bonus
+#program="./cub3D_bonus"
+
 program="./cub3D"
 dir=" ./maps/failure/"
 file="map_"
@@ -52,4 +57,3 @@ do
 	((i++))
 done
 
-make fclean

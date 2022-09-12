@@ -1,16 +1,11 @@
 NO ./assets/xpm/walls/blue_wall_01.xpm
+C 222,222, 222
 SO ./assets/xpm/walls/blue_wall_02.xpm
+F 128,128,128
 WE ./assets/xpm/walls/blue_wall_02.xpm
 EA ./assets/xpm/walls/blue_wall_01.xpm
-F 128,128,128
-C 222,222,222
 
-
-
-
-
-
-
+ 
         1111111111111111111111111
         1000000000110000000000001
         1011000000110000000000011
