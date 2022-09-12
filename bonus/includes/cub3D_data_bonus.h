@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/09 02:12:35 by marvin           ###   ########.fr       */
+/*   Updated: 2022/09/08 21:27:53 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <errno.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include "mlx.h"
 # include "mlx_int_bonus.h"
 # include "../../libft/libft.h"
 # include <fcntl.h>
