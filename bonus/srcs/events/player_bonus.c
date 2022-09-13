@@ -6,14 +6,14 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 18:00:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:22:14 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:35:02 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
 
-static void	calculate_fov(t_player *player);
 static void	calculate_next_step(t_game *game, int move_step, int side_step);
+static int	diagonal_colision(t_game *game, double to_x, double to_y);
 
 void	move_player(t_game *game)
 {
@@ -21,7 +21,11 @@ void	move_player(t_game *game)
 	int		side_step;
 
 	if (game->player.move_direction)
-		calculate_fov(&game->player);
+	{
+		game->player.coord.angle += game->player.move_direction * \
+			game->player.rotation_speed;
+		normalize_angle(&game->player.coord.angle);
+	}
 	if (game->player.side_direction || game->player.walk_direction)
 	{
 		move_step = game->player.walk_direction * game->player.movement_speed;
@@ -33,13 +37,6 @@ void	move_player(t_game *game)
 		}
 		calculate_next_step(game, move_step, side_step);
 	}
-}
-
-static void	calculate_fov(t_player *player)
-{
-	player->coord.angle += player->move_direction * \
-		player->rotation_speed;
-	normalize_angle(&player->coord.angle);
 }
 
 static void	calculate_next_step(t_game *game, int move_step, int side_step)
@@ -61,11 +58,29 @@ static void	calculate_next_step(t_game *game, int move_step, int side_step)
 		margin_y = -16;
 	to_x += game->player.coord.x;
 	to_y += game->player.coord.y;
-	if (!has_wall_at(game, to_x + margin_x, to_y + margin_y))
+	if (!has_wall_at(game, to_x + margin_x, to_y + margin_y) && \
+		!diagonal_colision(game, to_x + margin_x, to_y + margin_y))
 	{
 		game->player.coord.x = to_x;
 		game->player.coord.y = to_y;
 	}
+}
+
+static int	diagonal_colision(t_game *game, double to_x, double to_y)
+{
+	double		x_diff;
+	double		y_diff;
+
+	x_diff = to_x - game->player.coord.x;
+	y_diff = to_y - game->player.coord.y;
+	if (fabs(x_diff) <= TILE_SIZE && fabs(y_diff) <= TILE_SIZE)
+	{
+		if (has_wall_at(game, to_x - x_diff, to_y))
+			return (1);
+		if (has_wall_at(game, to_x, to_y - y_diff))
+			return (1);
+	}
+	return (0);
 }
 
 int	has_wall_at(t_game *game, double x, double y)
