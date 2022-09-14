@@ -19,9 +19,9 @@
 # include <errno.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include "mlx.h"
 # include "mlx_int_bonus.h"
-# include "../libft/libft.h"
+# include <mlx.h>
+# include "../../libft/libft.h"
 # include <fcntl.h>
 # include <string.h>
 # include <stdint.h>

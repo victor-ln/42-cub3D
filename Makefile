@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/14 16:35:04 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/09/08 21:25:57 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
 CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
-MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
+MLXFLAGS		=	-lmlx -Imlx -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
+
 CC				=	gcc $(CFLAGS)
 VALGRIND		=	valgrind \
 					--leak-check=full \
@@ -123,12 +124,10 @@ all:				$(NAME)
 
 $(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
 					$(MAKE) -C ./libft
-					$(MAKE) -C ./mlx_linux
 					$(CC) $(INCLUDES) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
 					
 $(NAME_BONUS):		$(addprefix $(PATH_OBJ_BONUS),$(OBJS_BONUS))
 					$(MAKE) -C ./libft
-					$(MAKE) -C ./mlx_linux
 					$(CC) $(INCLUDES_BONUS) libft/libft.a $(addprefix $(PATH_OBJ_BONUS),$(OBJS_BONUS)) $(MLXFLAGS) -o $(NAME_BONUS)
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)
@@ -169,7 +168,6 @@ norm:
 
 clean:				
 					$(MAKE) -C ./libft clean
-					$(MAKE) -C ./mlx_linux clean
 					$(RM) mandatory/obj
 					$(RM) bonus/obj
 

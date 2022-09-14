@@ -14,7 +14,7 @@
 
 typedef struct s_validation
 {
-	int		behind;
+	int		is_closed_behind;
 	int		column_limit[2];
 	int		column;
 	size_t	line_num;
@@ -37,7 +37,7 @@ void	map_validate(t_game *game)
 	v.total_lines = ft_count_vectors((void **)game->params.map);
 	v.line_num = -1;
 	v.column = 0;
-	v.behind = 0;
+	v.is_closed_behind = 0;
 	while (++v.line_num < v.total_lines)
 		if (line_validate(game->params.map, v))
 			error("Not surrounded by walls", game);
@@ -58,15 +58,15 @@ static int	line_validate(char **map, t_validation v)
 	{
 		if (!ft_strchr("0NEWS", map[v.line_num][v.column]))
 		{
-			if (map[v.line_num][v.column] != '1' && v.behind)
+			if (map[v.line_num][v.column] != '1' && v.is_closed_behind)
 				return (EXIT_FAILURE);
-			v.behind = 0;
+			v.is_closed_behind = 0;
 		}
 		else
 		{
 			if (!is_surrounded(map, v))
 				return (EXIT_FAILURE);
-			v.behind = 1;
+			v.is_closed_behind = 1;
 		}
 		v.column++;
 	}
@@ -77,7 +77,7 @@ static int	is_surrounded(char **map, t_validation v)
 {
 	if (!v.line_num || v.line_num == v.total_lines - 1)
 		return (0);
-	if (map[v.line_num][v.column - 1] != '1' && !v.behind)
+	if (map[v.line_num][v.column - 1] != '1' && !v.is_closed_behind)
 		return (0);
 	if (v.line_num)
 		if ((v.column >= v.column_limit[TOP_LINE] || \

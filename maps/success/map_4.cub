@@ -1,19 +1,19 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/xpm/walls/blue_wall_01.xpm
+SO ./assets/xpm/walls/blue_wall_02.xpm
+WE ./assets/xpm/walls/blue_wall_02.xpm
+EA ./assets/xpm/walls/blue_wall_01.xpm
 
 F 220,100,0
 C 225,30,0
 
-222222222222222
+111111111111111
 100000000000101
 100001000000101
 111100000010101
 100000000010101
-1000000S2222101
+1000000S1111101
 100000000000001
 100000000000001
 111111000111101
 100000000000001
-333333333333333
+111111111111111

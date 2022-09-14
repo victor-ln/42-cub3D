@@ -23,11 +23,6 @@
 int				ft_strcmp(char *s1, char *s2);
 
 /*
-	Returns a string representing the unsigned integer received as an argument.
-*/
-char			*ft_utoa(unsigned int nbr);
-
-/*
 	Returns a pointer to a new string which is
 	a duplicate of the string s.
 */

@@ -1,8 +1,13 @@
 #!/bin/bash
 
+# Mandatory test
 make
-
 program="./cub3D"
+
+# Bonus test
+# make bonus
+# program="./cub3D_bonus"
+
 dir=" ./maps/failure/"
 file="map_"
 tests=26
@@ -52,4 +57,3 @@ do
 	((i++))
 done
 
-make fclean
