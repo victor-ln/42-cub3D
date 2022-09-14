@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 18:35:08 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/07 20:41:59 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:21:00 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,10 @@
 
 # define MLX_INT_BONUS_H
 
-# include <sys/mman.h>
 # include <X11/Xlib.h>
-# include <X11/Xutil.h>
-# include <sys/ipc.h>
-# include <sys/shm.h>
 # include <X11/extensions/XShm.h>
-# include <X11/XKBlib.h>
 
-# define MLX_TYPE_SHM_PIXMAP 3
-# define MLX_TYPE_SHM 2
-# define MLX_TYPE_XIMAGE 1
 # define MLX_MAX_EVENT 36
-# define ENV_DISPLAY "DISPLAY"
-# define LOCALHOST "localhost"
-# define ERR_NO_TRUECOLOR "\
-MinilibX Error : No TrueColor Visual available.\n"
-# define WARN_SHM_ATTACH "\
-MinilibX Warning : X server can't attach shared memory.\n"
-
-typedef struct s_xpm_col
-{
-	int		name;
-	int		col;
-}				t_xpm_col;
-
-struct s_col_name
-{
-	char	*name;
-	int		color;
-};
 
 typedef struct s_event_list
 {

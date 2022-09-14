@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:31:24 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:29:14 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	free_game(t_game *game)
 	ft_free_null((void *)&game->fps.fps_string);
 	ft_free_null((void *)&game->rays);
 	ft_free_null((void *)&game->sprites);
+	ft_free_null((void *)&game->closest_sprites);
 	ft_free_null((void *)&game->visible_sprites);
 	ft_free_null((void *)&game->enemies);
 }

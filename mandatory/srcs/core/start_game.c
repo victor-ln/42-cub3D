@@ -21,8 +21,6 @@ void	start_game(t_game *game)
 	mlx_hook(game->window, 17, 0, close_window, game);
 	mlx_loop_hook(game->mlx, display_game, game);
 	mlx_loop(game->mlx);
-	destroy_game(game);
-	free_game(game);
 }
 
 static int	display_game(t_game *game)

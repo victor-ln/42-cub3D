@@ -6,7 +6,7 @@
 #    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/07 21:40:43 by afaustin         ###   ########.fr        #
+#    Updated: 2022/09/13 21:03:36 by afaustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ EVENTS			=	keyboard \
 					window \
 
 EVENTS_BONUS	=	mouse \
+					colision
 
 FPS_BONUS		=	fps \
 

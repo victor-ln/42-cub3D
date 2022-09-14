@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:27:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:31:02 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 bool	is_enemy_spotted(t_game *game, int i)
 {
 	t_enemy	*enemy;
-	int		enemy_area;
-	int		enemy_location;
+	int		enemy_center;
+	int		enemy_margin;
 
 	enemy = game->enemies + game->visible_sprites[i].enemy_index;
-	enemy_area = (game->texture_prop.offset_x + game->texture_prop.width) >> 1;
-	enemy_location = \
+	enemy_center = (game->texture_prop.offset_x + game->texture_prop.width) >> 1;
+	enemy_margin = \
 		(game->texture_prop.width - game->texture_prop.offset_x) * 0.15;
 	if (game->rays[game->half_width].coord.hipo > \
 		game->visible_sprites[i].coord.hipo && !enemy->is_dead)
 	{
-		if ((game->half_width >= enemy_area - enemy_location && \
-			game->half_width <= enemy_area + enemy_location))
+		if ((game->half_width >= enemy_center - enemy_margin && \
+			game->half_width <= enemy_center + enemy_margin))
 		{
 			game->enemy_spotted = 1;
 			return (true);
