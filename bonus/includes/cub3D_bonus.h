@@ -73,9 +73,9 @@ void		draw_3d_walls(t_game *game);
 
 void		normalize_angle(double *angle);
 
-void		get_ray_content(t_game *game, int ray_id);
+void		get_ray_content(t_game *game, t_ray *ray);
 
-void		ray_constructor(t_game *game, int ray_id);
+void		ray_constructor(t_ray *ray);
 
 double		calculate_hipo(double x, double y);
 
@@ -142,5 +142,7 @@ int			set_resolution(t_game *game);
 void		change_menu(t_menu *menu, t_menu_screen menu_screen);
 
 int			manipulate_ray_axis(t_game *game, int x, int y, int axis);
+
+void		calculate_next_step(t_game *game, int move_step, int side_step);
 
 #endif

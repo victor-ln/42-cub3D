@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D_data_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/08 19:08:06 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:16:41 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@
 # define ARROW_DOWN				65364
 # define ENTER_1				65293
 # define ENTER_2				65421
-# define TAB					65289
 
 /* COLORS */
 # define RED					0xFF0000
@@ -369,11 +368,12 @@ typedef struct s_game
 	char					*file_content;
 	char					*map_cub;
 	bool					is_on_the_game;
-	bool					show_full_map;
 	t_image					options_menu[18];
 	t_image					selection_menu[10];
 	int						frame;
 	t_menu					menu;
+	int						*closest_sprites;
+	int						closest_sprites_num;
 }	t_game;
 
 #endif

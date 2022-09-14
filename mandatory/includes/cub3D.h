@@ -69,7 +69,7 @@ void		draw_3d_walls(t_game *game);
 
 void		normalize_angle(double *angle);
 
-void		ray_constructor(t_game *game, int ray_id);
+void		ray_constructor(t_ray *ray);
 
 double		calculate_hipo(double x, double y);
 

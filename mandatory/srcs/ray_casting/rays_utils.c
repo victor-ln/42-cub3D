@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 22:08:35 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:31:22 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:31:58 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ double	calculate_hipo(double x, double y)
 	return (sqrt(x * x + y * y));
 }
 
-void	ray_constructor(t_game *game, int ray_id)
+void	ray_constructor(t_ray *ray)
 {
-	normalize_angle(&game->rays[ray_id].coord.angle);
-	if (game->rays[ray_id].coord.angle > 0 && \
-		game->rays[ray_id].coord.angle < PI)
-		game->rays[ray_id].is_ray_facing_up = false;
+	normalize_angle(&ray->coord.angle);
+	if (ray->coord.angle > 0 && ray->coord.angle < PI)
+		ray->is_ray_facing_up = false;
 	else
-		game->rays[ray_id].is_ray_facing_up = true;
-	if (game->rays[ray_id].coord.angle > PI_PLUS_HALF_PI || \
-		game->rays[ray_id].coord.angle < HALF_PI)
-		game->rays[ray_id].is_ray_facing_left = false;
+		ray->is_ray_facing_up = true;
+	if (ray->coord.angle > PI_PLUS_HALF_PI || ray->coord.angle < HALF_PI)
+		ray->is_ray_facing_left = false;
 	else
-		game->rays[ray_id].is_ray_facing_left = true;
+		ray->is_ray_facing_left = true;
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/09/07 21:40:43 by afaustin         ###   ########.fr        #
+#    Updated: 2022/09/14 16:35:04 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,10 @@ INCLUDES		=	-I $(PATH_INC)
 INCLUDES_BONUS	=	-I $(PATH_INC_BONUS)
 
 # DEBUG
-DEBUG			=	-g3 #-fsanitize=address
+DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror -O3 $(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
 MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
 CC				=	gcc $(CFLAGS)
 VALGRIND		=	valgrind \
@@ -66,6 +66,7 @@ EVENTS			=	keyboard \
 					window \
 
 EVENTS_BONUS	=	mouse \
+					colision
 
 FPS_BONUS		=	fps \
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_selection_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:23:10 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:23:49 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 static void		update_enemy_sprite(t_game *game, int i);
 static float	get_sprite_angle(t_game *game, int sprite_id);
+static void		get_closest_sprites(t_game *game);
 
 void	get_visible_sprites(t_game *game)
 {
 	int		i;
 	float	sprite_angle;
 
-	i = 0;
+	i = -1;
 	game->visible_sprites_num = 0;
-	while (i < game->sprites_num)
+	get_closest_sprites(game);
+	while (++i < game->sprites_num)
 	{
 		game->sprites[i].is_visible = false;
 		sprite_angle = get_sprite_angle(game, i);
@@ -33,14 +35,14 @@ void	get_visible_sprites(t_game *game)
 				game->player.coord.x - game->sprites[i].coord.x, \
 				game->player.coord.y - game->sprites[i].coord.y \
 			);
-			if (game->sprites[i].is_enemy)
-				update_enemy_sprite(game, i);
 			game->visible_sprites[game->visible_sprites_num++] = \
 				game->sprites[i];
 			game->sprites[i].is_visible = true;
 		}
-		i++;
+		if (game->sprites[i].is_enemy)
+			update_enemy_sprite(game, i);
 	}
+	qsort_recursive(game->visible_sprites, 0, game->visible_sprites_num - 1);
 }
 
 static void	update_enemy_sprite(t_game *game, int i)
@@ -77,4 +79,23 @@ static float	get_sprite_angle(t_game *game, int sprite_id)
 	if (sprite_angle < -PI)
 		sprite_angle += TWO_PI;
 	return (fabs(sprite_angle));
+}
+
+static void	get_closest_sprites(t_game *game)
+{
+	int	i;
+
+	i = -1;
+	game->closest_sprites_num = 0;
+	while (++i < game->sprites_num)
+	{
+		if (game->sprites[i].coord.hipo <= TILE_SIZE)
+		{
+			if (game->sprites[i].is_enemy)
+				if (game->enemies[game->sprites[i].enemy_index].is_dead)
+					continue ;
+			game->closest_sprites[game->closest_sprites_num] = i;
+			game->closest_sprites_num++;
+		}
+	}
 }

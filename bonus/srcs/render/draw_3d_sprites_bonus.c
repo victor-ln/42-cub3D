@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 17:47:44 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:25:30 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	draw_visible_sprites(t_game *game)
 
 	i = 0;
 	game->enemy_spotted = 0;
-	qsort_recursive(game->visible_sprites, 0, game->visible_sprites_num - 1);
 	while (i < game->visible_sprites_num)
 	{
 		get_sprite_dimension(game, i);

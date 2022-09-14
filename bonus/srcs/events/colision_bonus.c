@@ -1,45 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   colision_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 18:00:58 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/12 23:34:59 by vlima-nu         ###   ########.fr       */
+/*   Created: 2022/09/13 21:02:04 by afaustin          #+#    #+#             */
+/*   Updated: 2022/09/13 22:22:18 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
-static void	calculate_next_step(t_game *game, int move_step, int side_step);
 static int	diagonal_colision(t_game *game, double to_x, double to_y);
+static int	enemy_colision(t_game *game, double to_x, double to_y);
 
-void	move_player(t_game *game)
-{
-	int		move_step;
-	int		side_step;
-
-	if (game->player.move_direction)
-	{
-		game->player.coord.angle += game->player.move_direction * \
-			game->player.rotation_speed;
-		normalize_angle(&game->player.coord.angle);
-	}
-	if (game->player.side_direction || game->player.walk_direction)
-	{
-		move_step = game->player.walk_direction * game->player.movement_speed;
-		side_step = game->player.side_direction * game->player.movement_speed;
-		if (game->player.side_direction && game->player.walk_direction)
-		{
-			move_step /= 2;
-			side_step /= 2;
-		}
-		calculate_next_step(game, move_step, side_step);
-	}
-}
-
-static void	calculate_next_step(t_game *game, int move_step, int side_step)
+void	calculate_next_step(t_game *game, int move_step, int side_step)
 {
 	double	to_x;
 	double	to_y;
@@ -59,7 +35,8 @@ static void	calculate_next_step(t_game *game, int move_step, int side_step)
 	to_x += game->player.coord.x;
 	to_y += game->player.coord.y;
 	if (!has_wall_at(game, to_x + margin_x, to_y + margin_y) && \
-		!diagonal_colision(game, to_x + margin_x, to_y + margin_y))
+		!diagonal_colision(game, to_x + margin_x, to_y + margin_y) && \
+		!enemy_colision(game, to_x, to_y))
 	{
 		game->player.coord.x = to_x;
 		game->player.coord.y = to_y;
@@ -73,12 +50,10 @@ static int	diagonal_colision(t_game *game, double to_x, double to_y)
 
 	x_diff = to_x - game->player.coord.x;
 	y_diff = to_y - game->player.coord.y;
-	if (fabs(x_diff) <= TILE_SIZE && fabs(y_diff) <= TILE_SIZE)
+	if (x_diff && y_diff)
 	{
-		if (has_wall_at(game, to_x - x_diff, to_y))
-			return (1);
-		if (has_wall_at(game, to_x, to_y - y_diff))
-			return (1);
+		return (has_wall_at(game, to_x - x_diff, to_y) || \
+			has_wall_at(game, to_x, to_y - y_diff));
 	}
 	return (0);
 }
@@ -90,8 +65,32 @@ int	has_wall_at(t_game *game, double x, double y)
 
 	column = (int)floor((x / TILE_SIZE));
 	line = (int)floor((y / TILE_SIZE));
-	if (y < 0 || y > game->minimap_heightpx || x < 0 || \
+	if (y < 0 || y > game->minimap.height * TILE_SIZE || x < 0 || \
 		x > ft_strlen(game->params.map[line]) * TILE_SIZE)
 		return (1);
+	if (game->params.map[line][column] == 'D')
+		return (1);
+	else if (game->params.map[line][column] == 'O')
+		return (0);
+	else if (game->params.map[line][column] == 'e')
+		return (0);
 	return (game->params.map[line][column] == '1');
+}
+
+static int	enemy_colision(t_game *game, double to_x, double to_y)
+{
+	int		i;
+	int		sprite_index;
+	double	new_hipo;
+
+	i = -1;
+	while (++i < game->closest_sprites_num)
+	{
+		sprite_index = game->closest_sprites[i];
+		new_hipo = calculate_hipo(game->sprites[sprite_index].coord.x - to_x, \
+			game->sprites[sprite_index].coord.y - to_y);
+		if (new_hipo <= 16)
+			return (1);
+	}
+	return (0);
 }
