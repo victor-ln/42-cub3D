@@ -12,10 +12,10 @@
 
 #include "cub3D.h"
 
-static void	cast_ray(t_game *game, int ray_id);
+static void	cast_ray(t_game *game, t_ray *ray);
 static void	cast_vertical(t_game *game, t_rays_properties *vert, t_ray *ray);
 static void	cast_horizontal(t_game *game, t_rays_properties *horz, t_ray *ray);
-static void	calculate_distances(t_game *game, int ray_id);
+static void	calculate_distances(t_game *game, t_ray *ray);
 
 void	cast_all_rays(t_game *game)
 {
@@ -27,22 +27,22 @@ void	cast_all_rays(t_game *game)
 	while (i < game->ray_nums)
 	{
 		game->rays[i].coord.angle = angle;
-		ray_constructor(game, i);
-		cast_ray(game, i);
+		cast_ray(game, game->rays + i);
 		angle += FOV_ANGLE / game->ray_nums;
 		i++;
 	}
 }
 
-static void	cast_ray(t_game *game, int ray_id)
+static void	cast_ray(t_game *game, t_ray *ray)
 {
 	game->ray_prop[vertical].was_hit = false;
 	game->ray_prop[horizontal].was_hit = false;
 	game->ray_prop[vertical].hipo = __FLT_MAX__;
 	game->ray_prop[horizontal].hipo = __FLT_MAX__;
-	cast_vertical(game, game->ray_prop + vertical, game->rays + ray_id);
-	cast_horizontal(game, game->ray_prop + horizontal, game->rays + ray_id);
-	calculate_distances(game, ray_id);
+	ray_constructor(ray);
+	cast_vertical(game, game->ray_prop + vertical, ray);
+	cast_horizontal(game, game->ray_prop + horizontal, ray);
+	calculate_distances(game, ray);
 }
 
 static void	cast_vertical(t_game *game, t_rays_properties *vert, t_ray *ray)
@@ -101,7 +101,7 @@ static void	cast_horizontal(t_game *game, t_rays_properties *horz, t_ray *ray)
 	}
 }
 
-static void	calculate_distances(t_game *game, int ray_id)
+static void	calculate_distances(t_game *game, t_ray *ray)
 {
 	int	closer;
 
@@ -114,8 +114,8 @@ static void	calculate_distances(t_game *game, int ray_id)
 			(game->ray_prop[vertical].x_intercept - game->player.coord.x), \
 			(game->ray_prop[vertical].y_intercept - game->player.coord.y));
 	closer = game->ray_prop[vertical].hipo < game->ray_prop[horizontal].hipo;
-	game->rays[ray_id].coord.x = game->ray_prop[closer].x_intercept;
-	game->rays[ray_id].coord.y = game->ray_prop[closer].y_intercept;
-	game->rays[ray_id].coord.hipo = game->ray_prop[closer].hipo;
-	game->rays[ray_id].was_hit_vertical = closer;
+	ray->coord.x = game->ray_prop[closer].x_intercept;
+	ray->coord.y = game->ray_prop[closer].y_intercept;
+	ray->coord.hipo = game->ray_prop[closer].hipo;
+	ray->was_hit_vertical = closer;
 }

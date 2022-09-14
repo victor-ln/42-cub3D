@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 20:27:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/13 22:31:02 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/14 16:33:26 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ bool	is_enemy_spotted(t_game *game, int i)
 	int		enemy_margin;
 
 	enemy = game->enemies + game->visible_sprites[i].enemy_index;
-	enemy_center = (game->texture_prop.offset_x + game->texture_prop.width) >> 1;
+	enemy_center = \
+		(game->texture_prop.offset_x + game->texture_prop.width) >> 1;
 	enemy_margin = \
 		(game->texture_prop.width - game->texture_prop.offset_x) * 0.15;
 	if (game->rays[game->half_width].coord.hipo > \
