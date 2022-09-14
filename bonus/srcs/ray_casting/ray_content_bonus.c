@@ -6,7 +6,7 @@
 /*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:40:05 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:38:11 by afaustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,26 @@ static void	cast_vertical_door(t_ray *ray, t_rays_properties *ray_prop, \
 static void	recalculate_distance(t_game *game, t_ray *ray, \
 	t_rays_properties *ray_prop);
 
-void	get_ray_content(t_game *game, int ray_id)
+void	get_ray_content(t_game *game, t_ray *ray)
 {
 	int	x;
 	int	y;
 
-	if (game->rays[ray_id].was_hit_vertical)
+	if (ray->was_hit_vertical)
 	{
-		x = (int)floor((game->rays[ray_id].coord.x - \
-			game->rays[ray_id].is_ray_facing_left) / TILE_SIZE);
-		y = (int)floor(game->rays[ray_id].coord.y / TILE_SIZE);
+		x = (int)floor((ray->coord.x - ray->is_ray_facing_left) / TILE_SIZE);
+		y = (int)floor(ray->coord.y / TILE_SIZE);
 		x += manipulate_ray_axis(game, x, y, horizontal);
 	}
 	else
 	{
-		x = (int)floor(game->rays[ray_id].coord.x / TILE_SIZE);
-		y = (int)floor((game->rays[ray_id].coord.y - \
-			game->rays[ray_id].is_ray_facing_up) / TILE_SIZE);
+		x = (int)floor(ray->coord.x / TILE_SIZE);
+		y = (int)floor((ray->coord.y - ray->is_ray_facing_up) / TILE_SIZE);
 		y += manipulate_ray_axis(game, x, y, vertical);
 	}
-	game->rays[ray_id].content_type = game->params.map[y][x];
-	if (game->rays[ray_id].content_type == 'D')
-		cast_door(game, game->rays + ray_id, game->ray_prop);
+	ray->content_type = game->params.map[y][x];
+	if (ray->content_type == 'D')
+		cast_door(game, ray, game->ray_prop);
 }
 
 static void	cast_door(t_game *game, t_ray *ray, t_rays_properties *ray_prop)

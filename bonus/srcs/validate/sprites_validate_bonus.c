@@ -27,9 +27,11 @@ void	save_sprites(t_game *game)
 		return ;
 	game->enemies_num = game->sprites_num;
 	game->sprites = malloc(sizeof(t_sprites) * game->sprites_num);
+	game->closest_sprites = malloc(sizeof(int) * game->sprites_num);
 	game->visible_sprites = malloc(sizeof(t_sprites) * game->sprites_num);
 	game->enemies = ft_calloc(sizeof(t_sprites), game->enemies_num);
-	if (!game->sprites || !game->enemies || !game->visible_sprites)
+	if (!game->sprites || !game->enemies || !game->visible_sprites || \
+		!game->closest_sprites)
 		error("Malloc Failed", game);
 	save_sprites_params(game);
 }

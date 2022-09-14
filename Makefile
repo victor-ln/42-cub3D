@@ -24,11 +24,12 @@ INCLUDES		=	-I $(PATH_INC)
 INCLUDES_BONUS	=	-I $(PATH_INC_BONUS)
 
 # DEBUG
-DEBUG			=	-g3 #-fsanitize=address
+DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror -O3 $(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
 MLXFLAGS		=	-lmlx -Imlx -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
+
 CC				=	gcc $(CFLAGS)
 VALGRIND		=	valgrind \
 					--leak-check=full \
@@ -66,6 +67,7 @@ EVENTS			=	keyboard \
 					window \
 
 EVENTS_BONUS	=	mouse \
+					colision
 
 FPS_BONUS		=	fps \
 
