@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Mandatory test
-make
-program="./cub3D"
+make -C ..
+program="../cub3D"
 
 # Bonus test
-# make bonus
-# program="./cub3D_bonus"
+# make -C ../ bonus
+# program="../cub3D_bonus"
 
-dir=" ./maps/failure/"
+dir=" ./failure/"
 file="map_"
 tests=26
 i=0

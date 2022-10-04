@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./assets/xpm/walls/blue_wall_01.xpm
+SO ./assets/xpm/walls/blue_wall_02.xpm
+WE ./assets/xpm/walls/blue_wall_02.xpm
+EA ./assets/xpm/walls/blue_wall_01.xpm
 F 220,100,0
 C 225,30,0
 
