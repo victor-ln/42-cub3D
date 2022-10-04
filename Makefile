@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/10/04 16:15:17 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/10/04 18:48:08 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,12 +23,17 @@ RM				=	rm -rf
 INCLUDES		=	-I $(PATH_INC)
 INCLUDES_BONUS	=	-I $(PATH_INC_BONUS)
 
+LIBFT_PATH		=	libraries/libft/
+MLX_PATH		=	libraries/mlx_linux
+
 # DEBUG
 DEBUG			=	-g3 -fsanitize=address
 
 # COMPILATION
 CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
-MLXFLAGS		=	-Lmlx_linux -lmlx_Linux -Imlx_linux -L/usr/lib -lXext -lX11 -lm -lz -L libft/ -lft
+MLXFLAGS		=	-L$(MLX_PATH) -lmlx_Linux -I$(MLX_PATH) \
+					-L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
+
 CC				=	gcc $(CFLAGS)
 VALGRIND		=	valgrind \
 					--leak-check=full \
@@ -115,21 +120,21 @@ SOURCES_BONUS	=	$(addprefix menu/, $(addsuffix _bonus.c, $(MENU_BONUS))) \
 					$(addprefix validate/, $(addsuffix _bonus.c, $(VALIDATE_BONUS))) \
 					$(addsuffix _bonus.c, $(basename $(SOURCES))) \
 					
-OBJS			=	$(SOURCES:%.c=%.o)
-OBJS_BONUS		=	$(SOURCES_BONUS:%.c=%.o)
+OBJS			=	$(addprefix $(PATH_OBJ),$(SOURCES:%.c=%.o))
+OBJS_BONUS		=	$(addprefix $(PATH_OBJ_BONUS),$(SOURCES_BONUS:%.c=%.o))
 
 # ###################################################################### TARGETS
 all:				$(NAME)
 
-$(NAME):			$(addprefix $(PATH_OBJ),$(OBJS))
-					$(MAKE) -C ./libft
-					$(MAKE) -C ./mlx_linux
-					$(CC) $(INCLUDES) libft/libft.a $(addprefix $(PATH_OBJ),$(OBJS)) $(MLXFLAGS) -o $(NAME)
+$(NAME):			$(OBJS)
+					$(MAKE) -C $(LIBFT_PATH)
+					$(MAKE) -C $(MLX_PATH)
+					$(CC) $(INCLUDES) $(OBJS) $(MLXFLAGS) -o $(NAME)
 					
-$(NAME_BONUS):		$(addprefix $(PATH_OBJ_BONUS),$(OBJS_BONUS))
-					$(MAKE) -C ./libft
-					$(MAKE) -C ./mlx_linux
-					$(CC) $(INCLUDES_BONUS) libft/libft.a $(addprefix $(PATH_OBJ_BONUS),$(OBJS_BONUS)) $(MLXFLAGS) -o $(NAME_BONUS)
+$(NAME_BONUS):		$(OBJS_BONUS)
+					$(MAKE) -C $(LIBFT_PATH)
+					$(MAKE) -C $(MLX_PATH)
+					$(CC) $(INCLUDES_BONUS) $(OBJS_BONUS) $(MLXFLAGS) -o $(NAME_BONUS)
 
 $(PATH_OBJ)%.o:		$(PATH_SRC)%.c $(PATH_INC)
 					@mkdir -p mandatory/obj
@@ -162,19 +167,19 @@ run:				all
 bonus:				$(NAME_BONUS)
 
 valgrind:			all
-					$(VALGRIND) ./$(NAME) maps/success/map_1.cub
+					$(VALGRIND) ./$(NAME) maps/map_0.cub
 
 norm:
-					norminette mandatory/ bonus/ libft/ | grep Error
+					norminette mandatory/ bonus/ $(LIBFT_PATH) | grep Error
 
 clean:				
-					$(MAKE) -C ./libft clean
-					$(MAKE) -C ./mlx_linux clean
+					$(MAKE) -C $(LIBFT_PATH) clean
+					$(MAKE) -C $(MLX_PATH) clean
 					$(RM) mandatory/obj
 					$(RM) bonus/obj
 
 fclean:				clean
-					$(MAKE) -C ./libft fclean
+					$(MAKE) -C $(LIBFT_PATH) fclean
 					$(RM) $(NAME) $(NAME_BONUS)
 
 re:					fclean all
