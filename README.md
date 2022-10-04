@@ -1,5 +1,7 @@
 # __Cub3D__
 
+![cub3dm](https://user-images.githubusercontent.com/81260589/193924497-8023cfb2-59fe-4447-adcc-3271828a182a.png)
+
 ## __Introduction__
 
 This project is inspired by the world-famous Wolfenstein 3D game, which
