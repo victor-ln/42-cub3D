@@ -19,13 +19,14 @@ make a dynamic view inside a maze, in which we had to find your way.
 ## __How to run it ?__
 
 - Clone the repository
-
-```` git clone https://github.com/adrianofaus/cub3D_ecole42.git ````
-- Run `make` to compile Common part and `make bonus` to bonus
+````
+git clone https://github.com/adrianofaus/cub3D_ecole42.git
+````
+- Run `make` to compile _common part_ and `make bonus` to _bonus part_
 - To clean objects files execute: `make clean`
 - To clean executable file and objects: `make fclean`
 - Recompile: `make re`
-- Run `./cub3D` or `./cub3D_bonus` followed by map path eg. `./maps/map_0.ber`
+- Run `./cub3D` or `./cub3D_bonus` followed by map path e.g. `./maps/map_0.ber`
 
 ## __File configuration__
 
