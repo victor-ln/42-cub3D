@@ -1,0 +1,16 @@
+NO ./assets/xpm/walls/blue_wall_01.xpm
+SO ./assets/xpm/walls/blue_wall_02.xpm
+WE ./assets/xpm/walls/blue_wall_02.xpm
+EA ./assets/xpm/walls/blue_wall_01.xpm
+
+F 220,100,0
+C 225,30,0
+
+     11111
+     10001
+     10001
+1111111D11
+100Ak10001
+1E0a0D0001
+100Ak10011
+111111111

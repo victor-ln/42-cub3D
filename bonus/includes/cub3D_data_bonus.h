@@ -6,7 +6,7 @@
 /*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 20:59:56 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/10/04 18:03:08 by vlima-nu         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:47:04 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,8 +180,8 @@ enum e_objects {
 	brass,
 	bucket,
 	bunch_skeletons,
-	cage,
 	cage_skeleton,
+	cage,
 	crown,
 	crucifix,
 	cup,
@@ -209,8 +209,8 @@ enum e_objects {
 	puddle,
 	roots,
 	skeleton_blood,
-	skeleton,
 	skeleton_lying,
+	skeleton,
 	spears,
 	submachine_gun_item,
 	table_chairs,

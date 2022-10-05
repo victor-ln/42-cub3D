@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 19:30:01 by afaustin          #+#    #+#             */
-/*   Updated: 2022/08/11 19:30:53 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:30:16 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_count_char(char *str, char c)
+#include "libft.h"
+
+int	ft_count_charaters(char *str, char *characters)
 {
 	int	i;
 	int	counter;
@@ -19,7 +21,7 @@ int	ft_count_char(char *str, char c)
 	counter = 0;
 	while (str[i])
 	{
-		if (str[i] == c)
+		if (ft_strchr(characters, str[i]))
 			counter++;
 		i++;
 	}

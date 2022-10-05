@@ -5,9 +5,9 @@ static char *roots1660767710[] = {
 "  c #005700",
 ". c #004B00",
 "X c #282828",
-"o c white",
+"o c None",
 "O c #003E00",
-"+ c #B3008C",
+"+ c None",
 "@ c black",
 "# c black",
 /* pixels */

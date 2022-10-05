@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_selection_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 21:52:23 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/13 22:23:49 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:28:05 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	get_visible_sprites(t_game *game)
 		if (game->sprites[i].is_enemy)
 			update_enemy_sprite(game, i);
 	}
+	ft_bzero(game->visible_sprites, game->sprites_num);
 	qsort_recursive(game->visible_sprites, 0, game->visible_sprites_num - 1);
 }
 

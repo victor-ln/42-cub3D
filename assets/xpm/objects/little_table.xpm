@@ -31,8 +31,8 @@ static char *little_table1660767710[] = {
 "8 c gray49",
 "9 c #FF7900",
 "0 c gray71",
-"q c white",
-"w c #B3008C",
+"q c None",
+"w c None",
 "e c black",
 /* pixels */
 "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwq",

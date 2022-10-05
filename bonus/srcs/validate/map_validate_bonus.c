@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validate_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 19:53:07 by vlima-nu          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:04:50 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ static int	line_validate(char **map, t_validation v)
 		v.column_limit[BOT_LINE] = ft_strlen(map[v.line_num + 1]) - 1;
 	while (map[v.line_num][v.column])
 	{
-		if (!ft_strchr("0NEWSDe", map[v.line_num][v.column]))
+		if (!ft_strchr("0NEWSDA", map[v.line_num][v.column]) && \
+			!is_obj(map[v.line_num][v.column]))
 		{
 			if (map[v.line_num][v.column] != '1' && v.is_closed_behind)
 				return (EXIT_FAILURE);

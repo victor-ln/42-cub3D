@@ -30,8 +30,8 @@ static char *drinking_fountain1660767709[] = {
 "7 c #CE5300",
 "8 c #FFAA56",
 "9 c #FEF84B",
-"0 c white",
-"q c #B3008C",
+"0 c None",
+"q c None",
 "w c black",
 "e c black",
 /* pixels */

@@ -145,4 +145,6 @@ int			manipulate_ray_axis(t_game *game, int x, int y, int axis);
 
 void		calculate_next_step(t_game *game, int move_step, int side_step);
 
+int         is_obj(char c);
+
 #endif

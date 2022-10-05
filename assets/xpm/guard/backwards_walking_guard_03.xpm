@@ -45,7 +45,7 @@ static char *backwards_walking_guard_031660768017[] = {
 "d c #00003F",
 "f c #FF9D5C",
 "g c black",
-"h c #B3008C",
+"h c None",
 "j c black",
 "k c black",
 "l c black",

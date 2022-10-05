@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/10/04 18:48:08 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/10/04 20:04:21 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,10 @@ LIBFT_PATH		=	libraries/libft/
 MLX_PATH		=	libraries/mlx_linux
 
 # DEBUG
-DEBUG			=	-g3 -fsanitize=address
+DEBUG			=	-g3 #-fsanitize=address
 
 # COMPILATION
-CFLAGS			=	-Wall -Wextra -Werror -O3 #$(DEBUG)
+CFLAGS			=	-Wall -Wextra -Werror -O3 $(DEBUG)
 MLXFLAGS		=	-L$(MLX_PATH) -lmlx_Linux -I$(MLX_PATH) \
 					-L/usr/lib -lXext -lX11 -lm -lz -L$(LIBFT_PATH) -lft
 

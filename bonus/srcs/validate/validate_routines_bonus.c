@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_routines_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: afaustin <afaustin@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:18:18 by afaustin          #+#    #+#             */
-/*   Updated: 2022/09/07 20:43:54 by afaustin         ###   ########.fr       */
+/*   Updated: 2022/10/04 21:02:13 by vlima-nu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,18 @@ static void	characteres_and_player_nums_validate(t_game *game)
 	player = 0;
 	while (game->params.map[i])
 	{
-		j = 0;
-		while (game->params.map[i][j])
+		j = -1;
+		while (game->params.map[i][++j])
 		{
-			if (!ft_strchr("10NSEWDe ", game->params.map[i][j]))
+			if ((game->params.map[i][j] >= 88 && game->params.map[i][j] <= 126) || \
+				(game->params.map[i][j] >= 35 && game->params.map[i][j] <= 43))
+				continue ;
+			if (!ft_strchr("10NSEWDA ", game->params.map[i][j]))
 				error("Invalid character on map", game);
 			if (ft_strchr("NSEW", game->params.map[i][j]))
 				player++;
 			if (player > 1)
 				error("Invalid number of players", game);
-			j++;
 		}
 		i++;
 	}
