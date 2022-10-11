@@ -6,7 +6,7 @@
 #    By: vlima-nu <vlima-nu@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/01 16:38:33 by adrianofaus       #+#    #+#              #
-#    Updated: 2022/10/10 14:23:21 by vlima-nu         ###   ########.fr        #
+#    Updated: 2022/10/11 11:47:52 by vlima-nu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,14 @@ VALGRIND		=	valgrind \
 					---quiethow-leak-kinds=all \
 					--track-origins=yes
 
+#PATHS
+PATH_OBJ		=	mandatory/obj/
+PATH_OBJ_BONUS	=	bonus/obj/
+PATH_SRC		=	mandatory/srcs/
+PATH_SRC_BONUS	=	bonus/srcs/
+PATH_INC		=	mandatory/includes/
+PATH_INC_BONUS	=	bonus/includes/
+PATH_TEST		=	test/
 OBJ_DIR			=	mandatory/obj \
 					mandatory/obj/core/load_file \
 					mandatory/obj/core/load_game \
@@ -48,8 +56,7 @@ OBJ_DIR			=	mandatory/obj \
 					mandatory/obj/events \
 					mandatory/obj/ray_casting \
 					mandatory/obj/render \
-					mandatory/obj/validate \
-
+					mandatory/obj/validate
 OBJ_DIR_BONUS	=	bonus/obj \
 					bonus/obj/core/load_file \
 					bonus/obj/core/load_game \
@@ -60,16 +67,7 @@ OBJ_DIR_BONUS	=	bonus/obj \
 					bonus/obj/render \
 					bonus/obj/validate \
 					bonus/obj/sorting \
-					bonus/obj/menu \
-
-#PATHS
-PATH_OBJ		=	mandatory/obj/
-PATH_OBJ_BONUS	=	bonus/obj/
-PATH_SRC		=	mandatory/srcs/
-PATH_SRC_BONUS	=	bonus/srcs/
-PATH_INC		=	mandatory/includes/
-PATH_INC_BONUS	=	bonus/includes/
-PATH_TEST		=	test/
+					bonus/obj/menu
 
 MENU_BONUS		=	menu \
 					menu_actions \
@@ -153,7 +151,7 @@ ifndef ECHO
 endif
 
 ifeq ($(firstword $(MAKECMDGOALS)), $(shell echo re))
-	T := $(shell expr $(words $(FILES)) + 1)
+	T := $(shell expr $(words $(SOURCES)) + 1)
 endif
 
 ITALIC_LIGHTER_YELLOW	= "\e[1;3;33m"
