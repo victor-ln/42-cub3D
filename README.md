@@ -8,6 +8,16 @@ This project is inspired by the world-famous Wolfenstein 3D game, which
 was the first FPS ever. It enable us to explore ray-casting. Our goal was to
 make a dynamic view inside a maze, in which we had to find your way.
 
+## __DEMONSTRATION__
+
+Demo gameplay showing menus.
+
+![Mídia1](https://user-images.githubusercontent.com/63206471/196565968-0f375a13-efb8-4d3c-8aa5-bc9c982938c1.gif)
+
+Demo gamplay showing weapons, crosshair, enemies and doors.
+
+![Mídia2](https://user-images.githubusercontent.com/63206471/196566020-639a7e20-4002-444d-858b-f84def43266d.gif)
+
 ## __Skills that we have improved__
 
 - Math applied to computer science
