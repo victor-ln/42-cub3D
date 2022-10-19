@@ -40,6 +40,8 @@ git clone https://github.com/adrianofaus/cub3D_ecole42.git
 - Recompile: `make re`
 - Run `./cub3D` or `./cub3D_bonus` followed by map path e.g. `./maps/map_0.ber`
 
+![Mídia1](https://user-images.githubusercontent.com/63206471/196570728-1f16241c-5569-44e3-88d9-acc6a17e749e.gif)
+
 ## __File configuration__
 
 To run the game, you must pass as first argument a scene description file with the .cub
