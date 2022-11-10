@@ -32,7 +32,7 @@ Demo gamplay showing weapons, crosshair, enemies and doors.
 
 - Clone the repository
 ````
-git clone --recurse-submodules git@github.com:victor-ln/42-so_long.git
+git clone --recurse-submodules git@github.com:victor-ln/42-cub3D.git
 ````
 - Run `make` to compile _common part_ and `make bonus` to _bonus part_
 - To clean objects files execute: `make clean`
